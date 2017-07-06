@@ -48,30 +48,8 @@ Vagrant.configure(2) do |config|
 
   # Set post-vagrant-up message
 	config.vm.post_up_message = "
-
-                                      +?II.   
-               .?????????=          ??II~.                                      
-                ,??IIII?????.      ??III,                                      
-                   .:IIIII???I    ??IIII.                                       
-                      :~=IIII?II =?III+                                         
-                         +III7?II??I?..  .=??????????~                          
-             .+III???????????IIIII?II?????????????????IIII                     
-          .7IIIIII?????????????IIIII????IIIIIIIIII777777IIII:                   
-        7777IIIII???~.. ..~??III?I??I?II,IIIIIIII ~II77 .?7777=                 
-      777777IIII.            II??I?II?,~+=                                      
-    .?77777II+                +II~???.                                          
-   :?777777I                                                                    
-  +?I777777      ZOOO7OO$                         OOOOOOO, 78OOOOOOOO8   ,8OOO8 
- .??777777      8O8   OOO                      .8OO+  ,OO8OO8I ZOO: OO? 8OO~OO.
- ??I777777     8O8    8O8 .~.,.       ,..,    OOOI    I .O8 . OOO: 8O8,8OO 8O$  
-:III77777,    OOO    .OO7.OOZOO=?OZO=8OO8OO   OOOOO888:  ?   8OOOOOO ?OOOOOOO   
-IIII77777     8O8   ,OO8 88 ~O8ZO+O=$O8 OO.OZ =8888O8OO=     OOZ    8O8   OO,   
-IIII77777,    8OZ  7OOZ $O+,O8 8O? OOO. O888.      :OO8     OO8    8O8   8O8    
-II77777777    +OOOOOO,  OOOOI  .8OO~88  OO$ O8OI?O8OO7      8O7   8O8    OO:    
-I777777777I     .+:    ,O8                   OOOOO8=         $Z    .            
-7777777777II.          7OO                                                      
-77777777.       J U S T     K I D D I N G     I T S     C U B I U M                  
-,7777.
+        C   U   B   I   U   M
+      dev environment initialized
 "
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -100,14 +78,14 @@ I777777777I     .+:    ,O8                   OOOOO8=         $Z    .
      apt-get -y update
      apt-get -y upgrade
      apt-get -y install build-essential
-     apt-get -y install xfce4
-     apt-get -y install iceweasel
+    # apt-get -y install xfce4
+    # apt-get -y install iceweasel
      apt-get -y install cmake
      apt-get -y install doxygen
      apt-get -y install git
      apt-get -y install vim
-     apt-get -y install lightdm
-     apt-get -y install libboost-all-dev
+    # apt-get -y install lightdm
+     #apt-get -y install libboost-all-dev
      apt-get -y install valgrind
 
   # #=== Installing and configuring GTest/GMock ==
