@@ -1,4 +1,0 @@
-/Cubium/lib/CMakeFiles/OpenSpa.dir
-/Cubium/examples/component/CMakeFiles/example_component.dir
-/Cubium/src/CMakeFiles/subnet_driver.dir
-/Cubium/test/CMakeFiles/tests.dir

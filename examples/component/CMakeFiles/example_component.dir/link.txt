@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g    CMakeFiles/example_component.dir/example_component.cpp.o  -o example_component -rdynamic ../../lib/libOpenSpa.a -lpthread 
