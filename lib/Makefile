@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /vagrant
+CMAKE_SOURCE_DIR = /Cubium
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /vagrant
+CMAKE_BINARY_DIR = /Cubium
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -73,14 +73,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /vagrant && $(CMAKE_COMMAND) -E cmake_progress_start /vagrant/CMakeFiles /vagrant/lib/CMakeFiles/progress.marks
-	cd /vagrant && $(MAKE) -f CMakeFiles/Makefile2 lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /vagrant/CMakeFiles 0
+	cd /Cubium && $(CMAKE_COMMAND) -E cmake_progress_start /Cubium/CMakeFiles /Cubium/lib/CMakeFiles/progress.marks
+	cd /Cubium && $(MAKE) -f CMakeFiles/Makefile2 lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Cubium/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /vagrant && $(MAKE) -f CMakeFiles/Makefile2 lib/clean
+	cd /Cubium && $(MAKE) -f CMakeFiles/Makefile2 lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -89,22 +89,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /vagrant && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
+	cd /Cubium && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /vagrant && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
+	cd /Cubium && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /vagrant && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Cubium && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/CMakeFiles/OpenSpa.dir/rule:
-	cd /vagrant && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/OpenSpa.dir/rule
+	cd /Cubium && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/OpenSpa.dir/rule
 .PHONY : lib/CMakeFiles/OpenSpa.dir/rule
 
 # Convenience name for target.
@@ -113,7 +113,7 @@ OpenSpa: lib/CMakeFiles/OpenSpa.dir/rule
 
 # fast build rule for target.
 OpenSpa/fast:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/build
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/build
 .PHONY : OpenSpa/fast
 
 component.o: component.cpp.o
@@ -121,7 +121,7 @@ component.o: component.cpp.o
 
 # target to build an object file
 component.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.o
 .PHONY : component.cpp.o
 
 component.i: component.cpp.i
@@ -129,7 +129,7 @@ component.i: component.cpp.i
 
 # target to preprocess a source file
 component.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.i
 .PHONY : component.cpp.i
 
 component.s: component.cpp.s
@@ -137,87 +137,15 @@ component.s: component.cpp.s
 
 # target to generate assembly for a file
 component.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.s
 .PHONY : component.cpp.s
-
-components/GPIO/GPIOConst.o: components/GPIO/GPIOConst.cpp.o
-.PHONY : components/GPIO/GPIOConst.o
-
-# target to build an object file
-components/GPIO/GPIOConst.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOConst.cpp.o
-.PHONY : components/GPIO/GPIOConst.cpp.o
-
-components/GPIO/GPIOConst.i: components/GPIO/GPIOConst.cpp.i
-.PHONY : components/GPIO/GPIOConst.i
-
-# target to preprocess a source file
-components/GPIO/GPIOConst.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOConst.cpp.i
-.PHONY : components/GPIO/GPIOConst.cpp.i
-
-components/GPIO/GPIOConst.s: components/GPIO/GPIOConst.cpp.s
-.PHONY : components/GPIO/GPIOConst.s
-
-# target to generate assembly for a file
-components/GPIO/GPIOConst.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOConst.cpp.s
-.PHONY : components/GPIO/GPIOConst.cpp.s
-
-components/GPIO/GPIOManager.o: components/GPIO/GPIOManager.cpp.o
-.PHONY : components/GPIO/GPIOManager.o
-
-# target to build an object file
-components/GPIO/GPIOManager.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOManager.cpp.o
-.PHONY : components/GPIO/GPIOManager.cpp.o
-
-components/GPIO/GPIOManager.i: components/GPIO/GPIOManager.cpp.i
-.PHONY : components/GPIO/GPIOManager.i
-
-# target to preprocess a source file
-components/GPIO/GPIOManager.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOManager.cpp.i
-.PHONY : components/GPIO/GPIOManager.cpp.i
-
-components/GPIO/GPIOManager.s: components/GPIO/GPIOManager.cpp.s
-.PHONY : components/GPIO/GPIOManager.s
-
-# target to generate assembly for a file
-components/GPIO/GPIOManager.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/GPIO/GPIOManager.cpp.s
-.PHONY : components/GPIO/GPIOManager.cpp.s
-
-components/aeroboom.o: components/aeroboom.cpp.o
-.PHONY : components/aeroboom.o
-
-# target to build an object file
-components/aeroboom.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/aeroboom.cpp.o
-.PHONY : components/aeroboom.cpp.o
-
-components/aeroboom.i: components/aeroboom.cpp.i
-.PHONY : components/aeroboom.i
-
-# target to preprocess a source file
-components/aeroboom.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/aeroboom.cpp.i
-.PHONY : components/aeroboom.cpp.i
-
-components/aeroboom.s: components/aeroboom.cpp.s
-.PHONY : components/aeroboom.s
-
-# target to generate assembly for a file
-components/aeroboom.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/components/aeroboom.cpp.s
-.PHONY : components/aeroboom.cpp.s
 
 local_communicator.o: local_communicator.cpp.o
 .PHONY : local_communicator.o
 
 # target to build an object file
 local_communicator.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
 .PHONY : local_communicator.cpp.o
 
 local_communicator.i: local_communicator.cpp.i
@@ -225,7 +153,7 @@ local_communicator.i: local_communicator.cpp.i
 
 # target to preprocess a source file
 local_communicator.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.i
 .PHONY : local_communicator.cpp.i
 
 local_communicator.s: local_communicator.cpp.s
@@ -233,7 +161,7 @@ local_communicator.s: local_communicator.cpp.s
 
 # target to generate assembly for a file
 local_communicator.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.s
 .PHONY : local_communicator.cpp.s
 
 local_subnet_manager.o: local_subnet_manager.cpp.o
@@ -241,7 +169,7 @@ local_subnet_manager.o: local_subnet_manager.cpp.o
 
 # target to build an object file
 local_subnet_manager.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o
 .PHONY : local_subnet_manager.cpp.o
 
 local_subnet_manager.i: local_subnet_manager.cpp.i
@@ -249,7 +177,7 @@ local_subnet_manager.i: local_subnet_manager.cpp.i
 
 # target to preprocess a source file
 local_subnet_manager.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.i
 .PHONY : local_subnet_manager.cpp.i
 
 local_subnet_manager.s: local_subnet_manager.cpp.s
@@ -257,7 +185,7 @@ local_subnet_manager.s: local_subnet_manager.cpp.s
 
 # target to generate assembly for a file
 local_subnet_manager.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.s
 .PHONY : local_subnet_manager.cpp.s
 
 logical_address.o: logical_address.cpp.o
@@ -265,7 +193,7 @@ logical_address.o: logical_address.cpp.o
 
 # target to build an object file
 logical_address.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o
 .PHONY : logical_address.cpp.o
 
 logical_address.i: logical_address.cpp.i
@@ -273,7 +201,7 @@ logical_address.i: logical_address.cpp.i
 
 # target to preprocess a source file
 logical_address.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.i
 .PHONY : logical_address.cpp.i
 
 logical_address.s: logical_address.cpp.s
@@ -281,7 +209,7 @@ logical_address.s: logical_address.cpp.s
 
 # target to generate assembly for a file
 logical_address.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.s
 .PHONY : logical_address.cpp.s
 
 spa_communicator.o: spa_communicator.cpp.o
@@ -289,7 +217,7 @@ spa_communicator.o: spa_communicator.cpp.o
 
 # target to build an object file
 spa_communicator.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
 .PHONY : spa_communicator.cpp.o
 
 spa_communicator.i: spa_communicator.cpp.i
@@ -297,7 +225,7 @@ spa_communicator.i: spa_communicator.cpp.i
 
 # target to preprocess a source file
 spa_communicator.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i
 .PHONY : spa_communicator.cpp.i
 
 spa_communicator.s: spa_communicator.cpp.s
@@ -305,7 +233,7 @@ spa_communicator.s: spa_communicator.cpp.s
 
 # target to generate assembly for a file
 spa_communicator.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s
 .PHONY : spa_communicator.cpp.s
 
 subnet_manager.o: subnet_manager.cpp.o
@@ -313,7 +241,7 @@ subnet_manager.o: subnet_manager.cpp.o
 
 # target to build an object file
 subnet_manager.cpp.o:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
 .PHONY : subnet_manager.cpp.o
 
 subnet_manager.i: subnet_manager.cpp.i
@@ -321,7 +249,7 @@ subnet_manager.i: subnet_manager.cpp.i
 
 # target to preprocess a source file
 subnet_manager.cpp.i:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.i
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.i
 .PHONY : subnet_manager.cpp.i
 
 subnet_manager.s: subnet_manager.cpp.s
@@ -329,7 +257,7 @@ subnet_manager.s: subnet_manager.cpp.s
 
 # target to generate assembly for a file
 subnet_manager.cpp.s:
-	cd /vagrant && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.s
+	cd /Cubium && $(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.s
 .PHONY : subnet_manager.cpp.s
 
 # Help Target
@@ -344,15 +272,6 @@ help:
 	@echo "... component.o"
 	@echo "... component.i"
 	@echo "... component.s"
-	@echo "... components/GPIO/GPIOConst.o"
-	@echo "... components/GPIO/GPIOConst.i"
-	@echo "... components/GPIO/GPIOConst.s"
-	@echo "... components/GPIO/GPIOManager.o"
-	@echo "... components/GPIO/GPIOManager.i"
-	@echo "... components/GPIO/GPIOManager.s"
-	@echo "... components/aeroboom.o"
-	@echo "... components/aeroboom.i"
-	@echo "... components/aeroboom.s"
 	@echo "... local_communicator.o"
 	@echo "... local_communicator.i"
 	@echo "... local_communicator.s"
@@ -379,6 +298,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /vagrant && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Cubium && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

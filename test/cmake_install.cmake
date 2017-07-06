@@ -1,4 +1,4 @@
-# Install script for directory: /vagrant/test
+# Install script for directory: /Cubium/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

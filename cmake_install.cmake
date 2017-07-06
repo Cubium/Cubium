@@ -1,4 +1,4 @@
-# Install script for directory: /vagrant
+# Install script for directory: /Cubium
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,10 +34,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/vagrant/test/cmake_install.cmake")
-  include("/vagrant/lib/cmake_install.cmake")
-  include("/vagrant/src/cmake_install.cmake")
-  include("/vagrant/examples/component/cmake_install.cmake")
+  include("/Cubium/test/cmake_install.cmake")
+  include("/Cubium/lib/cmake_install.cmake")
+  include("/Cubium/src/cmake_install.cmake")
+  include("/Cubium/examples/component/cmake_install.cmake")
 
 endif()
 
@@ -47,7 +47,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "/vagrant/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "/Cubium/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/vagrant/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "/Cubium/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()

@@ -6,7 +6,7 @@ void LocalCommunicator::handleFailure()
   std::cout << "Local Communicator failure" << '\n';
 }
 
-bool LocalCommunicator::sendMsg(std::shared_ptr<SpaMessage> message)
+bool LocalCommunicator::sendMsg(SpaMessage* message)
 {
   if (message == nullptr)
   {
@@ -34,9 +34,9 @@ bool LocalCommunicator::sendMsg(std::shared_ptr<SpaMessage> message)
 
 
   //Nick plz, Marshall returns the length of the message, and puts the message into buff. But somehow buff still has error.
-  uint8_t *buff = nullptr;
-  uint32_t buffLen = message->marshal(buff);
-  sock->send(SERVER, port, buff, buffLen);
+  //void* buff = (void*)message;
+  size_t buffLen = sizeof(message);
+  sock->send(SERVER, port, (void*)message, buffLen);
   return true;
 }
 

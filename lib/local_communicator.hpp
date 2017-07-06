@@ -8,9 +8,9 @@
 #include <vector>
 #include <functional>
 #include "physical_communicator.hpp"
-#include "platform_abstraction/socket/server_socket.hpp"
+#include "socket/server_socket.hpp"
 #include "routing_table.hpp"
-#include "spa_message.hpp"
+#include "spa_message.h"
 
 #define SERVER "127.0.0.1"
 
@@ -28,7 +28,7 @@ public:
       LogicalAddress la) : sock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
   
   virtual void handleFailure();
-  virtual bool sendMsg(std::shared_ptr<SpaMessage> message);
+  virtual bool sendMsg(SpaMessage* message);
 
   virtual void listen(std::function<void(uint8_t *, uint32_t)>);
   virtual void insertToRoutingTable(LogicalAddress log, uint32_t);

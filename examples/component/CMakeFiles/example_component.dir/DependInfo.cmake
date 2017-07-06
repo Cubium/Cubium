@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/vagrant/examples/component/example_component.cpp" "/vagrant/examples/component/CMakeFiles/example_component.dir/example_component.cpp.o"
+  "/Cubium/examples/component/example_component.cpp" "/Cubium/examples/component/CMakeFiles/example_component.dir/example_component.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/vagrant/lib/CMakeFiles/OpenSpa.dir/DependInfo.cmake"
+  "/Cubium/lib/CMakeFiles/OpenSpa.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

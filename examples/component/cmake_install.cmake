@@ -1,4 +1,4 @@
-# Install script for directory: /vagrant/examples/component
+# Install script for directory: /Cubium/examples/component
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

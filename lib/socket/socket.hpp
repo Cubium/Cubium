@@ -35,7 +35,7 @@ public:
 
   //! \param address - ip address of destination
   //! \return true if successful, false otherwise
-  virtual bool send(std::string address, uint16_t port, uint8_t *buff, uint32_t buffLen)
+  virtual bool send(std::string address, uint16_t port, void *buff, uint32_t buffLen)
   {
     if (fd < 1)
     {
