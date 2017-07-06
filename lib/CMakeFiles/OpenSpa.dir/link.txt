@@ -1,0 +1,2 @@
+/usr/bin/ar cr libOpenSpa.a  CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o CMakeFiles/OpenSpa.dir/components/aeroboom.cpp.o CMakeFiles/OpenSpa.dir/components/GPIO/GPIOConst.cpp.o CMakeFiles/OpenSpa.dir/components/GPIO/GPIOManager.cpp.o CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o CMakeFiles/OpenSpa.dir/component.cpp.o CMakeFiles/OpenSpa.dir/local_communicator.cpp.o CMakeFiles/OpenSpa.dir/logical_address.cpp.o CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
+/usr/bin/ranlib libOpenSpa.a

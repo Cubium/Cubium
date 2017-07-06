@@ -1,0 +1,4 @@
+/vagrant/lib/CMakeFiles/OpenSpa.dir
+/vagrant/examples/component/CMakeFiles/example_component.dir
+/vagrant/src/CMakeFiles/subnet_driver.dir
+/vagrant/test/CMakeFiles/tests.dir
