@@ -1,7 +1,7 @@
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
-#include <messages/local/local_hello.hpp>
+#include <messages/local/local_hello.h>
 #include <local_component_routing_table.hpp>
 
 class ExampleComponent : public Component
@@ -9,7 +9,7 @@ class ExampleComponent : public Component
 public:
   ExampleComponent(Component::Com com = nullptr) : Component(com) {}
 
-  virtual void handleSpaData(std::shared_ptr<SpaMessage>){}
+  virtual void handleSpaData(SpaMessage*){}
   virtual void sendSpaData(LogicalAddress){}
 
 
@@ -26,7 +26,7 @@ public:
     uint64_t uuid = 1;
     uint8_t componentType = 1;
 
-    auto message = std::make_shared<LocalHello>(
+    auto message = new LocalHello(
       version,
       priority,
       destination,
@@ -37,12 +37,12 @@ public:
       componentType
     );
 	// While !ack, spam send message, once message is received. Send spa data.
-    sendMsg(message);
+    sendMsg((SpaMessage*)message);
   }
 
-  static void messageCallback(uint8_t *buff, uint32_t len)
+  static void messageCallback(void *buff, uint32_t len)
   {
-	auto message = SpaMessage::unmarshal(buff, len);
+	SpaMessage* message = (SpaMessage*)buff; 
 	std::cout << "Opcode: " << (int)message->spaHeader.opcode << '\n';
 	return;
   }

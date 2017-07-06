@@ -52,7 +52,10 @@ lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
  /Cubium/lib/subnet_manager.cpp
  lib/logical_address.h
+ lib/messages/local/local_ack.h
+ lib/messages/local/local_hello.h
  lib/messages/local/local_spa_message.h
+ lib/messages/op_codes.h
  lib/messages/spa_header.h
  lib/messages/spa_local_header.h
  lib/physical_communicator.hpp

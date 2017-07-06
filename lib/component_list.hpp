@@ -1,7 +1,7 @@
 #ifndef COMPONENT_LIST
 #define COMPONENT_LIST
 
-#include "logical_address.hpp"
+#include "logical_address.h"
 #include <component.hpp>
 #include <vector>
 

@@ -17,7 +17,7 @@ public:
 	routingTable = std::make_shared<RoutingTable>(log, port);
   }
 
-  void messageCallback(uint8_t * a, uint32_t b);
+  void messageCallback(void * a, uint32_t b);
 
   // Specialization methods
   //

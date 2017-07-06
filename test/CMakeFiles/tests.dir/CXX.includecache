@@ -6,37 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/vagrant/test/aeroboom_test.hpp
-mocks/spa_communicator.hpp
-/vagrant/test/mocks/spa_communicator.hpp
-messages/spa_data.hpp
--
-components/aeroboom.hpp
--
-string
--
-
-/vagrant/test/component_test.hpp
-mocks/spa_communicator.hpp
-/vagrant/test/mocks/spa_communicator.hpp
-component.hpp
--
-messages/spa_subscription_reply.hpp
--
-messages/spa_subscription_request.hpp
--
-
-/vagrant/test/local_communicator_test.hpp
+/Cubium/test/local_communicator_test.hpp
 mocks/platform_abstraction/socket/server_socket.hpp
-/vagrant/test/mocks/platform_abstraction/socket/server_socket.hpp
+/Cubium/test/mocks/platform_abstraction/socket/server_socket.hpp
 local_communicator.hpp
 -
 routing_table.hpp
 -
 
-/vagrant/test/local_subnet_manager_test.hpp
+/Cubium/test/local_subnet_manager_test.hpp
 mocks/spa_communicator.hpp
-/vagrant/test/mocks/spa_communicator.hpp
+/Cubium/test/mocks/spa_communicator.hpp
 component.hpp
 -
 local_communicator.hpp
@@ -46,7 +26,7 @@ local_subnet_manager.hpp
 logical_address.hpp
 -
 
-/vagrant/test/main.cpp
+/Cubium/test/main.cpp
 cstdint
 -
 memory
@@ -60,53 +40,37 @@ gmock/gmock.h
 gtest/gtest.h
 -
 routing_table_test.hpp
-/vagrant/test/routing_table_test.hpp
+/Cubium/test/routing_table_test.hpp
 spa_communicator_test.hpp
-/vagrant/test/spa_communicator_test.hpp
+/Cubium/test/spa_communicator_test.hpp
 component_test.hpp
-/vagrant/test/component_test.hpp
+/Cubium/test/component_test.hpp
 local_communicator_test.hpp
-/vagrant/test/local_communicator_test.hpp
+/Cubium/test/local_communicator_test.hpp
 local_subnet_manager_test.hpp
-/vagrant/test/local_subnet_manager_test.hpp
+/Cubium/test/local_subnet_manager_test.hpp
 messages/spa_data_test.hpp
-/vagrant/test/messages/spa_data_test.hpp
+/Cubium/test/messages/spa_data_test.hpp
 messages/spa_subscription_reply_test.hpp
-/vagrant/test/messages/spa_subscription_reply_test.hpp
+/Cubium/test/messages/spa_subscription_reply_test.hpp
 messages/spa_subscription_request_test.hpp
-/vagrant/test/messages/spa_subscription_request_test.hpp
+/Cubium/test/messages/spa_subscription_request_test.hpp
 spa_message_test.hpp
-/vagrant/test/spa_message_test.hpp
+/Cubium/test/spa_message_test.hpp
 subnet_manager_test.hpp
-/vagrant/test/subnet_manager_test.hpp
+/Cubium/test/subnet_manager_test.hpp
 aeroboom_test.hpp
-/vagrant/test/aeroboom_test.hpp
+/Cubium/test/aeroboom_test.hpp
 
-/vagrant/test/messages/spa_data_test.hpp
-messages/spa_data.hpp
--
-
-/vagrant/test/messages/spa_subscription_reply_test.hpp
-messages/spa_subscription_reply.hpp
--
-
-/vagrant/test/messages/spa_subscription_request_test.hpp
-messages/spa_subscription_request.hpp
--
-
-/vagrant/test/mocks/physical_communicator.hpp
+/Cubium/test/mocks/physical_communicator.hpp
 physical_communicator.hpp
 -
 
-/vagrant/test/mocks/platform_abstraction/socket/server_socket.hpp
-platform_abstraction/socket/server_socket.hpp
--
-
-/vagrant/test/mocks/spa_communicator.hpp
+/Cubium/test/mocks/spa_communicator.hpp
 spa_communicator.hpp
 -
 
-/vagrant/test/routing_table_test.hpp
+/Cubium/test/routing_table_test.hpp
 cstdint
 -
 map
@@ -116,13 +80,13 @@ vector
 routing_table.hpp
 -
 
-/vagrant/test/spa_communicator_test.hpp
+/Cubium/test/spa_communicator_test.hpp
 spa_communicator.hpp
 -
 mocks/physical_communicator.hpp
-/vagrant/test/mocks/physical_communicator.hpp
+/Cubium/test/mocks/physical_communicator.hpp
 
-/vagrant/test/spa_message_test.hpp
+/Cubium/test/spa_message_test.hpp
 messages/local/local_spa_message.hpp
 -
 messages/op_codes.hpp
@@ -130,23 +94,17 @@ messages/op_codes.hpp
 spa_message.hpp
 -
 
-/vagrant/test/subnet_manager_test.hpp
+/Cubium/test/subnet_manager_test.hpp
 mocks/spa_communicator.hpp
-/vagrant/test/mocks/spa_communicator.hpp
+/Cubium/test/mocks/spa_communicator.hpp
 subnet_manager.hpp
 -
 
 lib/component.hpp
-messages/spa_subscription_reply.hpp
-lib/messages/spa_subscription_reply.hpp
-messages/spa_subscription_request.hpp
-lib/messages/spa_subscription_request.hpp
-messages/spa_data.hpp
-lib/messages/spa_data.hpp
 spa_communicator.hpp
 lib/spa_communicator.hpp
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 iostream
 -
 memory
@@ -161,44 +119,6 @@ component.hpp
 -
 vector
 -
-
-lib/components/GPIO/GPIOConst.hpp
-qbeagleboneblackgpio_global.h
--
-
-lib/components/GPIO/GPIOManager.hpp
-qbeagleboneblackgpio_global.h
--
-vector
--
-unistd.h
--
-fcntl.h
--
-sys/epoll.h
--
-fstream
--
-algorithm
--
-
-lib/components/addresses.hpp
-../logical_address.h
-lib/logical_address.h
-
-lib/components/aeroboom.hpp
-../component.hpp
-lib/component.hpp
-../messages/op_codes.hpp
-lib/messages/op_codes.hpp
-addresses.hpp
-lib/components/addresses.hpp
-iostream
--
-GPIO/GPIOManager.hpp
-lib/components/GPIO/GPIOManager.hpp
-GPIO/GPIOConst.hpp
-lib/components/GPIO/GPIOConst.hpp
 
 lib/local_communicator.hpp
 iostream
@@ -213,12 +133,12 @@ functional
 -
 physical_communicator.hpp
 lib/physical_communicator.hpp
-platform_abstraction/socket/server_socket.hpp
-lib/platform_abstraction/socket/server_socket.hpp
+socket/server_socket.hpp
+lib/socket/server_socket.hpp
 routing_table.hpp
 lib/routing_table.hpp
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
 lib/local_subnet_manager.hpp
 component_list.hpp
@@ -232,42 +152,18 @@ lib/logical_address.h
 stdint.h
 -
 
-lib/messages/local/local_spa_message.hpp
+lib/messages/local/local_spa_message.h
 cstdint
 -
-messages/spa_local_header.hpp
+messages/spa_local_header.h
 -
-spa_message.hpp
+spa_message.h
 -
-
-lib/messages/op_codes.hpp
-
-lib/messages/spa_data.hpp
-cstdint
--
-climits
--
-op_codes.hpp
-lib/messages/op_codes.hpp
 
 lib/messages/spa_header.h
 
-lib/messages/spa_local_header.hpp
-
-lib/messages/spa_subscription_reply.hpp
-cstdint
--
-spa_message.hpp
--
-messages/op_codes.hpp
--
-
-lib/messages/spa_subscription_request.hpp
-cstdint
--
-spa_message.hpp
--
-messages/op_codes.hpp
+lib/messages/spa_local_header.h
+stdint.h
 -
 
 lib/physical_communicator.hpp
@@ -275,10 +171,18 @@ functional
 -
 logical_address.h
 lib/logical_address.h
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
-lib/platform_abstraction/socket/server_socket.hpp
+lib/routing_table.hpp
+logical_address.h
+lib/logical_address.h
+map
+-
+iostream
+-
+
+lib/socket/server_socket.hpp
 stdio.h
 -
 string.h
@@ -288,9 +192,9 @@ thread
 functional
 -
 socket.hpp
-lib/platform_abstraction/socket/socket.hpp
+lib/socket/socket.hpp
 
-lib/platform_abstraction/socket/socket.hpp
+lib/socket/socket.hpp
 cstdint
 -
 netinet/in.h
@@ -306,9 +210,9 @@ iostream
 string
 -
 socket_address.hpp
-lib/platform_abstraction/socket/socket_address.hpp
+lib/socket/socket_address.hpp
 
-lib/platform_abstraction/socket/socket_address.hpp
+lib/socket/socket_address.hpp
 arpa/inet.h
 -
 cstdint
@@ -318,14 +222,6 @@ cstring
 iostream
 -
 string
--
-
-lib/routing_table.hpp
-logical_address.h
-lib/logical_address.h
-map
--
-iostream
 -
 
 lib/spa_communicator.hpp
@@ -339,11 +235,11 @@ physical_communicator.hpp
 lib/physical_communicator.hpp
 routing_table.hpp
 lib/routing_table.hpp
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
-lib/spa_message.hpp
-cstdint
+lib/spa_message.h
+stdint.h
 -
 memory
 -
@@ -363,6 +259,6 @@ logical_address.h
 -
 functional
 -
-messages/local/local_spa_message.hpp
+messages/local/local_spa_message.h
 -
 

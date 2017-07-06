@@ -1,5 +1,7 @@
-.swp
-.swo
-.o
-.a
+*.swp
+*.swo
+*.o
+*.a
 CMakeCache.txt
+CMakeFiles/*
+.vagrant/*

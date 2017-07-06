@@ -49,55 +49,9 @@ include lib/CMakeFiles/OpenSpa.dir/progress.make
 # Include the compile flags for this target's objects.
 include lib/CMakeFiles/OpenSpa.dir/flags.make
 
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o: lib/spa_communicator.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o"
-	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o -c /Cubium/lib/spa_communicator.cpp
-
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/spa_communicator.cpp > CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i
-
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/spa_communicator.cpp -o CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s
-
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires:
-.PHONY : lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
-
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
-	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides.build
-.PHONY : lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides
-
-lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o: lib/local_communicator.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o"
-	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/local_communicator.cpp.o -c /Cubium/lib/local_communicator.cpp
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/local_communicator.cpp.i"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/local_communicator.cpp > CMakeFiles/OpenSpa.dir/local_communicator.cpp.i
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/local_communicator.cpp.s"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/local_communicator.cpp -o CMakeFiles/OpenSpa.dir/local_communicator.cpp.s
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires:
-.PHONY : lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
-	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides.build
-.PHONY : lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides
-
-lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
-
 lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
 lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o: lib/local_subnet_manager.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o"
 	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o -c /Cubium/lib/local_subnet_manager.cpp
 
@@ -118,9 +72,78 @@ lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o.provides: lib/CMakeFiles/O
 
 lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o
 
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o: lib/spa_communicator.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o"
+	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o -c /Cubium/lib/spa_communicator.cpp
+
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/spa_communicator.cpp > CMakeFiles/OpenSpa.dir/spa_communicator.cpp.i
+
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/spa_communicator.cpp -o CMakeFiles/OpenSpa.dir/spa_communicator.cpp.s
+
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires:
+.PHONY : lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
+
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
+	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides.build
+.PHONY : lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides
+
+lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
+lib/CMakeFiles/OpenSpa.dir/component.cpp.o: lib/component.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/component.cpp.o"
+	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/component.cpp.o -c /Cubium/lib/component.cpp
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/component.cpp.i"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/component.cpp > CMakeFiles/OpenSpa.dir/component.cpp.i
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/component.cpp.s"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/component.cpp -o CMakeFiles/OpenSpa.dir/component.cpp.s
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires:
+.PHONY : lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
+	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides.build
+.PHONY : lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides
+
+lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/component.cpp.o
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o: lib/local_communicator.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o"
+	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/local_communicator.cpp.o -c /Cubium/lib/local_communicator.cpp
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/local_communicator.cpp.i"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/local_communicator.cpp > CMakeFiles/OpenSpa.dir/local_communicator.cpp.i
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/local_communicator.cpp.s"
+	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/local_communicator.cpp -o CMakeFiles/OpenSpa.dir/local_communicator.cpp.s
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires:
+.PHONY : lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
+	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides.build
+.PHONY : lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides
+
+lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
+
 lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
 lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o: lib/logical_address.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o"
 	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/logical_address.cpp.o -c /Cubium/lib/logical_address.cpp
 
@@ -143,7 +166,7 @@ lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o.provides.build: lib/CMakeFiles/
 
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/subnet_manager.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o"
 	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o -c /Cubium/lib/subnet_manager.cpp
 
@@ -164,47 +187,24 @@ lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o.provides: lib/CMakeFiles/OpenSpa
 
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
 
-lib/CMakeFiles/OpenSpa.dir/component.cpp.o: lib/CMakeFiles/OpenSpa.dir/flags.make
-lib/CMakeFiles/OpenSpa.dir/component.cpp.o: lib/component.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Cubium/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object lib/CMakeFiles/OpenSpa.dir/component.cpp.o"
-	cd /Cubium/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenSpa.dir/component.cpp.o -c /Cubium/lib/component.cpp
-
-lib/CMakeFiles/OpenSpa.dir/component.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenSpa.dir/component.cpp.i"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Cubium/lib/component.cpp > CMakeFiles/OpenSpa.dir/component.cpp.i
-
-lib/CMakeFiles/OpenSpa.dir/component.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenSpa.dir/component.cpp.s"
-	cd /Cubium/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Cubium/lib/component.cpp -o CMakeFiles/OpenSpa.dir/component.cpp.s
-
-lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires:
-.PHONY : lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
-
-lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides: lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
-	$(MAKE) -f lib/CMakeFiles/OpenSpa.dir/build.make lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides.build
-.PHONY : lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides
-
-lib/CMakeFiles/OpenSpa.dir/component.cpp.o.provides.build: lib/CMakeFiles/OpenSpa.dir/component.cpp.o
-
 # Object files for target OpenSpa
 OpenSpa_OBJECTS = \
-"CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o" \
-"CMakeFiles/OpenSpa.dir/local_communicator.cpp.o" \
 "CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o" \
+"CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o" \
+"CMakeFiles/OpenSpa.dir/component.cpp.o" \
+"CMakeFiles/OpenSpa.dir/local_communicator.cpp.o" \
 "CMakeFiles/OpenSpa.dir/logical_address.cpp.o" \
-"CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o" \
-"CMakeFiles/OpenSpa.dir/component.cpp.o"
+"CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o"
 
 # External object files for target OpenSpa
 OpenSpa_EXTERNAL_OBJECTS =
 
-lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
-lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
 lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o
+lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o
+lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/component.cpp.o
+lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o
 lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o
 lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o
-lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/component.cpp.o
 lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/build.make
 lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX static library libOpenSpa.a"
@@ -215,12 +215,12 @@ lib/libOpenSpa.a: lib/CMakeFiles/OpenSpa.dir/link.txt
 lib/CMakeFiles/OpenSpa.dir/build: lib/libOpenSpa.a
 .PHONY : lib/CMakeFiles/OpenSpa.dir/build
 
-lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
-lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
 lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/local_subnet_manager.cpp.o.requires
+lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o.requires
+lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
+lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/local_communicator.cpp.o.requires
 lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/logical_address.cpp.o.requires
 lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o.requires
-lib/CMakeFiles/OpenSpa.dir/requires: lib/CMakeFiles/OpenSpa.dir/component.cpp.o.requires
 .PHONY : lib/CMakeFiles/OpenSpa.dir/requires
 
 lib/CMakeFiles/OpenSpa.dir/clean:

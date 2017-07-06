@@ -1,9 +1,9 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
-#include "messages/spa_subscription_reply.h"
-#include "messages/spa_subscription_request.h"
-#include "messages/spa_data.h"
+//#include "messages/spa_subscription_reply.h"
+//#include "messages/spa_subscription_request.h"
+//#include "messages/spa_data.h"
 #include "spa_communicator.hpp"
 #include "spa_message.h"
 #include <iostream>

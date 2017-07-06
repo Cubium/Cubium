@@ -1,14 +1,15 @@
 #include "component.hpp"
 #include "logical_address.h"
-#include "messages/spa_subscription_reply.h"
-#include "messages/spa_subscription_request.h"
-#include "messages/spa_data.h"
+//#include "messages/spa_subscription_reply.h"
+//#include "messages/spa_subscription_request.h"
+//#include "messages/spa_data.h"
 #include "messages/op_codes.h"
 #include <iostream>
 #include <memory>
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
+  /*
   if (message == nullptr)
   {
     std::cout << "Invalid subscription request" << std::endl;
@@ -29,10 +30,12 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
       );
 
   sendMsg(reply);
+  */
 }
 
 void Component::handleSubscriptionReply(SpaMessage* message)
 {
+  /*
   if (message == nullptr)
     return;
   auto castMessage = (SpaSubscriptionReply*)(message);
@@ -46,6 +49,7 @@ void Component::handleSubscriptionReply(SpaMessage* message)
   {
     std::cout << "Subscription succeeded." << std::endl;
   }
+  */
 }
 
 void Component::subscribe(
@@ -54,6 +58,7 @@ void Component::subscribe(
     uint32_t leasePeriod,
     uint16_t deliveryRateDivisor)
 {
+  /*
   auto request = new SpaSubscriptionRequest(
       0,                    // Version
       0,                    // Message priority TODO 
@@ -71,6 +76,7 @@ void Component::subscribe(
 
   sendMsg(request);
   ++dialogId;
+  */
 }
 
 void Component::receiveMessage(SpaMessage* message)

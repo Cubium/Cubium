@@ -6,19 +6,16 @@ examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/local_communicator.hpp
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/local_component_routing_table.hpp
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/logical_address.h
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/local/local_hello.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/local/local_spa_message.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/op_codes.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_data.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/local/local_hello.h
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/local/local_spa_message.h
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/op_codes.h
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_header.h
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_local_header.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_subscription_reply.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_subscription_request.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/messages/spa_local_header.h
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/physical_communicator.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/platform_abstraction/socket/server_socket.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/platform_abstraction/socket/socket.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/platform_abstraction/socket/socket_address.hpp
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/routing_table.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/socket/server_socket.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/socket/socket.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/socket/socket_address.hpp
 examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/spa_communicator.hpp
-examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/spa_message.hpp
+examples/component/CMakeFiles/example_component.dir/example_component.cpp.o: lib/spa_message.h
 

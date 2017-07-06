@@ -6,14 +6,14 @@
 
 #IncludeRegexTransform: 
 
-/vagrant/src/subnet_manager_driver.cpp
+/Cubium/src/subnet_manager_driver.cpp
 iostream
 -
 local_communicator.hpp
 -
 subnet_manager.hpp
 -
-messages/local/local_spa_message.hpp
+messages/local/local_spa_message.h
 -
 
 lib/local_communicator.hpp
@@ -29,38 +29,48 @@ functional
 -
 physical_communicator.hpp
 lib/physical_communicator.hpp
-platform_abstraction/socket/server_socket.hpp
-lib/platform_abstraction/socket/server_socket.hpp
+socket/server_socket.hpp
+lib/socket/server_socket.hpp
 routing_table.hpp
 lib/routing_table.hpp
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
 lib/logical_address.h
 stdint.h
 -
 
-lib/messages/local/local_spa_message.hpp
+lib/messages/local/local_spa_message.h
 cstdint
 -
-messages/spa_local_header.hpp
+messages/spa_local_header.h
 -
-spa_message.hpp
+spa_message.h
 -
 
 lib/messages/spa_header.h
 
-lib/messages/spa_local_header.hpp
+lib/messages/spa_local_header.h
+stdint.h
+-
 
 lib/physical_communicator.hpp
 functional
 -
 logical_address.h
 lib/logical_address.h
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
-lib/platform_abstraction/socket/server_socket.hpp
+lib/routing_table.hpp
+logical_address.h
+lib/logical_address.h
+map
+-
+iostream
+-
+
+lib/socket/server_socket.hpp
 stdio.h
 -
 string.h
@@ -70,9 +80,9 @@ thread
 functional
 -
 socket.hpp
-lib/platform_abstraction/socket/socket.hpp
+lib/socket/socket.hpp
 
-lib/platform_abstraction/socket/socket.hpp
+lib/socket/socket.hpp
 cstdint
 -
 netinet/in.h
@@ -88,9 +98,9 @@ iostream
 string
 -
 socket_address.hpp
-lib/platform_abstraction/socket/socket_address.hpp
+lib/socket/socket_address.hpp
 
-lib/platform_abstraction/socket/socket_address.hpp
+lib/socket/socket_address.hpp
 arpa/inet.h
 -
 cstdint
@@ -100,14 +110,6 @@ cstring
 iostream
 -
 string
--
-
-lib/routing_table.hpp
-logical_address.h
-lib/logical_address.h
-map
--
-iostream
 -
 
 lib/spa_communicator.hpp
@@ -121,11 +123,11 @@ physical_communicator.hpp
 lib/physical_communicator.hpp
 routing_table.hpp
 lib/routing_table.hpp
-spa_message.hpp
-lib/spa_message.hpp
+spa_message.h
+lib/spa_message.h
 
-lib/spa_message.hpp
-cstdint
+lib/spa_message.h
+stdint.h
 -
 memory
 -
@@ -145,6 +147,6 @@ logical_address.h
 -
 functional
 -
-messages/local/local_spa_message.hpp
+messages/local/local_spa_message.h
 -
 

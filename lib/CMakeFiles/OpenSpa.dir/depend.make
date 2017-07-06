@@ -51,7 +51,10 @@ lib/CMakeFiles/OpenSpa.dir/spa_communicator.cpp.o: lib/spa_message.h
 
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/subnet_manager.cpp
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/logical_address.h
+lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/local/local_ack.h
+lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/local/local_hello.h
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/local/local_spa_message.h
+lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/op_codes.h
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/spa_header.h
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/messages/spa_local_header.h
 lib/CMakeFiles/OpenSpa.dir/subnet_manager.cpp.o: lib/physical_communicator.hpp
