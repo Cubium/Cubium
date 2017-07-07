@@ -62,7 +62,7 @@ bool SpaCommunicator::send(SpaMessage* message)
 }
 
 //TODO document
-void SpaCommunicator::listen(std::function<void(uint8_t *, uint32_t)> messageHandler)
+void SpaCommunicator::listen(std::function<void(void *, uint32_t)> messageHandler)
 {
   SpaCommunicator::Com com = getLocalCommunicator();
   if (com == nullptr)

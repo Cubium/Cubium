@@ -26,7 +26,7 @@ public:
     uint64_t uuid = 1;
     uint8_t componentType = 1;
 
-    auto message = new LocalHello(
+    LocalHello* message = new LocalHello(
       version,
       priority,
       destination,
@@ -36,6 +36,7 @@ public:
       uuid,
       componentType
     );
+
 	// While !ack, spam send message, once message is received. Send spa data.
     sendMsg((SpaMessage*)message);
   }
@@ -43,7 +44,7 @@ public:
   static void messageCallback(void *buff, uint32_t len)
   {
 	SpaMessage* message = (SpaMessage*)buff; 
-	std::cout << "Opcode: " << (int)message->spaHeader.opcode << '\n';
+	std::cout << "Opksdjfcode: " << (int)message->spaHeader.opcode << '\n';
 	return;
   }
 };

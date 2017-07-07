@@ -10,13 +10,13 @@
 class PhysicalCommunicator
 {
 public:
-  typedef void (*MessageCallback)(uint8_t *, uint32_t);
+  typedef void (*MessageCallback)(void *, uint32_t);
 
   PhysicalCommunicator(LogicalAddress la) : subnetAddress(la) {}
 
   virtual ~PhysicalCommunicator() {}
   virtual bool sendMsg(SpaMessage* message) { return false; }
-  virtual void listen(std::function<void(uint8_t *, uint32_t)>) {}
+  virtual void listen(std::function<void(void *, uint32_t)>) {}
 
   virtual LogicalAddress getSubnetAddress() { return subnetAddress; }
 

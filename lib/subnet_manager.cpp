@@ -11,11 +11,11 @@ std::shared_ptr<SpaCommunicator> SubnetManager::communicator;
 
 void SubnetManager::messageCallback(void * buff, uint32_t len)
 {
-  SpaMessage* message = (SpaMessage*)buff;
+  LocalSpaMessage* message = (LocalSpaMessage*)buff;
 
-  std::cout << "Opcode: " << (int)message->spaHeader.opcode << '\n';
+  printf("Opcode: %d\n", message->spaLocalHeader.opcode);
   
-  if(op_LOCAL_HELLO == message->spaHeader.opcode)
+  if(op_LOCAL_HELLO == message->spaLocalHeader.opcode)
   {
 	LocalHello* castMessage = (LocalHello*)message; 
 	communicator->getLocalCommunicator()->insertToRoutingTable(castMessage->localSpaMessage.spaMessage.spaHeader.source, castMessage->localSpaMessage.spaLocalHeader.sourcePort);		

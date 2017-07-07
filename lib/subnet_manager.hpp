@@ -48,7 +48,7 @@ public:
   {
     if (communicator)
     {
-	  std::function<void(uint8_t *, uint32_t)> func = [=](uint8_t * a, uint32_t b)
+	  std::function<void(void *, uint32_t)> func = [=](void * a, uint32_t b)
 	  {
 		this->messageCallback(a,b);
 	  };

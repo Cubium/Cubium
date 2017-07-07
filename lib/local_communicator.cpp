@@ -33,6 +33,7 @@ bool LocalCommunicator::sendMsg(SpaMessage* message)
   }
 
 
+  printf("Opcode before sending: %d\n", message->spaHeader.opcode);
   //Nick plz, Marshall returns the length of the message, and puts the message into buff. But somehow buff still has error.
   //void* buff = (void*)message;
   size_t buffLen = sizeof(message);
@@ -40,7 +41,7 @@ bool LocalCommunicator::sendMsg(SpaMessage* message)
   return true;
 }
 
-void LocalCommunicator::listen(std::function<void(uint8_t *, uint32_t)> messageHandler)
+void LocalCommunicator::listen(std::function<void(void *, uint32_t)> messageHandler)
 {
   if (sock == nullptr)
   {

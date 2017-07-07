@@ -13,7 +13,7 @@ class ServerSocket : public Socket
 public:
   ServerSocket() : Socket() {}
 
-  typedef void (*MessageCallback)(uint8_t *, uint32_t);
+  typedef void (*MessageCallback)(void *, uint32_t);
 
   virtual bool bindSocket(uint32_t port)
   {
@@ -29,7 +29,7 @@ public:
     return true;
   }
 
-  virtual void listen(std::function<void(uint8_t *, uint32_t)> connectionHandler)
+  virtual void listen(std::function<void(void *, uint32_t)> connectionHandler)
   {
     //TODO check fd for errors
     uint8_t buf[BUFLEN];

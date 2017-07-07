@@ -30,7 +30,7 @@ public:
   virtual void handleFailure();
   virtual bool sendMsg(SpaMessage* message);
 
-  virtual void listen(std::function<void(uint8_t *, uint32_t)>);
+  virtual void listen(std::function<void(void *, uint32_t)>);
   virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
 
 protected:

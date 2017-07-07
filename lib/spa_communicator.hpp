@@ -35,7 +35,7 @@ public:
   bool send(SpaMessage* message);
 
   //TODO document
-  virtual void listen(std::function<void(uint8_t *, uint32_t)>);
+  virtual void listen(std::function<void(void *, uint32_t)>);
 
   Com getLocalCommunicator();
 
