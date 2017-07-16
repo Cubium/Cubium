@@ -3,6 +3,7 @@
 #include <local_communicator.hpp>
 #include <messages/local/local_hello.h>
 #include <local_component_routing_table.hpp>
+#include <socket/clientSocket.hpp>
 
 class ExampleComponent : public Component
 {
@@ -12,6 +13,13 @@ public:
   virtual void handleSpaData(SpaMessage*){}
   virtual void sendSpaData(LogicalAddress){}
 
+
+  static void messageCallback(cubiumClientSocket_t * sock)
+  {
+    SpaMessage* message = (SpaMessage*)sock->buf; 
+    std::cout << "Opcode: " << (int)message->spaHeader.opcode << '\n';
+    return;
+  }
 
   virtual void appInit()
   {
@@ -37,32 +45,25 @@ public:
       componentType
     );
 
-	// While !ack, spam send message, once message is received. Send spa data.
-    sendMsg((SpaMessage*)message);
+    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)message, messageCallback);
+    
   }
 
-  static void messageCallback(void *buff, uint32_t len)
-  {
-	SpaMessage* message = (SpaMessage*)buff; 
-	std::cout << "Opksdjfcode: " << (int)message->spaHeader.opcode << '\n';
-	return;
-  }
+
 };
 
 int main()
 {
-  std::shared_ptr<ServerSocket> sock = std::make_shared<ServerSocket>();
+  cubiumClientSocket_t sock = clientSocket_openSocket(3500);
   auto routingTable = std::make_shared<LocalComponentRoutingTable>();
 
   LogicalAddress localAddress(1, 0);
   std::vector<SpaCommunicator::Com> comms = {
-      std::make_shared<LocalCommunicator>(sock, routingTable, localAddress)};
+      std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
   std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
 
   ExampleComponent comp(spaCom);
   comp.appInit();
-  std::cout << "Listening..." << std::endl;
-  comp.communicator->listen(ExampleComponent::messageCallback);
 
   return 0;
 }

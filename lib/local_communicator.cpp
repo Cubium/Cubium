@@ -6,50 +6,54 @@ void LocalCommunicator::handleFailure()
   std::cout << "Local Communicator failure" << '\n';
 }
 
-bool LocalCommunicator::sendMsg(SpaMessage* message)
+bool LocalCommunicator::serverSend(SpaMessage* message)
 {
   if (message == nullptr)
   {
     return false;
   }
 
-  uint16_t port = -1;
-
-  //routing table never init, must be a component, send to default subnet port.
-  if (routingTable == nullptr)
+  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0)
   {
-	port = 8888;	  
-  }	  
-  
-  else
-  {
-   port = routingTable->getPhysicalAddress(message->spaHeader.destination);
-  }
-  if (port < 0)
-  {
-	std::cout << port << std::endl;
     handleFailure();
     return false;
   }
 
-
-  printf("Opcode before sending: %d\n", message->spaHeader.opcode);
-  //Nick plz, Marshall returns the length of the message, and puts the message into buff. But somehow buff still has error.
-  //void* buff = (void*)message;
-  size_t buffLen = sizeof(message);
-  sock->send(SERVER, port, (void*)message, buffLen);
+  serverSocket_send((void*)message, sizeof(SpaMessage*), serverSock);
   return true;
 }
 
-void LocalCommunicator::listen(std::function<void(void *, uint32_t)> messageHandler)
+bool LocalCommunicator::clientSend(SpaMessage* message)
 {
-  if (sock == nullptr)
+  if (message == nullptr)
+  {
+    return false;
+  }
+
+  clientSocket_send((void*)message, sizeof(SpaMessage*), clientSock);
+  return true;
+}
+
+void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messageHandler)
+{
+  if (serverSock == nullptr)
   {
     handleFailure();
     return;
   }
-  sock->listen(messageHandler);
+  serverSocket_listen(serverSock, messageHandler);
 }
+
+void LocalCommunicator::clientConnect(SpaMessage * message, std::function<void(cubiumClientSocket_t *)> callback)
+{
+  if (message == nullptr)
+  {
+    handleFailure();
+    return;
+  }
+  clientSocket_serverConnect(clientSock, (void*)message, sizeof(SpaMessage*), callback);
+}
+
 
 void LocalCommunicator::insertToRoutingTable(LogicalAddress log, uint32_t port)
 {

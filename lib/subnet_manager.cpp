@@ -9,6 +9,7 @@
 
 std::shared_ptr<SpaCommunicator> SubnetManager::communicator;
 
+/*
 void SubnetManager::messageCallback(void * buff, uint32_t len)
 {
   LocalSpaMessage* message = (LocalSpaMessage*)buff;
@@ -49,3 +50,4 @@ void SubnetManager::messageCallback(void * buff, uint32_t len)
 
 
 }
+*/

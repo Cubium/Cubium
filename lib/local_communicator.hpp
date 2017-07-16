@@ -8,7 +8,8 @@
 #include <vector>
 #include <functional>
 #include "physical_communicator.hpp"
-#include "socket/server_socket.hpp"
+#include "socket/clientSocket.hpp"
+#include "socket/serverSocket.hpp"
 #include "routing_table.hpp"
 #include "spa_message.h"
 
@@ -19,22 +20,31 @@ class LocalCommunicator : public PhysicalCommunicator
 public:
   
   LocalCommunicator(
-      std::shared_ptr<ServerSocket> sock, 
+      cubiumServerSocket_t * sock, 
 	  std::shared_ptr<RoutingTable> routingTable,
-      LogicalAddress la) : sock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
+      LogicalAddress la) : serverSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
+
+  LocalCommunicator(
+      cubiumClientSocket_t * sock, 
+	  std::shared_ptr<RoutingTable> routingTable,
+      LogicalAddress la) : clientSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
   
   LocalCommunicator(
-      std::shared_ptr<ServerSocket> sock,
-      LogicalAddress la) : sock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
+      cubiumServerSocket_t * sock,
+      LogicalAddress la) : serverSock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
   
   virtual void handleFailure();
-  virtual bool sendMsg(SpaMessage* message);
+  virtual bool serverSend(SpaMessage* message);
+  virtual bool clientSend(SpaMessage* message);
 
-  virtual void listen(std::function<void(void *, uint32_t)>);
+  void clientConnect(SpaMessage *, std::function<void(cubiumClientSocket_t *)>);
+
+  virtual void listen(std::function<void(cubiumServerSocket_t *)>);
   virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
 
 protected:
-  std::shared_ptr<ServerSocket> sock;
+  cubiumServerSocket_t * serverSock;
+  cubiumClientSocket_t * clientSock;
   std::shared_ptr<RoutingTable> routingTable;
 };
 

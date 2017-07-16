@@ -17,8 +17,6 @@ public:
 	routingTable = std::make_shared<RoutingTable>(log, port);
   }
 
-  void messageCallback(void * a, uint32_t b);
-
   // Specialization methods
   //
   // The following methods should be implemented by any class that extends
@@ -44,16 +42,10 @@ public:
 
   //! Continuously listen for messages. Will call receiveMessage with each received
   //! message. A call to this method should not return while the subnet manager is running.
-  void listenMessages()
+  void listenMessages(std::function<void(cubiumServerSocket_t*)> func)
   {
     if (communicator)
     {
-	  std::function<void(void *, uint32_t)> func = [=](void * a, uint32_t b)
-	  {
-		this->messageCallback(a,b);
-	  };
-    
-
       communicator->listen(func);
     }
   }
