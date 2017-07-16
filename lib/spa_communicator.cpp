@@ -1,5 +1,6 @@
 #include <iostream>
 #include <functional>
+#include <memory>
 #include "spa_communicator.hpp"
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
@@ -34,10 +35,10 @@ SpaCommunicator::Com SpaCommunicator::selectCommunicator(
   return nullptr;
 }
 
-SpaCommunicator::Com SpaCommunicator::getLocalCommunicator()
+std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
 {
-  return selectCommunicator(
-      LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators);
+  return std::dynamic_pointer_cast<LocalCommunicator>(selectCommunicator(
+      LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators));
 }
 
 bool SpaCommunicator::send(SpaMessage* message)
@@ -62,9 +63,9 @@ bool SpaCommunicator::send(SpaMessage* message)
 }
 
 //TODO document
-void SpaCommunicator::listen(std::function<void(void *, uint32_t)> messageHandler)
+void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
 {
-  SpaCommunicator::Com com = getLocalCommunicator();
+  std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
   if (com == nullptr)
   {
     handleFailure();

@@ -7,6 +7,7 @@
 
 
 #include "physical_communicator.hpp"
+#include "local_communicator.hpp"
 #include "routing_table.hpp"
 #include "spa_message.h"
 
@@ -35,11 +36,13 @@ public:
   bool send(SpaMessage* message);
 
   //TODO document
-  virtual void listen(std::function<void(void *, uint32_t)>);
+  virtual void listen(std::function<void(cubiumServerSocket_t*)>);
 
-  Com getLocalCommunicator();
+  std::shared_ptr<LocalCommunicator> getLocalCommunicator();
 
 protected:
+  std::vector<Com> communicators;
+
   //! Method called when something unexpected occurs.
   void handleFailure();
 
@@ -53,7 +56,6 @@ protected:
   //TODO document
 
   LogicalAddress currentAddress;
-  std::vector<Com> communicators;
 };
 
 #endif
