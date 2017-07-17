@@ -5,3 +5,5 @@
 CMakeCache.txt
 CMakeFiles/*
 .vagrant/*
+Makefile
+cmake_install.cmake
