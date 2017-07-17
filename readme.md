@@ -1,19 +1,19 @@
 # Cubium
 
-Cubium is a free and open-source Space Plug and Play Architecture (SPA) services manager for Linux-based spacecraft systems. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components. Developed with undergraduate CubeSat teams using systems such as Beaglebone Blacks, Arduinos, and Raspberry Pis in mind, Cubium's purpose is to lower the bar of entry for satellite development.
+Cubium is a free and open-source flight software for Linux-based spacecraft systems. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components. Developed with undergraduate CubeSat teams using systems such as Beaglebone Blacks and Raspberry Pis in mind, Cubium's purpose is to lower the bar of entry for satellite development.
 
 
-SPA itself is a specification for a kind of modular satellite software architecture. It has a proven mission-success track record on Air Force and Space Dynamics Laboratory payloads.
+Cubium is designed using the Space Plug-and-play Architecture (SPA), a specification for a kind of modular satellite software architecture. It has a proven mission-success track record on Air Force and Space Dynamics Laboratory payloads.
 
 For a fun introduction on the inner workings of Cubium, see [this illustrated writeup.](https://drive.google.com/file/d/0ByiGNyJUAlpISUo5WDFwSkh3YU0/view?usp=sharing)
 
 For a very detailed look into the machinations of SPA in general, see [Jacob Holt Christensen's dissertation.](http://digitalcommons.usu.edu/etd/1422/)
 
 ## Project Status 
+  * **Version Alpha 0.0.6**
+    * Successful transmission of SPA messages across processes via socket communication
   * **Version Alpha 0.0.5**
     * Major backend refactoring of SPA Messages
-  * **Version Alpha 0.0.4a** 
-    * Added interfaces for specific hardware components
   * **Version Alpha 0.0.4**
     * Added a basic subscription service
       * Direct component-to-component subscription
@@ -44,14 +44,7 @@ Cubium relies on a handful of developer tools. The following is a list of things
 ### Set up Vagrant
 Cubium uses Vagrant to create a development environment to match the devices that Cubium will run on. It also eliminiates "well, it works on my system" bugs. 
 
-**For instructions on getting the dev environment up and running, see the [wiki page](https://github.com/Cubium/Cubium/wiki/Cubium-Development-Environment) for instructions.**
-
-#### Otherwise, TL;DR if you know what you're doing
-* Be sure you've cloned in the repository and are in the /Cubium directory
-* Install VirtualBox if you haven't already
-* Install Vagrant
-* Type `vagrant up` into your terminal
-* Allow vagrant to finish setting everything up before attempting to login to the VM. 
+**For instructions on getting the dev environment up and running, see the [wiki page](https://github.com/Cubium/Cubium/wiki/Cubium-Development-Environment)**
   
 ### Build Project
 #### TL;DR
@@ -81,7 +74,7 @@ If the documentation is successfully built, there should be a new directory titl
   * Open up `docs/html/index.html` in your web browser to browse docs
 
 ### Running Tests
-Cubium uses Google Test testing framework for unit testing. 
+Cubium tests use the Google Test testing framework for unit testing. Test test test.
   * To run test suite:
     * Generate a makefile with CMake `cmake .`
     * Build tests with makefile `make runTests`
