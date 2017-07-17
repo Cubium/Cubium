@@ -4,16 +4,7 @@
 #include <subnet_manager.hpp>
 #include <messages/local/local_spa_message.h>
 #include <messages/local/local_ack.h>
-
-void messageCallback(cubiumServerSocket_t * sock)
-{
-  SpaMessage* msg = (SpaMessage*)sock->buf;
-
-  std::cout << "Received SpaMessage with opcode: " << (int)msg->spaHeader.opcode << "\n";
-
-  SpaMessage reply(LogicalAddress(0,0),0x21);
-  serverSocket_send((void*)&reply, sizeof(reply), sock);
-}
+#include <messages/op_codes.h>
 
 int main(void)
 {
@@ -31,7 +22,7 @@ int main(void)
   auto spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
 
   SubnetManager manager(spaCom, localAddress, port);
-  manager.listenMessages(messageCallback);
+  manager.listenMessages();
 
   return 0;
 }

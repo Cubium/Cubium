@@ -7,15 +7,18 @@
 #include <logical_address.h>
 #include <functional>
 #include <messages/local/local_spa_message.h>
+#include <messages/local/local_ack.h>
+#include <messages/op_codes.h>
 
 class SubnetManager
 {
 public:
   SubnetManager(std::shared_ptr<SpaCommunicator> com, LogicalAddress log , uint16_t port)
   {
-	communicator = com;
-	routingTable = std::make_shared<RoutingTable>(log, port);
+    communicator = com;
+    routingTable = std::make_shared<RoutingTable>(log, port);
   }
+
 
   // Specialization methods
   //
@@ -23,9 +26,6 @@ public:
   // SubnetManager
 
   // virtual bool healthCheck(Component component);
-
-  //! Method called whenever a method is received. This should serve as an
-  //! entry point for logic that handles recieving mesages
 
   //! \param message - message that has been received
   // virtual void recieveMessage(SpaMessage message);
@@ -42,11 +42,11 @@ public:
 
   //! Continuously listen for messages. Will call receiveMessage with each received
   //! message. A call to this method should not return while the subnet manager is running.
-  void listenMessages(std::function<void(cubiumServerSocket_t*)> func)
+  void listenMessages()
   {
     if (communicator)
     {
-      communicator->listen(func);
+      communicator->listen(SM_messageCallback);
     }
   }
 
@@ -65,6 +65,7 @@ protected:
   static std::shared_ptr<SpaCommunicator> communicator;
 	std::shared_ptr<RoutingTable> routingTable;
   
+  static void SM_messageCallback(cubiumServerSocket_t*);
   // TODO add component list to store data about component health
 };
 #endif

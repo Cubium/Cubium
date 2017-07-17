@@ -9,45 +9,19 @@
 
 std::shared_ptr<SpaCommunicator> SubnetManager::communicator;
 
-/*
-void SubnetManager::messageCallback(void * buff, uint32_t len)
+void SubnetManager::SM_messageCallback(cubiumServerSocket_t * sock)
 {
-  LocalSpaMessage* message = (LocalSpaMessage*)buff;
+    SpaMessage* msg = (SpaMessage*)sock->buf;
 
-  printf("Opcode: %d\n", message->spaLocalHeader.opcode);
-  
-  if(op_LOCAL_HELLO == message->spaLocalHeader.opcode)
-  {
-	LocalHello* castMessage = (LocalHello*)message; 
-	communicator->getLocalCommunicator()->insertToRoutingTable(castMessage->localSpaMessage.spaMessage.spaHeader.source, castMessage->localSpaMessage.spaLocalHeader.sourcePort);		
+    auto op = msg->spaHeader.opcode;
+    std::cout << "Received SpaMessage with opcode: " << (int)op << "\n";
 
-	  LocalAck* msg = new LocalAck(
-	  0,
-	  0,
-	  castMessage->localSpaMessage.spaMessage.spaHeader.destination,
-	  castMessage->localSpaMessage.spaMessage.spaHeader.source,
-	  0,
-	  8888,
-	  0);
-	 
-	 
-	  if(msg == nullptr || communicator == nullptr)
-	  {
-		  std::cout << "bad things, aborting." << std::endl;
-	  }
-	  else
-	  {
-		  std::cout << "Sending message." << std::endl;
-	      if(communicator->send((SpaMessage*)msg)) std::cout << "Message SENT!" << std::endl;
-		
-	  }
+    if (op == op_LOCAL_HELLO)
+    {
+      LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1,0), 0, 3500, 0);   
 
-  }
-  
-  
-  return;
-
-
-
+    //  communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply);
+      serverSocket_send((void*)&reply, sizeof(reply), sock);
+    }
 }
-*/
+

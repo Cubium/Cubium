@@ -58,7 +58,6 @@ bool SpaCommunicator::send(SpaMessage* message)
     return false;
   }
   if(!com->sendMsg(message)) std::cout << "DID NOT SEND" << std::endl;
-  else std::cout << "COM SENT" << std::endl;
   return true;
 }
 

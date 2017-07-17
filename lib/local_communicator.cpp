@@ -17,7 +17,7 @@ bool LocalCommunicator::serverSend(SpaMessage* message)
     return false;
   }
 
-  serverSocket_send((void*)message, sizeof(SpaMessage*), serverSock);
+  serverSocket_send((void*)message, sizeof(message), serverSock);
   return true;
 }
 

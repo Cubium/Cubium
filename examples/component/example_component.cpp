@@ -25,22 +25,11 @@ public:
   {
     std::cout << "Example component initializing!" << '\n';
 
-    uint8_t version = 0;
-    uint8_t priority = 0;
-    LogicalAddress destination(1,0);
-    LogicalAddress source(1,1);
-    uint16_t flags = 0;
-    uint16_t sourcePort = 8889;
-    uint64_t uuid = 1;
-    uint8_t componentType = 1;
+    LocalHello hello(0,0,LogicalAddress(0,0),LogicalAddress(0,0),0,8888,0,0);
 
-    SpaMessage hello(LogicalAddress(0,0),0x20);
-    
-    communicator->getLocalCommunicator()->clientConnect(&hello, sizeof(hello), messageCallback);
+    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), messageCallback);
     
   }
-
-
 };
 
 int main()

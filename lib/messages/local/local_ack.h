@@ -25,7 +25,6 @@ struct LocalAck
                         status(status) {}
   LocalSpaMessage localSpaMessage;
 
-
   uint8_t status; // The status of the acknowledgement
 };
 #endif
