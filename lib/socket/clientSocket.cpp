@@ -6,7 +6,6 @@
 #include <sys/socket.h>        // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 #include <functional>          // for std::function
 
-
 /* Throw a perror and exit */
 void clientSocket_error(const char *msg)
 {
@@ -59,11 +58,13 @@ std::function<void(cubiumClientSocket_t *)> func /* Called when ack is received 
 
    do
    { /* Send a new hello after every timeout until an ack is received */
+
      s->nBytesRecv = sendto(s->sock, hello, len, 0, (const struct sockaddr *)&s->server, s->length);
      if (s->nBytesRecv < 0) 
      {
        clientSocket_error("Sendto failed\n");
      }
+     
    } while(recvfrom(s->sock,s->buf,256,0,(struct sockaddr *)&s->from, &s->length) < 0);
 
    /* Ack received; call handler function */
@@ -75,5 +76,4 @@ ssize_t clientSocket_send(const void * msg, size_t len, cubiumClientSocket_t * s
 {
   return sendto(s->sock, msg, len, 0, (struct sockaddr *)&s->from, sizeof(struct sockaddr_in));
 }
-
 

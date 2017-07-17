@@ -37,7 +37,7 @@ public:
   virtual bool serverSend(SpaMessage* message);
   virtual bool clientSend(SpaMessage* message);
 
-  void clientConnect(SpaMessage *, std::function<void(cubiumClientSocket_t *)>);
+  void clientConnect(SpaMessage *, size_t, std::function<void(cubiumClientSocket_t *)>);
 
   virtual void listen(std::function<void(cubiumServerSocket_t *)>);
   virtual void insertToRoutingTable(LogicalAddress log, uint32_t);

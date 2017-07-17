@@ -51,7 +51,6 @@ struct SpaMessage
 
   SpaHeader spaHeader;
 
-  static uint8_t const TEST_TYPE = 1;
 };
 
 #endif
