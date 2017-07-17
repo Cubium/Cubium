@@ -4,10 +4,6 @@
 #include <subnet_manager.hpp>
 #include <messages/local/local_spa_message.h>
 #include <messages/local/local_ack.h>
-#include <spa_message.h>
-#include <stdint.h>
-#include <cstring>
-#include <unistd.h>
 
 void messageCallback(cubiumServerSocket_t * sock)
 {

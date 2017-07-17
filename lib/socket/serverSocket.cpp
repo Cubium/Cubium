@@ -5,9 +5,6 @@
 #include <stdlib.h>            // for exit
 #include <sys/socket.h>        // for AF_INET
 #include <functional>          // for std::function
-#include <iostream>
-#include <spa_message.h>
-#include <unistd.h>
 
 /* Throw a perror and exit */
 void serverSocket_error(const char *msg)

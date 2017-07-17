@@ -4,8 +4,6 @@
 #include <messages/local/local_hello.h>
 #include <local_component_routing_table.hpp>
 #include <socket/clientSocket.hpp>
-#include <unistd.h>
-#include <string.h>
 
 class ExampleComponent : public Component
 {
