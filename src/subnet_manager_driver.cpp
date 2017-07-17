@@ -4,16 +4,15 @@
 #include <subnet_manager.hpp>
 #include <messages/local/local_spa_message.h>
 #include <messages/local/local_ack.h>
-#include <stdint.h>
 
 void messageCallback(cubiumServerSocket_t * sock)
 {
-  SpaMessage* message = (SpaMessage*)sock->buf;
+  SpaMessage* msg = (SpaMessage*)sock->buf;
 
-  std::cout << "Opcode:" << message->spaHeader.opcode << "\n";
+  std::cout << "Received SpaMessage with opcode: " << (int)msg->spaHeader.opcode << "\n";
 
-  LocalAck * reply = new LocalAck(0,0,message->spaHeader.source,LogicalAddress(1,0),0,3500,0);
-  serverSocket_send((void*)reply, sizeof(LocalAck*), sock);
+  SpaMessage reply(LogicalAddress(0,0),0x21);
+  serverSocket_send((void*)&reply, sizeof(reply), sock);
 }
 
 int main(void)

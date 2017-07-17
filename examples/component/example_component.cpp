@@ -17,13 +17,13 @@ public:
   static void messageCallback(cubiumClientSocket_t * sock)
   {
     SpaMessage* message = (SpaMessage*)sock->buf; 
-    std::cout << "Opcode: " << (int)message->spaHeader.opcode << '\n';
+    std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
     return;
   }
 
   virtual void appInit()
   {
-    std::cout << "Example app initializing!" << '\n';
+    std::cout << "Example component initializing!" << '\n';
 
     uint8_t version = 0;
     uint8_t priority = 0;
@@ -34,18 +34,9 @@ public:
     uint64_t uuid = 1;
     uint8_t componentType = 1;
 
-    LocalHello* message = new LocalHello(
-      version,
-      priority,
-      destination,
-      source,
-      flags,
-      sourcePort,
-      uuid,
-      componentType
-    );
-
-    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)message, messageCallback);
+    SpaMessage hello(LogicalAddress(0,0),0x20);
+    
+    communicator->getLocalCommunicator()->clientConnect(&hello, sizeof(hello), messageCallback);
     
   }
 

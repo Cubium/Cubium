@@ -13,9 +13,7 @@ bool LocalCommunicator::serverSend(SpaMessage* message)
     return false;
   }
 
-  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0)
-  {
-    handleFailure();
+  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0) { handleFailure();
     return false;
   }
 
@@ -44,14 +42,14 @@ void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messa
   serverSocket_listen(serverSock, messageHandler);
 }
 
-void LocalCommunicator::clientConnect(SpaMessage * message, std::function<void(cubiumClientSocket_t *)> callback)
+void LocalCommunicator::clientConnect(SpaMessage * message, size_t len, std::function<void(cubiumClientSocket_t *)> callback)
 {
   if (message == nullptr)
   {
     handleFailure();
     return;
   }
-  clientSocket_serverConnect(clientSock, (void*)message, sizeof(SpaMessage*), callback);
+  clientSocket_serverConnect(clientSock, (void*)message, len, callback);
 }
 
 
