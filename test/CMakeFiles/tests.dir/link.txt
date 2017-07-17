@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g    CMakeFiles/tests.dir/main.cpp.o  -o tests -rdynamic -Wl,-Bstatic -lgtest -lgmock -lgmock_main -Wl,-Bdynamic -lpthread ../lib/libOpenSpa.a 
