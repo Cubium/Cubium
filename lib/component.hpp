@@ -21,9 +21,7 @@ struct Subscriber
 class Component
 {
 public:
-  typedef std::shared_ptr<SpaCommunicator> Com;
-
-  Component(Com communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0))
+  Component(std::shared_ptr<SpaCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0))
     : communicator(communicator),
       address(address),
       dialogId(0),
@@ -65,7 +63,7 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
-  Com communicator;
+  std::shared_ptr<SpaCommunicator> communicator;
 protected:
   LogicalAddress address;
   uint8_t publishIter;

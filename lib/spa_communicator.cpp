@@ -4,10 +4,10 @@
 #include "spa_communicator.hpp"
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
-SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<Com> comms)
+SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
   : currentAddress(currentAddress) { addCommunicators(comms); }
 
-void SpaCommunicator::addCommunicators(std::vector<SpaCommunicator::Com> comms)
+void SpaCommunicator::addCommunicators(std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
 {
   communicators.insert(communicators.end(), comms.begin(), comms.end());
 }
@@ -17,9 +17,9 @@ void SpaCommunicator::handleFailure()
   std::cout << "Spa Communicator Failed" << '\n';
 }
 
-SpaCommunicator::Com SpaCommunicator::selectCommunicator(
+std::shared_ptr<PhysicalCommunicator> SpaCommunicator::selectCommunicator(
     LogicalAddress address,
-    std::vector<Com> const &communicators)
+    std::vector<std::shared_ptr<PhysicalCommunicator>> const &communicators)
 {
   for (auto com : communicators)
   {

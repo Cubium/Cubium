@@ -8,7 +8,7 @@
 class ExampleComponent : public Component
 {
 public:
-  ExampleComponent(Component::Com com = nullptr) : Component(com) {}
+  ExampleComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
 
   virtual void handleSpaData(SpaMessage*){}
   virtual void sendSpaData(LogicalAddress){}
@@ -38,7 +38,7 @@ int main()
   auto routingTable = std::make_shared<LocalComponentRoutingTable>();
 
   LogicalAddress localAddress(1, 0);
-  std::vector<SpaCommunicator::Com> comms = {
+  std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
       std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
   std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
 

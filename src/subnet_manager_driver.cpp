@@ -16,7 +16,7 @@ int main(void)
 
   auto routingTable = std::make_shared<RoutingTable>(localAddress, port);
 
-  std::vector<SpaCommunicator::Com> comms = {
+  std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
 	  std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
 
   auto spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);

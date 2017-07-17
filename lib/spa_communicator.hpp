@@ -16,7 +16,6 @@
 class SpaCommunicator
 {
 public:
-  typedef std::shared_ptr<PhysicalCommunicator> Com;
 
   //! Construct SpaCommunicator with only the address of the owning subnet manager
 
@@ -24,10 +23,10 @@ public:
   SpaCommunicator(LogicalAddress currentAddress);
 
   //TODO document
-  SpaCommunicator(LogicalAddress currentAddress, std::vector<Com> comms);
+  SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms);
 
   //TODO document
-  void addCommunicators(std::vector<Com> comms);
+  void addCommunicators(std::vector<std::shared_ptr<PhysicalCommunicator>> comms);
 
   //! Sends a spa message over the network
 
@@ -41,7 +40,7 @@ public:
   std::shared_ptr<LocalCommunicator> getLocalCommunicator();
 
 protected:
-  std::vector<Com> communicators;
+  std::vector<std::shared_ptr<PhysicalCommunicator>> communicators;
 
   //! Method called when something unexpected occurs.
   void handleFailure();
@@ -51,7 +50,7 @@ protected:
 
   //! \param address - logical address where message is going to be sent
   //! \param communicators - vector of communicators to be selected from
-  Com selectCommunicator(LogicalAddress address, std::vector<Com> const &communicators);
+  std::shared_ptr<PhysicalCommunicator> selectCommunicator(LogicalAddress address, std::vector<std::shared_ptr<PhysicalCommunicator>> const &communicators);
 
   //TODO document
 
