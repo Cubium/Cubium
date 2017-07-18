@@ -19,7 +19,7 @@ void SpaCommunicator::handleFailure()
 
 std::shared_ptr<PhysicalCommunicator> SpaCommunicator::selectCommunicator(
     LogicalAddress address,
-    std::vector<std::shared_ptr<PhysicalCommunicator>> const &communicators)
+    std::vector<std::shared_ptr<PhysicalCommunicator>> const& communicators)
 {
   for (auto com : communicators)
   {
@@ -41,7 +41,7 @@ std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
       LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators));
 }
 
-bool SpaCommunicator::send(SpaMessage *message)
+bool SpaCommunicator::send(SpaMessage* message)
 {
   if (message == nullptr)
   {
@@ -63,7 +63,7 @@ bool SpaCommunicator::send(SpaMessage *message)
 }
 
 //TODO document
-void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messageHandler)
+void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
 {
   std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
   if (com == nullptr)

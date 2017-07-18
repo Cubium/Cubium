@@ -7,7 +7,7 @@
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 
 /* Throw a perror and exit */
-void clientSocket_error(const char *msg)
+void clientSocket_error(const char* msg)
 {
   perror(msg);
   exit(1);
@@ -28,8 +28,8 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
   {
     clientSocket_error("Unknown host");
   }
-  bcopy((char *)s.hp->h_addr,
-        (char *)&s.server.sin_addr,
+  bcopy((char*)s.hp->h_addr,
+        (char*)&s.server.sin_addr,
         s.hp->h_length);
   s.server.sin_port = htons(port);
   s.length = sizeof(struct sockaddr_in);
@@ -39,10 +39,10 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
 }
 
 /* Connect to a UDP server */
-void clientSocket_serverConnect(cubiumClientSocket_t *s,                         /* Socket that server is listening through */
-                                void *hello,                                     /* Hello sent to server */
-                                size_t len,                                      /* Size of hello's type */
-                                std::function<void(cubiumClientSocket_t *)> func /* Called when ack is received */
+void clientSocket_serverConnect(cubiumClientSocket_t* s,                        /* Socket that server is listening through */
+                                void* hello,                                    /* Hello sent to server */
+                                size_t len,                                     /* Size of hello's type */
+                                std::function<void(cubiumClientSocket_t*)> func /* Called when ack is received */
                                 )
 {
   /* Set timeout such that socket will only wait 5 ms for messages */
@@ -51,7 +51,7 @@ void clientSocket_serverConnect(cubiumClientSocket_t *s,                        
   timeout.tv_sec = 0;
   timeout.tv_usec = 5000;
 
-  if (setsockopt(s->sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
+  if (setsockopt(s->sock, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout)) < 0)
   {
     clientSocket_error("setsockopt failed\n");
   }
@@ -59,20 +59,20 @@ void clientSocket_serverConnect(cubiumClientSocket_t *s,                        
   do
   { /* Send a new hello after every timeout until an ack is received */
 
-    s->nBytesRecv = sendto(s->sock, hello, len, 0, (const struct sockaddr *)&s->server, s->length);
+    s->nBytesRecv = sendto(s->sock, hello, len, 0, (const struct sockaddr*)&s->server, s->length);
     if (s->nBytesRecv < 0)
     {
       clientSocket_error("Sendto failed\n");
     }
 
-  } while (recvfrom(s->sock, s->buf, 256, 0, (struct sockaddr *)&s->from, &s->length) < 0);
+  } while (recvfrom(s->sock, s->buf, 256, 0, (struct sockaddr*)&s->from, &s->length) < 0);
 
   /* Ack received; call handler function */
   func(s);
 }
 
 /* Send a message to the connected server */
-ssize_t clientSocket_send(const void *msg, size_t len, cubiumClientSocket_t *s)
+ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 {
-  return sendto(s->sock, msg, len, 0, (struct sockaddr *)&s->from, sizeof(struct sockaddr_in));
+  return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, sizeof(struct sockaddr_in));
 }

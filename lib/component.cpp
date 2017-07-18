@@ -7,7 +7,7 @@
 #include <iostream>
 #include <memory>
 
-void Component::registerSubscriptionRequest(SpaMessage *message)
+void Component::registerSubscriptionRequest(SpaMessage* message)
 {
   /*
   if (message == nullptr)
@@ -33,7 +33,7 @@ void Component::registerSubscriptionRequest(SpaMessage *message)
   */
 }
 
-void Component::handleSubscriptionReply(SpaMessage *message)
+void Component::handleSubscriptionReply(SpaMessage* message)
 {
   /*
   if (message == nullptr)
@@ -79,7 +79,7 @@ void Component::subscribe(
   */
 }
 
-void Component::receiveMessage(SpaMessage *message)
+void Component::receiveMessage(SpaMessage* message)
 {
   if (message == nullptr)
   {
