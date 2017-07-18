@@ -16,7 +16,14 @@ struct ComponentInfo
 class ComponentList
 {
 public:
-  void add(LogicalAddress la) { list.push_back(ComponentInfo(la, true)); }
+  ComponentList() {}
+  ComponentList(LogicalAddress l) { add(l); }
+  void add(LogicalAddress la)
+  { 
+    /* Allocates just enough memory for what it is to contain */
+    list.reserve(list.size() + 1);
+    list.emplace_back(la, true); 
+  }
   LogicalAddress getAddress(int i) { return list[i].address; }
 protected:
   std::vector<ComponentInfo> list;

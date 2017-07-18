@@ -1,10 +1,11 @@
 #include <iostream>
 #include <local_communicator.hpp>
 #include <socket/serverSocket.hpp>
-#include <subnet_manager.hpp>
+#include <local_subnet_manager.hpp>
 #include <messages/local/local_spa_message.h>
 #include <messages/local/local_ack.h>
 #include <messages/op_codes.h>
+#include <memory>
 
 int main(void)
 {
@@ -21,8 +22,8 @@ int main(void)
 
   auto spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
 
-  SubnetManager manager(spaCom, localAddress, port);
-  manager.listenMessages();
+  auto manager = std::make_shared<LocalSubnetManager>(spaCom, localAddress, port);
+  manager->listenMessages();
 
   return 0;
 }
