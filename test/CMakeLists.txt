@@ -11,4 +11,4 @@ add_executable(tests main.cpp)
 
 # Link libraries to testing executable
 target_link_libraries(tests ${GTEST_LIBRARIES} ${GMOCK_BOTH_LIBRARIES} pthread)
-target_link_libraries(tests OpenSpa)
+target_link_libraries(tests Cubium)
