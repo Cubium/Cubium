@@ -42,13 +42,7 @@ public:
 
   //! Continuously listen for messages. Will call receiveMessage with each received
   //! message. A call to this method should not return while the subnet manager is running.
-  void listenMessages()
-  {
-    if (communicator)
-    {
-      communicator->listen(SM_messageCallback);
-    }
-  }
+  virtual void listenMessages() = 0;
 
   // Subnet Manager Utilities
   //
@@ -65,7 +59,6 @@ protected:
   static std::shared_ptr<SpaCommunicator> communicator;
 	std::shared_ptr<RoutingTable> routingTable;
   
-  static void SM_messageCallback(cubiumServerSocket_t*);
   // TODO add component list to store data about component health
 };
 #endif
