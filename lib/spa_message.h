@@ -1,7 +1,7 @@
 #ifndef SPA_MESSAGE_H
 #define SPA_MESSAGE_H
-#include <stdint.h>
 #include <memory>
+#include <stdint.h>
 
 #include "logical_address.h"
 #include "messages/spa_header.h"
@@ -50,7 +50,6 @@ struct SpaMessage
   //LogicalAddress logicalAddress; //NOTE deprecated
 
   SpaHeader spaHeader;
-
 };
 
 #endif

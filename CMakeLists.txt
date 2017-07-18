@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(OpenSPA)
+project(OpenSpa)
 
 # Compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g")

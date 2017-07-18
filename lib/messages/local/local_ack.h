@@ -1,9 +1,9 @@
 #ifndef LOCAL_ACK_H
 #define LOCAL_ACK_H
 
-#include <stdint.h>
 #include <messages/local/local_spa_message.h>
 #include <messages/op_codes.h>
+#include <stdint.h>
 
 struct LocalAck
 {

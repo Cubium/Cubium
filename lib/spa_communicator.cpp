@@ -1,7 +1,7 @@
-#include <iostream>
-#include <functional>
-#include <memory>
 #include "spa_communicator.hpp"
+#include <functional>
+#include <iostream>
+#include <memory>
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
@@ -41,7 +41,7 @@ std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
       LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators));
 }
 
-bool SpaCommunicator::send(SpaMessage* message)
+bool SpaCommunicator::send(SpaMessage *message)
 {
   if (message == nullptr)
   {
@@ -57,12 +57,13 @@ bool SpaCommunicator::send(SpaMessage* message)
     handleFailure();
     return false;
   }
-  if(!com->sendMsg(message)) std::cout << "DID NOT SEND" << std::endl;
+  if (!com->sendMsg(message))
+    std::cout << "DID NOT SEND" << std::endl;
   return true;
 }
 
 //TODO document
-void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
+void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messageHandler)
 {
   std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
   if (com == nullptr)

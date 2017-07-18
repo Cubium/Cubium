@@ -1,0 +1,11 @@
+AlwaysBreakTemplateDeclarations: true
+BreakBeforeBraces: Allman
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+ColumnLimit: 0
+IndentWidth: 2
+Language: Cpp
+SpacesInParentheses: false
+Standard: Cpp11
+TabWidth: 2
+UseTab: Never

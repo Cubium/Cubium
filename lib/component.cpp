@@ -7,7 +7,7 @@
 #include <iostream>
 #include <memory>
 
-void Component::registerSubscriptionRequest(SpaMessage* message)
+void Component::registerSubscriptionRequest(SpaMessage *message)
 {
   /*
   if (message == nullptr)
@@ -33,7 +33,7 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
   */
 }
 
-void Component::handleSubscriptionReply(SpaMessage* message)
+void Component::handleSubscriptionReply(SpaMessage *message)
 {
   /*
   if (message == nullptr)
@@ -79,7 +79,7 @@ void Component::subscribe(
   */
 }
 
-void Component::receiveMessage(SpaMessage* message)
+void Component::receiveMessage(SpaMessage *message)
 {
   if (message == nullptr)
   {
@@ -88,21 +88,21 @@ void Component::receiveMessage(SpaMessage* message)
 
   switch (message->spaHeader.opcode)
   {
-    case op_SPA_SUBSCRIPTION_REQUEST:
-      registerSubscriptionRequest(message);
-      break;
+  case op_SPA_SUBSCRIPTION_REQUEST:
+    registerSubscriptionRequest(message);
+    break;
 
-    case op_SPA_SUBSCRIPTION_REPLY:
-      handleSubscriptionReply(message);
-      break;
+  case op_SPA_SUBSCRIPTION_REPLY:
+    handleSubscriptionReply(message);
+    break;
 
-    case op_SPA_DATA:
-      handleSpaData(message);
-      break;
+  case op_SPA_DATA:
+    handleSpaData(message);
+    break;
 
-    default:
-      std::cout << "Unrecognized message" << std::endl;
-      break;
+  default:
+    std::cout << "Unrecognized message" << std::endl;
+    break;
   }
 }
 
