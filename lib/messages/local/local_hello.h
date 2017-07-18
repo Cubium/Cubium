@@ -1,7 +1,7 @@
 #ifndef LOCAL_HELLO_H
 #define LOCAL_HELLO_H
-#include <stdint.h>
 #include <messages/op_codes.h>
+#include <stdint.h>
 
 #include <messages/local/local_spa_message.h>
 struct LocalHello

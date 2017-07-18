@@ -88,21 +88,21 @@ void Component::receiveMessage(SpaMessage* message)
 
   switch (message->spaHeader.opcode)
   {
-    case op_SPA_SUBSCRIPTION_REQUEST:
-      registerSubscriptionRequest(message);
-      break;
+  case op_SPA_SUBSCRIPTION_REQUEST:
+    registerSubscriptionRequest(message);
+    break;
 
-    case op_SPA_SUBSCRIPTION_REPLY:
-      handleSubscriptionReply(message);
-      break;
+  case op_SPA_SUBSCRIPTION_REPLY:
+    handleSubscriptionReply(message);
+    break;
 
-    case op_SPA_DATA:
-      handleSpaData(message);
-      break;
+  case op_SPA_DATA:
+    handleSpaData(message);
+    break;
 
-    default:
-      std::cout << "Unrecognized message" << std::endl;
-      break;
+  default:
+    std::cout << "Unrecognized message" << std::endl;
+    break;
   }
 }
 

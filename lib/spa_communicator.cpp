@@ -1,7 +1,7 @@
-#include <iostream>
-#include <functional>
-#include <memory>
 #include "spa_communicator.hpp"
+#include <functional>
+#include <iostream>
+#include <memory>
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
@@ -19,7 +19,7 @@ void SpaCommunicator::handleFailure()
 
 std::shared_ptr<PhysicalCommunicator> SpaCommunicator::selectCommunicator(
     LogicalAddress address,
-    std::vector<std::shared_ptr<PhysicalCommunicator>> const &communicators)
+    std::vector<std::shared_ptr<PhysicalCommunicator>> const& communicators)
 {
   for (auto com : communicators)
   {
@@ -57,7 +57,8 @@ bool SpaCommunicator::send(SpaMessage* message)
     handleFailure();
     return false;
   }
-  if(!com->sendMsg(message)) std::cout << "DID NOT SEND" << std::endl;
+  if (!com->sendMsg(message))
+    std::cout << "DID NOT SEND" << std::endl;
   return true;
 }
 

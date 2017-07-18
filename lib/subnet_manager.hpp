@@ -14,9 +14,9 @@ class SubnetManager
 {
 public:
   SubnetManager(std::shared_ptr<SpaCommunicator> com, LogicalAddress log , uint16_t port)
+    : routingTable(std::make_shared<RoutingTable>(log, port))
   {
     communicator = com;
-    routingTable = std::make_shared<RoutingTable>(log, port);
   }
 
 

@@ -25,7 +25,7 @@ public:
   bool exists(LogicalAddress log)
   {
     std::map<LogicalAddress, uint16_t,LogicalAddressCompare>::iterator i = routingTable.begin();
-	for (i = routingTable.begin(); i != routingTable.end(); i++)
+	for (i = routingTable.begin(); i != routingTable.end(); ++i)
 	{
 		if (i->first == log){
 	std::cout << "(RoutingTable::exists)Found Address with port" << i->second << std::endl;

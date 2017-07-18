@@ -1,2 +1,2 @@
 add_executable(example_component example_component.cpp)
-target_link_libraries(example_component OpenSpa pthread)
+target_link_libraries(example_component Cubium pthread)

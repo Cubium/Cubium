@@ -15,14 +15,14 @@ struct LogicalAddress
   }
 };
 
-bool operator==(const LogicalAddress &lhs, const LogicalAddress &rhs);
+bool operator==(const LogicalAddress& lhs, const LogicalAddress& rhs);
 // {
 //   return lhs.subnetId == rhs.subnetId && lhs.componentId == rhs.componentId;
 // }
 
 struct LogicalAddressCompare
 {
-  bool operator()(const LogicalAddress &lhs, const LogicalAddress &rhs) const
+  bool operator()(const LogicalAddress& lhs, const LogicalAddress& rhs) const
   {
     if (lhs.subnetId == rhs.subnetId)
     {

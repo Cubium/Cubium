@@ -13,7 +13,9 @@ bool LocalCommunicator::serverSend(SpaMessage* message)
     return false;
   }
 
-  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0) { handleFailure();
+  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0)
+  {
+    handleFailure();
     return false;
   }
 
@@ -32,7 +34,7 @@ bool LocalCommunicator::clientSend(SpaMessage* message)
   return true;
 }
 
-void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messageHandler)
+void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
 {
   if (serverSock == nullptr)
   {
@@ -42,7 +44,7 @@ void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t *)> messa
   serverSocket_listen(serverSock, messageHandler);
 }
 
-void LocalCommunicator::clientConnect(SpaMessage * message, size_t len, std::function<void(cubiumClientSocket_t *)> callback)
+void LocalCommunicator::clientConnect(SpaMessage* message, size_t len, std::function<void(cubiumClientSocket_t*)> callback)
 {
   if (message == nullptr)
   {
@@ -52,8 +54,7 @@ void LocalCommunicator::clientConnect(SpaMessage * message, size_t len, std::fun
   clientSocket_serverConnect(clientSock, (void*)message, len, callback);
 }
 
-
 void LocalCommunicator::insertToRoutingTable(LogicalAddress log, uint32_t port)
 {
-  routingTable->insert(log,port);
+  routingTable->insert(log, port);
 }
