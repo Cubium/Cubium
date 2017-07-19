@@ -33,14 +33,18 @@ public:
       cubiumServerSocket_t * sock,
       LogicalAddress la) : serverSock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
   
-  virtual void handleFailure();
+  virtual void handleFailure(std::string);
   virtual bool serverSend(SpaMessage* message);
   virtual bool clientSend(SpaMessage* message);
 
   void clientConnect(SpaMessage *, size_t, std::function<void(cubiumClientSocket_t *)>);
 
   virtual void listen(std::function<void(cubiumServerSocket_t *)>);
+  virtual void listen(std::function<void(cubiumClientSocket_t *)>);
+
   virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
+
+  void setServerSock(cubiumServerSocket_t * s) { serverSock = s; }
 
 protected:
   cubiumServerSocket_t * serverSock;

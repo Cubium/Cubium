@@ -1,9 +1,8 @@
 #include "local_communicator.hpp"
 
-void LocalCommunicator::handleFailure()
+void LocalCommunicator::handleFailure(std::string message)
 {
-  //TODO how should this be handled?
-  std::cout << "Local Communicator failure" << '\n';
+  std::cout << "Local Communicator failure: " << message << '\n';
 }
 
 bool LocalCommunicator::serverSend(SpaMessage* message)
@@ -15,7 +14,7 @@ bool LocalCommunicator::serverSend(SpaMessage* message)
 
   if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0)
   {
-    handleFailure();
+    handleFailure("Address not in routing table");
     return false;
   }
 
@@ -38,17 +37,27 @@ void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messag
 {
   if (serverSock == nullptr)
   {
-    handleFailure();
+    handleFailure("serverSock == nullptr");
     return;
   }
   serverSocket_listen(serverSock, messageHandler);
+}
+
+void LocalCommunicator::listen(std::function<void(cubiumClientSocket_t*)> messageHandler)
+{
+  if (clientSock == nullptr)
+  {
+    handleFailure("clientSock == nullptr");
+    return;
+  }
+  clientSocket_listen(clientSock, messageHandler);
 }
 
 void LocalCommunicator::clientConnect(SpaMessage* message, size_t len, std::function<void(cubiumClientSocket_t*)> callback)
 {
   if (message == nullptr)
   {
-    handleFailure();
+    handleFailure("clientConnect: SpaMessage is a nullptr");
     return;
   }
   clientSocket_serverConnect(clientSock, (void*)message, len, callback);
