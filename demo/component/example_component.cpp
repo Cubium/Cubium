@@ -4,6 +4,15 @@
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
 #include <socket/clientSocket.hpp>
+#include "../demo_addresses.hpp"
+
+void messageCallback(cubiumClientSocket_t* sock)
+{
+    SpaMessage* message = (SpaMessage*)sock->buf;
+    std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
+    return;
+}
+
 
 class ExampleComponent : public Component
 {
@@ -13,21 +22,15 @@ public:
   virtual void handleSpaData(SpaMessage*) {}
   virtual void sendSpaData(LogicalAddress) {}
 
-  static void messageCallback(cubiumClientSocket_t* sock)
-  {
-    SpaMessage* message = (SpaMessage*)sock->buf;
-    std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
-    return;
-  }
-
   virtual void appInit()
   {
     std::cout << "Example component initializing!" << '\n';
 
-    LocalHello hello(0, 0, LogicalAddress(0, 0), LogicalAddress(0, 0), 0, 8888, 0, 0);
+    LocalHello hello(0, 0, la_LSM, la_CA, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), messageCallback);
   }
+
 };
 
 int main()

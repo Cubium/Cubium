@@ -72,3 +72,13 @@ void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageH
   }
   com->listen(messageHandler);
 }
+
+void SpaCommunicator::listen(std::function<void(cubiumClientSocket_t*)> messageHandler)
+{
+  std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
+  if (com == nullptr)
+  {
+    handleFailure();
+  }
+  com->listen(messageHandler);
+}

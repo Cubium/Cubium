@@ -36,6 +36,7 @@ public:
 
   //TODO document
   virtual void listen(std::function<void(cubiumServerSocket_t*)>);
+  virtual void listen(std::function<void(cubiumClientSocket_t*)>);
 
   std::shared_ptr<LocalCommunicator> getLocalCommunicator();
 

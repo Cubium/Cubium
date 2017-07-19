@@ -6,6 +6,7 @@
 #include <messages/local/local_spa_message.h>
 #include <messages/op_codes.h>
 #include <socket/serverSocket.hpp>
+#include "../demo_addresses.hpp"
 
 int main(void)
 {
@@ -13,16 +14,14 @@ int main(void)
 
   cubiumServerSocket_t sock = serverSocket_openSocket(port);
 
-  LogicalAddress localAddress(1, 0);
-
-  auto routingTable = std::make_shared<RoutingTable>(localAddress, port);
+  auto routingTable = std::make_shared<RoutingTable>(la_LSM, port);
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_LSM)};
 
-  auto spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
+  auto spaCom = std::make_shared<SpaCommunicator>(la_LSM, comms);
 
-  auto manager = std::make_shared<LocalSubnetManager>(spaCom, localAddress, port);
+  auto manager = std::make_shared<LocalSubnetManager>(spaCom, routingTable);
   manager->listenMessages();
 
   return 0;
