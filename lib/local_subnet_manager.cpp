@@ -11,10 +11,10 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
   auto op = msg->spaHeader.opcode;
   std::cout << "Received SpaMessage with opcode " << (int)op << " on port " << (int)sock->from.sin_port << "\n";
-
   if (op == op_LOCAL_HELLO)
   {
     lsm->components.add(msg->spaHeader.source);
+
     lsm->routingTable->insert(msg->spaHeader.source, sock->from.sin_port);
 
     LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
