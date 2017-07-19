@@ -21,7 +21,7 @@ int main(void)
 
   auto spaCom = std::make_shared<SpaCommunicator>(la_LSM, comms);
 
-  auto manager = std::make_shared<LocalSubnetManager>(spaCom, la_LSM, port);
+  auto manager = std::make_shared<LocalSubnetManager>(spaCom, routingTable);
   manager->listenMessages();
 
   return 0;

@@ -34,7 +34,7 @@ public:
       LogicalAddress la) : serverSock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
   
   virtual void handleFailure(std::string);
-  virtual bool serverSend(SpaMessage* message);
+  virtual bool serverSend(SpaMessage* message, ssize_t);
   virtual bool clientSend(SpaMessage* message);
 
   void clientConnect(SpaMessage *, size_t, std::function<void(cubiumClientSocket_t *)>);

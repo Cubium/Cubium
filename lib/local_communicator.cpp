@@ -5,7 +5,7 @@ void LocalCommunicator::handleFailure(std::string message)
   std::cout << "Local Communicator failure: " << message << '\n';
 }
 
-bool LocalCommunicator::serverSend(SpaMessage* message)
+bool LocalCommunicator::serverSend(SpaMessage* message, ssize_t len)
 {
   if (message == nullptr)
   {
@@ -18,7 +18,7 @@ bool LocalCommunicator::serverSend(SpaMessage* message)
     return false;
   }
 
-  serverSocket_send((void*)message, sizeof(message), serverSock);
+  serverSocket_send((void*)message, len, serverSock);
   return true;
 }
 
