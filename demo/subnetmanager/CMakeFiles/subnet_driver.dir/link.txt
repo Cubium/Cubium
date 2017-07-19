@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g    CMakeFiles/subnet_driver.dir/subnet_manager_driver.cpp.o  -o subnet_driver -rdynamic ../../lib/libCubium.a -lpthread 
