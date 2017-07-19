@@ -30,6 +30,7 @@ public:
   }
   void receiveMessage(SpaMessage* message) {} // Note: Deprecated?
   ComponentList components;
+  friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t * sock);
 };
 
 

@@ -15,10 +15,10 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   if (op == op_LOCAL_HELLO)
   {
     lsm->components.add(msg->spaHeader.source);
+    lsm->routingTable->insert(msg->spaHeader.source, sock->from.sin_port);
 
     LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
 
-    //  communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply);
-    serverSocket_send((void*)&reply, sizeof(reply), sock);
+    lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply);
   }
 }

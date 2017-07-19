@@ -15,8 +15,7 @@ class SubnetManager
 public:
   SubnetManager(std::shared_ptr<SpaCommunicator> com, LogicalAddress log , uint16_t port)
     : routingTable(std::make_shared<RoutingTable>(log, port))
-  {
-    communicator = com;
+  { communicator = com;
   }
 
 
@@ -55,9 +54,11 @@ public:
   // template<typename Func>
   // void runTask(Func task);
 
+  std::shared_ptr<RoutingTable> routingTable;
+  // TODO July 2017 This ^ had to be made public so it could be accessed
+      // by the callback. Maybe make the callback a friend function?
 protected:
   static std::shared_ptr<SpaCommunicator> communicator;
-	std::shared_ptr<RoutingTable> routingTable;
   
   // TODO add component list to store data about component health
 };
