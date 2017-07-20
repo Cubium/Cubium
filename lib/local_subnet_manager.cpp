@@ -8,10 +8,19 @@
 
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
+
+  std::cout << lsm->routingTable->size() << std::endl;
+  if(lsm->routingTable->isEmpty())
+  {
+	std::cout << "Nothing in the routing table." << std::endl;
+  }
+
+
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
   auto op = msg->spaHeader.opcode;
   std::cout << "Received SpaMessage with opcode " << (int)op << " on port " << (int)sock->from.sin_port << "\n";
+
   if (op == op_LOCAL_HELLO)
   {
     lsm->components.add(msg->spaHeader.source);
@@ -21,4 +30,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
     lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
   }
+
+  std::cout << "Items in routing table: " << lsm->routingTable->size() << std::endl;
+
 }

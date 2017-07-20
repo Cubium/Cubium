@@ -38,6 +38,21 @@ public:
     return false;
   }
 
+  bool isEmpty()
+  {
+	if (routingTable.empty())
+	{
+	  return true;
+	}
+
+	return false;
+  }
+
+  int size()
+  {
+	return routingTable.size();
+  }
+
   /*
     if (routingTable.find(log) == routingTable.end())
     {

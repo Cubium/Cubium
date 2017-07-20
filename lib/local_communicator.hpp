@@ -32,6 +32,8 @@ public:
   LocalCommunicator(
       cubiumServerSocket_t * sock,
       LogicalAddress la) : serverSock(sock), routingTable(nullptr), PhysicalCommunicator(la) { ; }
+
+  virtual bool sendMsg(SpaMessage* msg, ssize_t len);
   
   virtual void handleFailure(std::string);
   virtual bool serverSend(SpaMessage* message, ssize_t);

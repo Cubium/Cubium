@@ -41,13 +41,13 @@ public:
   virtual void handleSpaData(SpaMessage*) = 0;
   virtual void appInit() = 0;
 
-  void sendMsg(SpaMessage *  message)
+  void sendMsg(SpaMessage *  message, ssize_t len)
   {
     if (message == nullptr || communicator == nullptr)
     {
       return;
     }
-    communicator->send(message);
+    communicator->send(message, len);
   }
 
 

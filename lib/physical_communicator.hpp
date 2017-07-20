@@ -18,7 +18,7 @@ public:
   PhysicalCommunicator(LogicalAddress la) : subnetAddress(la) {}
 
   virtual ~PhysicalCommunicator() {}
-  virtual bool sendMsg(SpaMessage* message) { return false; }
+  virtual bool sendMsg(SpaMessage* message, ssize_t len) { return false; }
   virtual void listen(std::function<void(cubiumServerSocket_t*)>) { std::cout << "I should not be called!\n"; }
 
   virtual LogicalAddress getSubnetAddress() { return subnetAddress; }

@@ -15,27 +15,26 @@ void messageCallback(cubiumClientSocket_t* sock)
 }
 
 
-class ExampleComponent : public Component
+class ComponentB : public Component
 {
 public:
-  ExampleComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
+  ComponentB(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
 
   virtual void handleSpaData(SpaMessage*) {}
   virtual void sendSpaData(LogicalAddress) {}
 
   virtual void appInit()
   {
-    std::cout << "Example component initializing!" << '\n';
+    std::cout << "Component B initializing!" << '\n';
 
-    LocalHello hello(0, 0, la_LSM, la_CA, 0, 0, 0, 0);
+    LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), messageCallback);
 
-    SubscriptionRequest request(la_CB, la_CA, la_LSM);
+    //std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
-    std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
-
-    communicator->send((SpaMessage*)&request, sizeof(request));
+    //communicator->send((SpaMessage*)&request);
+ 
   }
 
 };
@@ -45,12 +44,11 @@ int main()
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t*>>();
 
-  LogicalAddress localAddress(1, 0);
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_CB)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_CB, comms);
 
-  ExampleComponent comp(spaCom);
+  ComponentB comp(spaCom);
   comp.appInit();
 
   return 0;

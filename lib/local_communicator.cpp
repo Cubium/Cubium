@@ -1,5 +1,11 @@
 #include "local_communicator.hpp"
 
+bool LocalCommunicator::sendMsg(SpaMessage * message, ssize_t len)
+{
+  auto socket = routingTable->getPhysicalAddress(message->spaHeader.destination);  
+  serverSend(message, len);
+}
+
 void LocalCommunicator::handleFailure(std::string message)
 {
   std::cout << "Local Communicator failure: " << message << '\n';
@@ -29,7 +35,7 @@ bool LocalCommunicator::clientSend(SpaMessage* message)
     return false;
   }
 
-  clientSocket_send((void*)message, sizeof(SpaMessage*), clientSock);
+  clientSocket_send((void*)message, sizeof(message), clientSock);
   return true;
 }
 
