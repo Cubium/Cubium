@@ -23,7 +23,7 @@ public:
 
   virtual LogicalAddress getSubnetAddress() { return subnetAddress; }
 
-  virtual void insertToRoutingTable(LogicalAddress, uint32_t){};
+//  virtual void insertToRoutingTable(LogicalAddress, uint32_t){};
 
   virtual void clientConnect(SpaMessage *, std::function<void(cubiumClientSocket_t*)>) {}
 

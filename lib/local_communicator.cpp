@@ -63,7 +63,9 @@ void LocalCommunicator::clientConnect(SpaMessage* message, size_t len, std::func
   clientSocket_serverConnect(clientSock, (void*)message, len, callback);
 }
 
-void LocalCommunicator::insertToRoutingTable(LogicalAddress log, uint32_t port)
+/*
+void LocalCommunicator::insertToRoutingTable(LogicalAddress log, cubium port)
 {
   routingTable->insert(log, port);
 }
+*/
