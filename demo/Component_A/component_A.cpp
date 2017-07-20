@@ -37,6 +37,7 @@ public:
 
     communicator->send((SpaMessage*)&request, sizeof(request));
  
+    communicator->getLocalCommunicator()->clientListen(messageCallback);
   }
 
 };

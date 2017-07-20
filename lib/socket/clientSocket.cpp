@@ -81,10 +81,8 @@ void clientSocket_serverConnect(cubiumClientSocket_t* s,                        
   {
     clientSocket_error("setsockopt failed\n");
   }
-
-  new std::thread([=]{ clientSocket_listen(s, func); });
 }
-
+ 
 /* Send a message to the connected server */
 ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 {
@@ -94,7 +92,7 @@ ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func)
 {
   /* Continually listen for messages and call the handler when one is received */
-  while (1)
+  while (true)
   {
     std::cout << "Listening!" << std::endl;
     s->nBytesRecv = recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->length);

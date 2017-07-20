@@ -39,6 +39,12 @@ bool LocalCommunicator::clientSend(SpaMessage* message)
   return true;
 }
 
+void LocalCommunicator::clientListen(std::function<void(cubiumClientSocket_t*)> func)
+{
+  clientSocket_listen(clientSock, func);
+
+}
+
 void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
 {
   if (serverSock == nullptr)
