@@ -53,6 +53,7 @@ public:
 
   virtual T getPhysicalAddress(LogicalAddress log)
   {
+    std::cout << "Searching for address: " << log << "...\n";
     if (exists(log))
     {
       return routingTable[log];

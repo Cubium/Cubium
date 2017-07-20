@@ -37,7 +37,7 @@ public:
   
   virtual void handleFailure(std::string);
   virtual bool serverSend(SpaMessage* message, ssize_t);
-  virtual bool clientSend(SpaMessage* message);
+  virtual bool clientSend(SpaMessage* message, ssize_t);
 
   void clientConnect(SpaMessage *, size_t, std::function<void(cubiumClientSocket_t *)>);
 

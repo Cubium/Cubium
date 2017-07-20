@@ -18,20 +18,20 @@ bool LocalCommunicator::serverSend(SpaMessage* message, ssize_t len)
     return false;
   }
 
-  routingTable->getPhysicalAddress(message->spaHeader.destination);
+  //routingTable->getPhysicalAddress(message->spaHeader.destination);
 
   serverSocket_send((void*)message, len, serverSock);
   return true;
 }
 
-bool LocalCommunicator::clientSend(SpaMessage* message)
+bool LocalCommunicator::clientSend(SpaMessage* message, ssize_t len)
 {
   if (message == nullptr)
   {
     return false;
   }
 
-  clientSocket_send((void*)message, sizeof(message), clientSock);
+  clientSocket_send((void*)message, len, clientSock);
   return true;
 }
 

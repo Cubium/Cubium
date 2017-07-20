@@ -1,6 +1,7 @@
 #ifndef LOGICAL_ADDRESS
 #define LOGICAL_ADDRESS
 
+#include <iostream>
 #include <stdint.h>
 
 struct LogicalAddress
@@ -15,10 +16,10 @@ struct LogicalAddress
   }
 };
 
+std::ostream& operator<<(std::ostream& o, const LogicalAddress& la);
+
+
 bool operator==(const LogicalAddress& lhs, const LogicalAddress& rhs);
-// {
-//   return lhs.subnetId == rhs.subnetId && lhs.componentId == rhs.componentId;
-// }
 
 struct LogicalAddressCompare
 {
