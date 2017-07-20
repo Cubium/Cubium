@@ -38,20 +38,9 @@ public:
     return false;
   }
 
-  bool isEmpty()
-  {
-	if (routingTable.empty())
-	{
-	  return true;
-	}
+  bool isEmpty() { return routingTable.empty(); }
 
-	return false;
-  }
-
-  int size()
-  {
-	return routingTable.size();
-  }
+  int size() { return routingTable.size(); }
 
   /*
     if (routingTable.find(log) == routingTable.end())
@@ -73,6 +62,11 @@ public:
       perror("Entry in routing table does not exist!");
       exit(1);
     }
+  }
+
+  std::map<LogicalAddress, T, LogicalAddressCompare> getTable()
+  {
+    return routingTable;
   }
 
 protected:
