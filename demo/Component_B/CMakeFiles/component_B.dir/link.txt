@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g    CMakeFiles/component_B.dir/component_B.cpp.o  -o component_B -rdynamic ../../lib/libCubium.a -lpthread 
