@@ -33,7 +33,7 @@ public:
 
     SubscriptionRequest request(la_CB, la_CA, la_LSM);
 
-    std::cout << "Sending message with opcode: \n";//" << (int)request.spaMessage.spaHeader.opcode << "\n";
+    std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
     communicator->send((SpaMessage*)&request, sizeof(request));
  
