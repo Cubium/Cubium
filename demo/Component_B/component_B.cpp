@@ -43,7 +43,7 @@ public:
 int main()
 {
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
-  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t*>>();
+  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
       std::make_shared<LocalCommunicator>(&sock, routingTable, la_CB)};

@@ -21,12 +21,12 @@ public:
   
   LocalCommunicator(
       cubiumServerSocket_t * sock, 
-	  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable,
+	  std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable,
       LogicalAddress la) : serverSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
 
   LocalCommunicator(
       cubiumClientSocket_t * sock, 
-	  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable,
+	  std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable,
       LogicalAddress la) : clientSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
   
   LocalCommunicator(
@@ -61,7 +61,7 @@ public:
 
    for(auto it = table.cbegin(); it != table.cend(); ++it)
    {
-      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second->from.sin_port << '\n';
+      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second.from.sin_port << '\n';
    }
 
     std::cout << '\n';
@@ -73,7 +73,7 @@ public:
 protected:
   cubiumServerSocket_t * serverSock;
   cubiumClientSocket_t * clientSock;
-  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable;
+  std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable;
 };
 
 #endif

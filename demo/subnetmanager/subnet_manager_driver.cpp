@@ -14,7 +14,7 @@ int main(void)
 
   cubiumServerSocket_t sock = serverSocket_openSocket(port);
 
-  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t*>>(la_LSM, &sock);
+  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>(la_LSM, sock);
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
       std::make_shared<LocalCommunicator>(&sock, routingTable, la_LSM)};

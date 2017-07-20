@@ -18,11 +18,7 @@ bool LocalCommunicator::serverSend(SpaMessage* message, ssize_t len)
     return false;
   }
 
-  if (routingTable->getPhysicalAddress(message->spaHeader.destination) < 0)
-  {
-    handleFailure("Address not in routing table");
-    return false;
-  }
+  routingTable->getPhysicalAddress(message->spaHeader.destination);
 
   serverSocket_send((void*)message, len, serverSock);
   return true;
