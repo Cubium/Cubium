@@ -96,6 +96,7 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
   /* Continually listen for messages and call the handler when one is received */
   while (1)
   {
+    std::cout << "Listening!" << std::endl;
     s->nBytesRecv = recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->length);
     if (s->nBytesRecv < 0)
     {

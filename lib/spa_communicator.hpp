@@ -32,7 +32,7 @@ public:
 
   //! \param message - Specialization of a Message to be sent over the network.
   //! \return true if message is successfully sent, false otherwise.
-  bool send(SpaMessage* message);
+  bool send(SpaMessage* message, ssize_t len);
 
   //TODO document
   virtual void listen(std::function<void(cubiumServerSocket_t*)>);

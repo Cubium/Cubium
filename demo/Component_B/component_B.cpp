@@ -44,10 +44,9 @@ int main()
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t*>>();
 
-  LogicalAddress localAddress(1, 0);
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_CB)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_CB, comms);
 
   ComponentB comp(spaCom);
   comp.appInit();

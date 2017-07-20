@@ -41,7 +41,7 @@ std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
       LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators));
 }
 
-bool SpaCommunicator::send(SpaMessage* message)
+bool SpaCommunicator::send(SpaMessage* message, ssize_t len)
 {
   if (message == nullptr)
   {
@@ -57,7 +57,7 @@ bool SpaCommunicator::send(SpaMessage* message)
     handleFailure();
     return false;
   }
-  if (!com->sendMsg(message))
+  if (!com->sendMsg(message, len))
     std::cout << "DID NOT SEND" << std::endl;
   return true;
 }

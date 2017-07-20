@@ -35,7 +35,7 @@ public:
 
     std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
-    communicator->send((SpaMessage*)&request);
+    communicator->send((SpaMessage*)&request, sizeof(request));
  
   }
 
@@ -46,10 +46,9 @@ int main()
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t*>>();
 
-  LogicalAddress localAddress(1, 0);
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, localAddress)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(localAddress, comms);
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_CA)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_CA, comms);
 
   ComponentA comp(spaCom);
   comp.appInit();

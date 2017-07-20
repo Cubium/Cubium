@@ -35,7 +35,7 @@ public:
 
     std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
-    communicator->send((SpaMessage*)&request);
+    communicator->send((SpaMessage*)&request, sizeof(request));
   }
 
 };
