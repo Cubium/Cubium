@@ -41,6 +41,8 @@ public:
 
   void clientConnect(SpaMessage *, size_t, std::function<void(cubiumClientSocket_t *)>);
 
+  void clientListen(std::function<void(cubiumClientSocket_t*)>);
+
   virtual void listen(std::function<void(cubiumServerSocket_t *)>);
   virtual void listen(std::function<void(cubiumClientSocket_t *)>);
 

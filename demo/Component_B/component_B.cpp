@@ -30,10 +30,11 @@ public:
     LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), messageCallback);
+    communicator->getLocalCommunicator()->clientListen(messageCallback);
 
-    //std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
+   // std::cout << "Sending message with opcode:\n";
 
-    //communicator->send((SpaMessage*)&request);
+  //  communicator->send((SpaMessage*)&request);
  
   }
 
