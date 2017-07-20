@@ -5,9 +5,11 @@
 
 #define LOCAL_SUBNET_MANAGER_PORT 8888
 
+/*
 class LocalComponentRoutingTable : public RoutingTable
 {
   int32_t getPhysicalAddress(LogicalAddress log) { return LOCAL_SUBNET_MANAGER_PORT; }
 };
+*/
 
 #endif

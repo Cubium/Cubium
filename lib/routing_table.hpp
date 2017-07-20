@@ -5,27 +5,28 @@
 #include <iostream>
 #include <map>
 
+template <typename T>
 class RoutingTable
 {
 public:
   RoutingTable() {}
 
-  RoutingTable(LogicalAddress log, uint16_t port)
+  RoutingTable(LogicalAddress log, T physAddr)
   {
-    if (!insert(log, port))
+    if (!insert(log, physAddr))
       std::cerr << "Routing Table Construction Failure." << std::endl;
   }
 
-  bool insert(LogicalAddress log, uint16_t port)
+  bool insert(LogicalAddress log, T physAddr)
   {
-    routingTable.insert(std::pair<LogicalAddress, uint16_t>(log, port));
+    routingTable.insert(std::pair<LogicalAddress, T>(log, physAddr));
     //routingTable[log] = port;
     return true;
   }
 
   bool exists(LogicalAddress log)
   {
-    std::map<LogicalAddress, uint16_t, LogicalAddressCompare>::iterator i = routingTable.begin();
+    typename std::map<LogicalAddress, T, LogicalAddressCompare>::iterator i = routingTable.begin();
     for (i = routingTable.begin(); i != routingTable.end(); ++i)
     {
       if (i->first == log)
@@ -46,17 +47,21 @@ public:
   }
 */
 
-  virtual int32_t getPhysicalAddress(LogicalAddress log)
+  virtual T getPhysicalAddress(LogicalAddress log)
   {
     if (exists(log))
     {
       return routingTable[log];
     }
-    return -1;
+    else
+    {
+      perror("Entry in routing table does not exist!");
+      exit(1);
+    }
   }
 
 protected:
-  std::map<LogicalAddress, uint16_t, LogicalAddressCompare> routingTable;
+  std::map<LogicalAddress, T, LogicalAddressCompare> routingTable;
 };
 
 #endif

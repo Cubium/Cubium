@@ -21,12 +21,12 @@ public:
   
   LocalCommunicator(
       cubiumServerSocket_t * sock, 
-	  std::shared_ptr<RoutingTable> routingTable,
+	  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable,
       LogicalAddress la) : serverSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
 
   LocalCommunicator(
       cubiumClientSocket_t * sock, 
-	  std::shared_ptr<RoutingTable> routingTable,
+	  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable,
       LogicalAddress la) : clientSock(sock), routingTable(routingTable), PhysicalCommunicator(la) { ; }
   
   LocalCommunicator(
@@ -42,14 +42,14 @@ public:
   virtual void listen(std::function<void(cubiumServerSocket_t *)>);
   virtual void listen(std::function<void(cubiumClientSocket_t *)>);
 
-  virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
+//  virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
 
   void setServerSock(cubiumServerSocket_t * s) { serverSock = s; }
 
 protected:
   cubiumServerSocket_t * serverSock;
   cubiumClientSocket_t * clientSock;
-  std::shared_ptr<RoutingTable> routingTable;
+  std::shared_ptr<RoutingTable<cubiumServerSocket_t*>> routingTable;
 };
 
 #endif
