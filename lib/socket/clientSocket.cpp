@@ -7,6 +7,7 @@
 #include <strings.h>    // for bzero
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 #include <iostream>
+#include <thread>
 
 /* Throw a perror and exit */
 void clientSocket_error(const char* msg)
@@ -81,7 +82,7 @@ void clientSocket_serverConnect(cubiumClientSocket_t* s,                        
     clientSocket_error("setsockopt failed\n");
   }
 
-  clientSocket_listen(s, func);
+  new std::thread([=]{ clientSocket_listen(s, func); });
 }
 
 /* Send a message to the connected server */

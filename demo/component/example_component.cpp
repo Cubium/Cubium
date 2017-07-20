@@ -3,6 +3,7 @@
 #include <local_communicator.hpp>
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
+#include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
 #include "../demo_addresses.hpp"
 
@@ -29,6 +30,13 @@ public:
     LocalHello hello(0, 0, la_LSM, la_CA, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), messageCallback);
+
+    SubscriptionRequest request(la_CB, la_CA, la_LSM);
+
+    std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
+
+    communicator->send((SpaMessage*)&request);
+ 
   }
 
 };
