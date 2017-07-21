@@ -3,7 +3,7 @@
 
 #include <messages/op_codes.h>
 #include <spa_message.h>
-#include <stditn.h>
+#include <stdint.h>
 
 struct SubscriptionReply
 {
@@ -24,6 +24,7 @@ struct SubscriptionReply
       uint16_t length,
       LogicalAddress destination,
       LogicalAddress source,
+      uint16_t flags,
       uint16_t dI,
       uint8_t rT)
     : spaMessage(version,

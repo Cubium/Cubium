@@ -3,6 +3,7 @@
 #include "messages/local/local_ack.h"
 #include "messages/op_codes.h"
 #include "messages/spa/subscription_request.h"
+#include "messages/spa/subscription_reply.h"
 #include "spa_message.h"
 #include <memory>
 #include <iostream>
@@ -35,6 +36,12 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
     serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
   }
+  else if (op == op_SPA_SUBSCRIPTION_REPLY)
+  {
+    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+    serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
+  }
+
 
 
 }
