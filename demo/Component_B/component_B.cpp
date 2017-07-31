@@ -5,15 +5,17 @@
 #include <messages/local/local_hello.h>
 #include <messages/spa/subscription_request.h>
 #include <messages/spa/subscription_reply.h>
+#include <messages/spa/spa_data.h>
 #include <socket/clientSocket.hpp>
 #include "messages/op_codes.h"
 #include "../demo_addresses.hpp"
+#include "random.hpp"
 
 class ComponentB;
 
 void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock);
 
-
+int readData();
 
 class ComponentB : public Component, public std::enable_shared_from_this<ComponentB>
 {
@@ -32,6 +34,10 @@ public:
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
     communicator->getLocalCommunicator()->clientListen(
       [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
+
+    std::cout << "Sending Data" << '\n';
+		SpaData<int> data(0, 0, la_CB, la_CA, 0, 0, 0, 0, 0, 5);
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
 
    // std::cout << "Sending message with opcode:\n";
 
@@ -54,6 +60,18 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   }
 
   return;
+}
+
+int readData()
+{
+  static int data = 0;
+  int random = rand(1,100);
+  if(random < 25)
+  {
+    ++data;
+    return random;
+  }
+  return ++data;
 }
 
 int main()
