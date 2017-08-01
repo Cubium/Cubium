@@ -1,14 +1,15 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
-//#include "messages/spa_subscription_reply.h"
-//#include "messages/spa_subscription_request.h"
-//#include "messages/spa_data.h"
 #include "spa_communicator.hpp"
 #include "spa_message.h"
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <vector>
+//#include "messages/spa_data.h"
+//#include "messages/spa_subscription_reply.h"
+//#include "messages/spa_subscription_request.h"
 
 struct Subscriber
 {
@@ -27,9 +28,9 @@ public:
       dialogId(0),
       publishIter(1)
 
-      {
-        subscribers.reserve(8); // Default to 8 subscribers
-      }
+  {
+    subscribers.reserve(8); // Default to 8 subscribers
+  }
 
   virtual ~Component() {}
   //virtual void appShutdown() = 0;
@@ -41,7 +42,7 @@ public:
   virtual void handleSpaData(SpaMessage*) = 0;
   virtual void appInit() = 0;
 
-  void sendMsg(SpaMessage *  message, ssize_t len)
+  void sendMsg(SpaMessage* message, ssize_t len)
   {
     if (message == nullptr || communicator == nullptr)
     {
@@ -50,12 +51,10 @@ public:
     communicator->send(message, len);
   }
 
-
   void receiveMessage(SpaMessage*);
 
   void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
-
 
   void subscribe(
       LogicalAddress producer,
@@ -63,13 +62,16 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
-  bool addSubscriber(Subscriber); 
+  bool addSubscriber(LogicalAddress, uint16_t);
+
   std::shared_ptr<SpaCommunicator> communicator;
+  std::vector<Subscriber> subscribers; // Should we make this a vector of pointers?
+  std::mutex m_subscribers;
+
 protected:
   LogicalAddress address;
   uint8_t publishIter;
   uint16_t dialogId;
-  std::vector<Subscriber> subscribers; // Should we make this a vector of pointers?
 };
 
 #endif

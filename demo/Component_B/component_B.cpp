@@ -1,6 +1,7 @@
 #include "../demo_addresses.hpp"
 #include "messages/op_codes.h"
 #include "random.hpp"
+#include <chrono> // std::chrono::seconds
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
@@ -10,6 +11,7 @@
 #include <messages/spa/subscription_reply.h>
 #include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
+#include <thread> // std::this_thread::sleep_for
 #include <unistd.h>
 
 class ComponentB;
@@ -39,10 +41,20 @@ public:
       std::cerr << "Did not fork!..." << std::endl;
     else if (pid == 0) // child process
     {
-      /* send messages */
-      std::cout << "Sending Data" << '\n';
-      SpaData<int> data(0, 0, la_CB, la_CA, 0, 0, 0, 0, 0, 5);
-      communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
+      /* send data */
+      for (;;)
+      {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << subscribers.size() << "              SEND DATA " << std::endl;
+        auto data = readData();
+        std::lock_guard<std::mutex> lock(m_subscribers);
+        for (int i = 0; i < subscribers.size(); ++i)
+        {
+          std::cout << "Sending Data" << '\n';
+          SpaData<int> data(0, 0, la_CB, subscribers[i].subscriberAddress, 0, 0, 0, 0, 0, 5);
+          communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
+        }
+      }
     }
     else // parent process
     {
@@ -63,7 +75,8 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   {
     SubscriptionReply reply(message->spaHeader.source, la_CB);
     comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
-    comp->addSubscriber(Subsciber(message->spaHeader.source, 0));
+    if (comp->addSubscriber(message->spaHeader.source, 0))
+      std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
   }
 
   return;

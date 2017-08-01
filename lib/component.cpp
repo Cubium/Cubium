@@ -3,7 +3,6 @@
 #include "messages/op_codes.h"
 #include <algorithm>
 #include <iostream>
-#include <memory>
 //#include "messages/spa_data.h"
 //#include "messages/spa_subscription_reply.h"
 //#include "messages/spa_subscription_request.h"
@@ -80,15 +79,25 @@ void Component::subscribe(
   */
 }
 
-bool Component::addSubscriber(Subscriber newSubscriber)
+bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 {
-  if (subscribers.end() != std::find(subscribers.begin(), subscribers.end(), newSubscriber))
+  auto newSubscriber = Subscriber(la, d);
+
+  // TODO Check for duplicate
+  //auto sub = std::find(subscribers.begin(), subscribers.end(), newSubscriber);
+  // if (subscribers.end() == sub )
+  // {
+  //   subscribers.push_back(newSubscriber);
+  //   return true;
+  // }
+  // else
+  //   return false;
+
   {
+    std::lock_guard<std::mutex> lock(m_subscribers);
     subscribers.push_back(newSubscriber);
-    return true;
   }
-  else
-    return false;
+  return true;
 }
 
 void Component::receiveMessage(SpaMessage* message)

@@ -1,16 +1,24 @@
+#include "../demo_addresses.hpp"
+#include "messages/op_codes.h"
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
 #include <messages/spa/subscription_request.h>
+#include <messages/spa/spa_data.h>
 #include <socket/clientSocket.hpp>
-#include "../demo_addresses.hpp"
 
 void messageCallback(cubiumClientSocket_t* sock)
 {
     SpaMessage* message = (SpaMessage*)sock->buf;
-    std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
+    int opCode = (int)message -> spaHeader.opcode;
+    std::cout << "Received SpaMessage with opcode: " << opCode << '\n';
+    if(op_SPA_DATA == opCode)
+    {
+     SpaData<int>* data = (SpaData<int>*)sock->buf;
+      std::cout << "DATA: " << data->payload << std::endl;
+    }
     return;
 }
 
