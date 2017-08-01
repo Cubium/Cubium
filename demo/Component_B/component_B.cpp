@@ -63,7 +63,7 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   {
     SubscriptionReply reply(message->spaHeader.source, la_CB);
     comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
-    subscribers.emplace_back(message->spaHeader.source, 0);
+    comp->addSubscriber(Subsciber(message->spaHeader.source, 0));
   }
 
   return;

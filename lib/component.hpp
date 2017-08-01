@@ -63,6 +63,7 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
+  bool addSubscriber(Subscriber); 
   std::shared_ptr<SpaCommunicator> communicator;
 protected:
   LogicalAddress address;
