@@ -1,15 +1,16 @@
+#include "../demo_addresses.hpp"
+#include "messages/op_codes.h"
+#include "random.hpp"
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
-#include <messages/spa/subscription_request.h>
-#include <messages/spa/subscription_reply.h>
 #include <messages/spa/spa_data.h>
+#include <messages/spa/subscription_reply.h>
+#include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
-#include "messages/op_codes.h"
-#include "../demo_addresses.hpp"
-#include "random.hpp"
+#include <unistd.h>
 
 class ComponentB;
 
@@ -31,20 +32,25 @@ public:
 
     LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
 
-    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
-    communicator->getLocalCommunicator()->clientListen(
-      [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
+    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
 
-    std::cout << "Sending Data" << '\n';
-		SpaData<int> data(0, 0, la_CB, la_CA, 0, 0, 0, 0, 0, 5);
-    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
-
-   // std::cout << "Sending message with opcode:\n";
-
-  //  communicator->send((SpaMessage*)&request);
- 
+    auto pid = fork();
+    if (pid < 0)
+      std::cerr << "Did not fork!..." << std::endl;
+    else if (pid == 0) // child process
+    {
+      /* send messages */
+      std::cout << "Sending Data" << '\n';
+      SpaData<int> data(0, 0, la_CB, la_CA, 0, 0, 0, 0, 0, 5);
+      communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
+    }
+    else // parent process
+    {
+      /* listen for more requests */
+      communicator->getLocalCommunicator()->clientListen(
+          [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
+    }
   }
-
 };
 
 void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock)
@@ -57,6 +63,7 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   {
     SubscriptionReply reply(message->spaHeader.source, la_CB);
     comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
+    subscribers.emplace_back(message->spaHeader.source, 0);
   }
 
   return;
@@ -65,8 +72,8 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
 int readData()
 {
   static int data = 0;
-  int random = rand(1,100);
-  if(random < 25)
+  int random = rand(1, 100);
+  if (random < 25)
   {
     ++data;
     return random;

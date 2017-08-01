@@ -1,5 +1,6 @@
 #ifndef DEMO_ADDRESSES_HPP
 #define DEMO_ADDRESSES_HPP
+#include <logical_address.hpp>
 
 const LogicalAddress la_LSM(1,0);
 const LogicalAddress la_CA(1,1);
