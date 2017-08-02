@@ -18,7 +18,7 @@ class ComponentB;
 
 void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock);
 
-int readData();
+uint32_t readData();
 
 class ComponentB : public Component, public std::enable_shared_from_this<ComponentB>
 {
@@ -77,10 +77,9 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
 
         for (int i = 0; i < comp->subscribers.size(); ++i)
         {
-          SpaData data(la_CA, la_CB, 5);
-          comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&data, sizeof(SpaData));
+          SpaData dataMessage(la_CA, la_CB, 5);
+          comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&dataMessage, sizeof(SpaData));
         }
-
       }
     }
     else // parent process
@@ -95,7 +94,7 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   return;
 }
 
-int readData()
+uint32_t readData()
 {
   static int data = 0;
   int random = rand(1, 100);

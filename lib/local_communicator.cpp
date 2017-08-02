@@ -1,4 +1,5 @@
 #include "local_communicator.hpp"
+#include "messages/spa/spa_data.h"
 
 bool LocalCommunicator::sendMsg(SpaMessage * message, ssize_t len)
 {
@@ -30,7 +31,6 @@ bool LocalCommunicator::clientSend(SpaMessage* message, ssize_t len)
   {
     return false;
   }
-
   clientSocket_send((void*)message, len, clientSock);
   return true;
 }

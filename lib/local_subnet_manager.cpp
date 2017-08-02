@@ -44,6 +44,8 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   else if (op == op_SPA_DATA)
   {
+    auto newmsg = (SpaData*)sock->buf;
+    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
     auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
     serverSocket_send(msg, sizeof(SpaData), &newSock);
   }

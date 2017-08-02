@@ -44,7 +44,7 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
   /* Continually listen for messages and call the handler when one is received */
   while (1)
   {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->fromlen);
+    s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->fromlen);
     if (s->nBytesRecv < 0)
     {
       serverSocket_error("recvfrom failed");
