@@ -1,11 +1,11 @@
 #include "component.hpp"
 #include "logical_address.h"
+#include "messages/op_codes.h"
+#include <algorithm>
+#include <iostream>
+//#include "messages/spa_data.h"
 //#include "messages/spa_subscription_reply.h"
 //#include "messages/spa_subscription_request.h"
-//#include "messages/spa_data.h"
-#include "messages/op_codes.h"
-#include <iostream>
-#include <memory>
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
@@ -77,6 +77,25 @@ void Component::subscribe(
   sendMsg(request);
   ++dialogId;
   */
+}
+
+bool Component::addSubscriber(LogicalAddress la, uint16_t d)
+{
+  // TODO Check for duplicate
+  //auto sub = std::find(subscribers.begin(), subscribers.end(), newSubscriber);
+  // if (subscribers.end() == sub )
+  // {
+  //   subscribers.push_back(newSubscriber);
+  //   return true;
+  // }
+  // else
+  //   return false;
+
+  {
+    std::lock_guard<std::mutex> lock(m_subscribers);
+    subscribers.emplace_back(la, d);
+  }
+  return true;
 }
 
 void Component::receiveMessage(SpaMessage* message)

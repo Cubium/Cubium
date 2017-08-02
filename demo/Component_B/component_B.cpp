@@ -1,19 +1,24 @@
+#include "../demo_addresses.hpp"
+#include "messages/op_codes.h"
+#include "random.hpp"
+#include <chrono> // std::chrono::seconds
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
-#include <messages/spa/subscription_request.h>
+#include <messages/spa/spa_data.h>
 #include <messages/spa/subscription_reply.h>
+#include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
-#include "messages/op_codes.h"
-#include "../demo_addresses.hpp"
+#include <thread> // std::this_thread::sleep_for
+#include <unistd.h>
 
 class ComponentB;
 
 void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock);
 
-
+int readData();
 
 class ComponentB : public Component, public std::enable_shared_from_this<ComponentB>
 {
@@ -29,14 +34,11 @@ public:
 
     LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
 
-    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
+    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
+
     communicator->getLocalCommunicator()->clientListen(
-      [=](cubiumClientSocket_t* s){ messageCallback(ComponentB::shared_from_this(), s); });
-
-   // std::cout << "Sending message with opcode:\n";
-
-  //  communicator->send((SpaMessage*)&request);
- 
+          [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
+   
   }
 
 };
@@ -51,9 +53,58 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
   {
     SubscriptionReply reply(message->spaHeader.source, la_CB);
     comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
+    if (comp->addSubscriber(message->spaHeader.source, 0))
+    {
+      std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+    }
+
+    auto pid = fork();
+
+    if (pid < 0)
+    {
+      std::cerr << "Did not fork!..." << std::endl;
+    }
+
+    else if (pid == 0) // child process
+    {
+      /* send data */
+      for (;;)
+      {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << comp->subscribers.size() << "              SEND DATA " << std::endl;
+        auto data = readData();
+        std::lock_guard<std::mutex> lock(comp->m_subscribers);
+
+        for (int i = 0; i < comp->subscribers.size(); ++i)
+        {
+          SpaData data(la_CA, la_CB, 5);
+          comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&data, sizeof(SpaData));
+        }
+
+      }
+    }
+    else // parent process
+    {
+      /* listen for more requests */
+      comp->communicator->getLocalCommunicator()->clientListen(
+          [=](cubiumClientSocket_t* s) { messageCallback(comp, s); });
+    }
+
   }
 
   return;
+}
+
+int readData()
+{
+  static int data = 0;
+  int random = rand(1, 100);
+  if (random < 25)
+  {
+    ++data;
+    return random;
+  }
+  return ++data;
 }
 
 int main()
