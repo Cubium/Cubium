@@ -16,8 +16,8 @@ void messageCallback(cubiumClientSocket_t* sock)
     std::cout << "Received SpaMessage with opcode: " << opCode << '\n';
     if(op_SPA_DATA == opCode)
     {
-     SpaData<int>* data = (SpaData<int>*)sock->buf;
-      std::cout << "DATA: " << data->payload << std::endl;
+     SpaData* data = (SpaData*)sock->buf;
+      std::cout << "DATA: " << (int)data->payload << std::endl;
     }
     return;
 }

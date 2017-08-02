@@ -4,6 +4,7 @@
 #include "messages/op_codes.h"
 #include "messages/spa/subscription_request.h"
 #include "messages/spa/subscription_reply.h"
+#include "messages/spa/spa_data.h"
 #include "spa_message.h"
 #include <memory>
 #include <iostream>
@@ -19,7 +20,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
   auto op = msg->spaHeader.opcode;
-  std::cout << "Received SpaMessage with opcode " << (int)op << " on port " << (int)sock->from.sin_port << "\n";
+  std::cout << "Received SpaMessage with opcode " << (uint16_t)op << " on port " << (int)sock->from.sin_port << "\n";
 
   if (op == op_LOCAL_HELLO)
   {
@@ -41,6 +42,12 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
     serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
   }
+  else if (op == op_SPA_DATA)
+  {
+    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+    serverSocket_send(msg, sizeof(SpaData), &newSock);
+  }
+
 
 
 

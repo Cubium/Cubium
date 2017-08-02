@@ -36,33 +36,11 @@ public:
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
 
-    auto pid = fork();
-    if (pid < 0)
-      std::cerr << "Did not fork!..." << std::endl;
-    else if (pid == 0) // child process
-    {
-      /* send data */
-      for (;;)
-      {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        std::cout << subscribers.size() << "              SEND DATA " << std::endl;
-        auto data = readData();
-        std::lock_guard<std::mutex> lock(m_subscribers);
-        for (int i = 0; i < subscribers.size(); ++i)
-        {
-          std::cout << "Sending Data" << '\n';
-          SpaData<int> data(0, 0, la_CB, subscribers[i].subscriberAddress, 0, 0, 0, 0, 0, 5);
-          communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&data, sizeof(data));
-        }
-      }
-    }
-    else // parent process
-    {
-      /* listen for more requests */
-      communicator->getLocalCommunicator()->clientListen(
+    communicator->getLocalCommunicator()->clientListen(
           [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
-    }
+   
   }
+
 };
 
 void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock)
@@ -76,7 +54,42 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
     SubscriptionReply reply(message->spaHeader.source, la_CB);
     comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
     if (comp->addSubscriber(message->spaHeader.source, 0))
+    {
       std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+    }
+
+    auto pid = fork();
+
+    if (pid < 0)
+    {
+      std::cerr << "Did not fork!..." << std::endl;
+    }
+
+    else if (pid == 0) // child process
+    {
+      /* send data */
+      for (;;)
+      {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << comp->subscribers.size() << "              SEND DATA " << std::endl;
+        auto data = readData();
+        std::lock_guard<std::mutex> lock(comp->m_subscribers);
+
+        for (int i = 0; i < comp->subscribers.size(); ++i)
+        {
+          SpaData data(la_CA, la_CB, 5);
+          comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&data, sizeof(SpaData));
+        }
+
+      }
+    }
+    else // parent process
+    {
+      /* listen for more requests */
+      comp->communicator->getLocalCommunicator()->clientListen(
+          [=](cubiumClientSocket_t* s) { messageCallback(comp, s); });
+    }
+
   }
 
   return;

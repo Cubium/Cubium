@@ -81,8 +81,6 @@ void Component::subscribe(
 
 bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 {
-  auto newSubscriber = Subscriber(la, d);
-
   // TODO Check for duplicate
   //auto sub = std::find(subscribers.begin(), subscribers.end(), newSubscriber);
   // if (subscribers.end() == sub )
@@ -95,7 +93,7 @@ bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 
   {
     std::lock_guard<std::mutex> lock(m_subscribers);
-    subscribers.push_back(newSubscriber);
+    subscribers.emplace_back(la, d);
   }
   return true;
 }

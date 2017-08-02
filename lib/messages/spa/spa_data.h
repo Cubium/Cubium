@@ -6,9 +6,20 @@
 #include <spa_message.h>
 #include <messages/op_codes.h>
 
-template <typename T>
 struct SpaData
 {
+  SpaData(
+      LogicalAddress consumerAddress,
+      LogicalAddress producerAddress,
+      uint64_t payload
+      ) : spaMessage(0,0,sizeof(payload), consumerAddress, producerAddress, 0, op_SPA_DATA),
+          dialogId(0),
+          sequenceIndex(0),
+          sequenceCount(0),
+          interfaceId(0),
+          messageId(0),
+          payload(payload) {}
+ 
   SpaData(
       uint8_t version,
       uint8_t priority,
@@ -19,7 +30,7 @@ struct SpaData
       uint16_t sequenceCount,
       uint8_t interfaceId,
       uint8_t messageId,
-      T payload) : spaMessage(version, priority, 100 + payloadLength, consumerAddress, producerAddress, 0, op_SPA_DATA),
+      uint64_t payload) : spaMessage(version, priority, sizeof(payload), consumerAddress, producerAddress, 0, op_SPA_DATA),
                    dialogId(dialogId),
                    sequenceIndex(sequenceIndex),
                    sequenceCount(sequenceCount),
@@ -27,13 +38,13 @@ struct SpaData
                    messageId(messageId),
                    payload(payload) {}
 
-  uint16_t payloadLength = sizeof(payload) * CHAR_BIT;
   SpaMessage spaMessage;
+  uint16_t payloadLength;
   uint16_t dialogId;
   uint16_t sequenceIndex;
   uint16_t sequenceCount;
   uint8_t interfaceId;
   uint8_t messageId;
-  T payload;
+  uint64_t payload;
 };
 #endif
