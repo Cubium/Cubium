@@ -77,7 +77,7 @@ void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* soc
 
         for (int i = 0; i < comp->subscribers.size(); ++i)
         {
-          SpaData dataMessage(la_CA, la_CB, 5);
+          SpaData dataMessage(la_CA, la_CB, data);
           comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&dataMessage, sizeof(SpaData));
         }
       }
@@ -98,10 +98,10 @@ uint32_t readData()
 {
   static int data = 0;
   int random = rand(1, 100);
-  if (random < 25)
+  if (random < 5)
   {
     ++data;
-    return random;
+    return rand(1,100);
   }
   return ++data;
 }
