@@ -22,10 +22,11 @@ typedef struct
 cubiumClientSocket_t clientSocket_openSocket(uint16_t port);
 
 /* Connect to a UDP server */
-void clientSocket_serverConnect(cubiumClientSocket_t*,                          /* Socket that server is listening through */
+void clientSocket_requestDialogue(cubiumClientSocket_t*,                          /* Socket that server is listening through */
                                 void* hello,                                    /* Hello sent to server */
                                 size_t len,                                     /* Length of hello */
-                                std::function<void(cubiumClientSocket_t*)> func /* Called when ack is received */
+                                std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
+                                const uint8_t targetop
                                 );
 
 /* Send a message through the socket */

@@ -1,5 +1,6 @@
 #include "local_communicator.hpp"
 #include "messages/spa/spa_data.h"
+#include "messages/op_codes.h"
 
 bool LocalCommunicator::sendMsg(SpaMessage* message, ssize_t len)
 {
@@ -73,9 +74,18 @@ void LocalCommunicator::clientConnect(SpaMessage* message, size_t len, std::func
     handleFailure("clientConnect: SpaMessage is a nullptr");
     return;
   }
-  clientSocket_serverConnect(clientSock, (void*)message, len, callback);
+  clientSocket_requestDialogue(clientSock, (void*)message, len, callback, op_LOCAL_ACK);
 }
 
+void LocalCommunicator::initSubDialogue(SpaMessage* message, size_t len, std::function<void(cubiumClientSocket_t*)> callback)
+{
+  if (message == nullptr)
+  {
+    handleFailure("initSubDialogue: SpaMessage is a nullptr");
+    return;
+  }
+  clientSocket_requestDialogue(clientSock, (void*)message, len, callback, op_SPA_SUBSCRIPTION_REPLY);
+}
 /*
 void LocalCommunicator::insertToRoutingTable(LogicalAddress log, cubium port)
 {

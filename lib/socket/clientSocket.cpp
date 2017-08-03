@@ -42,10 +42,11 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
 }
 
 /* Connect to a UDP server */
-void clientSocket_serverConnect(cubiumClientSocket_t* s,                        /* Socket that server is listening through */
-                                void* hello,                                    /* Hello sent to server */
+void clientSocket_requestDialogue(cubiumClientSocket_t* s,                        /* Socket that server is listening through */
+                                void* request,                                    /* Hello sent to server */
                                 size_t len,                                     /* Size of hello's type */
-                                std::function<void(cubiumClientSocket_t*)> func /* Called when ack is received */
+                                std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
+                                const uint8_t targetop 
                                 )
 {
   /* Set timeout such that socket will only wait 5 ms for messages */
@@ -59,16 +60,20 @@ void clientSocket_serverConnect(cubiumClientSocket_t* s,                        
     clientSocket_error("setsockopt failed\n");
   }
 
+  uint8_t opcode = 0;
   do
   { /* Send a new hello after every timeout until an ack is received */
 
-    s->nBytesRecv = sendto(s->sock, hello, len, 0, (const struct sockaddr*)&s->server, s->length);
+    s->nBytesRecv = sendto(s->sock, request, len, 0, (const struct sockaddr*)&s->server, s->length);
     if (s->nBytesRecv < 0)
     {
       clientSocket_error("Sendto failed\n");
     }
 
-  } while (recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->length) < 0);
+    recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->length);
+    opcode = ((SpaMessage*)s->buf)->spaHeader.opcode;
+
+  } while (opcode != targetop);
 
   /* Ack received; call handler function */
   func(s);

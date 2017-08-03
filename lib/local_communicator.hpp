@@ -39,6 +39,7 @@ public:
   virtual bool clientSend(SpaMessage* message, ssize_t);
 
   void clientConnect(SpaMessage*, size_t, std::function<void(cubiumClientSocket_t*)>);
+  void initSubDialogue(SpaMessage* message, size_t len, std::function<void(cubiumClientSocket_t*)> callback);
 
   void clientListen(std::function<void(cubiumClientSocket_t*)>);
 

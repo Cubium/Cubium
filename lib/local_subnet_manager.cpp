@@ -34,19 +34,29 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   else if (op == op_SPA_SUBSCRIPTION_REQUEST)
   {
-    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-    serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+      serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
+    }
   }
   else if (op == op_SPA_SUBSCRIPTION_REPLY)
   {
-    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-    serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+      serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
+    }
   }
   else if (op == op_SPA_DATA)
   {
     auto newmsg = (SpaData*)sock->buf;
     std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
-    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-    serverSocket_send(msg, sizeof(SpaData), &newSock);
+
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+      serverSocket_send(msg, sizeof(SpaData), &newSock);
+    }
   }
 }

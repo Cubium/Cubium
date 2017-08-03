@@ -42,7 +42,7 @@ public:
 
     std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
-    communicator->send((SpaMessage*)&request);
+    communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request), messageCallback);
 
     communicator->getLocalCommunicator()->clientListen(messageCallback);
   }
