@@ -92,7 +92,7 @@ ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func)
 {
   /* Continually listen for messages and call the handler when one is received */
-  while (true)
+  for(;;)
   {
     std::cout << "Listening!" << std::endl;
     s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->length);

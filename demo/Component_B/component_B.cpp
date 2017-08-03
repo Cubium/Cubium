@@ -70,10 +70,10 @@ uint32_t readData()
 {
   static int data = 0;
   int random = rand(1, 100);
-  if (random < 25)
+  if (random < 5)
   {
     ++data;
-    return random;
+    return rand(1,100);
   }
   return ++data;
 }
