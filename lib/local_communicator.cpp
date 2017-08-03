@@ -3,8 +3,14 @@
 
 bool LocalCommunicator::sendMsg(SpaMessage* message, ssize_t len)
 {
-  auto socket = routingTable->getPhysicalAddress(message->spaHeader.destination);
-  serverSend(message, len);
+  if (nullptr == serverSock) // If communicator services a client
+  {
+    return clientSend(message, len);
+  }
+  else 
+  {
+    return serverSend(message, len);
+  }
 }
 
 void LocalCommunicator::handleFailure(std::string message)

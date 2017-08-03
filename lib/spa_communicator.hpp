@@ -28,8 +28,7 @@ public:
 
   //! Sends a spa message over the network
 
-  //! \param message - Specialization of a Message to be sent over the network.
-  //! \return true if message is successfully sent, false otherwise.
+  bool send(SpaMessage* message);
   bool send(SpaMessage* message, ssize_t len);
 
   //TODO document
@@ -42,7 +41,7 @@ protected:
   std::vector<std::shared_ptr<PhysicalCommunicator>> communicators;
 
   //! Method called when something unexpected occurs.
-  void handleFailure();
+  void handleFailure(std::string);
 
   //! Selects the appropriate physical communicator from list of physical communicators
   //! to send message.

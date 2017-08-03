@@ -18,7 +18,6 @@ class ComponentB;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
-uint32_t readData();
 
 class ComponentB : public Component
 {
@@ -32,7 +31,7 @@ public:
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
       SubscriptionReply reply(message->spaHeader.source, la_CB);
-      communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
+      communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
         std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
@@ -40,10 +39,14 @@ public:
       publish();
     }
   }
+
   virtual void sendSpaData(LogicalAddress address)
   {
-    SpaData dataMessage(address, la_CB, rand() % 100);
-    communicator->getLocalCommunicator()->clientSend((SpaMessage*)&dataMessage, sizeof(SpaData));
+    auto payload = rand() % 100;
+    std::cout << "Sending SpaData: " << payload << std::endl;
+
+    SpaData dataMessage(address, la_CB, payload);
+    communicator->send((SpaMessage*)&dataMessage);
   }
 
   virtual void appInit()
@@ -64,18 +67,6 @@ void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock
   SpaMessage* message = (SpaMessage*)sock->buf;
   comp->handleSpaData(message);
   return;
-}
-
-uint32_t readData()
-{
-  static int data = 0;
-  int random = rand(1, 100);
-  if (random < 5)
-  {
-    ++data;
-    return rand(1,100);
-  }
-  return ++data;
 }
 
 int main()

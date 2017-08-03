@@ -2,6 +2,12 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include "messages/op_codes.h"
+#include "messages/spa/spa_data.h"
+#include "messages/spa/subscription_reply.h"
+#include "messages/spa/subscription_request.h"
+#include "messages/local/local_ack.h"
+#include "messages/local/local_hello.h"
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
@@ -12,9 +18,9 @@ void SpaCommunicator::addCommunicators(std::vector<std::shared_ptr<PhysicalCommu
   communicators.insert(communicators.end(), comms.begin(), comms.end());
 }
 
-void SpaCommunicator::handleFailure()
+void SpaCommunicator::handleFailure(std::string message)
 {
-  std::cout << "Spa Communicator Failed" << '\n';
+  std::cout << "Spa Communicator Failed: " << message << '\n';
 }
 
 std::shared_ptr<PhysicalCommunicator> SpaCommunicator::selectCommunicator(
@@ -41,6 +47,28 @@ std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
       LogicalAddress(LOCAL_SUBNET_ADDRESS, 0), communicators));
 }
 
+bool SpaCommunicator::send(SpaMessage* message)
+{
+  switch(message->spaHeader.opcode)
+  {
+    case op_SPA_SUBSCRIPTION_REQUEST :
+      send(message, sizeof(SubscriptionRequest));
+      break;
+    case op_SPA_SUBSCRIPTION_REPLY :
+      send(message, sizeof(SubscriptionReply));
+      break;
+    case op_SPA_DATA :
+      send(message, sizeof(SpaData));
+      break;
+    case op_LOCAL_HELLO :
+      send(message, sizeof(LocalHello));
+      break;
+    case op_LOCAL_ACK :
+      send(message, sizeof(LocalAck));
+      break;
+  }
+}
+
 bool SpaCommunicator::send(SpaMessage* message, ssize_t len)
 {
   if (message == nullptr)
@@ -54,11 +82,15 @@ bool SpaCommunicator::send(SpaMessage* message, ssize_t len)
 
   if (com == nullptr)
   {
-    handleFailure();
+    handleFailure("Communicator is a nullptr");
     return false;
   }
-  if (!com->sendMsg(message, len))
-    std::cout << "DID NOT SEND" << std::endl;
+  else if (!com->sendMsg(message, len))
+  {
+    handleFailure("Message did not send");
+    return false;
+  }
+
   return true;
 }
 
@@ -68,7 +100,7 @@ void SpaCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageH
   std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
   if (com == nullptr)
   {
-    handleFailure();
+    handleFailure("(Listen - Server) Communicator is a nullptr");
   }
   com->listen(messageHandler);
 }
@@ -78,7 +110,7 @@ void SpaCommunicator::listen(std::function<void(cubiumClientSocket_t*)> messageH
   std::shared_ptr<LocalCommunicator> com = getLocalCommunicator();
   if (com == nullptr)
   {
-    handleFailure();
+    handleFailure("(Listen - Client) Communicator is a nullptr");
   }
   com->listen(messageHandler);
 }
