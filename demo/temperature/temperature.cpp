@@ -1,6 +1,5 @@
 #include "../demo_addresses.hpp"
 #include "messages/op_codes.h"
-#include "random.hpp"
 #include <chrono>
 #include <component.hpp>
 #include <iostream>
@@ -14,23 +13,24 @@
 #include <thread>
 #include <unistd.h>
 
-class ComponentB;
+class TempSensor;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
 
-class ComponentB : public Component
+class TempSensor : public Component
 {
 public:
-  ComponentB(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
+  TempSensor(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
 
   virtual void handleSpaData(SpaMessage* message)
   {
     auto op = message->spaHeader.opcode;
     std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
-      SubscriptionReply reply(message->spaHeader.source, la_CB);
+      SubscriptionReply reply(message->spaHeader.source, la_temp);
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
@@ -45,15 +45,15 @@ public:
     auto payload = rand() % 100;
     std::cout << "Sending SpaData: " << payload << std::endl;
 
-    SpaData dataMessage(address, la_CB, payload);
+    SpaData dataMessage(address, la_temp, payload);
     communicator->send((SpaMessage*)&dataMessage);
   }
 
   virtual void appInit()
   {
-    std::cout << "Component B initializing!" << '\n';
+    std::cout << "Temperature sensor initializing!" << '\n';
 
-    LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
+    LocalHello hello(0, 0, la_LSM, la_temp, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
 
@@ -75,10 +75,10 @@ int main()
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, la_CB)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_CB, comms);
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_temp)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_temp, comms);
 
-  auto comp = std::make_shared<ComponentB>(spaCom);
+  auto comp = std::make_shared<TempSensor>(spaCom);
   comp->appInit();
 
   return 0;
