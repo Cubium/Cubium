@@ -1,14 +1,14 @@
 #ifndef SUBNET_MANAGER
 #define SUBNET_MANAGER
 
+#include <functional>
+#include <logical_address.h>
 #include <memory>
+#include <messages/local/local_ack.h>
+#include <messages/local/local_spa_message.h>
+#include <messages/op_codes.h>
 #include <routing_table.hpp>
 #include <spa_communicator.hpp>
-#include <logical_address.h>
-#include <functional>
-#include <messages/local/local_spa_message.h>
-#include <messages/local/local_ack.h>
-#include <messages/op_codes.h>
 
 class SubnetManager
 {
@@ -17,7 +17,6 @@ public:
   {
     communicator = com;
   }
-
 
   // Specialization methods
   //
@@ -56,7 +55,7 @@ public:
 
 protected:
   static std::shared_ptr<SpaCommunicator> communicator;
-  
+
   // TODO add component list to store data about component health
 };
 #endif

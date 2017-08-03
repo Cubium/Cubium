@@ -19,7 +19,7 @@ struct Subscriber
   uint16_t deliveryRateDivisor;
 };
 
-class Component
+class Component : public std::enable_shared_from_this<Component>
 {
 public:
   Component(std::shared_ptr<SpaCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0))

@@ -1,13 +1,12 @@
 #ifndef SPA_COMMUNICATOR_HPP
 #define SPA_COMMUNICATOR_HPP
 
+#include <functional>
 #include <memory>
 #include <vector>
-#include <functional>
 
-
-#include "physical_communicator.hpp"
 #include "local_communicator.hpp"
+#include "physical_communicator.hpp"
 #include "routing_table.hpp"
 #include "spa_message.h"
 
@@ -16,7 +15,6 @@
 class SpaCommunicator
 {
 public:
-
   //! Construct SpaCommunicator with only the address of the owning subnet manager
 
   //! \param currentAddress - logical address of the subnet manager who owns SpaCommunicator
@@ -51,7 +49,7 @@ protected:
 
   //! \param address - logical address where message is going to be sent
   //! \param communicators - vector of communicators to be selected from
-  std::shared_ptr<PhysicalCommunicator> selectCommunicator(LogicalAddress address, std::vector<std::shared_ptr<PhysicalCommunicator>> const &communicators);
+  std::shared_ptr<PhysicalCommunicator> selectCommunicator(LogicalAddress address, std::vector<std::shared_ptr<PhysicalCommunicator>> const& communicators);
 
   //TODO document
 

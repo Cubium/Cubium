@@ -1,12 +1,12 @@
 #include "clientSocket.hpp"
 #include "../spa_message.h"
-#include <functional>   // for std::function
+#include <functional> // for std::function
+#include <iostream>
 #include <netdb.h>      // for h_addr
 #include <stdio.h>      // for perror
 #include <stdlib.h>     // for exit
 #include <strings.h>    // for bzero
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
-#include <iostream>
 #include <thread>
 
 /* Throw a perror and exit */
@@ -82,7 +82,7 @@ void clientSocket_serverConnect(cubiumClientSocket_t* s,                        
     clientSocket_error("setsockopt failed\n");
   }
 }
- 
+
 /* Send a message to the connected server */
 ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 {

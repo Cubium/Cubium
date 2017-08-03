@@ -1,7 +1,7 @@
 #include "../demo_addresses.hpp"
 #include "messages/op_codes.h"
 #include "random.hpp"
-#include <chrono> // std::chrono::seconds
+#include <chrono>
 #include <component.hpp>
 #include <iostream>
 #include <local_communicator.hpp>
@@ -11,22 +11,40 @@
 #include <messages/spa/subscription_reply.h>
 #include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
-#include <thread> // std::this_thread::sleep_for
+#include <thread>
 #include <unistd.h>
 
 class ComponentB;
 
-void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock);
+void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
 uint32_t readData();
 
-class ComponentB : public Component, public std::enable_shared_from_this<ComponentB>
+class ComponentB : public Component
 {
 public:
   ComponentB(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
 
-  virtual void handleSpaData(SpaMessage*) {}
-  virtual void sendSpaData(LogicalAddress) {}
+  virtual void handleSpaData(SpaMessage* message)
+  {
+    auto op = message->spaHeader.opcode;
+    std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+    if (op == op_SPA_SUBSCRIPTION_REQUEST)
+    {
+      SubscriptionReply reply(message->spaHeader.source, la_CB);
+      communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
+      if (addSubscriber(message->spaHeader.source, 0))
+      {
+        std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+      }
+      publish();
+    }
+  }
+  virtual void sendSpaData(LogicalAddress address)
+  {
+    SpaData dataMessage(address, la_CB, rand() % 100);
+    communicator->getLocalCommunicator()->clientSend((SpaMessage*)&dataMessage, sizeof(SpaData));
+  }
 
   virtual void appInit()
   {
@@ -34,63 +52,17 @@ public:
 
     LocalHello hello(0, 0, la_LSM, la_CB, 0, 0, 0, 0);
 
-    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
+    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
 
     communicator->getLocalCommunicator()->clientListen(
-          [=](cubiumClientSocket_t* s) { messageCallback(ComponentB::shared_from_this(), s); });
-   
+        [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
   }
-
 };
 
-void messageCallback(std::shared_ptr<ComponentB> comp, cubiumClientSocket_t* sock)
+void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
   SpaMessage* message = (SpaMessage*)sock->buf;
-  auto op = message->spaHeader.opcode;
-  std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
-
-  if (op == op_SPA_SUBSCRIPTION_REQUEST)
-  {
-    SubscriptionReply reply(message->spaHeader.source, la_CB);
-    comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&reply, sizeof(SubscriptionReply));
-    if (comp->addSubscriber(message->spaHeader.source, 0))
-    {
-      std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
-    }
-
-    auto pid = fork();
-
-    if (pid < 0)
-    {
-      std::cerr << "Did not fork!..." << std::endl;
-    }
-
-    else if (pid == 0) // child process
-    {
-      /* send data */
-      for (;;)
-      {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        std::cout << comp->subscribers.size() << "              SEND DATA " << std::endl;
-        auto data = readData();
-        std::lock_guard<std::mutex> lock(comp->m_subscribers);
-
-        for (int i = 0; i < comp->subscribers.size(); ++i)
-        {
-          SpaData dataMessage(la_CA, la_CB, 5);
-          comp->communicator->getLocalCommunicator()->clientSend((SpaMessage*)&dataMessage, sizeof(SpaData));
-        }
-      }
-    }
-    else // parent process
-    {
-      /* listen for more requests */
-      comp->communicator->getLocalCommunicator()->clientListen(
-          [=](cubiumClientSocket_t* s) { messageCallback(comp, s); });
-    }
-
-  }
-
+  comp->handleSpaData(message);
   return;
 }
 

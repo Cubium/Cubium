@@ -2,12 +2,12 @@
 #include "logical_address.h"
 #include "messages/local/local_ack.h"
 #include "messages/op_codes.h"
-#include "messages/spa/subscription_request.h"
-#include "messages/spa/subscription_reply.h"
 #include "messages/spa/spa_data.h"
+#include "messages/spa/subscription_reply.h"
+#include "messages/spa/subscription_request.h"
 #include "spa_message.h"
-#include <memory>
 #include <iostream>
+#include <memory>
 
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
@@ -49,8 +49,4 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
     serverSocket_send(msg, sizeof(SpaData), &newSock);
   }
-
-
-
-
 }

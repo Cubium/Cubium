@@ -10,5 +10,3 @@ std::ostream& operator<<(std::ostream& o, LogicalAddress const& la)
   o << "(" << la.subnetId << ", " << la.componentId << ")";
   return o;
 }
-
-

@@ -35,7 +35,7 @@ TEST_F(LocalCommunicatorTest, send__address_exists_in_table)
       fullTable,
       *addr);
 
-  uint8_t *expectedBuff = nullptr;
+  uint8_t* expectedBuff = nullptr;
   uint32_t expectedBuffLen = message->marshal(expectedBuff);
 
   EXPECT_CALL(*socket, send(SERVER, port, ::testing::_, expectedBuffLen))
@@ -52,7 +52,7 @@ TEST_F(LocalCommunicatorTest, send__not_in_table)
       emptyTable,
       *addr);
 
-  uint8_t *expectedBuff = nullptr;
+  uint8_t* expectedBuff = nullptr;
   uint32_t expectedBuffLen = message->marshal(expectedBuff);
 
   EXPECT_CALL(*socket, send(SERVER, -1, expectedBuff, expectedBuffLen))

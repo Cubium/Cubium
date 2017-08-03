@@ -5,23 +5,22 @@
 #include <local_communicator.hpp>
 #include <local_component_routing_table.hpp>
 #include <messages/local/local_hello.h>
-#include <messages/spa/subscription_request.h>
 #include <messages/spa/spa_data.h>
+#include <messages/spa/subscription_request.h>
 #include <socket/clientSocket.hpp>
 
 void messageCallback(cubiumClientSocket_t* sock)
 {
-    SpaMessage* message = (SpaMessage*)sock->buf;
-    int opCode = (int)message -> spaHeader.opcode;
-    std::cout << "Received SpaMessage with opcode: " << opCode << '\n';
-    if(op_SPA_DATA == opCode)
-    {
-      auto mesg = (SpaData*)message;
-      std::cout << "SpaData payload: " << mesg->payload << std::endl;
-    }
-    return;
+  SpaMessage* message = (SpaMessage*)sock->buf;
+  int opCode = (int)message->spaHeader.opcode;
+  std::cout << "Received SpaMessage with opcode: " << opCode << '\n';
+  if (op_SPA_DATA == opCode)
+  {
+    auto mesg = (SpaData*)message;
+    std::cout << "SpaData payload: " << mesg->payload << std::endl;
+  }
+  return;
 }
-
 
 class ComponentA : public Component
 {
@@ -44,10 +43,9 @@ public:
     std::cout << "Sending message with opcode: " << (int)request.spaMessage.spaHeader.opcode << "\n";
 
     communicator->getLocalCommunicator()->clientSend((SpaMessage*)&request, sizeof(request));
- 
+
     communicator->getLocalCommunicator()->clientListen(messageCallback);
   }
-
 };
 
 int main()

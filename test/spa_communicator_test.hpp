@@ -61,7 +61,7 @@ TEST_F(SpaCommunicatorTest, listen)
 {
   SpaCommunicator spaCom(LogicalAddress(1, 0), comms);
 
-  PhysicalCommunicator::MessageCallback callback = [](uint8_t *buff, uint32_t size) { return; };
+  PhysicalCommunicator::MessageCallback callback = [](uint8_t* buff, uint32_t size) { return; };
   EXPECT_CALL(*localCom, listen(callback))
       .Times(1);
 
@@ -72,7 +72,7 @@ class _SpaCommunicator : public SpaCommunicator
 {
 public:
   _SpaCommunicator(LogicalAddress currentAddress) : SpaCommunicator(currentAddress) {}
-  Com _selectCommunicator(LogicalAddress address, std::vector<Com> const &communicators)
+  Com _selectCommunicator(LogicalAddress address, std::vector<Com> const& communicators)
   {
     return selectCommunicator(address, communicators);
   }

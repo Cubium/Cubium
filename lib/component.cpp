@@ -3,9 +3,21 @@
 #include "messages/op_codes.h"
 #include <algorithm>
 #include <iostream>
+#include <unistd.h>
+#include <thread>
+
 //#include "messages/spa_data.h"
 //#include "messages/spa_subscription_reply.h"
 //#include "messages/spa_subscription_request.h"
+
+
+void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
+{
+  SpaMessage* message = (SpaMessage*)sock->buf;
+  comp->handleSpaData(message);
+  return;
+}
+
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
@@ -127,18 +139,40 @@ void Component::receiveMessage(SpaMessage* message)
 
 void Component::publish()
 {
-  for (auto i = 0u; i < subscribers.size(); ++i)
-  {
-    if (subscribers[i].deliveryRateDivisor % publishIter == 0)
-    {
-      sendSpaData(subscribers[i].subscriberAddress);
-    }
-  }
-
   ++publishIter;
 
   if (publishIter == 201)
   { // Max deliveryRateDivisor is therefore 200
     publishIter = 1;
+  }
+
+  auto pid = fork();
+
+  if (pid < 0)
+  {
+    std::cerr << "Did not fork!..." << std::endl;
+  }
+
+  else if (pid == 0) // child process
+  {
+    /* send data */
+    for (;;)
+    {
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+      std::lock_guard<std::mutex> lock(m_subscribers);
+      for (auto i = 0u; i < subscribers.size(); ++i)
+      {
+        if (subscribers[i].deliveryRateDivisor % publishIter == 0)
+        {
+          sendSpaData(subscribers[i].subscriberAddress);
+        }
+      }
+    }
+  }
+  else // parent process
+  {
+    /* listen for more requests */
+    communicator->getLocalCommunicator()->clientListen(
+        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
 }

@@ -31,7 +31,7 @@ public:
     {
       if (i->first == log)
       {
-//        std::cout << "(RoutingTable::exists)Found Address with port" << i->second << std::endl;
+        //        std::cout << "(RoutingTable::exists)Found Address with port" << i->second << std::endl;
         return true;
       }
     }

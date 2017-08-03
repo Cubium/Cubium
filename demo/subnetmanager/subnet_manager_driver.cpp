@@ -1,3 +1,4 @@
+#include "../demo_addresses.hpp"
 #include <iostream>
 #include <local_communicator.hpp>
 #include <local_subnet_manager.hpp>
@@ -6,7 +7,6 @@
 #include <messages/local/local_spa_message.h>
 #include <messages/op_codes.h>
 #include <socket/serverSocket.hpp>
-#include "../demo_addresses.hpp"
 
 int main(void)
 {

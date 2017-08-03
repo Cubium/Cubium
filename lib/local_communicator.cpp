@@ -1,9 +1,9 @@
 #include "local_communicator.hpp"
 #include "messages/spa/spa_data.h"
 
-bool LocalCommunicator::sendMsg(SpaMessage * message, ssize_t len)
+bool LocalCommunicator::sendMsg(SpaMessage* message, ssize_t len)
 {
-  auto socket = routingTable->getPhysicalAddress(message->spaHeader.destination);  
+  auto socket = routingTable->getPhysicalAddress(message->spaHeader.destination);
   serverSend(message, len);
 }
 
@@ -38,7 +38,6 @@ bool LocalCommunicator::clientSend(SpaMessage* message, ssize_t len)
 void LocalCommunicator::clientListen(std::function<void(cubiumClientSocket_t*)> func)
 {
   clientSocket_listen(clientSock, func);
-
 }
 
 void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
