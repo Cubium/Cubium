@@ -25,14 +25,15 @@ public:
   MedianFilter(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com)
   {
     const int filterOrder = 32;
-    int readingsByTime[filterOrder] = {0};
-    int readingsByValue[filterOrder] = {0};
-    lightStream = MedianFilterStream<int>(readingsByTime, readingsByValue, filterOrder);
-    tempStream = MedianFilterStream<int>(readingsByTime, readingsByValue, filterOrder);
+    float readingsByTime[filterOrder] = {0};
+    float readingsByValue[filterOrder] = {0};
+    lightStream = MedianFilterStream<float>(readingsByTime, readingsByValue, filterOrder);
+    tempStream = MedianFilterStream<float>(readingsByTime, readingsByValue, filterOrder);
   }
 
   virtual void handleSpaData(SpaMessage* message)
   {
+    
     auto op = message->spaHeader.opcode;
     std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
 
@@ -46,11 +47,12 @@ public:
       }
       publish();
     }
+
     else if (op == op_SPA_DATA)
     {
       auto dataMessage = (SpaData*)message;
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
-      auto payload = (int)dataMessage->payload;
+      auto payload = (float)dataMessage->payload;
 
       if (message->spaHeader.source == la_temp)
       {
@@ -61,16 +63,18 @@ public:
         lightStream.addDataPoint(payload);
       }
     }
+
   }
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    auto payload = 1;
+    auto payload = 0;
     auto light = lightStream.getFilteredDataPoint();
     auto temp = tempStream.getFilteredDataPoint();
+
     if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
     {
-      payload = 0;
+      payload = 1;
     }
 
     std::cout << "Sending SpaData: " << payload << std::endl;
@@ -99,8 +103,8 @@ public:
   }
 
 private:
-  MedianFilterStream<int> lightStream;
-  MedianFilterStream<int> tempStream;
+  MedianFilterStream<float> lightStream;
+  MedianFilterStream<float> tempStream;
 };
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
