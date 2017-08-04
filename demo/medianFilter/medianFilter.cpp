@@ -12,6 +12,7 @@
 #include <socket/clientSocket.hpp>
 #include <thread>
 #include <unistd.h>
+#include "medianFilterStream.h"
 
 class MedianFilter;
 
@@ -21,7 +22,14 @@ void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock
 class MedianFilter : public Component
 {
 public:
-  MedianFilter(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
+  MedianFilter(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com)
+  {
+    const int filterOrder = 32;
+    int readingsByTime[filterOrder] = {0};
+    int readingsByValue[filterOrder] = {0};
+    lightStream = MedianFilterStream<int>(readingsByTime, readingsByValue, filterOrder);
+    tempStream = MedianFilterStream<int>(readingsByTime, readingsByValue, filterOrder);
+  }
 
   virtual void handleSpaData(SpaMessage* message)
   {
@@ -42,16 +50,29 @@ public:
     {
       auto dataMessage = (SpaData*)message;
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
-      // The following will work with one data stream. We should keep two median filters for both streams, and check the message's source to determine which filter to add the data to.
-      // auto payload = (int)dataMessage->payload;
-      // addDataPoint(payload);
+      auto payload = (int)dataMessage->payload;
+
+      if (message->spaHeader.source == la_temp)
+      {
+        tempStream.addDataPoint(payload);
+      }
+      else if (message->spaHeader.source == la_light)
+      {
+        lightStream.addDataPoint(payload);
+      }
     }
   }
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    //auto payload = getFilteredDataPoint();
-    auto payload = rand() % 100;
+    auto payload = 1;
+    auto light = lightStream.getFilteredDataPoint();
+    auto temp = tempStream.getFilteredDataPoint();
+    if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
+    {
+      payload = 0;
+    }
+
     std::cout << "Sending SpaData: " << payload << std::endl;
 
     SpaData dataMessage(address, la_medianFilter, payload);
@@ -76,6 +97,10 @@ public:
     communicator->getLocalCommunicator()->clientListen(
         [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
   }
+
+private:
+  MedianFilterStream<int> lightStream;
+  MedianFilterStream<int> tempStream;
 };
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
