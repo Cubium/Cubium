@@ -42,6 +42,8 @@ public:
     {
       auto dataMessage = (SpaData*)message;
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
+      system("python panelDeploy.py");
+      sleep(10);
     }
   }
 

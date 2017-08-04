@@ -27,8 +27,7 @@ mode we have 15 bit rather than 16 bit resolution,
 the 16th bit being the sign of the differential reading.
 */
 
-float readLightPot() {
-
+float readTempPot() {
 
   // open device on /dev/i2c-1 
   // the default on Raspberry Pi B
@@ -37,7 +36,7 @@ float readLightPot() {
     exit (1);
   }
 
-  flock(fd, LOCK_EX);
+  flock(fd,LOCK_EX);
   // connect to ads1115 as i2c slave
   if (ioctl(fd, I2C_SLAVE, ads_address) < 0) {
     printf("Error: Couldn't find device on address!\n");
@@ -47,7 +46,7 @@ float readLightPot() {
   // set config register and start conversion
   // ANC1 and GND, 4.096v, 128s/s
   writeBuf[0] = 1;    // config register is 1
-  writeBuf[1] = 0b11110011; // bit 15-8 0xD3
+  writeBuf[1] = 0b11010011; // bit 15-8 0xD3
   // bit 15 flag bit for single shot
   // Bits 14-12 input selection:
   // 100 ANC0; 101 ANC1; 110 ANC2; 111 ANC3
