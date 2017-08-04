@@ -13,15 +13,15 @@
 #include <thread>
 #include <unistd.h>
 
-class MedianFilter;
+class SolarArray;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
 
-class MedianFilter : public Component
+class SolarArray : public Component
 {
 public:
-  MedianFilter(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
+  SolarArray(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com) {}
 
   virtual void handleSpaData(SpaMessage* message)
   {
@@ -30,7 +30,7 @@ public:
 
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
-      SubscriptionReply reply(message->spaHeader.source, la_medianFilter);
+      SubscriptionReply reply(message->spaHeader.source, la_solarArray);
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
@@ -42,36 +42,28 @@ public:
     {
       auto dataMessage = (SpaData*)message;
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
-      // The following will work with one data stream. We should keep two median filters for both streams, and check the message's source to determine which filter to add the data to.
-      // auto payload = (int)dataMessage->payload;
-      // addDataPoint(payload);
     }
   }
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    //auto payload = getFilteredDataPoint();
     auto payload = rand() % 100;
     std::cout << "Sending SpaData: " << payload << std::endl;
 
-    SpaData dataMessage(address, la_medianFilter, payload);
+    SpaData dataMessage(address, la_solarArray, payload);
     communicator->send((SpaMessage*)&dataMessage);
   }
 
   virtual void appInit()
   {
-    std::cout << "Median filter initializing!" << '\n';
+    std::cout << "Solar Array initializing!" << '\n';
 
-    LocalHello hello(0, 0, la_LSM, la_medianFilter, 0, 0, 0, 0);
+    LocalHello hello(0, 0, la_LSM, la_solarArray, 0, 0, 0, 0);
 
     communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
 
-    SubscriptionRequest request1(la_light, la_medianFilter, la_LSM);
+    SubscriptionRequest request1(la_medianFilter, la_solarArray, la_LSM);
     communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request1, sizeof(request1), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
-
-    SubscriptionRequest request2(la_temp, la_medianFilter, la_LSM);
-    communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request2, sizeof(request2), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
-
 
     communicator->getLocalCommunicator()->clientListen(
         [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
@@ -91,10 +83,10 @@ int main()
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, la_medianFilter)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_medianFilter, comms);
+      std::make_shared<LocalCommunicator>(&sock, routingTable, la_solarArray)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_solarArray, comms);
 
-  auto comp = std::make_shared<MedianFilter>(spaCom);
+  auto comp = std::make_shared<SolarArray>(spaCom);
   comp->appInit();
 
   return 0;

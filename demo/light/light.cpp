@@ -12,7 +12,7 @@
 #include <socket/clientSocket.hpp>
 #include <thread>
 #include <unistd.h>
-#include "readLightPot.h"
+//#include "readLightPot.h"
 
 class LightSensor;
 
@@ -43,7 +43,7 @@ public:
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    auto payload = readLightPot();
+    auto payload = rand() % 100;
     std::cout << "Sending SpaData: " << payload << std::endl;
 
     SpaData dataMessage(address, la_light, payload);
