@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include "medianFilterStream.h"
 
+//#define MEDIAN_VERBOSE
+
 class MedianFilter;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
@@ -35,7 +37,9 @@ public:
   {
     
     auto op = message->spaHeader.opcode;
+#ifdef MEDIAN_VERBOSE
     std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+#endif
 
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
@@ -43,7 +47,9 @@ public:
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
+#ifdef MEDIAN_VERBOSE
         std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+#endif
       }
       publish();
     }
@@ -51,16 +57,20 @@ public:
     else if (op == op_SPA_DATA)
     {
       auto dataMessage = (SpaData*)message;
+#ifdef MEDIAN_VERBOSE
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
+#endif
       auto payload = (float)dataMessage->payload;
 
       if (message->spaHeader.source == la_temp)
       {
         tempStream.addDataPoint(payload);
+        std::cout << "0:" << payload << std::endl;
       }
       else if (message->spaHeader.source == la_light)
       {
         lightStream.addDataPoint(payload);
+        std::cout << "1:" << payload << std::endl;
       }
     }
 
@@ -77,7 +87,9 @@ public:
       payload = 1;
     }
 
+#ifdef MEDIAN_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
+#endif
 
     SpaData dataMessage(address, la_medianFilter, payload);
     communicator->send((SpaMessage*)&dataMessage);
@@ -85,7 +97,9 @@ public:
 
   virtual void appInit()
   {
+#ifdef MEDIAN_VERBOSE
     std::cout << "Median filter initializing!" << '\n';
+#endif
 
     LocalHello hello(0, 0, la_LSM, la_medianFilter, 0, 0, 0, 0);
 

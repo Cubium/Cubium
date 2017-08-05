@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include "readLightPot.h"
 
+//#define LIGHT_VERBOSE
+
 class LightSensor;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
@@ -27,15 +29,18 @@ public:
   virtual void handleSpaData(SpaMessage* message)
   {
     auto op = message->spaHeader.opcode;
+#ifdef LIGHT_VERBOSE
     std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
-
+#endif
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
       SubscriptionReply reply(message->spaHeader.source, la_light);
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
+#ifdef LIGHT_VERBOSE
         std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+#endif
       }
       publish();
     }
@@ -44,7 +49,10 @@ public:
   virtual void sendSpaData(LogicalAddress address)
   {
     auto payload = readLightPot(); // rand() % 100;
+#ifdef LIGHT_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
+#endif
+    std::cout << "0:" << payload << std::endl;
 
     SpaData dataMessage(address, la_light, payload);
     communicator->send((SpaMessage*)&dataMessage);
@@ -52,7 +60,9 @@ public:
 
   virtual void appInit()
   {
+#ifdef LIGHT_VERBOSE
     std::cout << "Light sensor initializing!" << '\n';
+#endif
 
     LocalHello hello(0, 0, la_LSM, la_light, 0, 0, 0, 0);
 
