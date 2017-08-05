@@ -42,8 +42,11 @@ public:
     {
       auto dataMessage = (SpaData*)message;
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
-      system("python panelDeploy.py");
-      sleep(10);
+      if ((int)dataMessage->payload == 1)
+      {
+        system("python ~/Documents/cubium/demo/solarArray/panelDeploy.py");
+        sleep(10);
+      }
     }
   }
 
