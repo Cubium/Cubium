@@ -15,6 +15,7 @@
 #include "readLightPot.h"
 
 //#define LIGHT_VERBOSE
+#define LIVE_GRAPHS
 
 class LightSensor;
 
@@ -52,7 +53,10 @@ public:
 #ifdef LIGHT_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
 #endif
+
+#ifdef LIVE_GRAPHS_LIGHT
     std::cout << "0:" << payload << std::endl;
+#endif
 
     SpaData dataMessage(address, la_light, payload);
     communicator->send((SpaMessage*)&dataMessage);

@@ -15,6 +15,7 @@
 #include "readTempPot.h"
 
 //#define TEMPERATURE_VERBOSE
+#define LIVE_GRAPHS_TEMPERATURE
 
 class TempSensor;
 
@@ -54,7 +55,10 @@ public:
 #ifdef TEMPERATURE_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
 #endif
+
+#ifdef LIVE_GRAPHS_TEMPERATURE
     std::cout << "0:" << payload << std::endl;
+#endif
 
     SpaData dataMessage(address, la_temp, payload);
     communicator->send((SpaMessage*)&dataMessage);

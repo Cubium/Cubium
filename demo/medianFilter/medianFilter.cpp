@@ -16,6 +16,7 @@
 #include <unistd.h>
 
 //#define MEDIAN_VERBOSE
+#define LIVE_GRAPHS_MEDIAN
 
 class MedianFilterComponent;
 
@@ -66,7 +67,10 @@ public:
           std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
 #endif
+
+#define LIVE_GRAPHS_MEDIAN
           std::cout << "0:" << payload << std::endl;
+#endif
         }
         else if (message->spaHeader.source == la_light)
         {
@@ -75,7 +79,10 @@ public:
           std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
 #endif
+
+#ifdef LIVE_GRAPHS_MEDIAN
           std::cout << "1:" << payload << std::endl;
+#endif
         }
       }
     }
