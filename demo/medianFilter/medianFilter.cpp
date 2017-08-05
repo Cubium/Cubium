@@ -106,7 +106,7 @@ public:
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
 #endif
 
-    if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
+    if (light >= 50 && temp >= -100)
     {
       payload = 1;
     }
