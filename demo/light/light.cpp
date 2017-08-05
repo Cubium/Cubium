@@ -15,7 +15,7 @@
 #include "readLightPot.h"
 
 //#define LIGHT_VERBOSE
-#define LIVE_GRAPHS
+#define LIVE_GRAPHS_LIGHT
 
 class LightSensor;
 

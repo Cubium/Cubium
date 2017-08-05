@@ -3,18 +3,16 @@
 
 #include <deque>
 #include <algorithm>
-#include <stdint.h>
 #include <string>
 #include <sstream>
 
-template <typename T>
 class MedianFilterStream
 {
 public:
-  MedianFilterStream(uint32_t wS) : windowSize(wS)
+  MedianFilterStream(int wS) : windowSize(wS)
   { }
 
-  void in(T data)
+  void in(float data)
   {
     if (window.size() == windowSize)
     {
@@ -24,7 +22,7 @@ public:
     window.push_back(data);
   }
 
-  T out()
+  float out()
   {
     return getMedian(window);
   }
@@ -43,14 +41,14 @@ public:
 
 private:
 
-  T getMedian(std::deque<T> w)
+  float getMedian(std::deque<float> w)
   {
     std::sort(w.begin(), w.end());
-    return w[windowSize / 2];
+    return w[w.size() / 2];
   }
 
-  std::deque<T> window; 
-  uint32_t windowSize;
+  std::deque<float> window; 
+  int windowSize;
 };
 
 #endif

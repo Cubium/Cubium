@@ -56,34 +56,28 @@ public:
 #ifdef MEDIAN_VERBOSE
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
 #endif
-      auto payload = (float)dataMessage->payload;
+      float payload = dataMessage->payload;
 
       {
         std::lock_guard<std::mutex> lock(streamMutex);
         if (message->spaHeader.source == la_temp)
         {
           tempStream.in(payload);
+          std::cout << "2:" << payload << std::endl;
 #ifdef MEDIAN_VERBOSE
           std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
 #endif
-
-#ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "0:" << lightStream.out() << std::endl;
-#endif
-        }
+       }
         else if (message->spaHeader.source == la_light)
         {
           lightStream.in(payload);
+          std::cout << "3:" << payload << std::endl;
 #ifdef MEDIAN_VERBOSE
           std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
 #endif
-
-#ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "1:" << lightStream.out() << std::endl;
-#endif
-        }
+       }
       }
     }
   }
@@ -100,13 +94,18 @@ public:
       temp = tempStream.out();
     }
 
+#ifdef LIVE_GRAPHS_MEDIAN
+    std::cout << "0:" << light << std::endl;
+    std::cout << "1:" << temp << std::endl;
+#endif
+
 #ifdef MEDIAN_VERBOSE
     std::cout << "Lightstream: " << lightStream.print() << std::endl;
     std::cout << "Tempstream: " << tempStream.print() << std::endl;
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
 #endif
 
-    if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
+    if (light >= 50 && temp >= -100)
     {
       payload = 1;
     }
@@ -140,8 +139,8 @@ public:
   }
 
 private:
-  MedianFilterStream<float> lightStream;
-  MedianFilterStream<float> tempStream;
+  MedianFilterStream lightStream;
+  MedianFilterStream tempStream;
   std::mutex streamMutex;
 };
 
