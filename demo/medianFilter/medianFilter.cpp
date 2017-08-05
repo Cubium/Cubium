@@ -69,7 +69,7 @@ public:
 #endif
 
 #ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "0:" << payload << std::endl;
+          std::cout << "0:" << lightStream.out() << std::endl;
 #endif
         }
         else if (message->spaHeader.source == la_light)
@@ -81,7 +81,7 @@ public:
 #endif
 
 #ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "1:" << payload << std::endl;
+          std::cout << "1:" << lightStream.out() << std::endl;
 #endif
         }
       }
