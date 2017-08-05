@@ -61,18 +61,18 @@ public:
         std::lock_guard<std::mutex> lock(streamMutex);
         if (message->spaHeader.source == la_temp)
         {
-          std::cout << "Temp in : " << payload << std::endl;
           tempStream.in(payload);
 #ifdef MEDIAN_VERBOSE
+          std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
 #endif
           std::cout << "0:" << payload << std::endl;
         }
         else if (message->spaHeader.source == la_light)
         {
-          std::cout << "Light in : " << payload << std::endl;
           lightStream.in(payload);
 #ifdef MEDIAN_VERBOSE
+          std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
 #endif
           std::cout << "1:" << payload << std::endl;
@@ -93,10 +93,11 @@ public:
       temp = tempStream.out();
     }
 
+#ifdef MEDIAN_VERBOSE
     std::cout << "Lightstream: " << lightStream.print() << std::endl;
     std::cout << "Tempstream: " << tempStream.print() << std::endl;
-
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
+#endif
 
     if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
     {
