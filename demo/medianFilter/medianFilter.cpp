@@ -50,7 +50,7 @@ public:
       auto payload = (float)dataMessage->payload;
 
       {
-//        std::lock_guard<std::mutex> lock(streamMutex);
+        std::lock_guard<std::mutex> lock(streamMutex);
         if (message->spaHeader.source == la_temp)
         {
           std::cout << "Temp in : " << payload << std::endl;
@@ -74,7 +74,7 @@ public:
     float temp;
 
     {
-//      std::lock_guard<std::mutex> lock(streamMutex); 
+      std::lock_guard<std::mutex> lock(streamMutex); 
       light = lightStream.out();
       temp = tempStream.out();
     }

@@ -43,7 +43,7 @@ public:
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    auto payload = rand() % 100;
+    auto payload = readLightPot();
     std::cout << "Sending SpaData: " << payload << std::endl;
 
     SpaData dataMessage(address, la_light, payload);
