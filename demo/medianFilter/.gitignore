@@ -2,3 +2,4 @@ medianFilter
 Makefile
 CMakeFiles/*
 cmake_install.cmake
+*.swn

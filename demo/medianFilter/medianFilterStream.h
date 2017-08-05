@@ -1,89 +1,56 @@
 #ifndef MEDIAN_FILTER_STREAM_H
 #define MEDIAN_FILTER_STREAM_H
-// #include <iostream>
 
-namespace { const float PRECISION_VALUE = 0.001; }
+#include <deque>
+#include <algorithm>
+#include <stdint.h>
+#include <string>
+#include <sstream>
 
 template <typename T>
-class MedianFilterStream {
+class MedianFilterStream
+{
 public:
-  MedianFilterStream() {}
-  MedianFilterStream(T* timeBuff, T* valBuff, int buffLen)
-    :timeBuff(timeBuff), valBuff(valBuff), buffLen(buffLen){
-      timeCounter = 0;
-      tempBuffLen = 0;
+  MedianFilterStream(uint32_t wS) : windowSize(wS)
+  { }
+
+  void in(T data)
+  {
+    if (window.size() == windowSize)
+    {
+      window.pop_front();
     }
 
-  int getCurrentLength(){
-    return tempBuffLen > buffLen ? buffLen : tempBuffLen;
+    window.push_back(data);
   }
 
-  void addDataPoint(T val){
-    tempBuffLen++;
-    int currentLength = getCurrentLength();
+  T out()
+  {
+    return getMedian(window);
+  }
 
-    if(tempBuffLen < buffLen){
-      // Handle when buffer is not yet full
-      timeBuff[currentLength-1] = val;
-      valBuff[currentLength-1] = val;
-    } else {
-      // If our buffer is full we need to replace values
-      T toReplace = timeBuff[timeCounter];
-      int valPosition = findInBuff(valBuff, currentLength, toReplace);
-      timeBuff[timeCounter] = val;
-
-      if(valPosition >= 0 &&  valPosition < currentLength){
-        valBuff[valPosition] = val;
-      } else {
-        //TODO: Add some sort of error handling
-      }
+  std::string print()
+  {
+    std::stringstream ss;
+    ss << "[";
+    for (auto&& e : window)
+    {
+      ss << e << ", ";
     }
-
-    sortBuffer(valBuff, currentLength);
-    timeCounter = incrementCount(timeCounter, buffLen);
+    ss << "]";
+    return ss.str();
   }
 
-  T getFilteredDataPoint(){
-    int currentLength = getCurrentLength();
-    sortBuffer(valBuff, currentLength);
-    int midPoint = currentLength / 2;
-    return valBuff[midPoint];
+private:
+
+  T getMedian(std::deque<T> w)
+  {
+    std::sort(w.begin(), w.end());
+    return w[windowSize / 2];
   }
 
-  void sortBuffer(T* buff, int buffLen){
-    for(int i = 1; i < buffLen; i++){
-      for(int j = i - 1; j >= 0; j--){
-        if(buff[j+1] < buff[j]){
-          buffSwap(buff, j+1, j);
-        }
-      }
-    }
-  }
-
-  void buffSwap(T* buff, int i, int j){
-    T temp = buff[i];
-    buff[i] = buff[j];
-    buff[j] = temp;
-  }
-
-  int inline incrementCount(int timeCounter, int buffLen){
-    return ++timeCounter %= buffLen;
-  }
-
-  int findInBuff(T* buff,int buffLen, T find){
-    for(int i = 0; i < buffLen; i++){
-      float diff = buff[i] - find;
-      if(diff < 0) diff *= -1;
-      if(diff <= PRECISION_VALUE) return i;
-    }
-    return -1;
-  }
-
-  protected:
-  int timeCounter;
-  int tempBuffLen;
-  int buffLen;
-  T* timeBuff;
-  T* valBuff;
+  std::deque<T> window; 
+  uint32_t windowSize;
 };
+
 #endif

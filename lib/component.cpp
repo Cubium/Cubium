@@ -139,23 +139,18 @@ void Component::receiveMessage(SpaMessage* message)
 
 void Component::publish()
 {
-  ++publishIter;
+  /*
+  ++comp->publishIter;
 
-  if (publishIter == 201)
+  if (comp->publishIter == 201)
   { // Max deliveryRateDivisor is therefore 200
-    publishIter = 1;
+    comp->publishIter = 1;
   }
+  */
 
-  auto pid = fork();
+   /* send data */
 
-  if (pid < 0)
-  {
-    std::cerr << "Did not fork!..." << std::endl;
-  }
-
-  else if (pid == 0) // child process
-  {
-    /* send data */
+  auto newThread = std::thread([&](){
     for (;;)
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -168,11 +163,13 @@ void Component::publish()
         }
       }
     }
-  }
-  else // parent process
-  {
+  });
+
     /* listen for more requests */
     communicator->getLocalCommunicator()->clientListen(
-        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
-  }
+        [=](cubiumClientSocket_t* s) { 
+          component_messageCallback(shared_from_this(), s);
+          });
+
+  newThread.join();
 }
