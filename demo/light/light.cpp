@@ -48,7 +48,7 @@ public:
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    auto payload = readLightPot(); // rand() % 100;
+    auto payload = readLightPot();
 #ifdef LIGHT_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
 #endif

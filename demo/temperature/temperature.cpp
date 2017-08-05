@@ -50,7 +50,7 @@ public:
   virtual void sendSpaData(LogicalAddress address)
   {
     
-    auto payload = readTempPot(); // rand() % 100;
+    auto payload = readTempPot();
 #ifdef TEMPERATURE_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
 #endif
