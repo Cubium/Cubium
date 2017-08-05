@@ -50,8 +50,9 @@ public:
 
   virtual void sendSpaData(LogicalAddress address)
   {
-    
-    auto payload = readTempPot();
+    float rawVal = readTempPot();
+    float payload = (rawVal * 113.030303) - 273;
+
 #ifdef TEMPERATURE_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
 #endif
