@@ -68,7 +68,7 @@ public:
           std::cout << tempStream.print() << std::endl;
 #endif
 
-#define LIVE_GRAPHS_MEDIAN
+#ifdef LIVE_GRAPHS_MEDIAN
           std::cout << "0:" << payload << std::endl;
 #endif
         }
