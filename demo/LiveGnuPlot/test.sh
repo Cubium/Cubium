@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/bash
 (perl -e '
 for (1..500) {
   $i=$_/10;
