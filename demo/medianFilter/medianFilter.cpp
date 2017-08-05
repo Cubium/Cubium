@@ -1,4 +1,5 @@
 #include "../demo_addresses.hpp"
+#include "medianFilterStream.h"
 #include "messages/op_codes.h"
 #include <chrono>
 #include <component.hpp>
@@ -8,29 +9,33 @@
 #include <messages/local/local_hello.h>
 #include <messages/spa/spa_data.h>
 #include <messages/spa/subscription_reply.h>
-#include <messages/spa/subscription_request.h> 
+#include <messages/spa/subscription_request.h>
+#include <mutex>
 #include <socket/clientSocket.hpp>
 #include <thread>
 #include <unistd.h>
-#include <mutex>
-#include "medianFilterStream.h"
+
+//#define MEDIAN_VERBOSE
+#define LIVE_GRAPHS_MEDIAN
 
 class MedianFilterComponent;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
-
 class MedianFilterComponent : public Component
 {
 public:
   MedianFilterComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com), lightStream(10), tempStream(10)
-  { }
+  {
+  }
 
   virtual void handleSpaData(SpaMessage* message)
   {
-    
+
     auto op = message->spaHeader.opcode;
-//    std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+#ifdef MEDIAN_VERBOSE
+    std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+#endif
 
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
@@ -38,7 +43,9 @@ public:
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
-//        std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+#ifdef MEDIAN_VERBOSE
+        std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+#endif
       }
       publish();
     }
@@ -46,22 +53,36 @@ public:
     else if (op == op_SPA_DATA)
     {
       auto dataMessage = (SpaData*)message;
-//      std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
+#ifdef MEDIAN_VERBOSE
+      std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
+#endif
       auto payload = (float)dataMessage->payload;
 
       {
         std::lock_guard<std::mutex> lock(streamMutex);
         if (message->spaHeader.source == la_temp)
         {
-          std::cout << "Temp in : " << payload << std::endl;
           tempStream.in(payload);
-//          std::cout << tempStream.print() << std::endl;
+#ifdef MEDIAN_VERBOSE
+          std::cout << "Temp in : " << payload << std::endl;
+          std::cout << tempStream.print() << std::endl;
+#endif
+
+#define LIVE_GRAPHS_MEDIAN
+          std::cout << "0:" << payload << std::endl;
+#endif
         }
         else if (message->spaHeader.source == la_light)
         {
-          std::cout << "Light in : " << payload << std::endl;
           lightStream.in(payload);
- //         std::cout << lightStream.print() << std::endl;
+#ifdef MEDIAN_VERBOSE
+          std::cout << "Light in : " << payload << std::endl;
+          std::cout << lightStream.print() << std::endl;
+#endif
+
+#ifdef LIVE_GRAPHS_MEDIAN
+          std::cout << "1:" << payload << std::endl;
+#endif
         }
       }
     }
@@ -74,22 +95,25 @@ public:
     float temp;
 
     {
-      std::lock_guard<std::mutex> lock(streamMutex); 
+      std::lock_guard<std::mutex> lock(streamMutex);
       light = lightStream.out();
       temp = tempStream.out();
     }
-    
+
+#ifdef MEDIAN_VERBOSE
     std::cout << "Lightstream: " << lightStream.print() << std::endl;
     std::cout << "Tempstream: " << tempStream.print() << std::endl;
-
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
+#endif
 
     if (light > 80 && light <= 100 && temp > 0) // Arbitrary condition
     {
       payload = 1;
     }
 
+#ifdef MEDIAN_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
+#endif
 
     SpaData dataMessage(address, la_medianFilter, payload);
     communicator->send((SpaMessage*)&dataMessage);
@@ -97,7 +121,9 @@ public:
 
   virtual void appInit()
   {
+#ifdef MEDIAN_VERBOSE
     std::cout << "Median filter initializing!" << '\n';
+#endif
 
     LocalHello hello(0, 0, la_LSM, la_medianFilter, 0, 0, 0, 0);
 
@@ -108,7 +134,6 @@ public:
 
     SubscriptionRequest request2(la_temp, la_medianFilter, la_LSM);
     communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request2, sizeof(request2), [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });
-
 
     communicator->getLocalCommunicator()->clientListen(
         [=](cubiumClientSocket_t* s) { messageCallback(shared_from_this(), s); });

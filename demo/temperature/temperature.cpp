@@ -14,6 +14,9 @@
 #include <unistd.h>
 #include "readTempPot.h"
 
+//#define TEMPERATURE_VERBOSE
+#define LIVE_GRAPHS_TEMPERATURE
+
 class TempSensor;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
@@ -27,7 +30,9 @@ public:
   virtual void handleSpaData(SpaMessage* message)
   {
     auto op = message->spaHeader.opcode;
+#ifdef TEMPERATURE_VERBOSE
     std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
+#endif
 
     if (op == op_SPA_SUBSCRIPTION_REQUEST)
     {
@@ -35,7 +40,9 @@ public:
       communicator->send((SpaMessage*)&reply);
       if (addSubscriber(message->spaHeader.source, 0))
       {
+#ifdef TEMPERATURE_VERBOSE
         std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+#endif
       }
       publish();
     }
@@ -45,7 +52,13 @@ public:
   {
     
     auto payload = readTempPot();
+#ifdef TEMPERATURE_VERBOSE
     std::cout << "Sending SpaData: " << payload << std::endl;
+#endif
+
+#ifdef LIVE_GRAPHS_TEMPERATURE
+    std::cout << "0:" << payload << std::endl;
+#endif
 
     SpaData dataMessage(address, la_temp, payload);
     communicator->send((SpaMessage*)&dataMessage);
@@ -53,7 +66,9 @@ public:
 
   virtual void appInit()
   {
+#ifdef TEMPERATURE_VERBOSE
     std::cout << "Temperature sensor initializing!" << '\n';
+#endif
 
     LocalHello hello(0, 0, la_LSM, la_temp, 0, 0, 0, 0);
 

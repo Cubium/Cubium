@@ -7,3 +7,4 @@ CMakeFiles/*
 .vagrant/*
 Makefile
 cmake_install.cmake
+Vagrantfile

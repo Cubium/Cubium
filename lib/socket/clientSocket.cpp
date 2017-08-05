@@ -9,6 +9,8 @@
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 #include <thread>
 
+//#define CLIENTSOCKET_VERBOSE
+
 /* Throw a perror and exit */
 void clientSocket_error(const char* msg)
 {
@@ -99,7 +101,9 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
   /* Continually listen for messages and call the handler when one is received */
   for(;;)
   {
-//    std::cout << "Listening!" << std::endl;
+#ifdef CLIENTSOCKET_VERBOSE
+    std::cout << "Listening!" << std::endl;
+#endif
     s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->length);
     if (s->nBytesRecv < 0)
     {
