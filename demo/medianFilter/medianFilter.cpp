@@ -8,11 +8,12 @@
 #include <messages/local/local_hello.h>
 #include <messages/spa/spa_data.h>
 #include <messages/spa/subscription_reply.h>
-#include <messages/spa/subscription_request.h>
+#include <messages/spa/subscription_request.h> 
 #include <socket/clientSocket.hpp>
 #include <thread>
 #include <unistd.h>
-#include "MedianFilter.h"
+#include <mutex>
+#include "medianFilterStream.h"
 
 class MedianFilterComponent;
 
@@ -22,7 +23,7 @@ void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock
 class MedianFilterComponent : public Component
 {
 public:
-  MedianFilterComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com), lightStream(4, 0), tempStream(4,0)
+  MedianFilterComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com), lightStream(10), tempStream(10)
   { }
 
   virtual void handleSpaData(SpaMessage* message)
@@ -46,17 +47,22 @@ public:
     {
       auto dataMessage = (SpaData*)message;
 //      std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
-      auto payload = (int)dataMessage->payload;
+      auto payload = (float)dataMessage->payload;
 
-      if (message->spaHeader.source == la_temp)
       {
-        std::cout << "Temp in : " << payload << std::endl;
-        tempStream.in(payload);
-      }
-      else if (message->spaHeader.source == la_light)
-      {
-        std::cout << "Light in : " << payload << std::endl;
-        lightStream.in(payload);
+//        std::lock_guard<std::mutex> lock(streamMutex);
+        if (message->spaHeader.source == la_temp)
+        {
+          std::cout << "Temp in : " << payload << std::endl;
+          tempStream.in(payload);
+//          std::cout << tempStream.print() << std::endl;
+        }
+        else if (message->spaHeader.source == la_light)
+        {
+          std::cout << "Light in : " << payload << std::endl;
+          lightStream.in(payload);
+ //         std::cout << lightStream.print() << std::endl;
+        }
       }
     }
   }
@@ -64,9 +70,17 @@ public:
   virtual void sendSpaData(LogicalAddress address)
   {
     auto payload = 0;
-    auto light = lightStream.out();
-    auto temp = tempStream.out();
+    float light;
+    float temp;
 
+    {
+//      std::lock_guard<std::mutex> lock(streamMutex); 
+      light = lightStream.out();
+      temp = tempStream.out();
+    }
+    
+    std::cout << "Lightstream: " << lightStream.print() << std::endl;
+    std::cout << "Tempstream: " << tempStream.print() << std::endl;
 
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
 
@@ -101,8 +115,9 @@ public:
   }
 
 private:
-  MedianFilter lightStream;
-  MedianFilter tempStream;
+  MedianFilterStream<float> lightStream;
+  MedianFilterStream<float> tempStream;
+  std::mutex streamMutex;
 };
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
