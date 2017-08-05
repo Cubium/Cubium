@@ -173,6 +173,10 @@ void Component::publish()
   {
     /* listen for more requests */
     communicator->getLocalCommunicator()->clientListen(
-        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+        [=](cubiumClientSocket_t* s) { 
+          component_messageCallback(shared_from_this(), s);
+          });
+  std::cout << "Do we get here?\n";
   }
+  std::cout << "here?\n";
 }

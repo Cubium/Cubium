@@ -19,31 +19,53 @@ public:
   }
 
   void addDataPoint(T val){
+
+    std::cout << "1f" << std::endl;
+
     tempBuffLen++;
     int currentLength = getCurrentLength();
 
-    if(tempBuffLen < buffLen){
+    std::cout << "2f" << std::endl;
+
+    if (tempBuffLen < buffLen)
+    {
       // Handle when buffer is not yet full
+
       timeBuff[currentLength-1] = val;
       valBuff[currentLength-1] = val;
-    } else {
+
+    } 
+    else 
+    {
       // If our buffer is full we need to replace values
+      std::cout << "4f" << std::endl;
+
       T toReplace = timeBuff[timeCounter];
+
       int valPosition = findInBuff(valBuff, currentLength, toReplace);
+
       timeBuff[timeCounter] = val;
 
-      if(valPosition >= 0 &&  valPosition < currentLength){
+      if (valPosition >= 0 &&  valPosition < currentLength)
+      {
+        std::cout << "5f" << std::endl;
         valBuff[valPosition] = val;
-      } else {
+      } 
+      else 
+      {
+         std::cout << "6f" << std::endl;
         //TODO: Add some sort of error handling
       }
     }
 
     sortBuffer(valBuff, currentLength);
+    std::cout << "Nope" << std::endl;
     timeCounter = incrementCount(timeCounter, buffLen);
+    std::cout << "yup" << std::endl;
   }
 
-  T getFilteredDataPoint(){
+  T getFilteredDataPoint()
+  {
     int currentLength = getCurrentLength();
     sortBuffer(valBuff, currentLength);
     int midPoint = currentLength / 2;

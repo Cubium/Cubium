@@ -44,7 +44,7 @@ public:
   virtual void sendSpaData(LogicalAddress address)
   {
     
-    auto payload = readTempPot(); // rand() % 100;
+    auto payload = rand() % 100;
     std::cout << "Sending SpaData: " << payload << std::endl;
 
     SpaData dataMessage(address, la_temp, payload);
