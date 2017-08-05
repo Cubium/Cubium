@@ -67,11 +67,7 @@ public:
           std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
 #endif
-
-#ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "0:" << lightStream.out() << std::endl;
-#endif
-        }
+       }
         else if (message->spaHeader.source == la_light)
         {
           lightStream.in(payload);
@@ -79,11 +75,7 @@ public:
           std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
 #endif
-
-#ifdef LIVE_GRAPHS_MEDIAN
-          std::cout << "1:" << lightStream.out() << std::endl;
-#endif
-        }
+       }
       }
     }
   }
@@ -99,6 +91,11 @@ public:
       light = lightStream.out();
       temp = tempStream.out();
     }
+
+#ifdef LIVE_GRAPHS_MEDIAN
+    std::cout << "0:" << light << std::endl;
+    std::cout << "1:" << temp << std::endl;
+#endif
 
 #ifdef MEDIAN_VERBOSE
     std::cout << "Lightstream: " << lightStream.print() << std::endl;
