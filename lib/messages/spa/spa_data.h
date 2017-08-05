@@ -11,7 +11,7 @@ struct SpaData
   SpaData(
       LogicalAddress consumerAddress,
       LogicalAddress producerAddress,
-      uint64_t payload
+      float payload
       ) : spaMessage(0, 0, 0, consumerAddress, producerAddress, 0, op_SPA_DATA),
           dialogId(0),
           sequenceIndex(0),
@@ -30,7 +30,7 @@ struct SpaData
       uint16_t sequenceCount,
       uint8_t interfaceId,
       uint8_t messageId,
-      uint64_t payload) : spaMessage(version, priority, sizeof(payload), consumerAddress, producerAddress, 0, op_SPA_DATA),
+      float payload) : spaMessage(version, priority, sizeof(payload), consumerAddress, producerAddress, 0, op_SPA_DATA),
                    dialogId(dialogId),
                    sequenceIndex(sequenceIndex),
                    sequenceCount(sequenceCount),
@@ -39,7 +39,7 @@ struct SpaData
                    payload(payload) {}
 
   SpaMessage spaMessage;
-  uint32_t payload;
+  float payload;
   uint16_t payloadLength;
   uint16_t dialogId;
   uint16_t sequenceIndex;
