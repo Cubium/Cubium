@@ -45,7 +45,7 @@ public:
       if ((int)dataMessage->payload == 1)
       {
         system("python ~/Documents/cubium/demo/solarArray/panelDeploy.py");
-        sleep(10);
+        //sleep(15);
       }
     }
   }

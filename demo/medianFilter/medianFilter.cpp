@@ -105,7 +105,7 @@ public:
     std::cout << "Filtered light/temp: " << light << " / " << temp << std::endl;
 #endif
 
-    if (light >= 50 && temp >= -100)
+    if (light >= 32 && temp >= -100)
     {
       payload = 1;
     }
@@ -116,6 +116,10 @@ public:
 
     SpaData dataMessage(address, la_medianFilter, payload);
     communicator->send((SpaMessage*)&dataMessage);
+    if(payload == 1)
+    {
+      sleep(7);
+    }
   }
 
   virtual void appInit()
