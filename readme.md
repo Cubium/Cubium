@@ -10,6 +10,8 @@ For a fun introduction on the inner workings of Cubium, see [this illustrated wr
 For a very detailed look into the machinations of SPA in general, see [Jacob Holt Christensen's dissertation.](http://digitalcommons.usu.edu/etd/1422/)
 
 ## Project Status 
+  * **Version Alpha 1.1.0**
+    * Finalized architecture for software demo shown at SmallSat conference
   * **Version Alpha 1.0.0**
     * All necessary framework completed for support of basic component systems.
   * **Version Alpha 0.0.6**
