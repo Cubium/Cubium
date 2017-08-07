@@ -44,7 +44,7 @@ public:
       std::cout << "Received data with payload: " << (int)dataMessage->payload << " from " << message->spaHeader.source << std::endl;
       if ((int)dataMessage->payload == 1)
       {
-        system("python ~/Documents/cubium/demo/solarArray/panelDeploy.py");
+        system("./deploy.sh");
         //sleep(15);
       }
     }
