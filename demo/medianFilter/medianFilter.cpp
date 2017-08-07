@@ -64,6 +64,7 @@ public:
         {
           tempStream.in(payload);
           std::cout << "2:" << payload << std::endl;
+          std::cout << "1:" << tempStream.out() << std::endl;
 #ifdef MEDIAN_VERBOSE
           std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
@@ -73,6 +74,7 @@ public:
         {
           lightStream.in(payload);
           std::cout << "3:" << payload << std::endl;
+          std::cout << "0:" << lightStream.out() << std::endl;
 #ifdef MEDIAN_VERBOSE
           std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
@@ -93,11 +95,6 @@ public:
       light = lightStream.out();
       temp = tempStream.out();
     }
-
-#ifdef LIVE_GRAPHS_MEDIAN
-    std::cout << "0:" << light << std::endl;
-    std::cout << "1:" << temp << std::endl;
-#endif
 
 #ifdef MEDIAN_VERBOSE
     std::cout << "Lightstream: " << lightStream.print() << std::endl;
