@@ -25,7 +25,7 @@ void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock
 class MedianFilterComponent : public Component
 {
 public:
-  MedianFilterComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com), lightStream(10), tempStream(10)
+  MedianFilterComponent(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com), lightStream(32), tempStream(32)
   {
   }
 
