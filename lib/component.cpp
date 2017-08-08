@@ -1,6 +1,7 @@
 #include "component.hpp"
 #include "logical_address.h"
 #include "messages/op_codes.h"
+#include "messages/spa/subscription_request.h"
 #include <algorithm>
 #include <iostream>
 #include <unistd.h>
@@ -70,25 +71,26 @@ void Component::subscribe(
     uint32_t leasePeriod,
     uint16_t deliveryRateDivisor)
 {
-  /*
-  auto request = new SpaSubscriptionRequest(
+  SubscriptionRequest request(
       0,                    // Version
-      0,                    // Message priority TODO 
+      0,                    // Message priority 
       producer,             // Address of the producer component
       address,              // Address of the consumer component
-      LogicalAddress(0, 0), // Address of the subscriptions manager component TODO
-      leasePeriod,          // Duration of the subscription TODO
+      subnetManagerAddress, // Address of the subscriptions manager component 
+      0,                    // Flags
+      leasePeriod,          // Duration of the subscription 
       dialogId,             // Dialog identifier sent by requester
       deliveryRateDivisor,  // Subscribe to every nth message
-      0,                    // xTEDS interface ID TODO
-      0,                    // xTEDS message Id TODO
-      priority,             // Subscription priority TODO
+      0,                    // xTEDS interface ID 
+      0,                    // xTEDS message Id 
+      priority,             // Subscription priority 
       0                     // Message type (0 = subscription, 1 = unsubscribtion)
       );
 
-  sendMsg(request);
-  ++dialogId;
-  */
+  communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request), 
+    [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+
+  //++dialogId;
 }
 
 bool Component::addSubscriber(LogicalAddress la, uint16_t d)
