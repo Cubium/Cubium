@@ -18,30 +18,11 @@ class CompB : public Component
 {
 public:
   CompB(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, la_CB, la_LSM)
+  { }
+
+  virtual void handleSpaData(SpaData* message)
   {
-  }
-
-  virtual void handleSpaData(SpaMessage* message)
-  {
-
-    auto op = message->spaHeader.opcode;
-    std::cout << "Received SpaMessage with opcode: " << (int)op << '\n';
-
-    if (op == op_SPA_SUBSCRIPTION_REQUEST)
-    {
-      SubscriptionReply reply(message->spaHeader.source, la_CB);
-      communicator->send((SpaMessage*)&reply);
-      if (addSubscriber(message->spaHeader.source, 0))
-      {
-        std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
-      }
-      publish();
-    }
-    else if (op == op_SPA_DATA)
-    {
-      auto castMessage = (SpaData*)message;
-      std::cout << "Payload: " << castMessage->payload << std::endl;
-    }
+    std::cout << "Payload: " << message->payload << std::endl;
   }
 
   virtual void sendSpaData(LogicalAddress address)

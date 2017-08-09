@@ -8,6 +8,7 @@
 #include <mutex>
 #include <vector>
 #include "messages/local/local_hello.h"
+#include "messages/spa/spa_data.h"
 
 struct Subscriber
 {
@@ -43,7 +44,7 @@ public:
 
   virtual void sendSpaData(LogicalAddress) = 0;
 
-  virtual void handleSpaData(SpaMessage*) = 0;
+  virtual void handleSpaData(SpaData*) = 0;
   virtual void preInit()
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
