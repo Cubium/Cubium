@@ -42,7 +42,6 @@ public:
 
   void publish();
 
-  virtual void sendSpaData(LogicalAddress) = 0;
 
   virtual void handleSpaData(SpaData*) = 0;
   virtual void preInit()
@@ -81,6 +80,15 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
+  virtual float packageData() = 0;
+
+  virtual void sendSpaData(LogicalAddress destination)
+  {
+    auto payload = packageData();
+    SpaData dataMessage(destination, address, payload);
+    communicator->send((SpaMessage*)&dataMessage);
+  }
+
   bool addSubscriber(LogicalAddress, uint16_t);
 
   std::shared_ptr<SpaCommunicator> communicator;
@@ -93,5 +101,21 @@ protected:
   uint8_t publishIter;
   uint16_t dialogId;
 };
+
+template <typename T>
+void component_start(LogicalAddress address)
+{
+  cubiumClientSocket_t sock = clientSocket_openSocket(3500);
+  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
+
+  std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
+      std::make_shared<LocalCommunicator>(&sock, routingTable, address)};
+  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(address, comms);
+
+  auto comp = std::make_shared<T>(spaCom);
+  comp->preInit();
+  comp->init();
+  comp->listen();
+}
 
 #endif
