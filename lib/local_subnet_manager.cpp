@@ -50,13 +50,13 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   else if (op == op_SPA_DATA)
   {
-    auto newmsg = (SpaData*)sock->buf;
-    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
+//    auto newmsg = (SpaData*)sock->buf;
+//    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
 
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SpaData), &newSock);
+      serverSocket_send(msg, sizeof(SpaData<float>), &newSock);
     }
   }
 }

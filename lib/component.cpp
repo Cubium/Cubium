@@ -3,7 +3,7 @@
 #include "messages/op_codes.h"
 #include "messages/spa/subscription_request.h"
 #include <algorithm>
-#include <iostream>
+#include <iostream> 
 #include <unistd.h>
 #include <thread>
 
@@ -108,7 +108,7 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_DATA:
-    handleSpaData((SpaData*)message);
+    handleSpaData(message);
     return;
 
   default:
@@ -139,7 +139,7 @@ void Component::publish()
       {
         if (subscribers[i].deliveryRateDivisor % publishIter == 0)
         {
-          sendSpaData(subscribers[i].subscriberAddress);
+          sendData(subscribers[i].subscriberAddress);
         }
       }
     }

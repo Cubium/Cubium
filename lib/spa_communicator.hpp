@@ -29,6 +29,7 @@ public:
   //! Sends a spa message over the network
 
   bool send(SpaMessage* message);
+  bool send(ssize_t len, SpaMessage* message);
   bool send(SpaMessage* message, ssize_t len);
 
   //TODO document

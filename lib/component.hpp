@@ -43,7 +43,7 @@ public:
   void publish();
 
 
-  virtual void handleSpaData(SpaData*) = 0;
+  virtual void handleSpaData(SpaMessage*) = 0;
   virtual void preInit()
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
@@ -80,13 +80,13 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
-  virtual float packageData() = 0;
+  virtual void sendData(LogicalAddress) = 0;
 
-  virtual void sendSpaData(LogicalAddress destination)
+  template <typename T>
+  void sendPayload(T payload, LogicalAddress destination)
   {
-    auto payload = packageData();
-    SpaData dataMessage(destination, address, payload);
-    communicator->send((SpaMessage*)&dataMessage);
+    SpaData<T> dataMessage(destination, address, payload);
+    communicator->send((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 
   bool addSubscriber(LogicalAddress, uint16_t);
