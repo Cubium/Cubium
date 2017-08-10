@@ -2,10 +2,8 @@
 
 make -j
 
-xterm -title "Subnet Manager" -e "./demo/subnetmanager/subnet_driver" &
-xterm -title "Light Sensor" -e "./demo/light/light" &
-xterm -title "Temperature Sensor" -e "./demo/temperature/temperature" &
-xterm -title "Median Filter" -e "./demo/medianFilter/medianFilter | perl ./demo/driveGnuPlotStreams.pl 4 2 25 25 -273 100 0 50 500+300+0+0 500+300+0+0 FilteredLight FilteredTemp Temperature Light 1 0 0 1" &
-xterm -title "Solar Array" -e "./demo/solarArray/solarArray" 
+xterm -title "Subnet Manager" -e "./simple_system/subnetmanager/subnet_driver" &
+xterm -title "Component A" -e "./simple_system/component-A" &
+xterm -title "Component B" -e "./simple_system/component-B" &
 
 exit
