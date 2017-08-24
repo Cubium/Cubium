@@ -29,7 +29,6 @@ struct SubscriptionRequest
   SubscriptionRequest(
     uint8_t version,
     uint8_t priority,
-    uint16_t length,
     LogicalAddress destination,
     LogicalAddress source,
     LogicalAddress mA,
@@ -43,7 +42,7 @@ struct SubscriptionRequest
     uint8_t  t)
   : spaMessage(version,
                priority,
-               length,
+               sizeof(SubscriptionRequest),
                destination,
                source,
                flags,
