@@ -113,6 +113,7 @@ sub main {
 		print PIPE "set style data linespoints\n";
 		print PIPE "set grid\n";
 		print PIPE "set term x11\n";
+    #print PIPE "set object rectangle from screen 0,0 to screen 1,1 behind fillcolor rgb 'black' fillstyle solid noborder\n";
 	}
 	my $streamIdx = 0;
 	# replace @ARGV with remaining args for <> below
