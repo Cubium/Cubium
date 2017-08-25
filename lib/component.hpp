@@ -9,6 +9,7 @@
 #include <vector>
 #include "messages/local/local_hello.h"
 #include "messages/spa/spa_data.h"
+#include "messages/spa/spa_courier.h"
 
 struct Subscriber
 {
@@ -81,6 +82,16 @@ public:
       uint16_t deliveryRateDivisor);
 
   virtual void sendData(LogicalAddress) = 0;
+
+  
+  void sendPayload(std::string payload, LogicalAddress destination)
+  {
+    auto plainBuffer = payload.data();
+    auto courier = SpaCourier(destination, address, payload.length());
+
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());
+  }
 
   template <typename T>
   void sendPayload(T payload, LogicalAddress destination)

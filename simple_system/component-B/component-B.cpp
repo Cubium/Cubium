@@ -16,7 +16,7 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<int>*)message;
+    auto castMessage = (SpaData<std::string>*)message;
     std::cout << "Payload: " << castMessage->payload << std::endl;
   }
 
