@@ -6,9 +6,9 @@
 
 struct LogicalAddress
 {
-  LogicalAddress(uint16_t const subId = 0, uint16_t const compId = 0) : subnetId(subId), componentId(compId) {}
-  uint16_t const subnetId;
-  uint16_t const componentId;
+  LogicalAddress(uint16_t subId = 0, uint16_t compId = 0) : subnetId(subId), componentId(compId) {}
+  uint16_t subnetId;
+  uint16_t componentId;
 
   bool isOnSameSubnet(LogicalAddress other)
   {
