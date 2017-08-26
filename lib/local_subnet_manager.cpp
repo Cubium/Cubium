@@ -5,7 +5,6 @@
 #include "messages/spa/spa_data.h"
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
-#include "messages/spa/spa_wrapped_gift.h"
 #include "spa_message.h"
 #include <iostream>
 #include <memory>
@@ -20,11 +19,18 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   
   static LogicalAddress courierDestination = LogicalAddress(0,0);
+  static ssize_t courierFollowerSize = 0;
 
   if (sock->isBuf)
   {
     std::cout << "LSM got buf: " << sock->buf << std::endl;
     std::cout << "Will send to: " << courierDestination << std::endl;
+
+    if (lsm->routingTable->exists(courierDestination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(courierDestination);
+      serverSocket_send((SpaMessage*)sock->buf, courierFollowerSize, &newSock);
+    }
     return;
   }
 
@@ -72,6 +78,11 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     auto courier = (SpaCourier*)sock->buf;
     courierDestination.subnetId = courier->spaMessage.spaHeader.destination.subnetId;
     courierDestination.componentId = courier->spaMessage.spaHeader.destination.componentId;
+    courierFollowerSize = courier->followerSize;
+
+    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+    serverSocket_send(msg, sizeof(SpaCourier), &newSock);
+ 
   }
   else
   {

@@ -36,7 +36,7 @@ public:
     subscribers.reserve(8); // Default to 8 subscribers
 
     std::cout << "Component initializing!" << '\n';
- }
+  }
 
   virtual ~Component() {}
   //virtual void appShutdown() = 0;
@@ -74,6 +74,8 @@ public:
   void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
 
+  void receiveBuffer(cubiumClientSocket_t *);
+
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
       LogicalAddress producer,
@@ -82,7 +84,6 @@ public:
       uint16_t deliveryRateDivisor);
 
   virtual void sendData(LogicalAddress) = 0;
-
   
   void sendPayload(std::string payload, LogicalAddress destination)
   {
@@ -111,6 +112,7 @@ protected:
   LogicalAddress subnetManagerAddress;
   uint8_t publishIter;
   uint16_t dialogId;
+  SpaCourier * lastCourier;
 };
 
 template <typename T>

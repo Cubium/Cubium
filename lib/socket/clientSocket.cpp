@@ -101,6 +101,13 @@ ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func, SpaCourier * courier)
 {
   std::cout << "Client handling courier" << std::endl;
+
+  s->isBuf = false;
+
+  func(s);
+
+  auto followerSize = courier->followerSize;
+
   do
   {
     s->nBytesRecv = recvfrom(s->sock, s->buf, courier->followerSize, 0, (struct sockaddr*)&s->from, &s->length);
@@ -108,10 +115,14 @@ void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubi
     {
       clientSocket_error("recvfrom failed");
     }
-  } while (s->nBytesRecv != courier->followerSize);
 
-  std::cout << "Got buffer: " << s->buf << std::endl;
+  } while (followerSize != s->nBytesRecv);
 
+  s->isBuf = true;
+
+  func(s);
+  
+  s->isBuf = false;
 }
 
 void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func)
@@ -132,9 +143,10 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
     if (((SpaMessage*)s->buf)->spaHeader.opcode == op_SPA_COURIER)
     {
       clientSocket_handleCourier(s, func, (SpaCourier*)s->buf);
-      return;
     }
-
-    func(s);
+    else
+    {
+      func(s);
+    }
   }
 }

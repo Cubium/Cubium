@@ -8,7 +8,6 @@
 #include "../spa_message.h"
 #include "../messages/op_codes.h"
 #include "../messages/spa/spa_courier.h"
-#include "../messages/spa/spa_wrapped_gift.h"
 
 /* Throw a perror and exit */
 void serverSocket_error(const char* msg)
