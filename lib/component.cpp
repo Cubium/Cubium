@@ -3,7 +3,7 @@
 #include "messages/op_codes.h"
 #include "messages/spa/subscription_request.h"
 #include <algorithm>
-#include <iostream>
+#include <iostream> 
 #include <unistd.h>
 #include <thread>
 
@@ -14,11 +14,23 @@
 
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
-  SpaMessage* message = (SpaMessage*)sock->buf;
-  comp->receiveMessage(message);
-  return;
+  if (sock->isBuf)
+  {
+    std::cout << "It is a buf!" << std::endl;
+    comp->receiveBuffer(sock);
+  }
+  else
+  {
+    SpaMessage* message = (SpaMessage*)sock->buf;
+    comp->receiveMessage(message);
+  }
 }
 
+void Component::receiveBuffer(cubiumClientSocket_t* sock)
+{
+  SpaData<std::string> fauxMessage(lastCourier->spaMessage.spaHeader.destination, lastCourier->spaMessage.spaHeader.source, sock->buf);
+  handleSpaData((SpaMessage*)&fauxMessage);
+}
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
@@ -83,7 +95,13 @@ bool Component::addSubscriber(LogicalAddress la, uint16_t d)
   //   return false;
 
   {
-    std::lock_guard<std::mutex> lock(m_subscribers); subscribers.emplace_back(la, d); } return true; } 
+    std::lock_guard<std::mutex> lock(m_subscribers); 
+    subscribers.emplace_back(la, d); 
+  } 
+  
+  return true; 
+} 
+
 void Component::receiveMessage(SpaMessage* message)
 {
   std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
@@ -108,7 +126,11 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_DATA:
-    handleSpaData((SpaData*)message);
+    handleSpaData(message);
+    return;
+
+  case op_SPA_COURIER:
+    lastCourier = (SpaCourier*)message;
     return;
 
   default:
@@ -139,7 +161,7 @@ void Component::publish()
       {
         if (subscribers[i].deliveryRateDivisor % publishIter == 0)
         {
-          sendSpaData(subscribers[i].subscriberAddress);
+          sendData(subscribers[i].subscriberAddress);
         }
       }
     }

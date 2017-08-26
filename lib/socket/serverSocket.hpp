@@ -17,6 +17,7 @@ typedef struct
   struct sockaddr_in server;
   struct sockaddr_in from;
   char buf[1024];
+  bool isBuf = false;
 } cubiumServerSocket_t;
 
 /* Send a message through the socket */

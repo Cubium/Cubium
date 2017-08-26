@@ -16,6 +16,7 @@ typedef struct
   struct sockaddr_in from;
   struct hostent* hp;
   char buf[256];
+  bool isBuf = false;
 } cubiumClientSocket_t;
 
 /* Open a socket on the given port. Returns socket info. */

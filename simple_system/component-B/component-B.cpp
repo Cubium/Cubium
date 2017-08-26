@@ -14,12 +14,13 @@ public:
   COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
   { }
 
-  void handleSpaData(SpaData* message)
+  void handleSpaData(SpaMessage* message)
   {
-    std::cout << "Payload: " << message->payload << std::endl;
+    auto castMessage = (SpaData<std::string>*)message;
+    std::cout << "Payload: " << castMessage->payload << std::endl;
   }
 
-  float packageData()
+  void sendData(LogicalAddress)
   {
   }
 

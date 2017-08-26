@@ -9,6 +9,7 @@
 #include <vector>
 #include "messages/local/local_hello.h"
 #include "messages/spa/spa_data.h"
+#include "messages/spa/spa_courier.h"
 
 struct Subscriber
 {
@@ -35,7 +36,7 @@ public:
     subscribers.reserve(8); // Default to 8 subscribers
 
     std::cout << "Component initializing!" << '\n';
- }
+  }
 
   virtual ~Component() {}
   //virtual void appShutdown() = 0;
@@ -43,7 +44,7 @@ public:
   void publish();
 
 
-  virtual void handleSpaData(SpaData*) = 0;
+  virtual void handleSpaData(SpaMessage*) = 0;
   virtual void preInit()
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
@@ -73,6 +74,8 @@ public:
   void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
 
+  void receiveBuffer(cubiumClientSocket_t *);
+
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
       LogicalAddress producer,
@@ -80,13 +83,22 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
-  virtual float packageData() = 0;
-
-  virtual void sendSpaData(LogicalAddress destination)
+  virtual void sendData(LogicalAddress) = 0;
+  
+  void sendPayload(std::string payload, LogicalAddress destination)
   {
-    auto payload = packageData();
-    SpaData dataMessage(destination, address, payload);
-    communicator->send((SpaMessage*)&dataMessage);
+    auto plainBuffer = payload.data();
+    auto courier = SpaCourier(destination, address, payload.length());
+
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());
+  }
+
+  template <typename T>
+  void sendPayload(T payload, LogicalAddress destination)
+  {
+    SpaData<T> dataMessage(destination, address, payload);
+    communicator->send((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 
   bool addSubscriber(LogicalAddress, uint16_t);
@@ -100,6 +112,7 @@ protected:
   LogicalAddress subnetManagerAddress;
   uint8_t publishIter;
   uint16_t dialogId;
+  SpaCourier * lastCourier;
 };
 
 template <typename T>

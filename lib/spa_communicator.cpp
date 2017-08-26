@@ -49,6 +49,11 @@ std::shared_ptr<LocalCommunicator> SpaCommunicator::getLocalCommunicator()
 
 bool SpaCommunicator::send(SpaMessage* message)
 {
+  return send(0, message);
+}
+
+bool SpaCommunicator::send(ssize_t len, SpaMessage* message)
+{
   switch(message->spaHeader.opcode)
   {
     case op_SPA_SUBSCRIPTION_REQUEST :
@@ -58,7 +63,7 @@ bool SpaCommunicator::send(SpaMessage* message)
       send(message, sizeof(SubscriptionReply));
       break;
     case op_SPA_DATA :
-      send(message, sizeof(SpaData));
+      send(message, len);
       break;
     case op_LOCAL_HELLO :
       send(message, sizeof(LocalHello));

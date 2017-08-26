@@ -13,19 +13,20 @@ public:
   COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR) 
   { }
 
-  void handleSpaData(SpaData* message)
+  void handleSpaData(SpaMessage* message)
   {
-    std::cout << "Payload: " << message->payload << std::endl;
+
+    std::cout << "Payload: Got it \n";//" << message->payload << std::endl;
   }
 
-  float packageData()
+  void sendData(LogicalAddress destination)
   {
     sleep(1);
-    auto payload = rand() % 100;
+    std::string payload = "You can send over anything you want! Anything at all!";
 
     std::cout << "Sending SpaData: " << payload << std::endl;
-    
-    return payload;
+
+    sendPayload(payload, destination);
   }
 
   void init()

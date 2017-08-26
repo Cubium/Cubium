@@ -15,6 +15,23 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   if (lsm->routingTable->isEmpty())
   {
     std::cout << "Nothing in the routing table." << std::endl;
+    return;
+  }
+  
+  static LogicalAddress courierDestination = LogicalAddress(0,0);
+  static ssize_t courierFollowerSize = 0;
+
+  if (sock->isBuf)
+  {
+    std::cout << "LSM got buf: " << sock->buf << std::endl;
+    std::cout << "Will send to: " << courierDestination << std::endl;
+
+    if (lsm->routingTable->exists(courierDestination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(courierDestination);
+      serverSocket_send((SpaMessage*)sock->buf, courierFollowerSize, &newSock);
+    }
+    return;
   }
 
   SpaMessage* msg = (SpaMessage*)sock->buf;
@@ -25,12 +42,9 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   if (op == op_LOCAL_HELLO)
   {
     lsm->components.add(msg->spaHeader.source);
-    lsm->routingTable->insert(msg->spaHeader.source, *sock);
-    lsm->communicator->getLocalCommunicator()->printTable();
+    lsm->routingTable->insert(msg->spaHeader.source, *sock); lsm->communicator->getLocalCommunicator()->printTable();
 
-    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
-
-    lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
+    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0); lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
   }
   else if (op == op_SPA_SUBSCRIPTION_REQUEST)
   {
@@ -50,13 +64,28 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   else if (op == op_SPA_DATA)
   {
-    auto newmsg = (SpaData*)sock->buf;
-    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
+//    auto newmsg = (SpaData*)sock->buf;
+//    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
 
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SpaData), &newSock);
+      serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
     }
+  }
+  else if (op == op_SPA_COURIER)
+  {
+    auto courier = (SpaCourier*)sock->buf;
+    courierDestination.subnetId = courier->spaMessage.spaHeader.destination.subnetId;
+    courierDestination.componentId = courier->spaMessage.spaHeader.destination.componentId;
+    courierFollowerSize = courier->followerSize;
+
+    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+    serverSocket_send(msg, sizeof(SpaCourier), &newSock);
+ 
+  }
+  else
+  {
+    std::cout << "Unrecognized SPA message" << std::endl;
   }
 }
