@@ -8,6 +8,7 @@
 #include "../spa_message.h"
 #include "../messages/op_codes.h"
 #include "../messages/spa/spa_courier.h"
+#include "../messages/spa/spa_wrapped_gift.h"
 
 /* Throw a perror and exit */
 void serverSocket_error(const char* msg)
@@ -20,8 +21,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
 {
   cubiumServerSocket_t s;
   s.sock = socket(AF_INET, SOCK_DGRAM, 0);
-  if (s.sock < 0)
-  {
+  if (s.sock < 0) {
     serverSocket_error("Failed to open socket");
   }
   s.length = sizeof(s.server);
@@ -44,6 +44,10 @@ void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubi
 {
   std::cout << "Server handling courier" << std::endl;
 
+  s->isBuf = false;
+
+  func(s);
+
   auto followerSize = courier->followerSize;
 
   do
@@ -56,8 +60,9 @@ void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubi
 
   } while (followerSize != s->nBytesRecv);
 
-  std::cout << "Got buffer: " << s->buf << std::endl;
+  s->isBuf = true;
 
+  func(s);
 }
 
 /* Listen through the given socket */
@@ -77,10 +82,12 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
     if (((SpaMessage*)s->buf)->spaHeader.opcode == op_SPA_COURIER)
     {
       serverSocket_handleCourier(s, func, (SpaCourier*)s->buf);
-      return;
     }
-
-    func(s);
+    else
+    {
+      s->isBuf = false;
+      func(s);
+    }
   }
 }
 

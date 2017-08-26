@@ -22,7 +22,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "Hey there I'm a vivacious programmer from that water park from the Way Way back";
+    std::string payload = "Hey there I'm a vivacious programmer from that water park from The Way Way Back";
 
     std::cout << "Sending SpaData: " << payload << std::endl;
     
