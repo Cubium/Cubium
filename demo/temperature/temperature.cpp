@@ -1,5 +1,6 @@
 #include "../demo_addresses.hpp"
 #include "messages/op_codes.h"
+#include "readTempPot.h"
 #include <chrono>
 #include <component.hpp>
 #include <iostream>
@@ -12,7 +13,6 @@
 #include <socket/clientSocket.hpp>
 #include <thread>
 #include <unistd.h>
-#include "readTempPot.h"
 
 //#define TEMPERATURE_VERBOSE
 #define LIVE_GRAPHS_TEMPERATURE
@@ -20,7 +20,6 @@
 class TempSensor;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
-
 
 class TempSensor : public Component
 {

@@ -3,14 +3,13 @@
 #include "messages/op_codes.h"
 #include "messages/spa/subscription_request.h"
 #include <algorithm>
-#include <iostream> 
-#include <unistd.h>
+#include <iostream>
 #include <thread>
+#include <unistd.h>
 
 #include "messages/spa/spa_data.h"
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
-
 
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
@@ -36,7 +35,7 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
 {
   SubscriptionReply reply(message->spaHeader.source, address);
   communicator->send((SpaMessage*)&reply);
-  
+
   if (addSubscriber(message->spaHeader.source, 0))
   {
     std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
@@ -46,8 +45,8 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
     std::cout << "Failed to add subscriber\n";
   }
 
-  publish(); 
-} 
+  publish();
+}
 
 void Component::handleSubscriptionReply(SpaMessage* message)
 {
@@ -62,22 +61,22 @@ void Component::subscribe(
 {
   SubscriptionRequest request(
       0,                    // Version
-      0,                    // Message priority 
+      0,                    // Message priority
       producer,             // Address of the producer component
       address,              // Address of the consumer component
-      subnetManagerAddress, // Address of the subscriptions manager component 
+      subnetManagerAddress, // Address of the subscriptions manager component
       0,                    // Flags
-      leasePeriod,          // Duration of the subscription 
+      leasePeriod,          // Duration of the subscription
       dialogId,             // Dialog identifier sent by requester
       deliveryRateDivisor,  // Subscribe to every nth message
-      0,                    // xTEDS interface ID 
-      0,                    // xTEDS message Id 
-      priority,             // Subscription priority 
+      0,                    // xTEDS interface ID
+      0,                    // xTEDS message Id
+      priority,             // Subscription priority
       0                     // Message type (0 = subscription, 1 = unsubscribtion)
       );
 
-  communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request), 
-    [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+  communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request),
+                                                        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
 
   //++dialogId;
 }
@@ -95,12 +94,12 @@ bool Component::addSubscriber(LogicalAddress la, uint16_t d)
   //   return false;
 
   {
-    std::lock_guard<std::mutex> lock(m_subscribers); 
-    subscribers.emplace_back(la, d); 
-  } 
-  
-  return true; 
-} 
+    std::lock_guard<std::mutex> lock(m_subscribers);
+    subscribers.emplace_back(la, d);
+  }
+
+  return true;
+}
 
 void Component::receiveMessage(SpaMessage* message)
 {
@@ -116,7 +115,7 @@ void Component::receiveMessage(SpaMessage* message)
   {
   case op_LOCAL_ACK:
     return;
-    
+
   case op_SPA_SUBSCRIPTION_REQUEST:
     registerSubscriptionRequest(message);
     return;
@@ -150,9 +149,9 @@ void Component::publish()
   }
   */
 
-   /* send data */
+  /* send data */
 
-  auto newThread = std::thread([&](){
+  auto newThread = std::thread([&]() {
     for (;;)
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(40));
@@ -167,11 +166,11 @@ void Component::publish()
     }
   });
 
-    /* listen for more requests */
-    communicator->getLocalCommunicator()->clientListen(
-        [=](cubiumClientSocket_t* s) { 
-          component_messageCallback(shared_from_this(), s);
-          });
+  /* listen for more requests */
+  communicator->getLocalCommunicator()->clientListen(
+      [=](cubiumClientSocket_t* s) {
+        component_messageCallback(shared_from_this(), s);
+      });
 
   newThread.join();
 }

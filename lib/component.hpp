@@ -1,15 +1,15 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
+#include "messages/local/local_hello.h"
+#include "messages/spa/spa_courier.h"
+#include "messages/spa/spa_data.h"
 #include "spa_communicator.hpp"
 #include "spa_message.h"
 #include <iostream>
 #include <memory>
 #include <mutex>
 #include <vector>
-#include "messages/local/local_hello.h"
-#include "messages/spa/spa_data.h"
-#include "messages/spa/spa_courier.h"
 
 struct Subscriber
 {
@@ -25,7 +25,7 @@ void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSock
 class Component : public std::enable_shared_from_this<Component>
 {
 public:
-  Component(std::shared_ptr<SpaCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0,0))
+  Component(std::shared_ptr<SpaCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0, 0))
     : communicator(communicator),
       address(address),
       subnetManagerAddress(subnetManagerAddress),
@@ -43,7 +43,6 @@ public:
 
   void publish();
 
-
   virtual void handleSpaData(SpaMessage*) = 0;
   virtual void preInit()
   {
@@ -57,7 +56,7 @@ public:
     communicator->getLocalCommunicator()->clientListen(
         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
- 
+
   virtual void init() = 0;
 
   void sendMsg(SpaMessage* message, ssize_t len)
@@ -74,7 +73,7 @@ public:
   void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
 
-  void receiveBuffer(cubiumClientSocket_t *);
+  void receiveBuffer(cubiumClientSocket_t*);
 
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
@@ -84,7 +83,7 @@ public:
       uint16_t deliveryRateDivisor);
 
   virtual void sendData(LogicalAddress) = 0;
-  
+
   void sendPayload(std::string payload, LogicalAddress destination)
   {
     auto plainBuffer = payload.data();
@@ -112,7 +111,7 @@ protected:
   LogicalAddress subnetManagerAddress;
   uint8_t publishIter;
   uint16_t dialogId;
-  SpaCourier * lastCourier;
+  SpaCourier* lastCourier;
 };
 
 template <typename T>

@@ -17,8 +17,8 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     std::cout << "Nothing in the routing table." << std::endl;
     return;
   }
-  
-  static LogicalAddress courierDestination = LogicalAddress(0,0);
+
+  static LogicalAddress courierDestination = LogicalAddress(0, 0);
   static ssize_t courierFollowerSize = 0;
 
   if (sock->isBuf)
@@ -42,9 +42,11 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   if (op == op_LOCAL_HELLO)
   {
     lsm->components.add(msg->spaHeader.source);
-    lsm->routingTable->insert(msg->spaHeader.source, *sock); lsm->communicator->getLocalCommunicator()->printTable();
+    lsm->routingTable->insert(msg->spaHeader.source, *sock);
+    lsm->communicator->getLocalCommunicator()->printTable();
 
-    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0); lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
+    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
+    lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
   }
   else if (op == op_SPA_SUBSCRIPTION_REQUEST)
   {
@@ -64,8 +66,8 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   }
   else if (op == op_SPA_DATA)
   {
-//    auto newmsg = (SpaData*)sock->buf;
-//    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
+    //    auto newmsg = (SpaData*)sock->buf;
+    //    std::cout << "LSMmessageCallback: " << newmsg->payload << std::endl;
 
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
@@ -82,7 +84,6 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
     auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
     serverSocket_send(msg, sizeof(SpaCourier), &newSock);
- 
   }
   else
   {

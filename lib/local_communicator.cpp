@@ -1,6 +1,6 @@
 #include "local_communicator.hpp"
-#include "messages/spa/spa_data.h"
 #include "messages/op_codes.h"
+#include "messages/spa/spa_data.h"
 
 bool LocalCommunicator::sendMsg(SpaMessage* message, ssize_t len)
 {
@@ -8,7 +8,7 @@ bool LocalCommunicator::sendMsg(SpaMessage* message, ssize_t len)
   {
     return clientSend(message, len);
   }
-  else 
+  else
   {
     return serverSend(message, len);
   }

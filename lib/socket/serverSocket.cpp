@@ -1,13 +1,13 @@
 #include "serverSocket.hpp"
+#include "../messages/op_codes.h"
+#include "../messages/spa/spa_courier.h"
+#include "../spa_message.h"
 #include <functional>   // for std::function
 #include <netinet/in.h> // for INADDR_ANY
 #include <stdio.h>      // for perror
 #include <stdlib.h>     // for exit
 #include <strings.h>    // for bzero
 #include <sys/socket.h> // for AF_INET
-#include "../spa_message.h"
-#include "../messages/op_codes.h"
-#include "../messages/spa/spa_courier.h"
 
 /* Throw a perror and exit */
 void serverSocket_error(const char* msg)
@@ -20,7 +20,8 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
 {
   cubiumServerSocket_t s;
   s.sock = socket(AF_INET, SOCK_DGRAM, 0);
-  if (s.sock < 0) {
+  if (s.sock < 0)
+  {
     serverSocket_error("Failed to open socket");
   }
   s.length = sizeof(s.server);
@@ -39,7 +40,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
   return s;
 }
 
-void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier * courier)
+void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier* courier)
 {
   std::cout << "Server handling courier" << std::endl;
 
@@ -69,7 +70,7 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
 {
 
   /* Continually listen for messages and call the handler when one is received */
-  for(;;)
+  for (;;)
   {
     s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->fromlen);
     if (s->nBytesRecv < 0)
