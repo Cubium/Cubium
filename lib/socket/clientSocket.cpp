@@ -1,7 +1,7 @@
 #include "clientSocket.hpp"
-#include "../spa_message.h"
 #include "../messages/op_codes.h"
 #include "../messages/spa/spa_courier.h"
+#include "../spa_message.h"
 #include <functional> // for std::function
 #include <iostream>
 #include <netdb.h>      // for h_addr
@@ -46,12 +46,11 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
 }
 
 /* Connect to a UDP server */
-void clientSocket_requestDialogue(cubiumClientSocket_t* s,                        /* Socket that server is listening through */
-                                void* request,                                    /* Hello sent to server */
-                                size_t len,                                     /* Size of hello's type */
-                                std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
-                                const uint8_t targetop 
-                                )
+void clientSocket_requestDialogue(cubiumClientSocket_t* s,                         /* Socket that server is listening through */
+                                  void* request,                                   /* Hello sent to server */
+                                  size_t len,                                      /* Size of hello's type */
+                                  std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
+                                  const uint8_t targetop)
 {
   /* Set timeout such that socket will only wait 5 ms for messages */
 
@@ -98,7 +97,7 @@ ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
   return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, sizeof(struct sockaddr_in));
 }
 
-void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func, SpaCourier * courier)
+void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func, SpaCourier* courier)
 {
   std::cout << "Client handling courier" << std::endl;
 
@@ -121,14 +120,14 @@ void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubi
   s->isBuf = true;
 
   func(s);
-  
+
   s->isBuf = false;
 }
 
 void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func)
 {
   /* Continually listen for messages and call the handler when one is received */
-  for(;;)
+  for (;;)
   {
 #ifdef CLIENTSOCKET_VERBOSE
     std::cout << "Listening!" << std::endl;

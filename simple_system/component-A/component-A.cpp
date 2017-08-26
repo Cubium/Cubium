@@ -1,7 +1,7 @@
+#include "../demo_addresses.hpp"
 #include <component.hpp>
 #include <iostream>
 #include <unistd.h>
-#include "../demo_addresses.hpp"
 
 #define COMP_NAME CompA
 #define COMP_ADDR la_CA
@@ -10,13 +10,14 @@
 class COMP_NAME : public Component
 {
 public:
-  COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR) 
-  { }
+  COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
+  {
+  }
 
   void handleSpaData(SpaMessage* message)
   {
 
-    std::cout << "Payload: Got it \n";//" << message->payload << std::endl;
+    std::cout << "Payload: Got it \n"; //" << message->payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
@@ -32,7 +33,6 @@ public:
   void init()
   {
   }
-
 };
 
 int main()

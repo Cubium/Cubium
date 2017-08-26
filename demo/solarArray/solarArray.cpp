@@ -17,7 +17,6 @@ class SolarArray;
 
 void messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
-
 class SolarArray : public Component
 {
 public:

@@ -1,13 +1,13 @@
 #include "spa_communicator.hpp"
-#include <functional>
-#include <iostream>
-#include <memory>
+#include "messages/local/local_ack.h"
+#include "messages/local/local_hello.h"
 #include "messages/op_codes.h"
 #include "messages/spa/spa_data.h"
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
-#include "messages/local/local_ack.h"
-#include "messages/local/local_hello.h"
+#include <functional>
+#include <iostream>
+#include <memory>
 
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress) : currentAddress(currentAddress) {}
 SpaCommunicator::SpaCommunicator(LogicalAddress currentAddress, std::vector<std::shared_ptr<PhysicalCommunicator>> comms)
@@ -54,23 +54,23 @@ bool SpaCommunicator::send(SpaMessage* message)
 
 bool SpaCommunicator::send(ssize_t len, SpaMessage* message)
 {
-  switch(message->spaHeader.opcode)
+  switch (message->spaHeader.opcode)
   {
-    case op_SPA_SUBSCRIPTION_REQUEST :
-      send(message, sizeof(SubscriptionRequest));
-      break;
-    case op_SPA_SUBSCRIPTION_REPLY :
-      send(message, sizeof(SubscriptionReply));
-      break;
-    case op_SPA_DATA :
-      send(message, len);
-      break;
-    case op_LOCAL_HELLO :
-      send(message, sizeof(LocalHello));
-      break;
-    case op_LOCAL_ACK :
-      send(message, sizeof(LocalAck));
-      break;
+  case op_SPA_SUBSCRIPTION_REQUEST:
+    send(message, sizeof(SubscriptionRequest));
+    break;
+  case op_SPA_SUBSCRIPTION_REPLY:
+    send(message, sizeof(SubscriptionReply));
+    break;
+  case op_SPA_DATA:
+    send(message, len);
+    break;
+  case op_LOCAL_HELLO:
+    send(message, sizeof(LocalHello));
+    break;
+  case op_LOCAL_ACK:
+    send(message, sizeof(LocalAck));
+    break;
   }
 }
 

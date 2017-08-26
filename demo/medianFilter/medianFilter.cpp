@@ -69,7 +69,7 @@ public:
           std::cout << "Temp in : " << payload << std::endl;
           std::cout << tempStream.print() << std::endl;
 #endif
-       }
+        }
         else if (message->spaHeader.source == la_light)
         {
           lightStream.in(payload);
@@ -79,7 +79,7 @@ public:
           std::cout << "Light in : " << payload << std::endl;
           std::cout << lightStream.print() << std::endl;
 #endif
-       }
+        }
       }
     }
   }
@@ -113,7 +113,7 @@ public:
 
     SpaData dataMessage(address, la_medianFilter, payload);
     communicator->send((SpaMessage*)&dataMessage);
-    if(payload == 1)
+    if (payload == 1)
     {
       sleep(7);
     }
