@@ -3,8 +3,10 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "python2.7/Python.h"
+
 #define COMP_NAME TempSensor
-#define COMP_ADDR 0x18 //PUT IN CORRECT PLACE
+#define COMP_ADDR la_TempSensor
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -59,7 +61,7 @@ if(pModule==NULL)
 
 // Create a dictionary for the contents of the module.
 
-PySys_SetArgv(argc,argv);
+//PySys_SetArgv(argc,argv);
 pDict = PyModule_GetDict(pModule);
 
 
