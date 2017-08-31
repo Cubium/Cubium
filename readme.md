@@ -50,7 +50,7 @@ Cubium relies on a handful of developer tools. The following is a list of things
 ### Set up Vagrant
 Cubium uses Vagrant to create a development environment to match the devices that Cubium will run on. It also eliminiates "well, it works on my system" bugs. 
 
-**For instructions on getting the dev environment up and running, see the [wiki page](https://github.com/Cubium/Cubium/wiki/Cubium-Development-Environment)**
+**For instructions on getting the dev environment up and running, see the [wiki page](https://github.com/Cubium/Cubium/wiki/Setting-up-the-Cubium-Dev-Environment)**
   
 ### Build Project
 #### TL;DR
