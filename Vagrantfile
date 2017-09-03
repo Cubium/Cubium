@@ -74,19 +74,20 @@ Vagrant.configure(2) do |config|
 
    config.vm.provision "shell", inline: <<-SHELL
      sudo -i
-	#=== Installing dev dependencies ==
+   # #=== Installing dev dependencies ==
      apt-get -y update
      apt-get -y upgrade
      apt-get -y install build-essential
-    # apt-get -y install xfce4
-    # apt-get -y install iceweasel
+     #apt-get -y install xfce4
+     #apt-get -y install iceweasel
      apt-get -y install cmake
      apt-get -y install doxygen
      apt-get -y install git
      apt-get -y install vim
-    # apt-get -y install lightdm
+     #apt-get -y install lightdm
      #apt-get -y install libboost-all-dev
      apt-get -y install valgrind
+     apt-get -y install python-dev
 
   # #=== Installing and configuring GTest/GMock ==
      apt-get -y install google-mock

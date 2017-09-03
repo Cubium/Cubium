@@ -1,4 +1,5 @@
-temperature
+component-B
 Makefile
 CMakeFiles/*
 cmake_install.cmake
+*.swn
