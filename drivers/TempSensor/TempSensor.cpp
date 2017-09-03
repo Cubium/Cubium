@@ -105,9 +105,6 @@ class COMP_NAME : public Component
 
 			Py_Finalize();
 
-			// Print the result.
-
-			printf("The result is %d.\n", result); 
 			sleep(1);
 
 			std::cout << "Sending SpaData: " << payload << std::endl;

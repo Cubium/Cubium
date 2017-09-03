@@ -1,0 +1,4 @@
+component-A
+Makefile
+CMakeFiles/*
+cmake_install.cmake
