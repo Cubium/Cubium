@@ -3,7 +3,6 @@
 #include <iostream>
 #include <unistd.h>
 
-
 #include "python2.7/Python.h"
 #include <stdlib.h>
 
@@ -27,29 +26,30 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-		//setenv("PYTHONPATH","./",1);
 
-		Py_Initialize();
-		PyRun_SimpleString("import sys; sys.path.append('.')");
-		PyRun_SimpleString("import rando");
+    //setenv("PYTHONPATH","./",1);
 
-		PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
+    Py_Initialize();
+    PyRun_SimpleString("import sys; sys.path.append('.')");
+    PyRun_SimpleString("import rando");
 
-		pName = PyString_FromString("rando");
-		pModule = PyImport_Import(pName);
-		if(pModule == NULL) 
-		{
-			std::cout << "Null Module!" << std::endl;
-			PyErr_Print();
-		}
-		pDict = PyModule_GetDict(pModule);
+    PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
 
-		pFunc = PyDict_GetItemString(pDict, "getRand");
-		//setenv("PYTHONPATH","/usr/lib/python2.7",1);
+    pName = PyString_FromString("rando");
+    pModule = PyImport_Import(pName);
+    if (pModule == NULL)
+    {
+      std::cout << "Null Module!" << std::endl;
+      PyErr_Print();
+    }
+    pDict = PyModule_GetDict(pModule);
 
-		pResult = PyObject_CallFunction(pFunc, NULL);
+    pFunc = PyDict_GetItemString(pDict, "getRand");
+    //setenv("PYTHONPATH","/usr/lib/python2.7",1);
 
-		int payload = PyInt_AsLong(pResult);
+    pResult = PyObject_CallFunction(pFunc, NULL);
+
+    int payload = PyInt_AsLong(pResult);
 
     std::cout << "Sending SpaData: " << payload << std::endl;
 
