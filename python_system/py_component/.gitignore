@@ -1,4 +1,5 @@
-component-A
+*.pyc
+py_component
 Makefile
 CMakeFiles/*
 cmake_install.cmake
