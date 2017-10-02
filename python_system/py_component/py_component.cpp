@@ -3,7 +3,6 @@
 #include <iostream> 
 #include <unistd.h>
 
-
 #include "python2.7/Python.h"
 #include <stdlib.h>
 
@@ -27,13 +26,12 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-		//setenv("PYTHONPATH","./",1);
 
 		Py_Initialize();
 		PyRun_SimpleString("import sys; sys.path.append('.')");
 		PyRun_SimpleString("import py_component");
 
-		PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
+    PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
 
 		pName = PyString_FromString("py_component");
 		pModule = PyImport_Import(pName);
@@ -47,9 +45,9 @@ public:
 		pFunc = PyDict_GetItemString(pDict, "sendData");
 		//setenv("PYTHONPATH","/usr/lib/python2.7",1);
 
-		pResult = PyObject_CallFunction(pFunc, NULL);
+    pResult = PyObject_CallFunction(pFunc, NULL);
 
-		int payload = PyInt_AsLong(pResult);
+    int payload = PyInt_AsLong(pResult);
 
     std::cout << "Sending SpaData: " << payload << std::endl;
 
