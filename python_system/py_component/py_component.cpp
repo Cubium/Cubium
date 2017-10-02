@@ -19,6 +19,9 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
+		
+		auto castMessage = (SpaData<int>*)message;
+
 
     std::cout << "Payload: Got it \n"; //" << message->payload << std::endl;
   }
@@ -72,7 +75,7 @@ public:
 		}
 		pDict = PyModule_GetDict(pModule);
 
-		pFunc = PyDict_GetItemString(pDict, "sendData");
+		pFunc = PyDict_GetItemString(pDict, "init");
 		//setenv("PYTHONPATH","/usr/lib/python2.7",1);
 
 		//not capturing result, should inits return anything?
