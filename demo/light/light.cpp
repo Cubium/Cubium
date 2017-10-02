@@ -91,7 +91,7 @@ int main()
 
   std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
       std::make_shared<LocalCommunicator>(&sock, routingTable, la_light)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_light, comms);
+			std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(la_light, comms);
 
   auto comp = std::make_shared<LightSensor>(spaCom);
   comp->appInit();
