@@ -50,7 +50,7 @@ public:
 
     pResult = PyObject_CallFunction(pFunc, NULL);
 
-    int payload = PyInt_AsLong(pResult);
+    int payload = PyInt_AsLong(pResult); //strangs babeeeee
 
     std::cout << "Sending SpaData: " << payload << std::endl;
 
