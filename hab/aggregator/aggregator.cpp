@@ -16,12 +16,14 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
+    auto castMessage = (SpaData<std::string>*)message;
+    std::cout << "Payload: " << castMessage->payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    auto payload = "Aggregator data!";
+    std::string payload = "Aggregator data!";
     sendPayload(payload, destination);
   }
 
