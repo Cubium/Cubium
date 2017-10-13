@@ -20,7 +20,8 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    sleep(1);
+    std::string payload = "Internal temperature!";
     sendPayload(payload, destination);
   }
 

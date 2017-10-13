@@ -99,7 +99,7 @@ ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
 
 void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func, SpaCourier* courier)
 {
-  std::cout << "Client handling courier" << std::endl;
+//  std::cout << "Client handling courier" << std::endl;
 
   s->isBuf = false;
 
@@ -130,7 +130,7 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
   for (;;)
   {
 #ifdef CLIENTSOCKET_VERBOSE
-    std::cout << "Listening!" << std::endl;
+//    std::cout << "Listening!" << std::endl;
 #endif
     s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->length);
     if (s->nBytesRecv < 0)

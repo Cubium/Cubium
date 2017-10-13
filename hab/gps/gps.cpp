@@ -24,6 +24,7 @@ public:
   {
     sleep(1);
     std::string payload = "GPS data!";
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

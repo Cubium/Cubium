@@ -23,8 +23,8 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
   if (sock->isBuf)
   {
-    std::cout << "LSM got buf: " << sock->buf << std::endl;
-    std::cout << "Will send to: " << courierDestination << std::endl;
+//    std::cout << "LSM got buf: " << sock->buf << std::endl;
+//    std::cout << "Will send to: " << courierDestination << std::endl;
 
     if (lsm->routingTable->exists(courierDestination))
     {
@@ -37,7 +37,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
   auto op = msg->spaHeader.opcode;
-  std::cout << "Received SpaMessage with opcode " << (uint16_t)op << " on port " << (int)sock->from.sin_port << "\n";
+//  std::cout << "Received SpaMessage with opcode " << (uint16_t)op << " on port " << (int)sock->from.sin_port << "\n";
 
   if (op == op_LOCAL_HELLO)
   {

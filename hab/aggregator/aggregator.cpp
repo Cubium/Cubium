@@ -16,6 +16,7 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
+    sleep(1);
     auto castMessage = (SpaData<std::string>*)message;
     std::cout << "Payload: " << castMessage->payload << std::endl;
   }
@@ -30,15 +31,15 @@ public:
   void init()
   {
     subscribe(la_TEMPIN);
-    subscribe(la_TEMPEX);
-    subscribe(la_RTC);
-    subscribe(la_UV);
-    subscribe(la_LIGHT);
-    subscribe(la_GYRO);
+//    subscribe(la_TEMPEX);
+//    subscribe(la_RTC);
+ //   subscribe(la_UV);
+//    subscribe(la_LIGHT);
+//    subscribe(la_GYRO);
     subscribe(la_GPS);
-    subscribe(la_BARO);
-    subscribe(la_FILTER);
-    subscribe(la_BOOM);
+//    subscribe(la_BARO);
+//    subscribe(la_FILTER);
+//    subscribe(la_BOOM);
   }
 };
 

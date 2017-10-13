@@ -42,7 +42,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
 
 void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier* courier)
 {
-  std::cout << "Server handling courier" << std::endl;
+//  std::cout << "Server handling courier" << std::endl;
 
   s->isBuf = false;
 

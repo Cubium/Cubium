@@ -20,7 +20,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    std::string payload = "UV data!";
     sendPayload(payload, destination);
   }
 

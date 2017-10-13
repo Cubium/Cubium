@@ -15,7 +15,7 @@ void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSock
 {
   if (sock->isBuf)
   {
-    std::cout << "It is a buf!" << std::endl;
+  //  std::cout << "It is a buf!" << std::endl;
     comp->receiveBuffer(sock);
   }
   else
@@ -103,7 +103,7 @@ bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 
 void Component::receiveMessage(SpaMessage* message)
 {
-  std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
+//  std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
 
   if (message == nullptr)
   {
