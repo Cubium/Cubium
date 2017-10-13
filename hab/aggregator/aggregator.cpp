@@ -20,12 +20,23 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    sleep(1);
+    auto payload = "Aggregator data!";
     sendPayload(payload, destination);
   }
 
   void init()
   {
+    subscribe(la_TEMPIN);
+    subscribe(la_TEMPEX);
+    subscribe(la_RTC);
+    subscribe(la_UV);
+    subscribe(la_LIGHT);
+    subscribe(la_GYRO);
+    subscribe(la_GPS);
+    subscribe(la_BARO);
+    subscribe(la_FILTER);
+    subscribe(la_BOOM);
   }
 };
 

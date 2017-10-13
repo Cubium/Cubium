@@ -20,7 +20,8 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    sleep(1);
+    auto payload = "RTC string!";
     sendPayload(payload, destination);
   }
 

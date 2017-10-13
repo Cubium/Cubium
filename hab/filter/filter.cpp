@@ -20,12 +20,14 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    sleep(1);
+    auto payload = "Filter data!";
     sendPayload(payload, destination);
   }
 
   void init()
   {
+    subscribe(la_BARO);
   }
 };
 

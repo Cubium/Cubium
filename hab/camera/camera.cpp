@@ -20,12 +20,15 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto payload = "Test string!";
+    sleep(1);
+    auto payload = "Camera photo!";
     sendPayload(payload, destination);
   }
 
   void init()
   {
+    subscribe(la_BOOM);
+    subscribe(la_RADIO);
   }
 };
 
