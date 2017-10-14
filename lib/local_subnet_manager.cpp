@@ -28,6 +28,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
     if (lsm->routingTable->exists(courierDestination))
     {
+      std::cout << "Courier Destination: " << courierDestination << std::endl;
       auto newSock = lsm->routingTable->getPhysicalAddress(courierDestination);
       serverSocket_send((SpaMessage*)sock->buf, courierFollowerSize, &newSock);
     }
@@ -52,6 +53,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   {
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
+      std::cout << "Destination: " << msg->spaHeader.destination << std::endl;
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
       serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
     }
@@ -60,6 +62,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   {
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
+      std::cout << "Destination: " << msg->spaHeader.destination << std::endl;
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
       serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
     }
@@ -71,6 +74,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
+      std::cout << "SAYWHATDestination: " << msg->spaHeader.destination << std::endl;
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
       serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
     }
@@ -82,8 +86,15 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     courierDestination.componentId = courier->spaMessage.spaHeader.destination.componentId;
     courierFollowerSize = courier->followerSize;
 
-    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-    serverSocket_send(msg, sizeof(SpaCourier), &newSock);
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    { // FIXME temporary hack
+      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+      serverSocket_send(msg, sizeof(SpaCourier), &newSock);
+    }
+    else
+    {
+      std::cout << "Got a weird courier destination: " << msg->spaHeader.destination << std::endl;
+    }
   }
   else
   {

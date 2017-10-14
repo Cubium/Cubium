@@ -1,8 +1,7 @@
 #!/bin/bash
 
-xterm -title "subnetmanager" -e "./hab/subnetmanager/subnet_driver"  &
-sleep 1
 xterm -title "aggregator" -e "./hab/aggregator/aggregator" &
+sleep 1
 #sleep 1
 #xterm -title "baro" -e "./hab/baro/baro" &
 #sleep 1
@@ -22,10 +21,11 @@ sleep 1
 #sleep 1
 #xterm -title "rtc" -e "./hab/rtc/rtc" &
 #sleep 1
-#xterm -title "tempex" -e "./hab/tempex/tempex" &
-#sleep 1
-xterm -title "tempin" -e "./hab/tempin/tempin" &
+xterm -title "tempex" -e "./hab/tempex/tempex" &
 sleep 1
+xterm -title "tempin" -e "./hab/tempin/tempin" 
+sleep 1
+#xterm -title "subnetmanager" -e "./hab/subnetmanager/subnet_driver"  &
 #xterm -title "uv" -e "./hab/uv/uv" 
 
 exit

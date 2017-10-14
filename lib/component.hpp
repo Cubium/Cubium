@@ -88,6 +88,7 @@ public:
   {
     auto plainBuffer = payload.data();
     auto courier = SpaCourier(destination, address, payload.length());
+    std::cout << "Destination: " << destination << std::endl;
 
     communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
     communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());

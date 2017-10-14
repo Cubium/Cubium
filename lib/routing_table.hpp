@@ -51,7 +51,7 @@ public:
   }
 */
 
-  virtual T getPhysicalAddress(LogicalAddress log)
+  T getPhysicalAddress(LogicalAddress log)
   {
  //   std::cout << "Searching for address: " << log << "...\n";
     if (exists(log))
@@ -60,6 +60,7 @@ public:
     }
     else
     {
+      std::cout << "Failed to find address: " << log << std::endl;
       perror("Entry in routing table does not exist!");
       exit(1);
     }

@@ -23,7 +23,8 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "GPS data!";
+   // std::string payload = "GPS data!";
+    float payload = 11111;
     std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }

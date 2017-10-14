@@ -17,21 +17,23 @@ public:
   void handleSpaData(SpaMessage* message)
   {
     sleep(1);
-    auto castMessage = (SpaData<std::string>*)message;
+    auto castMessage = (SpaData<float>*)message;
     std::cout << "Payload: " << castMessage->payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "Aggregator data!";
+    float payload = 0;
     sendPayload(payload, destination);
   }
 
   void init()
   {
     subscribe(la_TEMPIN);
-//    subscribe(la_TEMPEX);
+    sleep(0.5);
+    subscribe(la_TEMPEX);
+    sleep(0.5);
 //    subscribe(la_RTC);
  //   subscribe(la_UV);
 //    subscribe(la_LIGHT);

@@ -20,7 +20,10 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    std::string payload = "Temp external!";
+    sleep(1);
+//    std::string payload = "Temp external!";
+    float payload = 44444;
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 
