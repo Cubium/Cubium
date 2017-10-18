@@ -69,28 +69,177 @@ $(function() {
 <div class="title">SubscriptionReply Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="subscription__reply_8h_source.html">subscription_reply.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b41ba60bc85ee15f7bddbaec3260ad0"><td class="memItemLeft" align="right" valign="top"><a id="a8b41ba60bc85ee15f7bddbaec3260ad0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SubscriptionReply</b> (<a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source)</td></tr>
+<tr class="memitem:a8b41ba60bc85ee15f7bddbaec3260ad0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSubscriptionReply.html#a8b41ba60bc85ee15f7bddbaec3260ad0">SubscriptionReply</a> (<a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source)</td></tr>
 <tr class="separator:a8b41ba60bc85ee15f7bddbaec3260ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e656028ab7b6750157b6d0ebbf06659"><td class="memItemLeft" align="right" valign="top"><a id="a8e656028ab7b6750157b6d0ebbf06659"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SubscriptionReply</b> (uint8_t version, uint8_t priority, uint16_t length, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source, uint16_t flags, uint16_t dI, uint8_t rT)</td></tr>
+<tr class="memitem:a8e656028ab7b6750157b6d0ebbf06659"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSubscriptionReply.html#a8e656028ab7b6750157b6d0ebbf06659">SubscriptionReply</a> (uint8_t version, uint8_t priority, uint16_t length, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source, uint16_t flags, uint16_t dI, uint8_t rT)</td></tr>
 <tr class="separator:a8e656028ab7b6750157b6d0ebbf06659"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4e4c24f7a85c8c2ac00604e9edf0bbab"><td class="memItemLeft" align="right" valign="top"><a id="a4e4c24f7a85c8c2ac00604e9edf0bbab"></a>
-<a class="el" href="structSpaMessage.html">SpaMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>spaMessage</b></td></tr>
+<tr class="memitem:a4e4c24f7a85c8c2ac00604e9edf0bbab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSpaMessage.html">SpaMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSubscriptionReply.html#a4e4c24f7a85c8c2ac00604e9edf0bbab">spaMessage</a></td></tr>
 <tr class="separator:a4e4c24f7a85c8c2ac00604e9edf0bbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fc1a335af866ee6e1328106421fee66"><td class="memItemLeft" align="right" valign="top"><a id="a8fc1a335af866ee6e1328106421fee66"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>dialogId</b></td></tr>
+<tr class="memitem:a8fc1a335af866ee6e1328106421fee66"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSubscriptionReply.html#a8fc1a335af866ee6e1328106421fee66">dialogId</a></td></tr>
 <tr class="separator:a8fc1a335af866ee6e1328106421fee66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a289965f913a0dac7204482b86798ed5a"><td class="memItemLeft" align="right" valign="top"><a id="a289965f913a0dac7204482b86798ed5a"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>replyType</b></td></tr>
+<tr class="memitem:a289965f913a0dac7204482b86798ed5a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSubscriptionReply.html#a289965f913a0dac7204482b86798ed5a">replyType</a></td></tr>
 <tr class="separator:a289965f913a0dac7204482b86798ed5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8b41ba60bc85ee15f7bddbaec3260ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b41ba60bc85ee15f7bddbaec3260ad0">&#9670;&nbsp;</a></span>SubscriptionReply() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SubscriptionReply::SubscriptionReply </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e656028ab7b6750157b6d0ebbf06659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e656028ab7b6750157b6d0ebbf06659">&#9670;&nbsp;</a></span>SubscriptionReply() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SubscriptionReply::SubscriptionReply </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>dI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>rT</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8fc1a335af866ee6e1328106421fee66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc1a335af866ee6e1328106421fee66">&#9670;&nbsp;</a></span>dialogId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SubscriptionReply::dialogId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a289965f913a0dac7204482b86798ed5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a289965f913a0dac7204482b86798ed5a">&#9670;&nbsp;</a></span>replyType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SubscriptionReply::replyType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e4c24f7a85c8c2ac00604e9edf0bbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4c24f7a85c8c2ac00604e9edf0bbab">&#9670;&nbsp;</a></span>spaMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSpaMessage.html">SpaMessage</a> SubscriptionReply::spaMessage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>lib/messages/spa/<a class="el" href="subscription__reply_8h_source.html">subscription_reply.h</a></li>
 </ul>

@@ -61,12 +61,13 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>Adafruit_MCP9808</b></li><li class="navelem"><b>MCP9808</b></li><li class="navelem"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html">MCP9808</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceAdafruit__MCP9808.html">Adafruit_MCP9808</a></li><li class="navelem"><a class="el" href="namespaceAdafruit__MCP9808_1_1MCP9808.html">MCP9808</a></li><li class="navelem"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html">MCP9808</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Adafruit_MCP9808.MCP9808.MCP9808 Class Reference</div>  </div>
@@ -83,12 +84,19 @@ Inheritance diagram for Adafruit_MCP9808.MCP9808.MCP9808:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6c7c1f671a5a3224bb7e081ea5811d06"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#a6c7c1f671a5a3224bb7e081ea5811d06">__init__</a> (self, address=MCP9808_I2CADDR_DEFAULT, i2c=None, kwargs)</td></tr>
+<tr class="memitem:a6c7c1f671a5a3224bb7e081ea5811d06"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#a6c7c1f671a5a3224bb7e081ea5811d06">__init__</a> (self, address=<a class="el" href="namespaceAdafruit__MCP9808_1_1MCP9808.html#a6f8ad8887f9b71037409b4067c218e8e">MCP9808_I2CADDR_DEFAULT</a>, i2c=None, kwargs)</td></tr>
 <tr class="separator:a6c7c1f671a5a3224bb7e081ea5811d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab62a703ef4cf09887846d3eeaa401772"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#ab62a703ef4cf09887846d3eeaa401772">begin</a> (self)</td></tr>
 <tr class="separator:ab62a703ef4cf09887846d3eeaa401772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0920c36ee50223d2fda4f6e7caadcada"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#a0920c36ee50223d2fda4f6e7caadcada">readTempC</a> (self)</td></tr>
 <tr class="separator:a0920c36ee50223d2fda4f6e7caadcada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6c5418da8c3a1ea0d5ecb4330e6a7c6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#a6c5418da8c3a1ea0d5ecb4330e6a7c6c">_logger</a></td></tr>
+<tr class="separator:a6c5418da8c3a1ea0d5ecb4330e6a7c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173d9b2cc5e8df730b3d37348161329f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808.html#a173d9b2cc5e8df730b3d37348161329f">_device</a></td></tr>
+<tr class="separator:a173d9b2cc5e8df730b3d37348161329f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">Class to represent an Adafruit MCP9808 precision temperature measurement
@@ -110,7 +118,7 @@ board.
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>address</em> = <code>MCP9808_I2CADDR_DEFAULT</code>, </td>
+          <td class="paramname"><em>address</em> = <code><a class="el" href="namespaceAdafruit__MCP9808_1_1MCP9808.html#a6f8ad8887f9b71037409b4067c218e8e">MCP9808_I2CADDR_DEFAULT</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -176,8 +184,53 @@ intialized, False otherwise.
 <pre class="fragment">Read sensor and return its value in degrees celsius.</pre> 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a173d9b2cc5e8df730b3d37348161329f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173d9b2cc5e8df730b3d37348161329f">&#9670;&nbsp;</a></span>_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Adafruit_MCP9808.MCP9808.MCP9808._device</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c5418da8c3a1ea0d5ecb4330e6a7c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c5418da8c3a1ea0d5ecb4330e6a7c6c">&#9670;&nbsp;</a></span>_logger</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Adafruit_MCP9808.MCP9808.MCP9808._logger</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>drivers/TempSensor/Adafruit_Python_MCP9808/Adafruit_MCP9808/MCP9808.py</li>
+<li>drivers/TempSensor/Adafruit_Python_MCP9808/Adafruit_MCP9808/<a class="el" href="MCP9808_8py.html">MCP9808.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

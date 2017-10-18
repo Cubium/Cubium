@@ -74,12 +74,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3106c80ebd5c60d0e939c76f77ef0cd"><td class="memItemLeft" align="right" valign="top"><a id="ac3106c80ebd5c60d0e939c76f77ef0cd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SpaMessage</b> (<a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, uint8_t opcode)</td></tr>
+<tr class="memitem:ac3106c80ebd5c60d0e939c76f77ef0cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSpaMessage.html#ac3106c80ebd5c60d0e939c76f77ef0cd">SpaMessage</a> (<a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, uint8_t opcode)</td></tr>
 <tr class="separator:ac3106c80ebd5c60d0e939c76f77ef0cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade633a9b5780d7d361493d30aaa227ff"><td class="memItemLeft" align="right" valign="top"><a id="ade633a9b5780d7d361493d30aaa227ff"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SpaMessage</b> (uint8_t version=0, uint8_t priority=0, uint16_t length=0, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination=<a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0, 0), <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source=<a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0, 0), uint16_t flags=0, uint8_t opcode=0)</td></tr>
+<tr class="memitem:ade633a9b5780d7d361493d30aaa227ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSpaMessage.html#ade633a9b5780d7d361493d30aaa227ff">SpaMessage</a> (uint8_t version=0, uint8_t priority=0, uint16_t length=0, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination=<a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0, 0), <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source=<a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0, 0), uint16_t flags=0, uint8_t opcode=0)</td></tr>
 <tr class="separator:ade633a9b5780d7d361493d30aaa227ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e9d8266f10dc46d96b913671fd5ed1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSpaMessage.html#ae7e9d8266f10dc46d96b913671fd5ed1">~SpaMessage</a> ()</td></tr>
+<tr class="separator:ae7e9d8266f10dc46d96b913671fd5ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -89,7 +89,135 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to represent generic spa message. Should be extended by other Spa Message types </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac3106c80ebd5c60d0e939c76f77ef0cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3106c80ebd5c60d0e939c76f77ef0cd">&#9670;&nbsp;</a></span>SpaMessage() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SpaMessage::SpaMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>opcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade633a9b5780d7d361493d30aaa227ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade633a9b5780d7d361493d30aaa227ff">&#9670;&nbsp;</a></span>SpaMessage() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SpaMessage::SpaMessage </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>version</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>priority</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>length</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>destination</em> = <code><a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>source</em> = <code><a class="el" href="structLogicalAddress.html">LogicalAddress</a>(0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>opcode</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7e9d8266f10dc46d96b913671fd5ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e9d8266f10dc46d96b913671fd5ed1">&#9670;&nbsp;</a></span>~SpaMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual SpaMessage::~SpaMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
 <a id="af7925bcb1a497c244202963fc5a9c8d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af7925bcb1a497c244202963fc5a9c8d6">&#9670;&nbsp;</a></span>spaHeader</h2>
 

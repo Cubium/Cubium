@@ -1,0 +1,58 @@
+\hypertarget{serverSocket_8cpp}{}\section{lib/socket/server\+Socket.cpp File Reference}
+\label{serverSocket_8cpp}\index{lib/socket/server\+Socket.\+cpp@{lib/socket/server\+Socket.\+cpp}}
+{\ttfamily \#include \char`\"{}server\+Socket.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../messages/op\+\_\+codes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../messages/spa/spa\+\_\+courier.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../spa\+\_\+message.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{serverSocket_8cpp_af09c0f79b601381403abd033657a32e9}{server\+Socket\+\_\+error} (const char $\ast$msg)
+\item 
+\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} \hyperlink{serverSocket_8cpp_ac2270317bfddf717d50f3092735c5175}{server\+Socket\+\_\+open\+Socket} (uint16\+\_\+t port)
+\item 
+void \hyperlink{serverSocket_8cpp_aa2e2b9e473ff1b6426d2942634365bc5}{server\+Socket\+\_\+handle\+Courier} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$s, std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$ func, \hyperlink{structSpaCourier}{Spa\+Courier} $\ast$courier)
+\item 
+void \hyperlink{serverSocket_8cpp_a759aa71416137013a9577edd20004470}{server\+Socket\+\_\+listen} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$s, std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$ func)
+\item 
+ssize\+\_\+t \hyperlink{serverSocket_8cpp_a3f5a8b6b026df19bbff7255d69fd4fd0}{server\+Socket\+\_\+send} (const void $\ast$msg, size\+\_\+t len, \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$s)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{serverSocket_8cpp_af09c0f79b601381403abd033657a32e9}\label{serverSocket_8cpp_af09c0f79b601381403abd033657a32e9}} 
+\index{server\+Socket.\+cpp@{server\+Socket.\+cpp}!server\+Socket\+\_\+error@{server\+Socket\+\_\+error}}
+\index{server\+Socket\+\_\+error@{server\+Socket\+\_\+error}!server\+Socket.\+cpp@{server\+Socket.\+cpp}}
+\subsubsection{\texorpdfstring{server\+Socket\+\_\+error()}{serverSocket\_error()}}
+{\footnotesize\ttfamily void server\+Socket\+\_\+error (\begin{DoxyParamCaption}\item[{const char $\ast$}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{serverSocket_8cpp_aa2e2b9e473ff1b6426d2942634365bc5}\label{serverSocket_8cpp_aa2e2b9e473ff1b6426d2942634365bc5}} 
+\index{server\+Socket.\+cpp@{server\+Socket.\+cpp}!server\+Socket\+\_\+handle\+Courier@{server\+Socket\+\_\+handle\+Courier}}
+\index{server\+Socket\+\_\+handle\+Courier@{server\+Socket\+\_\+handle\+Courier}!server\+Socket.\+cpp@{server\+Socket.\+cpp}}
+\subsubsection{\texorpdfstring{server\+Socket\+\_\+handle\+Courier()}{serverSocket\_handleCourier()}}
+{\footnotesize\ttfamily void server\+Socket\+\_\+handle\+Courier (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{s,  }\item[{std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$}]{func,  }\item[{\hyperlink{structSpaCourier}{Spa\+Courier} $\ast$}]{courier }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{serverSocket_8cpp_a759aa71416137013a9577edd20004470}\label{serverSocket_8cpp_a759aa71416137013a9577edd20004470}} 
+\index{server\+Socket.\+cpp@{server\+Socket.\+cpp}!server\+Socket\+\_\+listen@{server\+Socket\+\_\+listen}}
+\index{server\+Socket\+\_\+listen@{server\+Socket\+\_\+listen}!server\+Socket.\+cpp@{server\+Socket.\+cpp}}
+\subsubsection{\texorpdfstring{server\+Socket\+\_\+listen()}{serverSocket\_listen()}}
+{\footnotesize\ttfamily void server\+Socket\+\_\+listen (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{s,  }\item[{std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{serverSocket_8cpp_ac2270317bfddf717d50f3092735c5175}\label{serverSocket_8cpp_ac2270317bfddf717d50f3092735c5175}} 
+\index{server\+Socket.\+cpp@{server\+Socket.\+cpp}!server\+Socket\+\_\+open\+Socket@{server\+Socket\+\_\+open\+Socket}}
+\index{server\+Socket\+\_\+open\+Socket@{server\+Socket\+\_\+open\+Socket}!server\+Socket.\+cpp@{server\+Socket.\+cpp}}
+\subsubsection{\texorpdfstring{server\+Socket\+\_\+open\+Socket()}{serverSocket\_openSocket()}}
+{\footnotesize\ttfamily \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} server\+Socket\+\_\+open\+Socket (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{serverSocket_8cpp_a3f5a8b6b026df19bbff7255d69fd4fd0}\label{serverSocket_8cpp_a3f5a8b6b026df19bbff7255d69fd4fd0}} 
+\index{server\+Socket.\+cpp@{server\+Socket.\+cpp}!server\+Socket\+\_\+send@{server\+Socket\+\_\+send}}
+\index{server\+Socket\+\_\+send@{server\+Socket\+\_\+send}!server\+Socket.\+cpp@{server\+Socket.\+cpp}}
+\subsubsection{\texorpdfstring{server\+Socket\+\_\+send()}{serverSocket\_send()}}
+{\footnotesize\ttfamily ssize\+\_\+t server\+Socket\+\_\+send (\begin{DoxyParamCaption}\item[{const void $\ast$}]{msg,  }\item[{size\+\_\+t}]{len,  }\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{s }\end{DoxyParamCaption})}
+

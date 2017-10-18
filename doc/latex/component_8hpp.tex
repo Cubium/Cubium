@@ -1,0 +1,41 @@
+\hypertarget{component_8hpp}{}\section{lib/component.hpp File Reference}
+\label{component_8hpp}\index{lib/component.\+hpp@{lib/component.\+hpp}}
+{\ttfamily \#include \char`\"{}messages/local/local\+\_\+hello.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}messages/spa/spa\+\_\+courier.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}messages/spa/spa\+\_\+data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spa\+\_\+communicator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spa\+\_\+message.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSubscriber}{Subscriber}
+\item 
+class \hyperlink{classComponent}{Component}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{component_8hpp_ae0a5c33335ed88fe60dcd6fa08ff03a2}{component\+\_\+message\+Callback} (std\+::shared\+\_\+ptr$<$ \hyperlink{classComponent}{Component} $>$ comp, \hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$sock)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{component_8hpp_af497df320386789e1b95a7dd0d52c153}{component\+\_\+start} (\hyperlink{structLogicalAddress}{Logical\+Address} address)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{component_8hpp_ae0a5c33335ed88fe60dcd6fa08ff03a2}\label{component_8hpp_ae0a5c33335ed88fe60dcd6fa08ff03a2}} 
+\index{component.\+hpp@{component.\+hpp}!component\+\_\+message\+Callback@{component\+\_\+message\+Callback}}
+\index{component\+\_\+message\+Callback@{component\+\_\+message\+Callback}!component.\+hpp@{component.\+hpp}}
+\subsubsection{\texorpdfstring{component\+\_\+message\+Callback()}{component\_messageCallback()}}
+{\footnotesize\ttfamily void component\+\_\+message\+Callback (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classComponent}{Component} $>$}]{comp,  }\item[{\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$}]{sock }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{component_8hpp_af497df320386789e1b95a7dd0d52c153}\label{component_8hpp_af497df320386789e1b95a7dd0d52c153}} 
+\index{component.\+hpp@{component.\+hpp}!component\+\_\+start@{component\+\_\+start}}
+\index{component\+\_\+start@{component\+\_\+start}!component.\+hpp@{component.\+hpp}}
+\subsubsection{\texorpdfstring{component\+\_\+start()}{component\_start()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void component\+\_\+start (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{address }\end{DoxyParamCaption})}
+

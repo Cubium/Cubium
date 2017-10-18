@@ -69,22 +69,117 @@ $(function() {
 <div class="title">LocalAck Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="local__ack_8h_source.html">local_ack.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5f39e6414e3fcf30259766ae0b93b108"><td class="memItemLeft" align="right" valign="top"><a id="a5f39e6414e3fcf30259766ae0b93b108"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LocalAck</b> (uint8_t version, uint8_t priority, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source, uint16_t flags, uint16_t sourcePort, uint8_t status)</td></tr>
+<tr class="memitem:a5f39e6414e3fcf30259766ae0b93b108"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLocalAck.html#a5f39e6414e3fcf30259766ae0b93b108">LocalAck</a> (uint8_t version, uint8_t priority, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> destination, <a class="el" href="structLogicalAddress.html">LogicalAddress</a> source, uint16_t flags, uint16_t sourcePort, uint8_t <a class="el" href="structLocalAck.html#afab082585d3d05a6abd22f4498a8edca">status</a>)</td></tr>
 <tr class="separator:a5f39e6414e3fcf30259766ae0b93b108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aec0984fd1a1277eb62f8cb843993afb0"><td class="memItemLeft" align="right" valign="top"><a id="aec0984fd1a1277eb62f8cb843993afb0"></a>
-<a class="el" href="structLocalSpaMessage.html">LocalSpaMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>localSpaMessage</b></td></tr>
+<tr class="memitem:aec0984fd1a1277eb62f8cb843993afb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLocalSpaMessage.html">LocalSpaMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLocalAck.html#aec0984fd1a1277eb62f8cb843993afb0">localSpaMessage</a></td></tr>
 <tr class="separator:aec0984fd1a1277eb62f8cb843993afb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afab082585d3d05a6abd22f4498a8edca"><td class="memItemLeft" align="right" valign="top"><a id="afab082585d3d05a6abd22f4498a8edca"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
+<tr class="memitem:afab082585d3d05a6abd22f4498a8edca"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLocalAck.html#afab082585d3d05a6abd22f4498a8edca">status</a></td></tr>
 <tr class="separator:afab082585d3d05a6abd22f4498a8edca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5f39e6414e3fcf30259766ae0b93b108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f39e6414e3fcf30259766ae0b93b108">&#9670;&nbsp;</a></span>LocalAck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LocalAck::LocalAck </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structLogicalAddress.html">LogicalAddress</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>sourcePort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aec0984fd1a1277eb62f8cb843993afb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0984fd1a1277eb62f8cb843993afb0">&#9670;&nbsp;</a></span>localSpaMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structLocalSpaMessage.html">LocalSpaMessage</a> LocalAck::localSpaMessage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afab082585d3d05a6abd22f4498a8edca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab082585d3d05a6abd22f4498a8edca">&#9670;&nbsp;</a></span>status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t LocalAck::status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>lib/messages/local/<a class="el" href="local__ack_8h_source.html">local_ack.h</a></li>
 </ul>

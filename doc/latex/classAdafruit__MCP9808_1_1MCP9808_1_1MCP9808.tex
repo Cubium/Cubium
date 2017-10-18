@@ -9,11 +9,18 @@ Inheritance diagram for Adafruit\+\_\+\+M\+C\+P9808.\+M\+C\+P9808.\+M\+C\+P9808\
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a6c7c1f671a5a3224bb7e081ea5811d06}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, address=M\+C\+P9808\+\_\+\+I2\+C\+A\+D\+D\+R\+\_\+\+D\+E\+F\+A\+U\+LT, i2c=None, kwargs)
+def \hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a6c7c1f671a5a3224bb7e081ea5811d06}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, address=\hyperlink{namespaceAdafruit__MCP9808_1_1MCP9808_a6f8ad8887f9b71037409b4067c218e8e}{M\+C\+P9808\+\_\+\+I2\+C\+A\+D\+D\+R\+\_\+\+D\+E\+F\+A\+U\+LT}, i2c=None, kwargs)
 \item 
 def \hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_ab62a703ef4cf09887846d3eeaa401772}{begin} (self)
 \item 
 def \hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a0920c36ee50223d2fda4f6e7caadcada}{read\+TempC} (self)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a6c5418da8c3a1ea0d5ecb4330e6a7c6c}{\+\_\+logger}
+\item 
+\hyperlink{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a173d9b2cc5e8df730b3d37348161329f}{\+\_\+device}
 \end{DoxyCompactItemize}
 
 
@@ -28,7 +35,7 @@ board.
 \index{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily def Adafruit\+\_\+\+M\+C\+P9808.\+M\+C\+P9808.\+M\+C\+P9808.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{address = {\ttfamily MCP9808\+\_\+I2CADDR\+\_\+DEFAULT},  }\item[{}]{i2c = {\ttfamily None},  }\item[{}]{kwargs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def Adafruit\+\_\+\+M\+C\+P9808.\+M\+C\+P9808.\+M\+C\+P9808.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{address = {\ttfamily \hyperlink{namespaceAdafruit__MCP9808_1_1MCP9808_a6f8ad8887f9b71037409b4067c218e8e}{M\+C\+P9808\+\_\+\+I2\+C\+A\+D\+D\+R\+\_\+\+D\+E\+F\+A\+U\+LT}},  }\item[{}]{i2c = {\ttfamily None},  }\item[{}]{kwargs }\end{DoxyParamCaption})}
 
 \begin{DoxyVerb}Initialize MCP9808 device on the specified I2C address and bus number.
 Address defaults to 0x18 and bus number defaults to the appropriate bus
@@ -55,6 +62,21 @@ intialized, False otherwise.
 \begin{DoxyVerb}Read sensor and return its value in degrees celsius.\end{DoxyVerb}
  
 
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a173d9b2cc5e8df730b3d37348161329f}\label{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a173d9b2cc5e8df730b3d37348161329f}} 
+\index{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}!\+\_\+device@{\+\_\+device}}
+\index{\+\_\+device@{\+\_\+device}!Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}}
+\subsubsection{\texorpdfstring{\+\_\+device}{\_device}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+M\+C\+P9808.\+M\+C\+P9808.\+M\+C\+P9808.\+\_\+device\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a6c5418da8c3a1ea0d5ecb4330e6a7c6c}\label{classAdafruit__MCP9808_1_1MCP9808_1_1MCP9808_a6c5418da8c3a1ea0d5ecb4330e6a7c6c}} 
+\index{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}!\+\_\+logger@{\+\_\+logger}}
+\index{\+\_\+logger@{\+\_\+logger}!Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808@{Adafruit\+\_\+\+M\+C\+P9808\+::\+M\+C\+P9808\+::\+M\+C\+P9808}}
+\subsubsection{\texorpdfstring{\+\_\+logger}{\_logger}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+M\+C\+P9808.\+M\+C\+P9808.\+M\+C\+P9808.\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-drivers/\+Temp\+Sensor/\+Adafruit\+\_\+\+Python\+\_\+\+M\+C\+P9808/\+Adafruit\+\_\+\+M\+C\+P9808/M\+C\+P9808.\+py\end{DoxyCompactItemize}
+drivers/\+Temp\+Sensor/\+Adafruit\+\_\+\+Python\+\_\+\+M\+C\+P9808/\+Adafruit\+\_\+\+M\+C\+P9808/\hyperlink{MCP9808_8py}{M\+C\+P9808.\+py}\end{DoxyCompactItemize}
