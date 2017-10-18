@@ -1,0 +1,37 @@
+\hypertarget{classRoutingTable}{}\section{Routing\+Table$<$ T $>$ Class Template Reference}
+\label{classRoutingTable}\index{Routing\+Table$<$ T $>$@{Routing\+Table$<$ T $>$}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRoutingTable_ac7478945fabd9d107e8ecdafdb094602}\label{classRoutingTable_ac7478945fabd9d107e8ecdafdb094602}} 
+{\bfseries Routing\+Table} (\hyperlink{structLogicalAddress}{Logical\+Address} log, T phys\+Addr)
+\item 
+\mbox{\Hypertarget{classRoutingTable_a6732eb52fc45bc6ae93047b87f4726fe}\label{classRoutingTable_a6732eb52fc45bc6ae93047b87f4726fe}} 
+bool {\bfseries insert} (\hyperlink{structLogicalAddress}{Logical\+Address} log, T phys\+Addr)
+\item 
+\mbox{\Hypertarget{classRoutingTable_a82506122881b23b6c508ee3c5eceea2d}\label{classRoutingTable_a82506122881b23b6c508ee3c5eceea2d}} 
+bool {\bfseries exists} (\hyperlink{structLogicalAddress}{Logical\+Address} log)
+\item 
+\mbox{\Hypertarget{classRoutingTable_acdeee42f79a685483bc6e8ba5014de42}\label{classRoutingTable_acdeee42f79a685483bc6e8ba5014de42}} 
+bool {\bfseries is\+Empty} ()
+\item 
+\mbox{\Hypertarget{classRoutingTable_a171f5d7e7f84b4415eae14f2161fc2e9}\label{classRoutingTable_a171f5d7e7f84b4415eae14f2161fc2e9}} 
+int {\bfseries size} ()
+\item 
+\mbox{\Hypertarget{classRoutingTable_ae55b8c9ac65251bdc462a81076f7a500}\label{classRoutingTable_ae55b8c9ac65251bdc462a81076f7a500}} 
+virtual T {\bfseries get\+Physical\+Address} (\hyperlink{structLogicalAddress}{Logical\+Address} log)
+\item 
+\mbox{\Hypertarget{classRoutingTable_ad3786a2950ae5efb9cfe87449cc895e1}\label{classRoutingTable_ad3786a2950ae5efb9cfe87449cc895e1}} 
+std\+::map$<$ \hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare} $>$ {\bfseries get\+Table} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRoutingTable_ad348863258a92ca89d4150ca6f20aabb}\label{classRoutingTable_ad348863258a92ca89d4150ca6f20aabb}} 
+std\+::map$<$ \hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare} $>$ {\bfseries routing\+Table}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/routing\+\_\+table.\+hpp\end{DoxyCompactItemize}

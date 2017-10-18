@@ -1,0 +1,43 @@
+\hypertarget{classPhysicalCommunicator}{}\section{Physical\+Communicator Class Reference}
+\label{classPhysicalCommunicator}\index{Physical\+Communicator@{Physical\+Communicator}}
+Inheritance diagram for Physical\+Communicator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classPhysicalCommunicator}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_ac0fb9cea7a3e3ffecedc57be9684ebbf}\label{classPhysicalCommunicator_ac0fb9cea7a3e3ffecedc57be9684ebbf}} 
+typedef void($\ast$ {\bfseries Message\+Callback}) (void $\ast$, uint32\+\_\+t)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a6895d0ce73240eb80d0b9a060da7c728}\label{classPhysicalCommunicator_a6895d0ce73240eb80d0b9a060da7c728}} 
+{\bfseries Physical\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}\label{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}} 
+virtual bool {\bfseries send\+Msg} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t len)
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}\label{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}} 
+virtual void {\bfseries listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a80f3bdf1beb61e5f6721e30fdc4d5d7f}\label{classPhysicalCommunicator_a80f3bdf1beb61e5f6721e30fdc4d5d7f}} 
+virtual \hyperlink{structLogicalAddress}{Logical\+Address} {\bfseries get\+Subnet\+Address} ()
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a5984183c86e19370215736688d905fe6}\label{classPhysicalCommunicator_a5984183c86e19370215736688d905fe6}} 
+virtual void {\bfseries client\+Connect} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPhysicalCommunicator_a2ed89508db3fe68218192a6f3bacab26}\label{classPhysicalCommunicator_a2ed89508db3fe68218192a6f3bacab26}} 
+\hyperlink{structLogicalAddress}{Logical\+Address} {\bfseries subnet\+Address}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/physical\+\_\+communicator.\+hpp\end{DoxyCompactItemize}

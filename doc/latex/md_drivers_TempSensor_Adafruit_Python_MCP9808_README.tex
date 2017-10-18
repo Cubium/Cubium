@@ -1,0 +1,28 @@
+Python library for accessing the M\+C\+P9808 precision temperature sensor on a Raspberry Pi or Beaglebone Black.
+
+Designed specifically to work with the Adafruit M\+C\+P9808 sensor -\/---$>$ \href{https://www.adafruit.com/product/1782}{\tt https\+://www.\+adafruit.\+com/product/1782}
+
+To install, first make sure some dependencies are available by running the following commands (on a Raspbian or Beaglebone Black Debian install)\+:
+
+
+\begin{DoxyCode}
+sudo apt-get update
+sudo apt-get install build-essential python-dev python-smbus
+\end{DoxyCode}
+
+
+Then download the library by clicking the download zip link to the right and unzip the archive somewhere on your Raspberry Pi or Beaglebone Black. Then execute the following command in the directory of the library\+:
+
+
+\begin{DoxyCode}
+sudo python setup.py install
+\end{DoxyCode}
+
+
+Make sure you have internet access on the device so it can download the required dependencies.
+
+See examples of usage in the examples folder.
+
+Adafruit invests time and resources providing this open source code, please support Adafruit and open-\/source hardware by purchasing products from Adafruit!
+
+Written by Tony Di\+Cola for Adafruit Industries. M\+IT license, all text above must be included in any redistribution 

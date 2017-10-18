@@ -1,0 +1,182 @@
+Cubium is a free and open-\/source flight software for Linux-\/based spacecraft systems. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components. Developed with undergraduate Cube\+Sat teams using systems such as Beaglebone Blacks and Raspberry Pis in mind, Cubium\textquotesingle{}s purpose is to lower the bar of entry for satellite development.
+
+Cubium is designed using the Space Plug-\/and-\/play Architecture (S\+PA), a specification for a kind of modular satellite software architecture. It has a proven mission-\/success track record on Air Force and Space Dynamics Laboratory payloads.
+
+For a fun introduction on the inner workings of Cubium, see \href{https://drive.google.com/file/d/0ByiGNyJUAlpISUo5WDFwSkh3YU0/view?usp=sharing}{\tt this illustrated writeup.}
+
+For a very detailed look into the machinations of S\+PA in general, see \href{http://digitalcommons.usu.edu/etd/1422/}{\tt Jacob Holt Christensen\textquotesingle{}s dissertation.}
+
+\subsection*{Project Status}
+
+
+\begin{DoxyItemize}
+\item {\bfseries Version Alpha 1.\+2.\+0}
+\begin{DoxyItemize}
+\item Support for sending strings between components
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 1.\+1.\+0}
+\begin{DoxyItemize}
+\item Finalized architecture for software demo shown at Small\+Sat conference
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 1.\+0.\+0}
+\begin{DoxyItemize}
+\item All necessary framework completed for support of basic component systems.
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+6}
+\begin{DoxyItemize}
+\item Successful transmission of S\+PA messages across processes via socket communication
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+5}
+\begin{DoxyItemize}
+\item Major backend refactoring of S\+PA Messages
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+4}
+\begin{DoxyItemize}
+\item Added a basic subscription service
+\begin{DoxyItemize}
+\item Direct component-\/to-\/component subscription
+\item Non-\/prioritized publishing
+\end{DoxyItemize}
+\item Improvements to message handling
+\item Additional tests for components
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+3}
+\begin{DoxyItemize}
+\item Basic implementations of\+:
+\begin{DoxyItemize}
+\item Local Spa\+Messages
+\item Components
+\item Local Subnet Manager
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+2}
+\begin{DoxyItemize}
+\item Debian dev environment complete
+\end{DoxyItemize}
+\item {\bfseries Version Alpha 0.\+0.\+1}
+\begin{DoxyItemize}
+\item Planning A\+PI\textquotesingle{}s and project planning
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Getting Started}
+
+\subsubsection*{Developer Tools}
+
+Cubium relies on a handful of developer tools. The following is a list of things we\textquotesingle{}ll be using\+:
+\begin{DoxyItemize}
+\item Vagrant -\/ Virtual development environment
+\item Git -\/ Version control system
+\item Google Test -\/ Unit testing framework
+\item Doxygen -\/ Documentation generator
+\item C\+Make -\/ Build system automation
+\end{DoxyItemize}
+
+\subsubsection*{Set up Vagrant}
+
+Cubium uses Vagrant to create a development environment to match the devices that Cubium will run on. It also eliminiates \char`\"{}well, it works on my system\char`\"{} bugs.
+
+{\bfseries For instructions on getting the dev environment up and running, see the \href{https://github.com/Cubium/Cubium/wiki/Setting-up-the-Cubium-Dev-Environment}{\tt wiki page}}
+
+\subsubsection*{Build Project}
+
+\paragraph*{TL;DR}
+
+
+\begin{DoxyItemize}
+\item Run C\+Make in project directory {\ttfamily cmake .}
+\item Run generated makefile {\ttfamily make \mbox{[}optional-\/target\mbox{]}}
+\end{DoxyItemize}
+
+Cubium uses C\+Make for a build system. Makefiles are generally platform-\/dependent, so C\+Make generates a different Makefile for each system in order to allow for cross-\/plaform functionality.
+
+\subsubsection*{Build Docs}
+
+\paragraph*{TL;DR}
+
+
+\begin{DoxyItemize}
+\item Run Doxygen with project doxyfile {\ttfamily doxygen ./\+Doxyfile}
+\item View your docs. They should now live in {\ttfamily docs/}
+\end{DoxyItemize}
+
+Cubium uses the documentation generator Doxygen to build documentation. Annotated source code is parsed by Doxygen to generate La\+TeX and H\+T\+ML files.
+
+Doxygen is configured with a file titled {\ttfamily Doxyfile}.
+
+
+\begin{DoxyItemize}
+\item Build Documentation
+\begin{DoxyItemize}
+\item Invoke commandline tool
+\begin{DoxyItemize}
+\item {\ttfamily doxygen Doxyfile}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+This will read all configuration options from the Doxyfile, find and parse the source code, and generate the documentation.
+
+If the documentation is successfully built, there should be a new directory title {\ttfamily docs/} that should contain both H\+T\+ML and La\+TeX documentation.
+
+
+\begin{DoxyItemize}
+\item Read Docs
+\begin{DoxyItemize}
+\item Open up {\ttfamily docs/html/index.\+html} in your web browser to browse docs
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Running Tests}
+
+Cubium tests use the Google Test testing framework for unit testing. Test test test.
+\begin{DoxyItemize}
+\item To run test suite\+:
+\begin{DoxyItemize}
+\item Generate a makefile with C\+Make {\ttfamily cmake .}
+\item Build tests with makefile {\ttfamily make run\+Tests}
+\item Run test executable {\ttfamily ./run\+Tests}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Testing}
+
+Cubium uses Google Test for unit testing and C\+Make for a build system. The short version of running tests is this\+:
+
+Classes should be kept small and have functioning unit tests. When adding a new header file for a class, a header file of the same name should be added to the {\ttfamily test/} directory.
+
+To add a new class to the project\+:
+\begin{DoxyItemize}
+\item Create header file {\ttfamily my\+\_\+class\+\_\+name.\+hpp} (File names should be snake case -\/ lowercase words seperated with underscores)
+\begin{DoxyItemize}
+\item Define class ```cpp \#ifndef M\+Y\+\_\+\+C\+L\+A\+S\+S\+\_\+\+N\+A\+M\+E\+\_\+\+H\+PP \#define M\+Y\+\_\+\+C\+L\+A\+S\+S\+\_\+\+N\+A\+M\+E\+\_\+\+H\+PP class My\+Class\+Name\{\}; \#endif ```
+\begin{DoxyItemize}
+\item Must have include guards
+\item Class name should be Upper\+Camel\+Case, where each first letter of a words is capitalized. Including the first word.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Add new testing file {\ttfamily test/my\+\_\+class\+\_\+name.\+hpp}
+\item Write tests for your class ```cpp \#include \char`\"{}../path/to/my\+\_\+class\+\_\+name.\+hpp\char`\"{}
+
+T\+E\+S\+T(\+My\+Class\+Name, my\+Method)\{ My\+Class\+Name my\+Class; E\+X\+P\+E\+C\+T\+\_\+\+EQ(my\+Class.\+my\+Method(),0); \} ```
+\begin{DoxyItemize}
+\item Be sure to include class header in test file
+\end{DoxyItemize}
+\item Include your test header in main test file
+\begin{DoxyItemize}
+\item Open {\ttfamily test/gtest\+\_\+main.\+cpp}
+\item Include your new test header file
+\end{DoxyItemize}
+\item Hooray! Now you can run your tests! \+:D
+\end{DoxyItemize}
+
+\subsubsection*{Documentation}
+
+Cubium uses Doxygen to build documentation from source code. This means that one can add comments with a special format in the code so that Doxygen may build pretty H\+T\+ML docs that can be referenced by all other developers and users.
+
+Here is an example of what this might look like to document a function. 
+\begin{DoxyCode}
+
+\textcolor{keywordtype}{bool} example(\textcolor{keywordtype}{int} myParam)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}
+\end{DoxyCode}
+ 

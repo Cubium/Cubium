@@ -1,0 +1,72 @@
+\hypertarget{classLocalCommunicator}{}\section{Local\+Communicator Class Reference}
+\label{classLocalCommunicator}\index{Local\+Communicator@{Local\+Communicator}}
+Inheritance diagram for Local\+Communicator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLocalCommunicator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a477260797392154cc43815852ced969c}\label{classLocalCommunicator_a477260797392154cc43815852ced969c}} 
+{\bfseries Local\+Communicator} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$sock, std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$ routing\+Table, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_ac5845882ec445ca5f3bedbaf666073c0}\label{classLocalCommunicator_ac5845882ec445ca5f3bedbaf666073c0}} 
+{\bfseries Local\+Communicator} (\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$sock, std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$ routing\+Table, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a22dbee26502e3ac2bdf46b9f094d881d}\label{classLocalCommunicator_a22dbee26502e3ac2bdf46b9f094d881d}} 
+{\bfseries Local\+Communicator} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$sock, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}\label{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}} 
+virtual bool {\bfseries send\+Msg} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$msg, ssize\+\_\+t len)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a0d6816af83fd55a79990f0b8caa4e164}\label{classLocalCommunicator_a0d6816af83fd55a79990f0b8caa4e164}} 
+virtual void {\bfseries handle\+Failure} (std\+::string)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a6175c2c35727bb081c5f518e1750dd86}\label{classLocalCommunicator_a6175c2c35727bb081c5f518e1750dd86}} 
+virtual bool {\bfseries server\+Send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_afca7f865eda5dca2fc4c3bf5ca697ab8}\label{classLocalCommunicator_afca7f865eda5dca2fc4c3bf5ca697ab8}} 
+virtual bool {\bfseries client\+Send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a4dc9ea76a7d6d1d363ec8b69c1d5d586}\label{classLocalCommunicator_a4dc9ea76a7d6d1d363ec8b69c1d5d586}} 
+void {\bfseries client\+Connect} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$, size\+\_\+t, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a8ed10b0a1f9be12597a2e095b7b8fb3e}\label{classLocalCommunicator_a8ed10b0a1f9be12597a2e095b7b8fb3e}} 
+void {\bfseries init\+Sub\+Dialogue} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, size\+\_\+t len, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$ callback)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a03deedab1d3f79fe328a21aa2d5c6bfb}\label{classLocalCommunicator_a03deedab1d3f79fe328a21aa2d5c6bfb}} 
+void {\bfseries client\+Listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}\label{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}} 
+virtual void {\bfseries listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a33c7148ee35ec38773b7b4c8f32c643c}\label{classLocalCommunicator_a33c7148ee35ec38773b7b4c8f32c643c}} 
+virtual void {\bfseries listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a3321b932c8c555587b8b3200bc4dfcdb}\label{classLocalCommunicator_a3321b932c8c555587b8b3200bc4dfcdb}} 
+void {\bfseries set\+Server\+Sock} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$s)
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a96569a4dc0b07439ab880385428a53f7}\label{classLocalCommunicator_a96569a4dc0b07439ab880385428a53f7}} 
+void {\bfseries print\+Table} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_a4c0d8806e53030c1af6124cd55a34335}\label{classLocalCommunicator_a4c0d8806e53030c1af6124cd55a34335}} 
+\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$ {\bfseries server\+Sock}
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_af52bd4819c3dc433bd27d3dbefbaac70}\label{classLocalCommunicator_af52bd4819c3dc433bd27d3dbefbaac70}} 
+\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$ {\bfseries client\+Sock}
+\item 
+\mbox{\Hypertarget{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}\label{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}} 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$ $>$ {\bfseries routing\+Table}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/local\+\_\+communicator.\+hpp\item 
+lib/local\+\_\+communicator.\+cpp\end{DoxyCompactItemize}

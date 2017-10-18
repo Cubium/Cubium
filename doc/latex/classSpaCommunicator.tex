@@ -1,0 +1,88 @@
+\hypertarget{classSpaCommunicator}{}\section{Spa\+Communicator Class Reference}
+\label{classSpaCommunicator}\index{Spa\+Communicator@{Spa\+Communicator}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}{Spa\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} current\+Address)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{classSpaCommunicator}{Spa\+Communicator} with only the address of the owning subnet manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSpaCommunicator_a09fa278da37e95831a04896ec24dd227}\label{classSpaCommunicator_a09fa278da37e95831a04896ec24dd227}} 
+{\bfseries Spa\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} current\+Address, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ comms)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_a310ae62534090d112e8c3b2d024db83f}\label{classSpaCommunicator_a310ae62534090d112e8c3b2d024db83f}} 
+void {\bfseries add\+Communicators} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ comms)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}\label{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}} 
+bool \hyperlink{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}{send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Sends a spa message over the network. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSpaCommunicator_a349e67dbbea6ee9abae289729a90f2ba}\label{classSpaCommunicator_a349e67dbbea6ee9abae289729a90f2ba}} 
+bool {\bfseries send} (ssize\+\_\+t len, \hyperlink{structSpaMessage}{Spa\+Message} $\ast$message)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_ab8ad476b9d99685eccca336c2eb4d87c}\label{classSpaCommunicator_ab8ad476b9d99685eccca336c2eb4d87c}} 
+bool {\bfseries send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t len)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_ae1634fbdc0d08ca8dd1dd5ba6fa18bbe}\label{classSpaCommunicator_ae1634fbdc0d08ca8dd1dd5ba6fa18bbe}} 
+virtual void {\bfseries listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_af7af26aa5e511a039c036fcbb03735c6}\label{classSpaCommunicator_af7af26aa5e511a039c036fcbb03735c6}} 
+virtual void {\bfseries listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_adcd23698bae79308a28709c60288680e}\label{classSpaCommunicator_adcd23698bae79308a28709c60288680e}} 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLocalCommunicator}{Local\+Communicator} $>$ {\bfseries get\+Local\+Communicator} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}\label{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}} 
+void \hyperlink{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}{handle\+Failure} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Method called when something unexpected occurs. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ \hyperlink{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}{select\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} address, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ const \&communicators)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}\label{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ $>$ {\bfseries communicators}
+\item 
+\mbox{\Hypertarget{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}\label{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}} 
+\hyperlink{structLogicalAddress}{Logical\+Address} {\bfseries current\+Address}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}\label{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{Spa\+Communicator()}{SpaCommunicator()}}
+{\footnotesize\ttfamily Spa\+Communicator\+::\+Spa\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{current\+Address }\end{DoxyParamCaption})}
+
+
+
+Construct \hyperlink{classSpaCommunicator}{Spa\+Communicator} with only the address of the owning subnet manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Address} & -\/ logical address of the subnet manager who owns \hyperlink{classSpaCommunicator}{Spa\+Communicator} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}\label{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!select\+Communicator@{select\+Communicator}}
+\index{select\+Communicator@{select\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{select\+Communicator()}{selectCommunicator()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ Spa\+Communicator\+::select\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{address,  }\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ const \&}]{communicators }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Selects the appropriate physical communicator from list of physical communicators to send message. 
+\begin{DoxyParams}{Parameters}
+{\em address} & -\/ logical address where message is going to be sent \\
+\hline
+{\em communicators} & -\/ vector of communicators to be selected from \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/spa\+\_\+communicator.\+hpp\item 
+lib/spa\+\_\+communicator.\+cpp\end{DoxyCompactItemize}

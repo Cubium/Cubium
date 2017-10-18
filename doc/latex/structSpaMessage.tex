@@ -1,0 +1,53 @@
+\hypertarget{structSpaMessage}{}\section{Spa\+Message Struct Reference}
+\label{structSpaMessage}\index{Spa\+Message@{Spa\+Message}}
+
+
+{\ttfamily \#include $<$spa\+\_\+message.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structSpaMessage_ac3106c80ebd5c60d0e939c76f77ef0cd}\label{structSpaMessage_ac3106c80ebd5c60d0e939c76f77ef0cd}} 
+{\bfseries Spa\+Message} (\hyperlink{structLogicalAddress}{Logical\+Address} destination, uint8\+\_\+t opcode)
+\item 
+\mbox{\Hypertarget{structSpaMessage_ade633a9b5780d7d361493d30aaa227ff}\label{structSpaMessage_ade633a9b5780d7d361493d30aaa227ff}} 
+{\bfseries Spa\+Message} (uint8\+\_\+t version=0, uint8\+\_\+t priority=0, uint16\+\_\+t length=0, \hyperlink{structLogicalAddress}{Logical\+Address} destination=\hyperlink{structLogicalAddress}{Logical\+Address}(0, 0), \hyperlink{structLogicalAddress}{Logical\+Address} source=\hyperlink{structLogicalAddress}{Logical\+Address}(0, 0), uint16\+\_\+t flags=0, uint8\+\_\+t opcode=0)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structSpaHeader}{Spa\+Header} \hyperlink{structSpaMessage_af7925bcb1a497c244202963fc5a9c8d6}{spa\+Header}
+\begin{DoxyCompactList}\small\item\em Generate a message from a byte array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to represent generic spa message. Should be extended by other Spa Message types 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structSpaMessage_af7925bcb1a497c244202963fc5a9c8d6}\label{structSpaMessage_af7925bcb1a497c244202963fc5a9c8d6}} 
+\index{Spa\+Message@{Spa\+Message}!spa\+Header@{spa\+Header}}
+\index{spa\+Header@{spa\+Header}!Spa\+Message@{Spa\+Message}}
+\subsubsection{\texorpdfstring{spa\+Header}{spaHeader}}
+{\footnotesize\ttfamily \hyperlink{structSpaHeader}{Spa\+Header} Spa\+Message\+::spa\+Header}
+
+
+
+Generate a message from a byte array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serialized} & -\/ array containing serialized message \\
+\hline
+{\em size} & -\/ length of serialized array Serializes a message to a byte array \\
+\hline
+{\em target} & -\/ pointer where seialized message array will be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ size of serialized array Logical address of component on spa network 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/spa\+\_\+message.\+h\end{DoxyCompactItemize}
