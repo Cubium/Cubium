@@ -1,6 +1,5 @@
 #include "serverSocket.hpp"
 #include "../messages/op_codes.h"
-#include "../messages/spa/spa_courier.h"
 #include "../spa_message.h"
 #include <functional>   // for std::function
 #include <netinet/in.h> // for INADDR_ANY
@@ -40,35 +39,9 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
   return s;
 }
 
-void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier* courier)
-{
-//  std::cout << "Server handling courier" << std::endl;
-
-  s->isBuf = false;
-
-  func(s);
-
-  auto followerSize = courier->followerSize;
-
-  do
-  {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, courier->followerSize, 0, (struct sockaddr*)&s->from, &s->length);
-    if (s->nBytesRecv < 0)
-    {
-      serverSocket_error("recvfrom failed");
-    }
-
-  } while (followerSize != s->nBytesRecv);
-
-  s->isBuf = true;
-
-  func(s);
-}
-
 /* Listen through the given socket */
-void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func)
+void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> callback)
 {
-
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
   {
@@ -78,16 +51,7 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
       serverSocket_error("recvfrom failed");
     }
 
-    /* Special check for handling spa couriers */
-    if (((SpaMessage*)s->buf)->spaHeader.opcode == op_SPA_COURIER)
-    {
-      serverSocket_handleCourier(s, func, (SpaCourier*)s->buf);
-    }
-    else
-    {
-      s->isBuf = false;
-      func(s);
-    }
+    callback(s);
   }
 }
 

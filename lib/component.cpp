@@ -110,10 +110,6 @@ void Component::receiveMessage(SpaMessage* message)
     handleSpaData(message);
     return;
 
-  case op_SPA_COURIER:
-    lastCourier = (SpaCourier*)message;
-    return;
-
   default:
     std::cout << "Unrecognized message" << std::endl;
     return;

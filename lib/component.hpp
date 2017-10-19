@@ -2,7 +2,6 @@
 #define COMPONENT_HPP
 
 #include "messages/local/local_hello.h"
-#include "messages/spa/spa_courier.h"
 #include "messages/spa/spa_data.h"
 #include "messages/spa/spa_string.h"
 #include "spa_communicator.hpp"
@@ -125,7 +124,6 @@ protected:
   LogicalAddress subnetManagerAddress;
   uint8_t publishIter;
   uint16_t dialogId;
-  SpaCourier* lastCourier;
 };
 
 template <typename T>
