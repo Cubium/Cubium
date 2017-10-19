@@ -31,7 +31,7 @@ public:
       communicator->listen(callback);
     }
   }
-  void receiveMessage(SpaMessage* message) {} // Note: Deprecated?
+
   friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
 
   static std::shared_ptr<LocalCommunicator> communicator;
