@@ -9,6 +9,8 @@
 #include <iostream>
 #include <memory>
 
+std::shared_ptr<LocalCommunicator> LocalSubnetManager::communicator;
+
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
 

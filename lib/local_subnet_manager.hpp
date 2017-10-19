@@ -5,7 +5,6 @@
 #define LOCAL_SUBNET_MANAGER
 
 #include "component_list.hpp"
-#include "subnet_manager.hpp"
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -15,12 +14,12 @@ class LocalSubnetManager;
 
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
 
-class LocalSubnetManager : public SubnetManager, public std::enable_shared_from_this<LocalSubnetManager>
+class LocalSubnetManager : public std::enable_shared_from_this<LocalSubnetManager>
 {
 public:
   LocalSubnetManager(std::shared_ptr<LocalCommunicator> c, std::shared_ptr<RoutingTable<cubiumServerSocket_t>> rt)
-    : SubnetManager(c)
   {
+    communicator = c;
     routingTable = rt;
   }
 
@@ -35,6 +34,7 @@ public:
   void receiveMessage(SpaMessage* message) {} // Note: Deprecated?
   friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
 
+  static std::shared_ptr<LocalCommunicator> communicator;
 private:
   ComponentList components;
   std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable;
