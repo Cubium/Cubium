@@ -66,7 +66,7 @@ public:
     {
       return;
     }
-    communicator->send(message, len);
+    communicator->getLocalCommunicator()->sendMsg(message, len);
   }
 
   void receiveMessage(SpaMessage*);
@@ -107,7 +107,7 @@ public:
   void sendPayload(T payload, LogicalAddress destination)
   {
     SpaData<T> dataMessage(destination, address, payload);
-    communicator->send((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 
   bool addSubscriber(LogicalAddress, uint16_t);

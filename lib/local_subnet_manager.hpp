@@ -29,7 +29,7 @@ public:
     if (communicator)
     {
       auto callback = std::bind(LSM_messageCallback, LocalSubnetManager::shared_from_this(), std::placeholders::_1);
-      communicator->listen(callback);
+      communicator->getLocalCommunicator()->listen(callback);
     }
   }
   void receiveMessage(SpaMessage* message) {} // Note: Deprecated?

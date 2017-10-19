@@ -20,7 +20,7 @@ void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSock
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
   SubscriptionReply reply(message->spaHeader.source, address);
-  communicator->send((SpaMessage*)&reply);
+  communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&reply, sizeof(SubscriptionReply));
 
   if (addSubscriber(message->spaHeader.source, 0))
   {

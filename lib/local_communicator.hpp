@@ -1,5 +1,3 @@
-// Utilizes routing table to map logical addresses to IP addresses, including other subnets
-
 #ifndef LOCAL_COMMUNICATOR_HPP
 #define LOCAL_COMMUNICATOR_HPP
 #include "physical_communicator.hpp"
