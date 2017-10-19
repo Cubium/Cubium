@@ -165,7 +165,7 @@ void Component::publish()
       {
         if (subscribers[i].deliveryRateDivisor % publishIter == 0)
         {
-          sendData(subscribers[i].subscriberAddress);
+          sendDataThreaded(subscribers[i].subscriberAddress);
         }
       }
     }

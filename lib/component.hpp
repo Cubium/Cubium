@@ -12,6 +12,7 @@
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <thread>
 
 struct Subscriber
 {
@@ -83,6 +84,12 @@ public:
       uint8_t priority,
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
+
+  void sendDataThreaded(LogicalAddress la)
+  {
+    auto t = std::thread([=](){ sendData(la); });
+    t.join();
+  }
 
   virtual void sendData(LogicalAddress) = 0;
 

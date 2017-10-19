@@ -26,13 +26,13 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    auto t = std::thread([=](){
+//    auto t = std::thread([=](){
     sleep(1);
     std::string payload = "Boom message!";
     std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
-    });
-    t.join();
+ //   });
+ //   t.join();
   }
 
   void init()
