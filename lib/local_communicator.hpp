@@ -1,6 +1,5 @@
 #ifndef LOCAL_COMMUNICATOR_HPP
 #define LOCAL_COMMUNICATOR_HPP
-#include "physical_communicator.hpp"
 #include "routing_table.hpp"
 #include "socket/clientSocket.hpp"
 #include "socket/serverSocket.hpp"
@@ -13,22 +12,22 @@
 
 #define SERVER "127.0.0.1"
 
-class LocalCommunicator : public PhysicalCommunicator
+class LocalCommunicator
 {
 public:
   LocalCommunicator(
       cubiumServerSocket_t* sock,
       std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable,
-      LogicalAddress la) : serverSock(sock), clientSock(nullptr), routingTable(routingTable), PhysicalCommunicator(la) { ; }
+      LogicalAddress la) : serverSock(sock), clientSock(nullptr), routingTable(routingTable) { ; }
 
   LocalCommunicator(
       cubiumClientSocket_t* sock,
       std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable,
-      LogicalAddress la) : clientSock(sock), serverSock(nullptr), routingTable(routingTable), PhysicalCommunicator(la) { ; }
+      LogicalAddress la) : clientSock(sock), serverSock(nullptr), routingTable(routingTable) { ; }
 
   LocalCommunicator(
       cubiumServerSocket_t* sock,
-      LogicalAddress la) : serverSock(sock), clientSock(nullptr), routingTable(nullptr), PhysicalCommunicator(la) { ; }
+      LogicalAddress la) : serverSock(sock), clientSock(nullptr), routingTable(nullptr) { ; }
 
   virtual bool sendMsg(SpaMessage* msg, ssize_t len);
 

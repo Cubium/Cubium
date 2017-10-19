@@ -8,7 +8,7 @@
 #include <messages/local/local_spa_message.h>
 #include <messages/op_codes.h>
 #include <routing_table.hpp>
-#include <spa_communicator.hpp>
+#include <local_communicator.hpp>
 
 class SubnetManager
 {
