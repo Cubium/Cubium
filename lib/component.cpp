@@ -13,22 +13,23 @@
 
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
-  if (sock->isBuf)
-  {
+//  if (sock->isBuf)
+//  {
   //  std::cout << "It is a buf!" << std::endl;
-    comp->receiveBuffer(sock);
-  }
-  else
-  {
+//    comp->receiveBuffer(sock);
+//  }
+//  else
+//  {
     SpaMessage* message = (SpaMessage*)sock->buf;
     comp->receiveMessage(message);
-  }
+//  }
 }
+
 
 void Component::receiveBuffer(cubiumClientSocket_t* sock)
 {
-  SpaData<std::string> fauxMessage(lastCourier->spaMessage.spaHeader.destination, lastCourier->spaMessage.spaHeader.source, sock->buf);
-  handleSpaData((SpaMessage*)&fauxMessage);
+//  SpaData<std::string> fauxMessage(lastCourier->spaMessage.spaHeader.destination, lastCourier->spaMessage.spaHeader.source, sock->buf);
+ // handleSpaData((SpaMessage*)&fauxMessage);
 }
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
@@ -111,6 +112,9 @@ void Component::receiveMessage(SpaMessage* message)
     return;
   }
 
+  std::cout << "Receive messaged with opcode: " << (int)message->spaHeader.opcode << std::endl;
+  std::cout << "Source: " << message->spaHeader.source << std::endl;
+
   switch (message->spaHeader.opcode)
   {
   case op_LOCAL_ACK:
@@ -125,6 +129,10 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_DATA:
+    handleSpaData(message);
+    return;
+
+  case op_SPA_STRING:
     handleSpaData(message);
     return;
 

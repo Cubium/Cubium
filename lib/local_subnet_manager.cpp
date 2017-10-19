@@ -21,6 +21,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   static LogicalAddress courierDestination = LogicalAddress(0, 0);
   static ssize_t courierFollowerSize = 0;
 
+/*
   if (sock->isBuf)
   {
 //    std::cout << "LSM got buf: " << sock->buf << std::endl;
@@ -34,6 +35,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     }
     return;
   }
+  */
 
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
@@ -74,11 +76,19 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
-      std::cout << "SAYWHATDestination: " << msg->spaHeader.destination << std::endl;
       auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
       serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
     }
   }
+  else if (op == op_SPA_STRING)
+  {
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+      serverSocket_send(msg, sizeof(SpaString), &newSock); 
+    }
+  }
+  /*
   else if (op == op_SPA_COURIER)
   {
     auto courier = (SpaCourier*)sock->buf;
@@ -96,8 +106,9 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
       std::cout << "Got a weird courier destination: " << msg->spaHeader.destination << std::endl;
     }
   }
+  */
   else
   {
-    std::cout << "Unrecognized SPA message" << std::endl;
+    std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
   }
 }

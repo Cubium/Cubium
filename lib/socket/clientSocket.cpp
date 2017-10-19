@@ -132,7 +132,7 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
 #ifdef CLIENTSOCKET_VERBOSE
 //    std::cout << "Listening!" << std::endl;
 #endif
-    s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->length);
+    s->nBytesRecv = recvfrom(s->sock, s->buf, 300, 0, (struct sockaddr*)&s->from, &s->length);
     if (s->nBytesRecv < 0)
     {
       clientSocket_error("recvfrom failed");

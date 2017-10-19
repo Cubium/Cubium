@@ -3,6 +3,7 @@
 #include "messages/local/local_hello.h"
 #include "messages/op_codes.h"
 #include "messages/spa/spa_data.h"
+#include "messages/spa/spa_string.h"
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
 #include <functional>
@@ -64,6 +65,9 @@ bool SpaCommunicator::send(ssize_t len, SpaMessage* message)
     break;
   case op_SPA_DATA:
     send(message, len);
+    break;
+  case op_SPA_STRING:
+    send(message, sizeof(SpaString));
     break;
   case op_LOCAL_HELLO:
     send(message, sizeof(LocalHello));
