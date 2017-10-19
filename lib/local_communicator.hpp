@@ -52,18 +52,18 @@ public:
 
   void printTable()
   {
-    std::cout << '\n';
-    std::cout << "  LA  |  port" << '\n'
-              << "---------------" << '\n';
+//    std::cout << '\n';
+//    std::cout << "  LA  |  port" << '\n'
+//              << "---------------" << '\n';
 
     auto table = routingTable->getTable();
 
     for (auto it = table.cbegin(); it != table.cend(); ++it)
     {
-      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second.from.sin_port << '\n';
+//      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second.from.sin_port << '\n';
     }
 
-    std::cout << '\n';
+ //   std::cout << '\n';
   }
 
 protected:

@@ -1,10 +1,10 @@
-#include "../demo_addresses.hpp"
+#include "../addresses.hpp"
 #include <component.hpp>
 #include <iostream>
 #include <unistd.h>
 
-#define COMP_NAME CompA
-#define COMP_ADDR la_CA
+#define COMP_NAME Light
+#define COMP_ADDR la_LIGHT
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -16,16 +16,18 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    std::cout << "THIS SHOULD NOT BE PRINTING \n"; //" << message->payload << std::endl;
+    sleep(1);
+    auto castMessage = (SpaString*)message;
+    std::string payload(castMessage->st);
+
+    std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "You can send over anything you want! Anything at all less than 128 characters!";
-
-    std::cout << "Sending SpaData: " << payload << std::endl;
-
+    std::string payload = "Light data!";
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

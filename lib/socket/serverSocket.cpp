@@ -42,7 +42,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
 
 void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier* courier)
 {
-  std::cout << "Server handling courier" << std::endl;
+//  std::cout << "Server handling courier" << std::endl;
 
   s->isBuf = false;
 
@@ -72,7 +72,7 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
   {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->fromlen);
+    s->nBytesRecv = recvfrom(s->sock, s->buf, 300, 0, (struct sockaddr*)&s->from, &s->fromlen);
     if (s->nBytesRecv < 0)
     {
       serverSocket_error("recvfrom failed");

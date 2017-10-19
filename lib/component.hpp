@@ -4,8 +4,10 @@
 #include "messages/local/local_hello.h"
 #include "messages/spa/spa_courier.h"
 #include "messages/spa/spa_data.h"
+#include "messages/spa/spa_string.h"
 #include "spa_communicator.hpp"
 #include "spa_message.h"
+#include <cstring>
 #include <iostream>
 #include <memory>
 #include <mutex>
@@ -86,11 +88,26 @@ public:
 
   void sendPayload(std::string payload, LogicalAddress destination)
   {
+    /*
     auto plainBuffer = payload.data();
     auto courier = SpaCourier(destination, address, payload.length());
+    std::cout << "Destination: " << destination << std::endl;
 
     communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
     communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());
+    */
+   
+    if (payload.length() > 128)
+    {
+      std::cout << "Your string is too big stupid. Will be updated eventually.\n";
+      return;
+    }
+
+    SpaString message(destination, address);
+
+    strcpy(message.st, payload.c_str());
+    
+    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&message, sizeof(message));
   }
 
   template <typename T>
