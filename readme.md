@@ -10,6 +10,10 @@ For a fun introduction on the inner workings of Cubium, see [this illustrated wr
 For a very detailed look into the machinations of SPA in general, see [Jacob Holt Christensen's dissertation.](http://digitalcommons.usu.edu/etd/1422/)
 
 ## Project Status 
+  * **Version Alpha 2.0.0**
+    * Added interfacing with Python components
+    * Major bugfixes
+    * Architecture ready for flight testing
   * **Version Alpha 1.2.0**
     * Support for sending strings between components
   * **Version Alpha 1.1.0**
