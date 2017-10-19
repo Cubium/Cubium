@@ -46,24 +46,22 @@ public:
   virtual void listen(std::function<void(cubiumServerSocket_t*)>);
   virtual void listen(std::function<void(cubiumClientSocket_t*)>);
 
-  //  virtual void insertToRoutingTable(LogicalAddress log, uint32_t);
-
   void setServerSock(cubiumServerSocket_t* s) { serverSock = s; }
 
   void printTable()
   {
-//    std::cout << '\n';
-//    std::cout << "  LA  |  port" << '\n'
-//              << "---------------" << '\n';
+    std::cout << '\n';
+    std::cout << "  LA  |  port" << '\n'
+              << "---------------" << '\n';
 
     auto table = routingTable->getTable();
 
     for (auto it = table.cbegin(); it != table.cend(); ++it)
     {
-//      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second.from.sin_port << '\n';
+      std::cout << "(" << it->first.subnetId << "," << it->first.componentId << ") |  " << it->second.from.sin_port << '\n';
     }
 
- //   std::cout << '\n';
+   std::cout << '\n';
   }
 
 protected:
