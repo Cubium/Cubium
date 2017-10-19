@@ -20,53 +20,60 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
-  auto op = msg->spaHeader.opcode;
+  switch(msg->spaHeader.opcode)
+  {
+    case op_LOCAL_HELLO:
+    {
+      lsm->components.add(msg->spaHeader.source);
+      lsm->routingTable->insert(msg->spaHeader.source, *sock);
+      lsm->communicator->getLocalCommunicator()->printTable();
+      LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
+      lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
+    }
+    break;
 
-  if (op == op_LOCAL_HELLO)
-  {
-    lsm->components.add(msg->spaHeader.source);
-    lsm->routingTable->insert(msg->spaHeader.source, *sock);
-    lsm->communicator->getLocalCommunicator()->printTable();
+    case op_SPA_SUBSCRIPTION_REQUEST:
+    {
+      if (lsm->routingTable->exists(msg->spaHeader.destination))
+      {
+        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+        serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
+      }
+    }
+    break;
 
-    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
-    lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
-  }
-  else if (op == op_SPA_SUBSCRIPTION_REQUEST)
-  {
-    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    case op_SPA_SUBSCRIPTION_REPLY:
     {
-      std::cout << "Destination: " << msg->spaHeader.destination << std::endl;
-      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
+      if (lsm->routingTable->exists(msg->spaHeader.destination))
+      {
+        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+        serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
+      }
     }
-  }
-  else if (op == op_SPA_SUBSCRIPTION_REPLY)
-  {
-    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    break;
+
+    case op_SPA_DATA:
     {
-      std::cout << "Destination: " << msg->spaHeader.destination << std::endl;
-      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
+      if (lsm->routingTable->exists(msg->spaHeader.destination))
+      {
+        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+        serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
+      }
     }
-  }
-  else if (op == op_SPA_DATA)
-  {
-    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    break;
+
+    case op_SPA_STRING:
     {
-      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
+      if (lsm->routingTable->exists(msg->spaHeader.destination))
+      {
+        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+        serverSocket_send(msg, sizeof(SpaString), &newSock); 
+      }
     }
-  }
-  else if (op == op_SPA_STRING)
-  {
-    if (lsm->routingTable->exists(msg->spaHeader.destination))
-    {
-      auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-      serverSocket_send(msg, sizeof(SpaString), &newSock); 
-    }
-  }
-  else
-  {
-    std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
+    break;
+    
+    default:
+      std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
+      break;
   }
 }
