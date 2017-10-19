@@ -22,6 +22,7 @@ public:
   {
     sleep(1);
     std::string payload = "UV data!";
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

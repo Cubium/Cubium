@@ -2,7 +2,6 @@
 #define COMPONENT_HPP
 
 #include "messages/local/local_hello.h"
-#include "messages/spa/spa_courier.h"
 #include "messages/spa/spa_data.h"
 #include "messages/spa/spa_string.h"
 #include "spa_communicator.hpp"
@@ -42,7 +41,6 @@ public:
   }
 
   virtual ~Component() {}
-  //virtual void appShutdown() = 0;
 
   void publish();
 
@@ -73,10 +71,7 @@ public:
 
   void receiveMessage(SpaMessage*);
 
-  void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
-
-  void receiveBuffer(cubiumClientSocket_t*);
 
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
@@ -95,15 +90,6 @@ public:
 
   void sendPayload(std::string payload, LogicalAddress destination)
   {
-    /*
-    auto plainBuffer = payload.data();
-    auto courier = SpaCourier(destination, address, payload.length());
-    std::cout << "Destination: " << destination << std::endl;
-
-    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
-    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());
-    */
-   
     if (payload.length() > 128)
     {
       std::cout << "Your string is too big stupid. Will be updated eventually.\n";
@@ -135,7 +121,6 @@ protected:
   LogicalAddress subnetManagerAddress;
   uint8_t publishIter;
   uint16_t dialogId;
-  SpaCourier* lastCourier;
 };
 
 template <typename T>
