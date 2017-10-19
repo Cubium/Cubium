@@ -20,7 +20,7 @@ void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSock
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
   SubscriptionReply reply(message->spaHeader.source, address);
-  communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&reply, sizeof(SubscriptionReply));
+  communicator->sendMsg((SpaMessage*)&reply, sizeof(SubscriptionReply));
 
   if (addSubscriber(message->spaHeader.source, 0))
   {
@@ -56,7 +56,7 @@ void Component::subscribe(
       0                     // Message type (0 = subscription, 1 = unsubscribtion)
       );
 
-  communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request),
+  communicator->initSubDialogue((SpaMessage*)&request, sizeof(request),
                                                         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
 
   //++dialogId;
@@ -125,7 +125,7 @@ void Component::publish()
   });
 
   /* listen for more requests */
-  communicator->getLocalCommunicator()->clientListen(
+  communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);
       });
