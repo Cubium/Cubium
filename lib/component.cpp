@@ -13,23 +13,13 @@
 
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
-//  if (sock->isBuf)
-//  {
-  //  std::cout << "It is a buf!" << std::endl;
-//    comp->receiveBuffer(sock);
-//  }
-//  else
-//  {
-    SpaMessage* message = (SpaMessage*)sock->buf;
+   SpaMessage* message = (SpaMessage*)sock->buf;
     comp->receiveMessage(message);
-//  }
 }
 
 
 void Component::receiveBuffer(cubiumClientSocket_t* sock)
 {
-//  SpaData<std::string> fauxMessage(lastCourier->spaMessage.spaHeader.destination, lastCourier->spaMessage.spaHeader.source, sock->buf);
- // handleSpaData((SpaMessage*)&fauxMessage);
 }
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
@@ -51,7 +41,7 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
 
 void Component::handleSubscriptionReply(SpaMessage* message)
 {
-  // TODO Do we need this function?
+  // TODO Do we need this function? NOPE
 }
 
 void Component::subscribe(
@@ -84,28 +74,15 @@ void Component::subscribe(
 
 bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 {
-  // TODO Check for duplicate
-  //auto sub = std::find(subscribers.begin(), subscribers.end(), newSubscriber);
-  // if (subscribers.end() == sub )
-  // {
-  //   subscribers.push_back(newSubscriber);
-  //   return true;
-  // }
-  // else
-  //   return false;
-
   {
     std::lock_guard<std::mutex> lock(m_subscribers);
     subscribers.emplace_back(la, d);
   }
-
   return true;
 }
 
 void Component::receiveMessage(SpaMessage* message)
 {
-//  std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
-
   if (message == nullptr)
   {
     std::cout << "Tried receiving a nullptr.\n";
@@ -145,15 +122,6 @@ void Component::receiveMessage(SpaMessage* message)
 
 void Component::publish()
 {
-  /*
-  ++comp->publishIter;
-
-  if (comp->publishIter == 201)
-  { // Max deliveryRateDivisor is therefore 200
-    comp->publishIter = 1;
-  }
-  */
-
   /* send data */
 
   auto newThread = std::thread([&]() {
