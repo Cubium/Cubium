@@ -46,3 +46,5 @@ echo "{" >> $1/$1.cpp
 echo "  component_start<COMP_NAME>(COMP_ADDR);" >> $1/$1.cpp
 echo "  return EXIT_SUCCESS;" >> $1/$1.cpp
 echo "}" >> $1/$1.cpp
+
+echo $1 >> $1/.gitignore
