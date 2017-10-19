@@ -16,14 +16,18 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<std::string>*)message;
-    std::cout << "Payload: " << castMessage->payload << std::endl;
+    sleep(1);
+    auto castMessage = (SpaString*)message;
+    std::string payload(castMessage->st);
+
+    std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
     std::string payload = "RTC string!";
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

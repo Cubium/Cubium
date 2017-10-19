@@ -17,13 +17,13 @@ public:
   void handleSpaData(SpaMessage* message)
   {
     auto castMessage = (SpaString*)message;
-    std::cout << "Payload: ";
-    printf("%s\n",castMessage->st);
+    std::string payloadStr(castMessage->st);
+
+    std::cout << "Payload: " << payloadStr << std::endl;
   }
 
   void sendData(LogicalAddress)
   {
-    std::cout << "Is this getting called?" << std::endl;
   }
 
   void init()

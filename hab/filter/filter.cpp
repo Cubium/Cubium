@@ -1,6 +1,7 @@
 #include "../addresses.hpp"
 #include <component.hpp>
 #include <iostream>
+#include <thread>
 #include <unistd.h>
 
 #define COMP_NAME Filter
@@ -16,15 +17,23 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<std::string>*)message;
-    std::cout << "Payload: " << castMessage->payload << std::endl;
+    sleep(1);
+    auto castMessage = (SpaString*)message;
+    std::string payload(castMessage->st);
+
+    std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
+    auto t =    std::thread([=](){
     sleep(1);
     std::string payload = "Filter data!";
+    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
+    });
+    t.join();
+
   }
 
   void init()

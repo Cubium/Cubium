@@ -21,8 +21,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-///    std::string payload = "Internal temperature!";
-    float payload = 22222;
+    std::string payload = "Internal temperature!";
     std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }

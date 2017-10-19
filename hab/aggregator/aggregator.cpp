@@ -2,6 +2,7 @@
 #include <component.hpp>
 #include <iostream>
 #include <unistd.h>
+#include <thread>
 
 #define COMP_NAME Aggregator
 #define COMP_ADDR la_AGGREGATOR
@@ -16,16 +17,21 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    sleep(1);
-    auto castMessage = (SpaData<float>*)message;
-    std::cout << "Payload: " << castMessage->payload << std::endl;
+    auto castMessage = (SpaString*)message;
+    std::string payload(castMessage->st);
+
+    std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
+    auto t = std::thread([=](){
     sleep(1);
-    float payload = 0;
+    std::string payload = "Aggregator data!";
+//    std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
+    });
+    t.join();
   }
 
   void init()
@@ -34,14 +40,21 @@ public:
     sleep(0.5);
     subscribe(la_TEMPEX);
     sleep(0.5);
-//    subscribe(la_RTC);
- //   subscribe(la_UV);
-//    subscribe(la_LIGHT);
-//    subscribe(la_GYRO);
+    subscribe(la_RTC);
+    sleep(0.5);
+    subscribe(la_UV);
+    sleep(0.5);
+    subscribe(la_LIGHT);
+    sleep(0.5);
+    subscribe(la_GYRO);
+    sleep(0.5);
     subscribe(la_GPS);
-//    subscribe(la_BARO);
-//    subscribe(la_FILTER);
-//    subscribe(la_BOOM);
+    sleep(0.5);
+    subscribe(la_BARO);
+    sleep(0.5);
+    subscribe(la_FILTER);
+    sleep(0.5);
+    subscribe(la_BOOM);
   }
 };
 

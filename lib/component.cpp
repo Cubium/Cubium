@@ -112,9 +112,6 @@ void Component::receiveMessage(SpaMessage* message)
     return;
   }
 
-  std::cout << "Receive messaged with opcode: " << (int)message->spaHeader.opcode << std::endl;
-  std::cout << "Source: " << message->spaHeader.source << std::endl;
-
   switch (message->spaHeader.opcode)
   {
   case op_LOCAL_ACK:

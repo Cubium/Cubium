@@ -20,6 +20,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    sleep(1);
     std::string payload = "UV data!";
     sendPayload(payload, destination);
   }

@@ -21,8 +21,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-//    std::string payload = "Temp external!";
-    float payload = 44444;
+    std::string payload = "Temp external!";
     std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
