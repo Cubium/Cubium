@@ -71,10 +71,7 @@ public:
 
   void receiveMessage(SpaMessage*);
 
-  void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
-
-  void receiveBuffer(cubiumClientSocket_t*);
 
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(

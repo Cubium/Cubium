@@ -14,12 +14,7 @@
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
    SpaMessage* message = (SpaMessage*)sock->buf;
-    comp->receiveMessage(message);
-}
-
-
-void Component::receiveBuffer(cubiumClientSocket_t* sock)
-{
+   comp->receiveMessage(message);
 }
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
@@ -37,11 +32,6 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
   }
 
   publish();
-}
-
-void Component::handleSubscriptionReply(SpaMessage* message)
-{
-  // TODO Do we need this function? NOPE
 }
 
 void Component::subscribe(
@@ -99,7 +89,6 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_SUBSCRIPTION_REPLY:
-    handleSubscriptionReply(message);
     return;
 
   case op_SPA_DATA:
