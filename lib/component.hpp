@@ -30,10 +30,7 @@ public:
   Component(std::shared_ptr<LocalCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0, 0))
     : communicator(communicator),
       address(address),
-      subnetManagerAddress(subnetManagerAddress),
-      dialogId(0),
-      publishIter(1)
-
+      subnetManagerAddress(subnetManagerAddress)
   {
     subscribers.reserve(8); // Default to 8 subscribers
 
@@ -112,26 +109,28 @@ public:
 
   bool addSubscriber(LogicalAddress, uint16_t);
 
-  std::shared_ptr<LocalCommunicator> communicator;
-  std::vector<Subscriber> subscribers; // Should we make this a vector of pointers?
+  std::shared_ptr<LocalCommunicator> const communicator;
+  std::vector<Subscriber> subscribers;
   std::mutex m_subscribers;
 
 protected:
-  LogicalAddress address;
-  LogicalAddress subnetManagerAddress;
+  LogicalAddress const address;
+  LogicalAddress const subnetManagerAddress;
+/*  
+ * To be implemented in a later version:
   uint8_t publishIter;
   uint16_t dialogId;
+*/
 };
 
 template <typename T>
-void component_start(LogicalAddress address)
+void component_start(LogicalAddress const & address)
 {
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
-  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
+  auto const routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
+  auto const communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, address);
+  auto const comp = std::make_shared<T>(communicator);
 
-  auto communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, address);
-
-  auto comp = std::make_shared<T>(communicator);
   comp->preInit();
   comp->init();
   comp->listen();
