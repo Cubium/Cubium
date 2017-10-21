@@ -31,7 +31,7 @@ struct SpaMessage
 
   virtual ~SpaMessage() {}
 
-  SpaHeader spaHeader;
+  SpaHeader const spaHeader;
 };
 
 #endif

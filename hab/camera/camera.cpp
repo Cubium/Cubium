@@ -16,7 +16,6 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    sleep(1);
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
@@ -34,6 +33,7 @@ public:
   void init()
   {
     subscribe(la_BOOM);
+    sleep(0.5);
     subscribe(la_RADIO);
   }
 };

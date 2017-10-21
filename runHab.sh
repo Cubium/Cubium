@@ -12,8 +12,6 @@ xterm -title "filter" -e "./hab/filter/filter" &
 sleep 0.3
 xterm -title "boom" -e "./hab/boom/boom" &
 sleep 0.3
-xterm -title "camera" -e "./hab/camera/camera" &
-sleep 0.3
 xterm -title "gps" -e "./hab/gps/gps" &
 sleep 0.3
 xterm -title "gyro" -e "./hab/gyro/gyro" &
@@ -27,3 +25,5 @@ sleep 0.3
 xterm -title "tempex" -e "./hab/tempex/tempex" &
 sleep 0.3
 xterm -title "tempin" -e "./hab/tempin/tempin" &
+sleep 0.3
+xterm -title "camera" -e "./hab/camera/camera" 

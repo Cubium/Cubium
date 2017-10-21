@@ -103,7 +103,7 @@ public:
   template <typename T>
   void sendPayload(T payload, LogicalAddress destination)
   {
-    SpaData<T> dataMessage(destination, address, payload);
+    SpaData<T> dataMessage(destination, address, sizeof(SpaData<T>), payload);
     communicator->sendMsg((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 

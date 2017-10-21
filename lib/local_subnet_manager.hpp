@@ -1,6 +1,3 @@
-//Handle health checks
-//Handle componenet registration
-
 #ifndef LOCAL_SUBNET_MANAGER
 #define LOCAL_SUBNET_MANAGER
 
@@ -25,16 +22,19 @@ public:
 
   void listenMessages()
   {
-    if (communicator)
-    {
-      auto callback = std::bind(LSM_messageCallback, LocalSubnetManager::shared_from_this(), std::placeholders::_1);
-      communicator->listen(callback);
-    }
+    communicator->listen(
+      [&](cubiumServerSocket_t* sock)
+      { 
+        LSM_messageCallback(LocalSubnetManager::shared_from_this(), sock); 
+      }
+    );
   }
 
   friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
+  friend void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg);
 
   static std::shared_ptr<LocalCommunicator> communicator;
+
 private:
   ComponentList components;
   std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable;
