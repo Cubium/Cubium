@@ -34,23 +34,23 @@ public:
   {
     subscribe(la_TEMPIN);
     sleep(0.5);
-    subscribe(la_TEMPEX);
-    sleep(0.5);
-    subscribe(la_RTC);
-    sleep(0.5);
-    subscribe(la_UV);
-    sleep(0.5);
-    subscribe(la_LIGHT);
-    sleep(0.5);
+//    subscribe(la_TEMPEX);
+//    sleep(0.5);
+//    subscribe(la_RTC);
+//    sleep(0.5);
+//    subscribe(la_UV);
+//    sleep(0.5);
+//    subscribe(la_LIGHT);
+//    sleep(0.5);
     subscribe(la_GYRO);
-    sleep(0.5);
-    subscribe(la_GPS);
-    sleep(0.5);
-    subscribe(la_BARO);
-    sleep(0.5);
-    subscribe(la_FILTER);
-    sleep(0.5);
-    subscribe(la_BOOM);
+//    sleep(0.5);
+//    subscribe(la_GPS);
+//    sleep(0.5);
+//    subscribe(la_BARO);
+//    sleep(0.5);
+//    subscribe(la_FILTER);
+//    sleep(0.5);
+//    subscribe(la_BOOM);
   }
 };
 

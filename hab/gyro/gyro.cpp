@@ -23,8 +23,6 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
-
     Py_Initialize();
 		PyRun_SimpleString("import sys; sys.path.append('.')");
 		PyRun_SimpleString("import py_component");
