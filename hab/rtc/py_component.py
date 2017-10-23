@@ -1,11 +1,11 @@
 """
-DS3231 Real Time Clock Driver
+Chronodot / DS3231 Real Time Clock Driver
 """
 
 import smbus
 import time
 
-bus = smbus.SMBus(1)
+bus = smbus.SMBus(2)
 address = 0x68
 
 def handleSpaData():
