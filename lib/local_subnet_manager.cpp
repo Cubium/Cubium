@@ -9,6 +9,8 @@
 #include <iostream>
 #include <memory>
 
+std::shared_ptr<LocalCommunicator> LocalSubnetManager::communicator;
+
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
 
@@ -26,9 +28,9 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     {
       lsm->components.add(msg->spaHeader.source);
       lsm->routingTable->insert(msg->spaHeader.source, *sock);
-      lsm->communicator->getLocalCommunicator()->printTable();
+      lsm->communicator->printTable();
       LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
-      lsm->communicator->getLocalCommunicator()->serverSend((SpaMessage*)&reply, sizeof(reply));
+      lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
     }
     break;
 

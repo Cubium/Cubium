@@ -16,12 +16,9 @@ int main(void)
 
   auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>(la_LSM, sock);
 
-  std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, la_LSM)};
+  auto communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, la_LSM);
 
-  auto spaCom = std::make_shared<SpaCommunicator>(la_LSM, comms);
-
-  auto manager = std::make_shared<LocalSubnetManager>(spaCom, routingTable);
+  auto manager = std::make_shared<LocalSubnetManager>(communicator, routingTable);
   manager->listenMessages();
 
   return 0;
