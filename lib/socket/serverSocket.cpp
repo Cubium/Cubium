@@ -15,7 +15,7 @@ void serverSocket_error(const char* msg)
   exit(1);
 }
 
-cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
+cubiumServerSocket_t serverSocket_openSocket(uint16_t const port)
 {
   cubiumServerSocket_t s;
   s.sock = socket(AF_INET, SOCK_DGRAM, 0);
@@ -40,7 +40,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
 }
 
 /* Listen through the given socket */
-void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> callback)
+void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> const callback)
 {
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
@@ -56,7 +56,7 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
 }
 
 /* Send a message through the socket */
-ssize_t serverSocket_send(const void* msg, size_t len, cubiumServerSocket_t* s)
+ssize_t serverSocket_send(const void* msg, size_t const len, cubiumServerSocket_t* s)
 {
   return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, s->fromlen);
 }

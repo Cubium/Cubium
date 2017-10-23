@@ -12,8 +12,9 @@ struct SpaData
   SpaData(
       LogicalAddress consumerAddress,
       LogicalAddress producerAddress,
+      uint16_t size,
       T payload
-      ) : spaMessage(0, 0, 0, consumerAddress, producerAddress, 0, op_SPA_DATA),
+      ) : spaMessage(0, 0, size, consumerAddress, producerAddress, 0, op_SPA_DATA),
           dialogId(0),
           sequenceIndex(0),
           sequenceCount(0),

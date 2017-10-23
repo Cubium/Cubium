@@ -17,7 +17,6 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    sleep(1);
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
@@ -26,13 +25,10 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-//    auto t = std::thread([=](){
     sleep(1);
     std::string payload = "Boom message!";
     std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
- //   });
- //   t.join();
   }
 
   void init()

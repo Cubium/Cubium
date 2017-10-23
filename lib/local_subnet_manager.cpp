@@ -11,9 +11,17 @@
 
 std::shared_ptr<LocalCommunicator> LocalSubnetManager::communicator;
 
+void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg)
+{
+  if (lsm->routingTable->exists(msg->spaHeader.destination))
+  {
+    auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
+    serverSocket_send(msg, size, &newSock);
+  }
+}
+
 void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
-
   if (lsm->routingTable->isEmpty())
   {
     std::cout << "Nothing in the routing table." << std::endl;
@@ -35,44 +43,20 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     break;
 
     case op_SPA_SUBSCRIPTION_REQUEST:
-    {
-      if (lsm->routingTable->exists(msg->spaHeader.destination))
-      {
-        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-        serverSocket_send(msg, sizeof(SubscriptionRequest), &newSock);
-      }
-    }
-    break;
+      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+      break;
 
     case op_SPA_SUBSCRIPTION_REPLY:
-    {
-      if (lsm->routingTable->exists(msg->spaHeader.destination))
-      {
-        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-        serverSocket_send(msg, sizeof(SubscriptionReply), &newSock);
-      }
-    }
-    break;
+      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+      break;
 
     case op_SPA_DATA:
-    {
-      if (lsm->routingTable->exists(msg->spaHeader.destination))
-      {
-        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-        serverSocket_send(msg, sizeof(SpaData<float>), &newSock); //TODO FIXME This should be general
-      }
-    }
-    break;
+      LSM_sendMessage(lsm, msg->spaHeader.length, msg);
+      break;
 
     case op_SPA_STRING:
-    {
-      if (lsm->routingTable->exists(msg->spaHeader.destination))
-      {
-        auto newSock = lsm->routingTable->getPhysicalAddress(msg->spaHeader.destination);
-        serverSocket_send(msg, sizeof(SpaString), &newSock); 
-      }
-    }
-    break;
+      LSM_sendMessage(lsm, sizeof(SpaString), msg);
+      break;
     
     default:
       std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;

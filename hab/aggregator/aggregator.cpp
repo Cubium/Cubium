@@ -2,7 +2,6 @@
 #include <component.hpp>
 #include <iostream>
 #include <unistd.h>
-#include <thread>
 
 #define COMP_NAME Aggregator
 #define COMP_ADDR la_AGGREGATOR
@@ -25,13 +24,10 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-//    auto t = std::thread([=](){
     sleep(1);
     std::string payload = "Aggregator data!";
-//    std::cout << "Sending payload: " << payload << std::endl;
+    std::cout << "Sending data: " << payload << std::endl;
     sendPayload(payload, destination);
-//    });
-//    t.join();
   }
 
   void init()

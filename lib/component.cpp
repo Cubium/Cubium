@@ -48,7 +48,7 @@ void Component::subscribe(
       subnetManagerAddress, // Address of the subscriptions manager component
       0,                    // Flags
       leasePeriod,          // Duration of the subscription
-      dialogId,             // Dialog identifier sent by requester
+      0,                    // Dialog identifier sent by requester
       deliveryRateDivisor,  // Subscribe to every nth message
       0,                    // xTEDS interface ID
       0,                    // xTEDS message Id
@@ -107,28 +107,28 @@ void Component::receiveMessage(SpaMessage* message)
 
 void Component::publish()
 {
-  /* send data */
 
-  auto newThread = std::thread([&]() {
+  /* Spin up a thread to handle the data-publishing loop */
+  auto publishLoopThread = std::thread([&]() {
     for (;;)
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(40));
       std::lock_guard<std::mutex> lock(m_subscribers);
       for (auto i = 0u; i < subscribers.size(); ++i)
       {
-        if (subscribers[i].deliveryRateDivisor % publishIter == 0)
-        {
+//        if (subscribers[i].deliveryRateDivisor % publishIter == 0)
+//        {
           sendDataThreaded(subscribers[i].subscriberAddress);
-        }
+//        }
       }
     }
   });
 
-  /* listen for more requests */
+  /* Start up the listening service on the parent thread */
   communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);
       });
 
-  newThread.join();
+  publishLoopThread.join();
 }
