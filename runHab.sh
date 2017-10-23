@@ -14,8 +14,6 @@ xterm -title "boom" -e "./hab/boom/boom" &
 sleep 0.3
 xterm -title "gps" -e "./hab/gps/gps" &
 sleep 0.3
-xterm -title "gyro" -e "./hab/gyro/gyro" &
-sleep 0.3
 xterm -title "light" -e "./hab/light/light" &
 sleep 0.3
 xterm -title "radio" -e "./hab/radio/radio" &
