@@ -20,6 +20,7 @@ def sendData():
     chronodot uses the same chip
 
     """
+    time.sleep(1)
     data = bus.read_i2c_block_data(address, 0)
     ss = (data[0]/16*10) + (data[0]%16)
     mm = (data[1]/16*10) + (data[1]%16)
@@ -37,4 +38,3 @@ def init():
 
     We'll use this to initialize the SMBus/I2C library so it knows how to talk to the chip.
     """
-
