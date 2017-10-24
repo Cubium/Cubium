@@ -34,8 +34,6 @@ public:
   friend void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg);
 
   static std::shared_ptr<LocalCommunicator> communicator;
-
-  static std::shared_ptr<LocalCommunicator> communicator;
 private:
   ComponentList components;
   std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable;
