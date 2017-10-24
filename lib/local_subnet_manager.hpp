@@ -35,7 +35,6 @@ public:
 
   static std::shared_ptr<LocalCommunicator> communicator;
 
-  static std::shared_ptr<LocalCommunicator> communicator;
 private:
   ComponentList components;
   std::shared_ptr<RoutingTable<cubiumServerSocket_t>> routingTable;
