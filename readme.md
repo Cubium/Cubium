@@ -1,4 +1,6 @@
-# Cubium
+# Cubium    
+
+[![Build Status](https://travis-ci.org/Cubium/Cubium.svg?branch=master)](https://travis-ci.org/Cubium/Cubium)
 
 Cubium is a free and open-source flight software for Linux-based spacecraft systems. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components. Developed with undergraduate CubeSat teams using systems such as Beaglebone Blacks and Raspberry Pis in mind, Cubium's purpose is to lower the bar of entry for satellite development.
 
