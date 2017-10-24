@@ -1,4 +1,4 @@
-print 'Initalizing gyro...'
+print 'Initializing gyro...'
 
 import time
 
@@ -20,7 +20,3 @@ def init():
         raise RuntimeError('Failed to initialize BNO055! Is the sensor connected?')
 
     print "Initialization success!"
-
-init()
-while True:
-    print sendData()
