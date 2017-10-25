@@ -9,6 +9,7 @@ CMakeFiles/*
 Makefile
 cmake_install.cmake
 Vagrantfile
+tags
 cmake-build-debug/*
 .idea*
 .idea/*
