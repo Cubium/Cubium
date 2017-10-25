@@ -38,3 +38,6 @@ def init():
 
     We'll use this to initialize the SMBus/I2C library so it knows how to talk to the chip.
     """
+
+while True:
+    print sendData()
