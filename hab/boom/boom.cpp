@@ -19,7 +19,7 @@ public:
   void handleSpaData(SpaMessage* message)
   {
     auto castMessage = (SpaData<float>*)message;
-    float payload(castMessage->st);
+    float payload(castMessage->payload);
 
     std::cout << "Payload from " << message->spaHeader.source << ":" << payload << std::endl;
 
@@ -45,7 +45,7 @@ public:
     /* Init GPIO */
 	  // May need to use echo to do the same here...
     export_file = fopen("/sys/class/gpio/export", "w");
-    fwrite(str, 1, sizeof(str), export_file);
+    fwrite(str.c_str(), 1, sizeof(str.c_str()), export_file);
     fclose(export_file);
     
     /* Subscribe to components */
@@ -54,6 +54,7 @@ public:
   }
 
 private:
+
   bool inRange(float val)
   {
     return (val >= 30 && val <= 44);
@@ -62,20 +63,21 @@ private:
   void deploy()
   {
     IO_direction = fopen ("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str2, 1, sizeof(str1), IO_direction);   //set the pin to HIGH
+    fwrite(str2.c_str(), 1, sizeof(str1.c_str()), IO_direction);   //set the pin to HIGH
     fclose(IO_direction);
     sleep(3);
     IO_direction = fopen("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str1, 1, sizeof(str1), IO_direction);   //set the pin to LOW
+    fwrite(str1.c_str(), 1, sizeof(str1.c_str()), IO_direction);   //set the pin to LOW
     fclose(IO_direction);
     sleep(3);
   }
 
   FILE* export_file = nullptr;
   FILE* IO_direction = nullptr;
-  char str1[] = "low";
-  char str2[] = "high";
-  char str[] = "68";
+
+  std::string str1 = "low";
+  std::string str2 = "high";
+  std::string str = "68";
 
   std::string curMessage = "Awaiting deployment...";
 };
