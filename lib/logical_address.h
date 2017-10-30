@@ -15,6 +15,8 @@ std::ostream& operator<<(std::ostream& o, const LogicalAddress& la);
 
 bool operator==(const LogicalAddress& lhs, const LogicalAddress& rhs);
 
+bool operator<(const LogicalAddress& lhs, const LogicalAddress& rhs);
+
 struct LogicalAddressCompare
 {
   bool operator()(const LogicalAddress& lhs, const LogicalAddress& rhs) const
