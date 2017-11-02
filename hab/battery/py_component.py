@@ -16,7 +16,7 @@ def sendData():
     analogInput = ADC.read("AIN0")
     
     voltage = float(analogInput * (5.0 / 1023.0))
-    print analogInput
+   # print analogInput
 
     buffer = str(voltage)
     return buffer
@@ -25,11 +25,13 @@ def init():
 
     pass
 
-while True:
 
-    print sendData()
-
-    time.sleep(1)
-
+#test output data
+# while True:
+    #
+    # print sendData()
+    #
+    # time.sleep(1)
+    #
 
 
