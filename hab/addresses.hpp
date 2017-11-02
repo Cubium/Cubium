@@ -16,5 +16,6 @@ const LogicalAddress la_BARO(1, 10);
 const LogicalAddress la_FILTER(1, 11);
 const LogicalAddress la_BOOM(1, 12);
 const LogicalAddress la_CAMERA(1, 13);
+const LogicalAddress la_BATTERY(1, 14);
 
 #endif
