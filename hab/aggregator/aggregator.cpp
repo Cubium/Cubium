@@ -1,8 +1,8 @@
 #include "../addresses.hpp"
-#include <numeric>
-#include <functional>
 #include <component.hpp>
+#include <functional>
 #include <iostream>
+#include <numeric>
 #include <unistd.h>
 
 #define COMP_NAME Aggregator
@@ -31,9 +31,13 @@ public:
 
   void init()
   {
+    /*
     subscribe(la_TEMPIN);
     sleep(0.5);
     subscribe(la_TEMPEX);
+    sleep(0.5);
+    */
+    subscribe(la_TEMP);
     sleep(0.5);
     subscribe(la_RTC);
     sleep(0.5);
@@ -53,21 +57,23 @@ public:
   }
 
 private:
-  std::vector<std::string> data = { "", "", "", "", "", "", "", "", "", "" };
+  std::vector<std::string> data = {"", "", "", "", "", "", "", "", "", ""};
 
   std::map<LogicalAddress, std::function<void(SpaMessage*)>> handler =
-  {
-    {la_RTC,    [this](SpaMessage* m){ data[0] = extractPayloadString(m); } },
-    {la_BARO,   [this](SpaMessage* m){ data[1] = extractPayloadFloat(m);  } },
-    {la_FILTER, [this](SpaMessage* m){ data[2] = extractPayloadFloat(m);  } },
-    {la_GPS,    [this](SpaMessage* m){ data[3] = extractPayloadString(m); } },
+      {
+          {la_RTC, [this](SpaMessage* m) { data[0] = extractPayloadString(m); }},
+          {la_BARO, [this](SpaMessage* m) { data[1] = extractPayloadFloat(m); }},
+          {la_FILTER, [this](SpaMessage* m) { data[2] = extractPayloadFloat(m); }},
+          {la_GPS, [this](SpaMessage* m) { data[3] = extractPayloadString(m); }},
+          /*
     {la_TEMPIN, [this](SpaMessage* m){ data[4] = extractPayloadFloat(m);  } },
     {la_TEMPEX, [this](SpaMessage* m){ data[5] = extractPayloadFloat(m);  } },
-    {la_UV,     [this](SpaMessage* m){ data[6] = extractPayloadFloat(m);  } },
-    {la_LIGHT,  [this](SpaMessage* m){ data[7] = extractPayloadFloat(m);  } },
-    {la_GYRO,   [this](SpaMessage* m){ data[8] = extractPayloadString(m); } },
-    {la_BOOM,   [this](SpaMessage* m){ data[9] = extractPayloadString(m); } }
-  };
+    */
+          {la_TEMP, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
+          {la_UV, [this](SpaMessage* m) { data[6] = extractPayloadFloat(m); }},
+          {la_LIGHT, [this](SpaMessage* m) { data[7] = extractPayloadFloat(m); }},
+          {la_GYRO, [this](SpaMessage* m) { data[8] = extractPayloadString(m); }},
+          {la_BOOM, [this](SpaMessage* m) { data[9] = extractPayloadString(m); }}};
 
   std::string extractPayloadString(SpaMessage* message)
   {
@@ -78,20 +84,17 @@ private:
   {
     return std::to_string(((SpaData<float>*)message)->payload);
   }
-   
 
   /* Take a vector of strings and return a string of each
      element delimited by ';'                          */
   std::string serialize(std::vector<std::string> v)
   {
-    return std::accumulate(std::next(v.begin()), 
+    return std::accumulate(std::next(v.begin()),
                            v.end(),
-                           v[0], 
-                           [](std::string a, std::string b)
-                           { 
-                             return a + ';' + b; 
-                           }
-                           );
+                           v[0],
+                           [](std::string a, std::string b) {
+                             return a + ';' + b;
+                           });
   }
 };
 
