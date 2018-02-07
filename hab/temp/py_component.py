@@ -1,11 +1,11 @@
-# GPS Driver for Cubium
-# Author: Kyle Hovey
+import Adafruit_MCP9809 as MCP9809
 
 def handleSpaData():
     pass
 
 def sendData():
-    return 2.0
+    return sensor.readTempC()
 
 def init():
-  pass
+    sensor = MCP9809.MCP9809()
+    sensor.begin()
