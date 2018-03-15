@@ -1,0 +1,80 @@
+.TH "PhysicalCommunicator" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PhysicalCommunicator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <physical_communicator\&.hpp>\fP
+.PP
+Inherited by \fBLocalCommunicator\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef void(* \fBMessageCallback\fP) (void *, uint32_t)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPhysicalCommunicator\fP (\fBLogicalAddress\fP la)"
+.br
+.ti -1c
+.RI "virtual \fB~PhysicalCommunicator\fP ()"
+.br
+.ti -1c
+.RI "virtual bool \fBsendMsg\fP (\fBSpaMessage\fP *message, ssize_t len)"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP (std::function< void(\fBcubiumServerSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "virtual \fBLogicalAddress\fP \fBgetSubnetAddress\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBclientConnect\fP (\fBSpaMessage\fP *, std::function< void(\fBcubiumClientSocket_t\fP *)>)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBsubnetAddress\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "typedef void(* PhysicalCommunicator::MessageCallback) (void *, uint32_t)"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "PhysicalCommunicator::PhysicalCommunicator (\fBLogicalAddress\fP la)\fC [inline]\fP"
+
+.SS "virtual PhysicalCommunicator::~PhysicalCommunicator ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void PhysicalCommunicator::clientConnect (\fBSpaMessage\fP *, std::function< void(\fBcubiumClientSocket_t\fP *)>)\fC [inline]\fP, \fC [virtual]\fP"
+
+.SS "virtual \fBLogicalAddress\fP PhysicalCommunicator::getSubnetAddress ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SS "virtual void PhysicalCommunicator::listen (std::function< void(\fBcubiumServerSocket_t\fP *)>)\fC [inline]\fP, \fC [virtual]\fP"
+
+.PP
+Reimplemented in \fBLocalCommunicator\fP\&.
+.SS "virtual bool PhysicalCommunicator::sendMsg (\fBSpaMessage\fP * message, ssize_t len)\fC [inline]\fP, \fC [virtual]\fP"
+
+.PP
+Reimplemented in \fBLocalCommunicator\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBLogicalAddress\fP PhysicalCommunicator::subnetAddress"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

@@ -1,0 +1,257 @@
+\hypertarget{classComponent}{}\section{Component Class Reference}
+\label{classComponent}\index{Component@{Component}}
+
+
+{\ttfamily \#include $<$component.\+hpp$>$}
+
+Inheritance diagram for Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classComponent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classComponent_a83f43d60a90000cfd63aca351ba648c4}{Component} (std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ \hyperlink{classComponent_ab124decba1547f96b7df055e3b7e902e}{communicator}=nullptr, \hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classComponent_aa60ef4220c2630dde612e2f0164b3676}{address}=\hyperlink{structLogicalAddress}{Logical\+Address}(0, 0), \hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classComponent_a8147bae546da489c3ffa5a1a634739a0}{subnet\+Manager\+Address}=\hyperlink{structLogicalAddress}{Logical\+Address}(0, 0))
+\item 
+virtual \hyperlink{classComponent_a2e9aa4348314d981f05f67397ad2f872}{$\sim$\+Component} ()
+\item 
+void \hyperlink{classComponent_a22b96395923537ce1a56692fdd971749}{publish} ()
+\item 
+virtual void \hyperlink{classComponent_a0f71f7a7ff6c0e7cd28692b6890a0058}{handle\+Spa\+Data} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$)=0
+\item 
+virtual void \hyperlink{classComponent_a9e6d270061f52a3b42e9d2b0fd8f65c2}{pre\+Init} ()
+\item 
+virtual void \hyperlink{classComponent_a2bbe062eb418a541fd0cfbcfdf3f55b0}{listen} ()
+\item 
+virtual void \hyperlink{classComponent_a56baf8afdea3366554b3c7b13fd6e3f7}{init} ()=0
+\item 
+void \hyperlink{classComponent_a4fe6afd53663b5c1d3b60977024bc86a}{send\+Msg} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t len)
+\item 
+void \hyperlink{classComponent_a3142ee952db05b1352f539d446f63934}{receive\+Message} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$)
+\item 
+void \hyperlink{classComponent_af387d0bc27df38fc6c797d6d3329697a}{handle\+Subscription\+Reply} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$)
+\item 
+void \hyperlink{classComponent_aaa5c27b493d39887885adb3dd21e2224}{register\+Subscription\+Request} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$)
+\item 
+void \hyperlink{classComponent_a9f81ad79e0243e6e52ae04b26e6657ab}{receive\+Buffer} (\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)
+\item 
+void \hyperlink{classComponent_a55c74b1c2dcde114cb329ae43a4cd04a}{subscribe} (\hyperlink{structLogicalAddress}{Logical\+Address} producer)
+\item 
+void \hyperlink{classComponent_abae1852e26a7bee748898ea8ef6f4fb9}{subscribe} (\hyperlink{structLogicalAddress}{Logical\+Address} producer, uint8\+\_\+t priority, uint32\+\_\+t lease\+Period, uint16\+\_\+t delivery\+Rate\+Divisor)
+\item 
+virtual void \hyperlink{classComponent_a492a20dc97b9563d80443dda2f1057ec}{send\+Data} (\hyperlink{structLogicalAddress}{Logical\+Address})=0
+\item 
+void \hyperlink{classComponent_afc9525526fdc44c64873abf80357c3be}{send\+Payload} (std\+::string payload, \hyperlink{structLogicalAddress}{Logical\+Address} destination)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classComponent_af7ee2839809098ffd50029375aa3e5a7}{send\+Payload} (T payload, \hyperlink{structLogicalAddress}{Logical\+Address} destination)
+\item 
+bool \hyperlink{classComponent_a54c0c489eec4e4f6b23655a734fc00d4}{add\+Subscriber} (\hyperlink{structLogicalAddress}{Logical\+Address}, uint16\+\_\+t)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ \hyperlink{classComponent_ab124decba1547f96b7df055e3b7e902e}{communicator}
+\item 
+std\+::vector$<$ \hyperlink{structSubscriber}{Subscriber} $>$ \hyperlink{classComponent_a4b1fc3511ba706058d5e575e5b4b55f7}{subscribers}
+\item 
+std\+::mutex \hyperlink{classComponent_ad289c568dee48290561f885d69f09d94}{m\+\_\+subscribers}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classComponent_aa60ef4220c2630dde612e2f0164b3676}{address}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classComponent_a8147bae546da489c3ffa5a1a634739a0}{subnet\+Manager\+Address}
+\item 
+uint8\+\_\+t \hyperlink{classComponent_a5dff98c7893ff79b6ff35cdc26f65240}{publish\+Iter}
+\item 
+uint16\+\_\+t \hyperlink{classComponent_a6d22415eb4e07f9cc5a5c917972bf0dd}{dialog\+Id}
+\item 
+\hyperlink{structSpaCourier}{Spa\+Courier} $\ast$ \hyperlink{classComponent_ab8aa5882c1e2c8139e3ec9d9d27ff174}{last\+Courier}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classComponent_a83f43d60a90000cfd63aca351ba648c4}\label{classComponent_a83f43d60a90000cfd63aca351ba648c4}} 
+\index{Component@{Component}!Component@{Component}}
+\index{Component@{Component}!Component@{Component}}
+\subsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily Component\+::\+Component (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$}]{communicator = {\ttfamily nullptr},  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{address = {\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address}(0,~0)},  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{subnet\+Manager\+Address = {\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address}(0,~0)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classComponent_a2e9aa4348314d981f05f67397ad2f872}\label{classComponent_a2e9aa4348314d981f05f67397ad2f872}} 
+\index{Component@{Component}!````~Component@{$\sim$\+Component}}
+\index{````~Component@{$\sim$\+Component}!Component@{Component}}
+\subsubsection{\texorpdfstring{$\sim$\+Component()}{~Component()}}
+{\footnotesize\ttfamily virtual Component\+::$\sim$\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classComponent_a54c0c489eec4e4f6b23655a734fc00d4}\label{classComponent_a54c0c489eec4e4f6b23655a734fc00d4}} 
+\index{Component@{Component}!add\+Subscriber@{add\+Subscriber}}
+\index{add\+Subscriber@{add\+Subscriber}!Component@{Component}}
+\subsubsection{\texorpdfstring{add\+Subscriber()}{addSubscriber()}}
+{\footnotesize\ttfamily bool Component\+::add\+Subscriber (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{la,  }\item[{uint16\+\_\+t}]{d }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_a0f71f7a7ff6c0e7cd28692b6890a0058}\label{classComponent_a0f71f7a7ff6c0e7cd28692b6890a0058}} 
+\index{Component@{Component}!handle\+Spa\+Data@{handle\+Spa\+Data}}
+\index{handle\+Spa\+Data@{handle\+Spa\+Data}!Component@{Component}}
+\subsubsection{\texorpdfstring{handle\+Spa\+Data()}{handleSpaData()}}
+{\footnotesize\ttfamily virtual void Component\+::handle\+Spa\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classCOMP__NAME_a8c1d575e72e948f84891244ca3bee646}{C\+O\+M\+P\+\_\+\+N\+A\+ME}.
+
+\mbox{\Hypertarget{classComponent_af387d0bc27df38fc6c797d6d3329697a}\label{classComponent_af387d0bc27df38fc6c797d6d3329697a}} 
+\index{Component@{Component}!handle\+Subscription\+Reply@{handle\+Subscription\+Reply}}
+\index{handle\+Subscription\+Reply@{handle\+Subscription\+Reply}!Component@{Component}}
+\subsubsection{\texorpdfstring{handle\+Subscription\+Reply()}{handleSubscriptionReply()}}
+{\footnotesize\ttfamily void Component\+::handle\+Subscription\+Reply (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_a56baf8afdea3366554b3c7b13fd6e3f7}\label{classComponent_a56baf8afdea3366554b3c7b13fd6e3f7}} 
+\index{Component@{Component}!init@{init}}
+\index{init@{init}!Component@{Component}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily virtual void Component\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classCOMP__NAME_abfae2e6e6f24cee4c16800385a103ca8}{C\+O\+M\+P\+\_\+\+N\+A\+ME}.
+
+\mbox{\Hypertarget{classComponent_a2bbe062eb418a541fd0cfbcfdf3f55b0}\label{classComponent_a2bbe062eb418a541fd0cfbcfdf3f55b0}} 
+\index{Component@{Component}!listen@{listen}}
+\index{listen@{listen}!Component@{Component}}
+\subsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily virtual void Component\+::listen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classComponent_a9e6d270061f52a3b42e9d2b0fd8f65c2}\label{classComponent_a9e6d270061f52a3b42e9d2b0fd8f65c2}} 
+\index{Component@{Component}!pre\+Init@{pre\+Init}}
+\index{pre\+Init@{pre\+Init}!Component@{Component}}
+\subsubsection{\texorpdfstring{pre\+Init()}{preInit()}}
+{\footnotesize\ttfamily virtual void Component\+::pre\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classComponent_a22b96395923537ce1a56692fdd971749}\label{classComponent_a22b96395923537ce1a56692fdd971749}} 
+\index{Component@{Component}!publish@{publish}}
+\index{publish@{publish}!Component@{Component}}
+\subsubsection{\texorpdfstring{publish()}{publish()}}
+{\footnotesize\ttfamily void Component\+::publish (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_a9f81ad79e0243e6e52ae04b26e6657ab}\label{classComponent_a9f81ad79e0243e6e52ae04b26e6657ab}} 
+\index{Component@{Component}!receive\+Buffer@{receive\+Buffer}}
+\index{receive\+Buffer@{receive\+Buffer}!Component@{Component}}
+\subsubsection{\texorpdfstring{receive\+Buffer()}{receiveBuffer()}}
+{\footnotesize\ttfamily void Component\+::receive\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$}]{sock }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_a3142ee952db05b1352f539d446f63934}\label{classComponent_a3142ee952db05b1352f539d446f63934}} 
+\index{Component@{Component}!receive\+Message@{receive\+Message}}
+\index{receive\+Message@{receive\+Message}!Component@{Component}}
+\subsubsection{\texorpdfstring{receive\+Message()}{receiveMessage()}}
+{\footnotesize\ttfamily void Component\+::receive\+Message (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_aaa5c27b493d39887885adb3dd21e2224}\label{classComponent_aaa5c27b493d39887885adb3dd21e2224}} 
+\index{Component@{Component}!register\+Subscription\+Request@{register\+Subscription\+Request}}
+\index{register\+Subscription\+Request@{register\+Subscription\+Request}!Component@{Component}}
+\subsubsection{\texorpdfstring{register\+Subscription\+Request()}{registerSubscriptionRequest()}}
+{\footnotesize\ttfamily void Component\+::register\+Subscription\+Request (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classComponent_a492a20dc97b9563d80443dda2f1057ec}\label{classComponent_a492a20dc97b9563d80443dda2f1057ec}} 
+\index{Component@{Component}!send\+Data@{send\+Data}}
+\index{send\+Data@{send\+Data}!Component@{Component}}
+\subsubsection{\texorpdfstring{send\+Data()}{sendData()}}
+{\footnotesize\ttfamily virtual void Component\+::send\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classCOMP__NAME_ac981fe25a24ee01c160d08f0a970fab1}{C\+O\+M\+P\+\_\+\+N\+A\+ME}.
+
+\mbox{\Hypertarget{classComponent_a4fe6afd53663b5c1d3b60977024bc86a}\label{classComponent_a4fe6afd53663b5c1d3b60977024bc86a}} 
+\index{Component@{Component}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!Component@{Component}}
+\subsubsection{\texorpdfstring{send\+Msg()}{sendMsg()}}
+{\footnotesize\ttfamily void Component\+::send\+Msg (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classComponent_afc9525526fdc44c64873abf80357c3be}\label{classComponent_afc9525526fdc44c64873abf80357c3be}} 
+\index{Component@{Component}!send\+Payload@{send\+Payload}}
+\index{send\+Payload@{send\+Payload}!Component@{Component}}
+\subsubsection{\texorpdfstring{send\+Payload()}{sendPayload()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Component\+::send\+Payload (\begin{DoxyParamCaption}\item[{std\+::string}]{payload,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{destination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classComponent_af7ee2839809098ffd50029375aa3e5a7}\label{classComponent_af7ee2839809098ffd50029375aa3e5a7}} 
+\index{Component@{Component}!send\+Payload@{send\+Payload}}
+\index{send\+Payload@{send\+Payload}!Component@{Component}}
+\subsubsection{\texorpdfstring{send\+Payload()}{sendPayload()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Component\+::send\+Payload (\begin{DoxyParamCaption}\item[{T}]{payload,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{destination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classComponent_a55c74b1c2dcde114cb329ae43a4cd04a}\label{classComponent_a55c74b1c2dcde114cb329ae43a4cd04a}} 
+\index{Component@{Component}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!Component@{Component}}
+\subsubsection{\texorpdfstring{subscribe()}{subscribe()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Component\+::subscribe (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{producer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classComponent_abae1852e26a7bee748898ea8ef6f4fb9}\label{classComponent_abae1852e26a7bee748898ea8ef6f4fb9}} 
+\index{Component@{Component}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!Component@{Component}}
+\subsubsection{\texorpdfstring{subscribe()}{subscribe()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Component\+::subscribe (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{producer,  }\item[{uint8\+\_\+t}]{priority,  }\item[{uint32\+\_\+t}]{lease\+Period,  }\item[{uint16\+\_\+t}]{delivery\+Rate\+Divisor }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classComponent_aa60ef4220c2630dde612e2f0164b3676}\label{classComponent_aa60ef4220c2630dde612e2f0164b3676}} 
+\index{Component@{Component}!address@{address}}
+\index{address@{address}!Component@{Component}}
+\subsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Component\+::address\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classComponent_ab124decba1547f96b7df055e3b7e902e}\label{classComponent_ab124decba1547f96b7df055e3b7e902e}} 
+\index{Component@{Component}!communicator@{communicator}}
+\index{communicator@{communicator}!Component@{Component}}
+\subsubsection{\texorpdfstring{communicator}{communicator}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classSpaCommunicator}{Spa\+Communicator}$>$ Component\+::communicator}
+
+\mbox{\Hypertarget{classComponent_a6d22415eb4e07f9cc5a5c917972bf0dd}\label{classComponent_a6d22415eb4e07f9cc5a5c917972bf0dd}} 
+\index{Component@{Component}!dialog\+Id@{dialog\+Id}}
+\index{dialog\+Id@{dialog\+Id}!Component@{Component}}
+\subsubsection{\texorpdfstring{dialog\+Id}{dialogId}}
+{\footnotesize\ttfamily uint16\+\_\+t Component\+::dialog\+Id\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classComponent_ab8aa5882c1e2c8139e3ec9d9d27ff174}\label{classComponent_ab8aa5882c1e2c8139e3ec9d9d27ff174}} 
+\index{Component@{Component}!last\+Courier@{last\+Courier}}
+\index{last\+Courier@{last\+Courier}!Component@{Component}}
+\subsubsection{\texorpdfstring{last\+Courier}{lastCourier}}
+{\footnotesize\ttfamily \hyperlink{structSpaCourier}{Spa\+Courier}$\ast$ Component\+::last\+Courier\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classComponent_ad289c568dee48290561f885d69f09d94}\label{classComponent_ad289c568dee48290561f885d69f09d94}} 
+\index{Component@{Component}!m\+\_\+subscribers@{m\+\_\+subscribers}}
+\index{m\+\_\+subscribers@{m\+\_\+subscribers}!Component@{Component}}
+\subsubsection{\texorpdfstring{m\+\_\+subscribers}{m\_subscribers}}
+{\footnotesize\ttfamily std\+::mutex Component\+::m\+\_\+subscribers}
+
+\mbox{\Hypertarget{classComponent_a5dff98c7893ff79b6ff35cdc26f65240}\label{classComponent_a5dff98c7893ff79b6ff35cdc26f65240}} 
+\index{Component@{Component}!publish\+Iter@{publish\+Iter}}
+\index{publish\+Iter@{publish\+Iter}!Component@{Component}}
+\subsubsection{\texorpdfstring{publish\+Iter}{publishIter}}
+{\footnotesize\ttfamily uint8\+\_\+t Component\+::publish\+Iter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classComponent_a8147bae546da489c3ffa5a1a634739a0}\label{classComponent_a8147bae546da489c3ffa5a1a634739a0}} 
+\index{Component@{Component}!subnet\+Manager\+Address@{subnet\+Manager\+Address}}
+\index{subnet\+Manager\+Address@{subnet\+Manager\+Address}!Component@{Component}}
+\subsubsection{\texorpdfstring{subnet\+Manager\+Address}{subnetManagerAddress}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Component\+::subnet\+Manager\+Address\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classComponent_a4b1fc3511ba706058d5e575e5b4b55f7}\label{classComponent_a4b1fc3511ba706058d5e575e5b4b55f7}} 
+\index{Component@{Component}!subscribers@{subscribers}}
+\index{subscribers@{subscribers}!Component@{Component}}
+\subsubsection{\texorpdfstring{subscribers}{subscribers}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{structSubscriber}{Subscriber}$>$ Component\+::subscribers}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{component_8hpp}{component.\+hpp}\item 
+lib/\hyperlink{component_8cpp}{component.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,72 @@
+.TH "lib/socket/clientSocket.cpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/socket/clientSocket.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'clientSocket\&.hpp'\fP
+.br
+\fC#include '\&.\&./messages/op_codes\&.h'\fP
+.br
+\fC#include '\&.\&./messages/spa/spa_courier\&.h'\fP
+.br
+\fC#include '\&.\&./spa_message\&.h'\fP
+.br
+\fC#include <functional>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <netdb\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <thread>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBclientSocket_error\fP (const char *msg)"
+.br
+.ti -1c
+.RI "\fBcubiumClientSocket_t\fP \fBclientSocket_openSocket\fP (uint16_t port)"
+.br
+.ti -1c
+.RI "void \fBclientSocket_requestDialogue\fP (\fBcubiumClientSocket_t\fP *s, void *request, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> func, const uint8_t targetop)"
+.br
+.ti -1c
+.RI "ssize_t \fBclientSocket_send\fP (const void *msg, size_t len, \fBcubiumClientSocket_t\fP *s)"
+.br
+.ti -1c
+.RI "void \fBclientSocket_handleCourier\fP (\fBcubiumClientSocket_t\fP *s, std::function< void(\fBcubiumClientSocket_t\fP *)> func, \fBSpaCourier\fP *courier)"
+.br
+.ti -1c
+.RI "void \fBclientSocket_listen\fP (\fBcubiumClientSocket_t\fP *s, std::function< void(\fBcubiumClientSocket_t\fP *)> func)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void clientSocket_error (const char * msg)"
+
+.SS "void clientSocket_handleCourier (\fBcubiumClientSocket_t\fP * s, std::function< void(\fBcubiumClientSocket_t\fP *)> func, \fBSpaCourier\fP * courier)"
+
+.SS "void clientSocket_listen (\fBcubiumClientSocket_t\fP * s, std::function< void(\fBcubiumClientSocket_t\fP *)> func)"
+
+.SS "\fBcubiumClientSocket_t\fP clientSocket_openSocket (uint16_t port)"
+
+.SS "void clientSocket_requestDialogue (\fBcubiumClientSocket_t\fP * s, void * request, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> func, const uint8_t targetop)"
+
+.SS "ssize_t clientSocket_send (const void * msg, size_t len, \fBcubiumClientSocket_t\fP * s)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

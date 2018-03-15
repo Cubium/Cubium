@@ -1,0 +1,96 @@
+\hypertarget{classLocalSubnetManager}{}\section{Local\+Subnet\+Manager Class Reference}
+\label{classLocalSubnetManager}\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+
+
+{\ttfamily \#include $<$local\+\_\+subnet\+\_\+manager.\+hpp$>$}
+
+Inheritance diagram for Local\+Subnet\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.702128cm]{classLocalSubnetManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLocalSubnetManager_ae77d1c9d08c317f43e7a36d1ae8671f3}{Local\+Subnet\+Manager} (std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ c, std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$ rt)
+\item 
+void \hyperlink{classLocalSubnetManager_a8cd2838196edcd75a77f532bce15c2fd}{listen\+Messages} ()
+\item 
+void \hyperlink{classLocalSubnetManager_a6eb06d8e5e5c3ae23552e3cde0f4c216}{receive\+Message} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classComponentList}{Component\+List} \hyperlink{classLocalSubnetManager_abc353dea714fbebbcd5dd37fab411299}{components}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$ $>$ \hyperlink{classLocalSubnetManager_afbdea942383e01998f54098eb157d89c}{routing\+Table}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classLocalSubnetManager_a15ed1b4951854aeb9f6bdd54816a16be}{L\+S\+M\+\_\+message\+Callback} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLocalSubnetManager}{Local\+Subnet\+Manager} $>$ lsm, \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$sock)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLocalSubnetManager_ae77d1c9d08c317f43e7a36d1ae8671f3}\label{classLocalSubnetManager_ae77d1c9d08c317f43e7a36d1ae8671f3}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{Local\+Subnet\+Manager()}{LocalSubnetManager()}}
+{\footnotesize\ttfamily Local\+Subnet\+Manager\+::\+Local\+Subnet\+Manager (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$}]{c,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$}]{rt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLocalSubnetManager_a8cd2838196edcd75a77f532bce15c2fd}\label{classLocalSubnetManager_a8cd2838196edcd75a77f532bce15c2fd}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!listen\+Messages@{listen\+Messages}}
+\index{listen\+Messages@{listen\+Messages}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{listen\+Messages()}{listenMessages()}}
+{\footnotesize\ttfamily void Local\+Subnet\+Manager\+::listen\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ message that has been received Continuously ping components checking to make sure they are still responsive. Should report component failture to logging service. This function should not return while the subnet manager is running. Continuously listen for messages. Will call receive\+Message with each received message. A call to this method should not return while the subnet manager is running. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classSubnetManager_a6aed1acaa5e9f18feb7667904675d119}{Subnet\+Manager}.
+
+\mbox{\Hypertarget{classLocalSubnetManager_a6eb06d8e5e5c3ae23552e3cde0f4c216}\label{classLocalSubnetManager_a6eb06d8e5e5c3ae23552e3cde0f4c216}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!receive\+Message@{receive\+Message}}
+\index{receive\+Message@{receive\+Message}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{receive\+Message()}{receiveMessage()}}
+{\footnotesize\ttfamily void Local\+Subnet\+Manager\+::receive\+Message (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classLocalSubnetManager_a15ed1b4951854aeb9f6bdd54816a16be}\label{classLocalSubnetManager_a15ed1b4951854aeb9f6bdd54816a16be}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!L\+S\+M\+\_\+message\+Callback@{L\+S\+M\+\_\+message\+Callback}}
+\index{L\+S\+M\+\_\+message\+Callback@{L\+S\+M\+\_\+message\+Callback}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{L\+S\+M\+\_\+message\+Callback}{LSM\_messageCallback}}
+{\footnotesize\ttfamily void L\+S\+M\+\_\+message\+Callback (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLocalSubnetManager}{Local\+Subnet\+Manager} $>$}]{lsm,  }\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{sock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classLocalSubnetManager_abc353dea714fbebbcd5dd37fab411299}\label{classLocalSubnetManager_abc353dea714fbebbcd5dd37fab411299}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!components@{components}}
+\index{components@{components}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily \hyperlink{classComponentList}{Component\+List} Local\+Subnet\+Manager\+::components\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classLocalSubnetManager_afbdea942383e01998f54098eb157d89c}\label{classLocalSubnetManager_afbdea942383e01998f54098eb157d89c}} 
+\index{Local\+Subnet\+Manager@{Local\+Subnet\+Manager}!routing\+Table@{routing\+Table}}
+\index{routing\+Table@{routing\+Table}!Local\+Subnet\+Manager@{Local\+Subnet\+Manager}}
+\subsubsection{\texorpdfstring{routing\+Table}{routingTable}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classRoutingTable}{Routing\+Table}$<$\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t}$>$ $>$ Local\+Subnet\+Manager\+::routing\+Table\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{local__subnet__manager_8hpp}{local\+\_\+subnet\+\_\+manager.\+hpp}\end{DoxyCompactItemize}

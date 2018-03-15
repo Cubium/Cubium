@@ -1,0 +1,43 @@
+.TH "lib/component.cpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/component.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'component\&.hpp'\fP
+.br
+\fC#include 'logical_address\&.h'\fP
+.br
+\fC#include 'messages/op_codes\&.h'\fP
+.br
+\fC#include 'messages/spa/subscription_request\&.h'\fP
+.br
+\fC#include <algorithm>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <thread>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'messages/spa/spa_data\&.h'\fP
+.br
+\fC#include 'messages/spa/subscription_reply\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcomponent_messageCallback\fP (std::shared_ptr< \fBComponent\fP > comp, \fBcubiumClientSocket_t\fP *sock)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void component_messageCallback (std::shared_ptr< \fBComponent\fP > comp, \fBcubiumClientSocket_t\fP * sock)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

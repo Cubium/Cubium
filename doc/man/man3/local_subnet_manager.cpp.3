@@ -1,0 +1,43 @@
+.TH "lib/local_subnet_manager.cpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/local_subnet_manager.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'local_subnet_manager\&.hpp'\fP
+.br
+\fC#include 'logical_address\&.h'\fP
+.br
+\fC#include 'messages/local/local_ack\&.h'\fP
+.br
+\fC#include 'messages/op_codes\&.h'\fP
+.br
+\fC#include 'messages/spa/spa_data\&.h'\fP
+.br
+\fC#include 'messages/spa/subscription_reply\&.h'\fP
+.br
+\fC#include 'messages/spa/subscription_request\&.h'\fP
+.br
+\fC#include 'spa_message\&.h'\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <memory>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBLSM_messageCallback\fP (std::shared_ptr< \fBLocalSubnetManager\fP > lsm, \fBcubiumServerSocket_t\fP *sock)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void LSM_messageCallback (std::shared_ptr< \fBLocalSubnetManager\fP > lsm, \fBcubiumServerSocket_t\fP * sock)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

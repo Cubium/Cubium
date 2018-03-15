@@ -1,0 +1,87 @@
+.TH "Adafruit_MCP9808.MCP9808.MCP9808" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Adafruit_MCP9808.MCP9808.MCP9808
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP (self, address=\fBMCP9808_I2CADDR_DEFAULT\fP, i2c=None, kwargs)"
+.br
+.ti -1c
+.RI "def \fBbegin\fP (self)"
+.br
+.ti -1c
+.RI "def \fBreadTempC\fP (self)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB_logger\fP"
+.br
+.ti -1c
+.RI "\fB_device\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Class to represent an Adafruit MCP9808 precision temperature measurement
+board.
+
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def Adafruit_MCP9808\&.MCP9808\&.MCP9808\&.__init__ ( self,  address = \fC\fBMCP9808_I2CADDR_DEFAULT\fP\fP,  i2c = \fCNone\fP,  kwargs)"
+
+.PP
+.nf
+Initialize MCP9808 device on the specified I2C address and bus number.
+Address defaults to 0x18 and bus number defaults to the appropriate bus
+for the hardware.
+
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS "def Adafruit_MCP9808\&.MCP9808\&.MCP9808\&.begin ( self)"
+
+.PP
+.nf
+Start taking temperature measurements. Returns True if the device is 
+intialized, False otherwise.
+
+.fi
+.PP
+ 
+.SS "def Adafruit_MCP9808\&.MCP9808\&.MCP9808\&.readTempC ( self)"
+
+.PP
+.nf
+Read sensor and return its value in degrees celsius.
+.fi
+.PP
+ 
+.SH "Member Data Documentation"
+.PP 
+.SS "Adafruit_MCP9808\&.MCP9808\&.MCP9808\&._device\fC [private]\fP"
+
+.SS "Adafruit_MCP9808\&.MCP9808\&.MCP9808\&._logger\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

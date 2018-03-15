@@ -1,0 +1,110 @@
+\hypertarget{classPhysicalCommunicator}{}\section{Physical\+Communicator Class Reference}
+\label{classPhysicalCommunicator}\index{Physical\+Communicator@{Physical\+Communicator}}
+
+
+{\ttfamily \#include $<$physical\+\_\+communicator.\+hpp$>$}
+
+Inheritance diagram for Physical\+Communicator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classPhysicalCommunicator}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{classPhysicalCommunicator_ac0fb9cea7a3e3ffecedc57be9684ebbf}{Message\+Callback}) (void $\ast$, uint32\+\_\+t)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPhysicalCommunicator_a6895d0ce73240eb80d0b9a060da7c728}{Physical\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+virtual \hyperlink{classPhysicalCommunicator_ab81e6bd21e71a33a5835c16e74ffd324}{$\sim$\+Physical\+Communicator} ()
+\item 
+virtual bool \hyperlink{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}{send\+Msg} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t len)
+\item 
+virtual void \hyperlink{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}{listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+virtual \hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classPhysicalCommunicator_a80f3bdf1beb61e5f6721e30fdc4d5d7f}{get\+Subnet\+Address} ()
+\item 
+virtual void \hyperlink{classPhysicalCommunicator_a5984183c86e19370215736688d905fe6}{client\+Connect} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classPhysicalCommunicator_a2ed89508db3fe68218192a6f3bacab26}{subnet\+Address}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classPhysicalCommunicator_ac0fb9cea7a3e3ffecedc57be9684ebbf}\label{classPhysicalCommunicator_ac0fb9cea7a3e3ffecedc57be9684ebbf}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!Message\+Callback@{Message\+Callback}}
+\index{Message\+Callback@{Message\+Callback}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{Message\+Callback}{MessageCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Physical\+Communicator\+::\+Message\+Callback) (void $\ast$, uint32\+\_\+t)}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPhysicalCommunicator_a6895d0ce73240eb80d0b9a060da7c728}\label{classPhysicalCommunicator_a6895d0ce73240eb80d0b9a060da7c728}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!Physical\+Communicator@{Physical\+Communicator}}
+\index{Physical\+Communicator@{Physical\+Communicator}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{Physical\+Communicator()}{PhysicalCommunicator()}}
+{\footnotesize\ttfamily Physical\+Communicator\+::\+Physical\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{la }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classPhysicalCommunicator_ab81e6bd21e71a33a5835c16e74ffd324}\label{classPhysicalCommunicator_ab81e6bd21e71a33a5835c16e74ffd324}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!````~Physical\+Communicator@{$\sim$\+Physical\+Communicator}}
+\index{````~Physical\+Communicator@{$\sim$\+Physical\+Communicator}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{$\sim$\+Physical\+Communicator()}{~PhysicalCommunicator()}}
+{\footnotesize\ttfamily virtual Physical\+Communicator\+::$\sim$\+Physical\+Communicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPhysicalCommunicator_a5984183c86e19370215736688d905fe6}\label{classPhysicalCommunicator_a5984183c86e19370215736688d905fe6}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!client\+Connect@{client\+Connect}}
+\index{client\+Connect@{client\+Connect}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{client\+Connect()}{clientConnect()}}
+{\footnotesize\ttfamily virtual void Physical\+Communicator\+::client\+Connect (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{,  }\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classPhysicalCommunicator_a80f3bdf1beb61e5f6721e30fdc4d5d7f}\label{classPhysicalCommunicator_a80f3bdf1beb61e5f6721e30fdc4d5d7f}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!get\+Subnet\+Address@{get\+Subnet\+Address}}
+\index{get\+Subnet\+Address@{get\+Subnet\+Address}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{get\+Subnet\+Address()}{getSubnetAddress()}}
+{\footnotesize\ttfamily virtual \hyperlink{structLogicalAddress}{Logical\+Address} Physical\+Communicator\+::get\+Subnet\+Address (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}\label{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!listen@{listen}}
+\index{listen@{listen}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily virtual void Physical\+Communicator\+::listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}{Local\+Communicator}.
+
+\mbox{\Hypertarget{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}\label{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{send\+Msg()}{sendMsg()}}
+{\footnotesize\ttfamily virtual bool Physical\+Communicator\+::send\+Msg (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}{Local\+Communicator}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classPhysicalCommunicator_a2ed89508db3fe68218192a6f3bacab26}\label{classPhysicalCommunicator_a2ed89508db3fe68218192a6f3bacab26}} 
+\index{Physical\+Communicator@{Physical\+Communicator}!subnet\+Address@{subnet\+Address}}
+\index{subnet\+Address@{subnet\+Address}!Physical\+Communicator@{Physical\+Communicator}}
+\subsubsection{\texorpdfstring{subnet\+Address}{subnetAddress}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Physical\+Communicator\+::subnet\+Address}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{physical__communicator_8hpp}{physical\+\_\+communicator.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,120 @@
+.TH "LocalCommunicator" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LocalCommunicator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <local_communicator\&.hpp>\fP
+.PP
+Inherits \fBPhysicalCommunicator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLocalCommunicator\fP (\fBcubiumServerSocket_t\fP *sock, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> \fBroutingTable\fP, \fBLogicalAddress\fP la)"
+.br
+.ti -1c
+.RI "\fBLocalCommunicator\fP (\fBcubiumClientSocket_t\fP *sock, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> \fBroutingTable\fP, \fBLogicalAddress\fP la)"
+.br
+.ti -1c
+.RI "\fBLocalCommunicator\fP (\fBcubiumServerSocket_t\fP *sock, \fBLogicalAddress\fP la)"
+.br
+.ti -1c
+.RI "virtual bool \fBsendMsg\fP (\fBSpaMessage\fP *msg, ssize_t len)"
+.br
+.ti -1c
+.RI "virtual void \fBhandleFailure\fP (std::string)"
+.br
+.ti -1c
+.RI "virtual bool \fBserverSend\fP (\fBSpaMessage\fP *message, ssize_t)"
+.br
+.ti -1c
+.RI "virtual bool \fBclientSend\fP (\fBSpaMessage\fP *message, ssize_t)"
+.br
+.ti -1c
+.RI "void \fBclientConnect\fP (\fBSpaMessage\fP *, size_t, std::function< void(\fBcubiumClientSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "void \fBinitSubDialogue\fP (\fBSpaMessage\fP *message, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> callback)"
+.br
+.ti -1c
+.RI "void \fBclientListen\fP (std::function< void(\fBcubiumClientSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP (std::function< void(\fBcubiumServerSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP (std::function< void(\fBcubiumClientSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "void \fBsetServerSock\fP (\fBcubiumServerSocket_t\fP *s)"
+.br
+.ti -1c
+.RI "void \fBprintTable\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcubiumServerSocket_t\fP * \fBserverSock\fP"
+.br
+.ti -1c
+.RI "\fBcubiumClientSocket_t\fP * \fBclientSock\fP"
+.br
+.ti -1c
+.RI "std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP > > \fBroutingTable\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LocalCommunicator::LocalCommunicator (\fBcubiumServerSocket_t\fP * sock, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> routingTable, \fBLogicalAddress\fP la)\fC [inline]\fP"
+
+.SS "LocalCommunicator::LocalCommunicator (\fBcubiumClientSocket_t\fP * sock, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> routingTable, \fBLogicalAddress\fP la)\fC [inline]\fP"
+
+.SS "LocalCommunicator::LocalCommunicator (\fBcubiumServerSocket_t\fP * sock, \fBLogicalAddress\fP la)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LocalCommunicator::clientConnect (\fBSpaMessage\fP * message, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> callback)"
+
+.SS "void LocalCommunicator::clientListen (std::function< void(\fBcubiumClientSocket_t\fP *)> func)"
+
+.SS "bool LocalCommunicator::clientSend (\fBSpaMessage\fP * message, ssize_t len)\fC [virtual]\fP"
+
+.SS "void LocalCommunicator::handleFailure (std::string message)\fC [virtual]\fP"
+
+.SS "void LocalCommunicator::initSubDialogue (\fBSpaMessage\fP * message, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> callback)"
+
+.SS "void LocalCommunicator::listen (std::function< void(\fBcubiumServerSocket_t\fP *)> messageHandler)\fC [virtual]\fP"
+
+.PP
+Reimplemented from \fBPhysicalCommunicator\fP\&.
+.SS "void LocalCommunicator::listen (std::function< void(\fBcubiumClientSocket_t\fP *)> messageHandler)\fC [virtual]\fP"
+
+.SS "void LocalCommunicator::printTable ()\fC [inline]\fP"
+
+.SS "bool LocalCommunicator::sendMsg (\fBSpaMessage\fP * msg, ssize_t len)\fC [virtual]\fP"
+
+.PP
+Reimplemented from \fBPhysicalCommunicator\fP\&.
+.SS "bool LocalCommunicator::serverSend (\fBSpaMessage\fP * message, ssize_t len)\fC [virtual]\fP"
+
+.SS "void LocalCommunicator::setServerSock (\fBcubiumServerSocket_t\fP * s)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcubiumClientSocket_t\fP* LocalCommunicator::clientSock\fC [protected]\fP"
+
+.SS "std::shared_ptr<\fBRoutingTable\fP<\fBcubiumServerSocket_t\fP> > LocalCommunicator::routingTable\fC [protected]\fP"
+
+.SS "\fBcubiumServerSocket_t\fP* LocalCommunicator::serverSock\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

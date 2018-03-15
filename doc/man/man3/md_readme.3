@@ -1,0 +1,231 @@
+.TH "md_readme" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_readmeCubium 
+ \- Cubium is a free and open-source flight software for Linux-based spacecraft systems\&. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components\&. Developed with undergraduate CubeSat teams using systems such as Beaglebone Blacks and Raspberry Pis in mind, Cubium's purpose is to lower the bar of entry for satellite development\&.
+.PP
+Cubium is designed using the Space Plug-and-play Architecture (SPA), a specification for a kind of modular satellite software architecture\&. It has a proven mission-success track record on Air Force and Space Dynamics Laboratory payloads\&.
+.PP
+For a fun introduction on the inner workings of Cubium, see \fCthis illustrated writeup\&.\fP
+.PP
+For a very detailed look into the machinations of SPA in general, see \fCJacob Holt Christensen's dissertation\&.\fP
+.PP
+.SS "Project Status"
+.PP
+.IP "\(bu" 2
+\fBVersion Alpha 1\&.2\&.0\fP
+.IP "  \(bu" 4
+Support for sending strings between components
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 1\&.1\&.0\fP
+.IP "  \(bu" 4
+Finalized architecture for software demo shown at SmallSat conference
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 1\&.0\&.0\fP
+.IP "  \(bu" 4
+All necessary framework completed for support of basic component systems\&.
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.6\fP
+.IP "  \(bu" 4
+Successful transmission of SPA messages across processes via socket communication
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.5\fP
+.IP "  \(bu" 4
+Major backend refactoring of SPA Messages
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.4\fP
+.IP "  \(bu" 4
+Added a basic subscription service
+.IP "    \(bu" 6
+Direct component-to-component subscription
+.IP "    \(bu" 6
+Non-prioritized publishing
+.PP
+
+.IP "  \(bu" 4
+Improvements to message handling
+.IP "  \(bu" 4
+Additional tests for components
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.3\fP
+.IP "  \(bu" 4
+Basic implementations of:
+.IP "    \(bu" 6
+Local SpaMessages
+.IP "    \(bu" 6
+Components
+.IP "    \(bu" 6
+Local Subnet Manager
+.PP
+
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.2\fP
+.IP "  \(bu" 4
+Debian dev environment complete
+.PP
+
+.IP "\(bu" 2
+\fBVersion Alpha 0\&.0\&.1\fP
+.IP "  \(bu" 4
+Planning API's and project planning
+.PP
+
+.PP
+.PP
+.SS "Getting Started"
+.PP
+.SS "Developer Tools"
+.PP
+Cubium relies on a handful of developer tools\&. The following is a list of things we'll be using:
+.IP "\(bu" 2
+Vagrant - Virtual development environment
+.IP "\(bu" 2
+Git - Version control system
+.IP "\(bu" 2
+Google Test - Unit testing framework
+.IP "\(bu" 2
+Doxygen - Documentation generator
+.IP "\(bu" 2
+CMake - Build system automation
+.PP
+.PP
+.SS "Set up Vagrant"
+.PP
+Cubium uses Vagrant to create a development environment to match the devices that Cubium will run on\&. It also eliminiates 'well, it works on my system' bugs\&.
+.PP
+\fBFor instructions on getting the dev environment up and running, see the \fCwiki page\fP\fP
+.PP
+.SS "Build Project"
+.PP
+.SS "TL;DR"
+.PP
+.IP "\(bu" 2
+Run CMake in project directory \fCcmake \&.\fP
+.IP "\(bu" 2
+Run generated makefile \fCmake [optional-target]\fP
+.PP
+.PP
+Cubium uses CMake for a build system\&. Makefiles are generally platform-dependent, so CMake generates a different Makefile for each system in order to allow for cross-plaform functionality\&.
+.PP
+.SS "Build Docs"
+.PP
+.SS "TL;DR"
+.PP
+.IP "\(bu" 2
+Run Doxygen with project doxyfile \fCdoxygen \&./Doxyfile\fP
+.IP "\(bu" 2
+View your docs\&. They should now live in \fCdocs/\fP
+.PP
+.PP
+Cubium uses the documentation generator Doxygen to build documentation\&. Annotated source code is parsed by Doxygen to generate LaTeX and HTML files\&.
+.PP
+Doxygen is configured with a file titled \fCDoxyfile\fP\&.
+.PP
+.IP "\(bu" 2
+Build Documentation
+.IP "  \(bu" 4
+Invoke commandline tool
+.IP "    \(bu" 6
+\fCdoxygen Doxyfile\fP
+.PP
+
+.PP
+
+.PP
+.PP
+This will read all configuration options from the Doxyfile, find and parse the source code, and generate the documentation\&.
+.PP
+If the documentation is successfully built, there should be a new directory title \fCdocs/\fP that should contain both HTML and LaTeX documentation\&.
+.PP
+.IP "\(bu" 2
+Read Docs
+.IP "  \(bu" 4
+Open up \fCdocs/html/index\&.html\fP in your web browser to browse docs
+.PP
+
+.PP
+.PP
+.SS "Running Tests"
+.PP
+Cubium tests use the Google Test testing framework for unit testing\&. Test test test\&.
+.IP "\(bu" 2
+To run test suite:
+.IP "  \(bu" 4
+Generate a makefile with CMake \fCcmake \&.\fP
+.IP "  \(bu" 4
+Build tests with makefile \fCmake runTests\fP
+.IP "  \(bu" 4
+Run test executable \fC\&./runTests\fP
+.PP
+
+.PP
+.PP
+.SS "Testing"
+.PP
+Cubium uses Google Test for unit testing and CMake for a build system\&. The short version of running tests is this:
+.PP
+Classes should be kept small and have functioning unit tests\&. When adding a new header file for a class, a header file of the same name should be added to the \fCtest/\fP directory\&.
+.PP
+To add a new class to the project:
+.IP "\(bu" 2
+Create header file \fCmy_class_name\&.hpp\fP (File names should be snake case - lowercase words seperated with underscores)
+.IP "  \(bu" 4
+Define class ```cpp #ifndef MY_CLASS_NAME_HPP #define MY_CLASS_NAME_HPP class MyClassName{}; #endif ```
+.IP "    \(bu" 6
+Must have include guards
+.IP "    \(bu" 6
+Class name should be UpperCamelCase, where each first letter of a words is capitalized\&. Including the first word\&.
+.PP
+
+.PP
+
+.IP "\(bu" 2
+Add new testing file \fCtest/my_class_name\&.hpp\fP
+.IP "\(bu" 2
+Write tests for your class ```cpp #include '\&.\&./path/to/my_class_name\&.hpp'
+.PP
+TEST(MyClassName, myMethod){ MyClassName myClass; EXPECT_EQ(myClass\&.myMethod(),0); } ```
+.IP "  \(bu" 4
+Be sure to include class header in test file
+.PP
+
+.IP "\(bu" 2
+Include your test header in main test file
+.IP "  \(bu" 4
+Open \fCtest/gtest_main\&.cpp\fP
+.IP "  \(bu" 4
+Include your new test header file
+.PP
+
+.IP "\(bu" 2
+Hooray! Now you can run your tests! :D
+.PP
+.PP
+.SS "Documentation"
+.PP
+Cubium uses Doxygen to build documentation from source code\&. This means that one can add comments with a special format in the code so that Doxygen may build pretty HTML docs that can be referenced by all other developers and users\&.
+.PP
+Here is an example of what this might look like to document a function\&. 
+.PP
+.nf
+
+bool example(int myParam){return true;}
+
+.fi
+.PP
+ 

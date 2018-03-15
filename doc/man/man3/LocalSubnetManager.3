@@ -1,0 +1,76 @@
+.TH "LocalSubnetManager" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LocalSubnetManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <local_subnet_manager\&.hpp>\fP
+.PP
+Inherits \fBSubnetManager\fP, and enable_shared_from_this< LocalSubnetManager >\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLocalSubnetManager\fP (std::shared_ptr< \fBSpaCommunicator\fP > c, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> rt)"
+.br
+.ti -1c
+.RI "void \fBlistenMessages\fP ()"
+.br
+.ti -1c
+.RI "void \fBreceiveMessage\fP (\fBSpaMessage\fP *message)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBComponentList\fP \fBcomponents\fP"
+.br
+.ti -1c
+.RI "std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP > > \fBroutingTable\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "void \fBLSM_messageCallback\fP (std::shared_ptr< \fBLocalSubnetManager\fP > lsm, \fBcubiumServerSocket_t\fP *sock)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LocalSubnetManager::LocalSubnetManager (std::shared_ptr< \fBSpaCommunicator\fP > c, std::shared_ptr< \fBRoutingTable\fP< \fBcubiumServerSocket_t\fP >> rt)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LocalSubnetManager::listenMessages ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fImessage\fP - message that has been received Continuously ping components checking to make sure they are still responsive\&. Should report component failture to logging service\&. This function should not return while the subnet manager is running\&. Continuously listen for messages\&. Will call receiveMessage with each received message\&. A call to this method should not return while the subnet manager is running\&. 
+.RE
+.PP
+
+.PP
+Implements \fBSubnetManager\fP\&.
+.SS "void LocalSubnetManager::receiveMessage (\fBSpaMessage\fP * message)\fC [inline]\fP"
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "void LSM_messageCallback (std::shared_ptr< \fBLocalSubnetManager\fP > lsm, \fBcubiumServerSocket_t\fP * sock)\fC [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBComponentList\fP LocalSubnetManager::components\fC [private]\fP"
+
+.SS "std::shared_ptr<\fBRoutingTable\fP<\fBcubiumServerSocket_t\fP> > LocalSubnetManager::routingTable\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

@@ -1,0 +1,234 @@
+.TH "ez_setup" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ez_setup
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB_python_cmd\fP (args)"
+.br
+.ti -1c
+.RI "def \fB_install\fP (archive_filename, install_args=())"
+.br
+.ti -1c
+.RI "def \fB_build_egg\fP (egg, archive_filename, to_dir)"
+.br
+.ti -1c
+.RI "def \fBget_zip_class\fP ()"
+.br
+.ti -1c
+.RI "def \fBarchive_context\fP (filename)"
+.br
+.ti -1c
+.RI "def \fB_do_download\fP (version, download_base, to_dir, download_delay)"
+.br
+.ti -1c
+.RI "def \fBuse_setuptools\fP (version=\fBDEFAULT_VERSION\fP, download_base=\fBDEFAULT_URL\fP, to_dir=os\&.curdir, download_delay=15)"
+.br
+.ti -1c
+.RI "def \fB_clean_check\fP (cmd, target)"
+.br
+.ti -1c
+.RI "def \fBdownload_file_powershell\fP (url, target)"
+.br
+.ti -1c
+.RI "def \fBhas_powershell\fP ()"
+.br
+.ti -1c
+.RI "def \fBdownload_file_curl\fP (url, target)"
+.br
+.ti -1c
+.RI "def \fBhas_curl\fP ()"
+.br
+.ti -1c
+.RI "def \fBdownload_file_wget\fP (url, target)"
+.br
+.ti -1c
+.RI "def \fBhas_wget\fP ()"
+.br
+.ti -1c
+.RI "def \fBdownload_file_insecure\fP (url, target)"
+.br
+.ti -1c
+.RI "def \fBget_best_downloader\fP ()"
+.br
+.ti -1c
+.RI "def \fBdownload_setuptools\fP (version=\fBDEFAULT_VERSION\fP, download_base=\fBDEFAULT_URL\fP, to_dir=os\&.curdir, delay=15, downloader_factory=\fBget_best_downloader\fP)"
+.br
+.ti -1c
+.RI "def \fB_build_install_args\fP (options)"
+.br
+.ti -1c
+.RI "def \fB_parse_args\fP ()"
+.br
+.ti -1c
+.RI "def \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBUSER_SITE\fP = None"
+.br
+.ti -1c
+.RI "string \fBDEFAULT_VERSION\fP = '3\&.5\&.1'"
+.br
+.ti -1c
+.RI "string \fBDEFAULT_URL\fP = 'https://pypi\&.python\&.org/packages/source/s/setuptools/'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Bootstrap setuptools installation
+
+To use setuptools in your package's setup.py, include this
+file in the same directory and add this to the top of your setup.py::
+
+from ez_setup import use_setuptools
+use_setuptools()
+
+To require a specific version of setuptools, set a download
+mirror, or use an alternate download directory, simply supply
+the appropriate options to ``use_setuptools()``.
+
+This file can also be run as a script to install or upgrade setuptools.
+
+.fi
+.PP
+ 
+.SH "Function Documentation"
+.PP 
+.SS "def ez_setup\&._build_egg ( egg,  archive_filename,  to_dir)\fC [private]\fP"
+
+.SS "def ez_setup\&._build_install_args ( options)\fC [private]\fP"
+
+.PP
+.nf
+Build the arguments to 'python setup.py install' on the setuptools package
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&._clean_check ( cmd,  target)\fC [private]\fP"
+
+.PP
+.nf
+Run the command to download target. If the command fails, clean up before
+re-raising the error.
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&._do_download ( version,  download_base,  to_dir,  download_delay)\fC [private]\fP"
+
+.SS "def ez_setup\&._install ( archive_filename,  install_args = \fC()\fP)\fC [private]\fP"
+
+.SS "def ez_setup\&._parse_args ()\fC [private]\fP"
+
+.PP
+.nf
+Parse the command line for options
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&._python_cmd ( args)\fC [private]\fP"
+
+.PP
+.nf
+Return True if the command succeeded.
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&.archive_context ( filename)"
+
+.SS "def ez_setup\&.download_file_curl ( url,  target)"
+
+.SS "def ez_setup\&.download_file_insecure ( url,  target)"
+
+.PP
+.nf
+Use Python to download the file, even though it cannot authenticate the
+connection.
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&.download_file_powershell ( url,  target)"
+
+.PP
+.nf
+Download the file at url to target using Powershell (which will validate
+trust). Raise an exception if the command cannot complete.
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&.download_file_wget ( url,  target)"
+
+.SS "def ez_setup\&.download_setuptools ( version = \fC\fBDEFAULT_VERSION\fP\fP,  download_base = \fC\fBDEFAULT_URL\fP\fP,  to_dir = \fCos\&.curdir\fP,  delay = \fC15\fP,  downloader_factory = \fC\fBget_best_downloader\fP\fP)"
+
+.PP
+.nf
+Download setuptools from a specified location and return its filename
+
+`version` should be a valid setuptools version number that is available
+as an egg for download under the `download_base` URL (which should end
+with a '/'). `to_dir` is the directory where the egg will be downloaded.
+`delay` is the number of seconds to pause before an actual download
+attempt.
+
+``downloader_factory`` should be a function taking no arguments and
+returning a function for downloading a URL to a target.
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&.get_best_downloader ()"
+
+.SS "def ez_setup\&.get_zip_class ()"
+
+.PP
+.nf
+Supplement ZipFile class to support context manager for Python 2.6
+
+.fi
+.PP
+ 
+.SS "def ez_setup\&.has_curl ()"
+
+.SS "def ez_setup\&.has_powershell ()"
+
+.SS "def ez_setup\&.has_wget ()"
+
+.SS "def ez_setup\&.main (void)"
+
+.PP
+.nf
+Install or upgrade setuptools and EasyInstall
+.fi
+.PP
+ 
+.SS "def ez_setup\&.use_setuptools ( version = \fC\fBDEFAULT_VERSION\fP\fP,  download_base = \fC\fBDEFAULT_URL\fP\fP,  to_dir = \fCos\&.curdir\fP,  download_delay = \fC15\fP)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "string ez_setup\&.DEFAULT_URL = 'https://pypi\&.python\&.org/packages/source/s/setuptools/'"
+
+.SS "string ez_setup\&.DEFAULT_VERSION = '3\&.5\&.1'"
+
+.SS "ez_setup\&.USER_SITE = None"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

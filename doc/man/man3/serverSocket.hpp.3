@@ -1,0 +1,50 @@
+.TH "lib/socket/serverSocket.hpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/socket/serverSocket.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <functional>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcubiumServerSocket_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "ssize_t \fBserverSocket_send\fP (const void *msg, size_t len, \fBcubiumServerSocket_t\fP *s)"
+.br
+.ti -1c
+.RI "void \fBserverSocket_listen\fP (\fBcubiumServerSocket_t\fP *port, std::function< void(\fBcubiumServerSocket_t\fP *)> func)"
+.br
+.ti -1c
+.RI "\fBcubiumServerSocket_t\fP \fBserverSocket_openSocket\fP (uint16_t port)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void serverSocket_listen (\fBcubiumServerSocket_t\fP * port, std::function< void(\fBcubiumServerSocket_t\fP *)> func)"
+
+.SS "\fBcubiumServerSocket_t\fP serverSocket_openSocket (uint16_t port)"
+
+.SS "ssize_t serverSocket_send (const void * msg, size_t len, \fBcubiumServerSocket_t\fP * s)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

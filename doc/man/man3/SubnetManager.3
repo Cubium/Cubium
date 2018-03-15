@@ -1,0 +1,64 @@
+.TH "SubnetManager" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SubnetManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <subnet_manager\&.hpp>\fP
+.PP
+Inherited by \fBLocalSubnetManager\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSubnetManager\fP (std::shared_ptr< \fBSpaCommunicator\fP > com)"
+.br
+.ti -1c
+.RI "virtual void \fBlistenMessages\fP ()=0"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "static std::shared_ptr< \fBSpaCommunicator\fP > \fBcommunicator\fP"
+.br
+.RI "Run a long running task on a new thread\&. "
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SubnetManager::SubnetManager (std::shared_ptr< \fBSpaCommunicator\fP > com)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void SubnetManager::listenMessages ()\fC [pure virtual]\fP"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fImessage\fP - message that has been received Continuously ping components checking to make sure they are still responsive\&. Should report component failture to logging service\&. This function should not return while the subnet manager is running\&. Continuously listen for messages\&. Will call receiveMessage with each received message\&. A call to this method should not return while the subnet manager is running\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBLocalSubnetManager\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "std::shared_ptr< \fBSpaCommunicator\fP > SubnetManager::communicator\fC [static]\fP, \fC [protected]\fP"
+
+.PP
+Run a long running task on a new thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItask\fP - lambda function to run on a seperate thread 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

@@ -1,0 +1,71 @@
+.TH "SpaHeader" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SpaHeader
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <spa_header\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaHeader\fP (uint8_t \fBversion\fP=0, uint8_t \fBpriority\fP=0, uint16_t \fBlength\fP=0, \fBLogicalAddress\fP \fBdestination\fP=\fBLogicalAddress\fP(0, 0), \fBLogicalAddress\fP \fBsource\fP=\fBLogicalAddress\fP(0, 0), uint16_t \fBflags\fP=0, uint8_t \fBopcode\fP=0)"
+.br
+.ti -1c
+.RI "\fBSpaHeader\fP (\fBLogicalAddress\fP \fBdestination\fP, uint8_t \fBopcode\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint8_t \fBversion\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBpriority\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBlength\fP"
+.br
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBdestination\fP"
+.br
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBsource\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBflags\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBopcode\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SpaHeader::SpaHeader (uint8_t version = \fC0\fP, uint8_t priority = \fC0\fP, uint16_t length = \fC0\fP, \fBLogicalAddress\fP destination = \fC\fBLogicalAddress\fP(0, 0)\fP, \fBLogicalAddress\fP source = \fC\fBLogicalAddress\fP(0, 0)\fP, uint16_t flags = \fC0\fP, uint8_t opcode = \fC0\fP)\fC [inline]\fP"
+
+.SS "SpaHeader::SpaHeader (\fBLogicalAddress\fP destination, uint8_t opcode)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBLogicalAddress\fP SpaHeader::destination"
+
+.SS "uint16_t SpaHeader::flags"
+
+.SS "uint16_t SpaHeader::length"
+
+.SS "uint8_t SpaHeader::opcode"
+
+.SS "uint8_t SpaHeader::priority"
+
+.SS "\fBLogicalAddress\fP SpaHeader::source"
+
+.SS "uint8_t SpaHeader::version"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

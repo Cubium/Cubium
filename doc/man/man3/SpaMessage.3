@@ -1,0 +1,68 @@
+.TH "SpaMessage" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SpaMessage
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <spa_message\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaMessage\fP (\fBLogicalAddress\fP destination, uint8_t opcode)"
+.br
+.ti -1c
+.RI "\fBSpaMessage\fP (uint8_t version=0, uint8_t priority=0, uint16_t length=0, \fBLogicalAddress\fP destination=\fBLogicalAddress\fP(0, 0), \fBLogicalAddress\fP source=\fBLogicalAddress\fP(0, 0), uint16_t flags=0, uint8_t opcode=0)"
+.br
+.ti -1c
+.RI "virtual \fB~SpaMessage\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaHeader\fP \fBspaHeader\fP"
+.br
+.RI "Generate a message from a byte array\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class to represent generic spa message\&. Should be extended by other Spa Message types 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SpaMessage::SpaMessage (\fBLogicalAddress\fP destination, uint8_t opcode)\fC [inline]\fP"
+
+.SS "SpaMessage::SpaMessage (uint8_t version = \fC0\fP, uint8_t priority = \fC0\fP, uint16_t length = \fC0\fP, \fBLogicalAddress\fP destination = \fC\fBLogicalAddress\fP(0, 0)\fP, \fBLogicalAddress\fP source = \fC\fBLogicalAddress\fP(0, 0)\fP, uint16_t flags = \fC0\fP, uint8_t opcode = \fC0\fP)\fC [inline]\fP"
+
+.SS "virtual SpaMessage::~SpaMessage ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBSpaHeader\fP SpaMessage::spaHeader"
+
+.PP
+Generate a message from a byte array\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserialized\fP - array containing serialized message 
+.br
+\fIsize\fP - length of serialized array Serializes a message to a byte array 
+.br
+\fItarget\fP - pointer where seialized message array will be stored 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+- size of serialized array Logical address of component on spa network 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

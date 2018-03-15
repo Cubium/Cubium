@@ -1,0 +1,127 @@
+\hypertarget{structSubscriptionRequest}{}\section{Subscription\+Request Struct Reference}
+\label{structSubscriptionRequest}\index{Subscription\+Request@{Subscription\+Request}}
+
+
+{\ttfamily \#include $<$subscription\+\_\+request.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structSubscriptionRequest_a3b6895bbe1f616836913b7681b87a852}{Subscription\+Request} (\hyperlink{structLogicalAddress}{Logical\+Address} destination, \hyperlink{structLogicalAddress}{Logical\+Address} source, \hyperlink{structLogicalAddress}{Logical\+Address} mA)
+\item 
+\hyperlink{structSubscriptionRequest_a1fb7f2d417847d7df52ce23d00f632a6}{Subscription\+Request} (uint8\+\_\+t version, uint8\+\_\+t priority, \hyperlink{structLogicalAddress}{Logical\+Address} destination, \hyperlink{structLogicalAddress}{Logical\+Address} source, \hyperlink{structLogicalAddress}{Logical\+Address} mA, uint16\+\_\+t flags, uint32\+\_\+t lP, uint16\+\_\+t dI, uint16\+\_\+t d\+RD, uint8\+\_\+t iI, uint8\+\_\+t mI, uint8\+\_\+t sP, uint8\+\_\+t t)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structSpaMessage}{Spa\+Message} \hyperlink{structSubscriptionRequest_a33610286907a36d4ca8185a0208edcf8}{spa\+Message}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{structSubscriptionRequest_af355bb5e7794b7c6613081982be6f72d}{producer\+Addr}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{structSubscriptionRequest_ad686e1351ba99ca2a1ca4626f58bebac}{consumer\+Addr}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{structSubscriptionRequest_a3b3f9db2899f3bec38a2d0c7ec8e6515}{manager\+Addr}
+\item 
+uint32\+\_\+t \hyperlink{structSubscriptionRequest_a3a7af51b8bf5ff34f09ed3599a19d0e1}{lease\+Period}
+\item 
+uint16\+\_\+t \hyperlink{structSubscriptionRequest_a7e6911856acf31c1367738e230524778}{dialog\+Id}
+\item 
+uint16\+\_\+t \hyperlink{structSubscriptionRequest_a85b4bd05a70308efe9dede88deef73de}{delivery\+Rate\+Divisor}
+\item 
+uint8\+\_\+t \hyperlink{structSubscriptionRequest_ab170a906e69ab9dbf8213a27e96276bd}{interface\+Id}
+\item 
+uint8\+\_\+t \hyperlink{structSubscriptionRequest_aee5c2ccd81b37daaad7d5aeeca12bdce}{message\+Id}
+\item 
+uint8\+\_\+t \hyperlink{structSubscriptionRequest_a5b8dd2c6614db580a69c675bc9016971}{subscription\+Priority}
+\item 
+uint8\+\_\+t \hyperlink{structSubscriptionRequest_a5603a9499051bd93fc94d729acb5785a}{type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structSubscriptionRequest_a3b6895bbe1f616836913b7681b87a852}\label{structSubscriptionRequest_a3b6895bbe1f616836913b7681b87a852}} 
+\index{Subscription\+Request@{Subscription\+Request}!Subscription\+Request@{Subscription\+Request}}
+\index{Subscription\+Request@{Subscription\+Request}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{Subscription\+Request()}{SubscriptionRequest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Subscription\+Request\+::\+Subscription\+Request (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{destination,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{source,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{mA }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a1fb7f2d417847d7df52ce23d00f632a6}\label{structSubscriptionRequest_a1fb7f2d417847d7df52ce23d00f632a6}} 
+\index{Subscription\+Request@{Subscription\+Request}!Subscription\+Request@{Subscription\+Request}}
+\index{Subscription\+Request@{Subscription\+Request}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{Subscription\+Request()}{SubscriptionRequest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Subscription\+Request\+::\+Subscription\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{version,  }\item[{uint8\+\_\+t}]{priority,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{destination,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{source,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{mA,  }\item[{uint16\+\_\+t}]{flags,  }\item[{uint32\+\_\+t}]{lP,  }\item[{uint16\+\_\+t}]{dI,  }\item[{uint16\+\_\+t}]{d\+RD,  }\item[{uint8\+\_\+t}]{iI,  }\item[{uint8\+\_\+t}]{mI,  }\item[{uint8\+\_\+t}]{sP,  }\item[{uint8\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structSubscriptionRequest_ad686e1351ba99ca2a1ca4626f58bebac}\label{structSubscriptionRequest_ad686e1351ba99ca2a1ca4626f58bebac}} 
+\index{Subscription\+Request@{Subscription\+Request}!consumer\+Addr@{consumer\+Addr}}
+\index{consumer\+Addr@{consumer\+Addr}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{consumer\+Addr}{consumerAddr}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Subscription\+Request\+::consumer\+Addr}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a85b4bd05a70308efe9dede88deef73de}\label{structSubscriptionRequest_a85b4bd05a70308efe9dede88deef73de}} 
+\index{Subscription\+Request@{Subscription\+Request}!delivery\+Rate\+Divisor@{delivery\+Rate\+Divisor}}
+\index{delivery\+Rate\+Divisor@{delivery\+Rate\+Divisor}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{delivery\+Rate\+Divisor}{deliveryRateDivisor}}
+{\footnotesize\ttfamily uint16\+\_\+t Subscription\+Request\+::delivery\+Rate\+Divisor}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a7e6911856acf31c1367738e230524778}\label{structSubscriptionRequest_a7e6911856acf31c1367738e230524778}} 
+\index{Subscription\+Request@{Subscription\+Request}!dialog\+Id@{dialog\+Id}}
+\index{dialog\+Id@{dialog\+Id}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{dialog\+Id}{dialogId}}
+{\footnotesize\ttfamily uint16\+\_\+t Subscription\+Request\+::dialog\+Id}
+
+\mbox{\Hypertarget{structSubscriptionRequest_ab170a906e69ab9dbf8213a27e96276bd}\label{structSubscriptionRequest_ab170a906e69ab9dbf8213a27e96276bd}} 
+\index{Subscription\+Request@{Subscription\+Request}!interface\+Id@{interface\+Id}}
+\index{interface\+Id@{interface\+Id}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{interface\+Id}{interfaceId}}
+{\footnotesize\ttfamily uint8\+\_\+t Subscription\+Request\+::interface\+Id}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a3a7af51b8bf5ff34f09ed3599a19d0e1}\label{structSubscriptionRequest_a3a7af51b8bf5ff34f09ed3599a19d0e1}} 
+\index{Subscription\+Request@{Subscription\+Request}!lease\+Period@{lease\+Period}}
+\index{lease\+Period@{lease\+Period}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{lease\+Period}{leasePeriod}}
+{\footnotesize\ttfamily uint32\+\_\+t Subscription\+Request\+::lease\+Period}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a3b3f9db2899f3bec38a2d0c7ec8e6515}\label{structSubscriptionRequest_a3b3f9db2899f3bec38a2d0c7ec8e6515}} 
+\index{Subscription\+Request@{Subscription\+Request}!manager\+Addr@{manager\+Addr}}
+\index{manager\+Addr@{manager\+Addr}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{manager\+Addr}{managerAddr}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Subscription\+Request\+::manager\+Addr}
+
+\mbox{\Hypertarget{structSubscriptionRequest_aee5c2ccd81b37daaad7d5aeeca12bdce}\label{structSubscriptionRequest_aee5c2ccd81b37daaad7d5aeeca12bdce}} 
+\index{Subscription\+Request@{Subscription\+Request}!message\+Id@{message\+Id}}
+\index{message\+Id@{message\+Id}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{message\+Id}{messageId}}
+{\footnotesize\ttfamily uint8\+\_\+t Subscription\+Request\+::message\+Id}
+
+\mbox{\Hypertarget{structSubscriptionRequest_af355bb5e7794b7c6613081982be6f72d}\label{structSubscriptionRequest_af355bb5e7794b7c6613081982be6f72d}} 
+\index{Subscription\+Request@{Subscription\+Request}!producer\+Addr@{producer\+Addr}}
+\index{producer\+Addr@{producer\+Addr}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{producer\+Addr}{producerAddr}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Subscription\+Request\+::producer\+Addr}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a33610286907a36d4ca8185a0208edcf8}\label{structSubscriptionRequest_a33610286907a36d4ca8185a0208edcf8}} 
+\index{Subscription\+Request@{Subscription\+Request}!spa\+Message@{spa\+Message}}
+\index{spa\+Message@{spa\+Message}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{spa\+Message}{spaMessage}}
+{\footnotesize\ttfamily \hyperlink{structSpaMessage}{Spa\+Message} Subscription\+Request\+::spa\+Message}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a5b8dd2c6614db580a69c675bc9016971}\label{structSubscriptionRequest_a5b8dd2c6614db580a69c675bc9016971}} 
+\index{Subscription\+Request@{Subscription\+Request}!subscription\+Priority@{subscription\+Priority}}
+\index{subscription\+Priority@{subscription\+Priority}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{subscription\+Priority}{subscriptionPriority}}
+{\footnotesize\ttfamily uint8\+\_\+t Subscription\+Request\+::subscription\+Priority}
+
+\mbox{\Hypertarget{structSubscriptionRequest_a5603a9499051bd93fc94d729acb5785a}\label{structSubscriptionRequest_a5603a9499051bd93fc94d729acb5785a}} 
+\index{Subscription\+Request@{Subscription\+Request}!type@{type}}
+\index{type@{type}!Subscription\+Request@{Subscription\+Request}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily uint8\+\_\+t Subscription\+Request\+::type}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/messages/spa/\hyperlink{subscription__request_8h}{subscription\+\_\+request.\+h}\end{DoxyCompactItemize}

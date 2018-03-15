@@ -1,0 +1,41 @@
+.TH "LocalSpaMessage" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LocalSpaMessage
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <local_spa_message\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLocalSpaMessage\fP (uint8_t version, uint8_t priority, uint16_t length, \fBLogicalAddress\fP destination, \fBLogicalAddress\fP source, uint16_t flags, uint8_t opcode, uint16_t sourcePort)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaMessage\fP \fBspaMessage\fP"
+.br
+.ti -1c
+.RI "\fBSpaLocalHeader\fP \fBspaLocalHeader\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LocalSpaMessage::LocalSpaMessage (uint8_t version, uint8_t priority, uint16_t length, \fBLogicalAddress\fP destination, \fBLogicalAddress\fP source, uint16_t flags, uint8_t opcode, uint16_t sourcePort)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBSpaLocalHeader\fP LocalSpaMessage::spaLocalHeader"
+
+.SS "\fBSpaMessage\fP LocalSpaMessage::spaMessage"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

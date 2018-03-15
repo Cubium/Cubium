@@ -1,0 +1,158 @@
+\hypertarget{classSpaCommunicator}{}\section{Spa\+Communicator Class Reference}
+\label{classSpaCommunicator}\index{Spa\+Communicator@{Spa\+Communicator}}
+
+
+{\ttfamily \#include $<$spa\+\_\+communicator.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}{Spa\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}{current\+Address})
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{classSpaCommunicator}{Spa\+Communicator} with only the address of the owning subnet manager. \end{DoxyCompactList}\item 
+\hyperlink{classSpaCommunicator_a09fa278da37e95831a04896ec24dd227}{Spa\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}{current\+Address}, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ comms)
+\item 
+void \hyperlink{classSpaCommunicator_a310ae62534090d112e8c3b2d024db83f}{add\+Communicators} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ comms)
+\item 
+bool \hyperlink{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}{send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Sends a spa message over the network. \end{DoxyCompactList}\item 
+bool \hyperlink{classSpaCommunicator_a349e67dbbea6ee9abae289729a90f2ba}{send} (ssize\+\_\+t len, \hyperlink{structSpaMessage}{Spa\+Message} $\ast$message)
+\item 
+bool \hyperlink{classSpaCommunicator_ab8ad476b9d99685eccca336c2eb4d87c}{send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t len)
+\item 
+virtual void \hyperlink{classSpaCommunicator_ae1634fbdc0d08ca8dd1dd5ba6fa18bbe}{listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+virtual void \hyperlink{classSpaCommunicator_af7af26aa5e511a039c036fcbb03735c6}{listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLocalCommunicator}{Local\+Communicator} $>$ \hyperlink{classSpaCommunicator_adcd23698bae79308a28709c60288680e}{get\+Local\+Communicator} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}{handle\+Failure} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Method called when something unexpected occurs. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ \hyperlink{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}{select\+Communicator} (\hyperlink{structLogicalAddress}{Logical\+Address} address, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ const \&\hyperlink{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}{communicators})
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ $>$ \hyperlink{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}{communicators}
+\item 
+\hyperlink{structLogicalAddress}{Logical\+Address} \hyperlink{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}{current\+Address}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}\label{classSpaCommunicator_a4ed78daf6517b608f93dd894b65dab55}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{Spa\+Communicator()}{SpaCommunicator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Spa\+Communicator\+::\+Spa\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{current\+Address }\end{DoxyParamCaption})}
+
+
+
+Construct \hyperlink{classSpaCommunicator}{Spa\+Communicator} with only the address of the owning subnet manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Address} & -\/ logical address of the subnet manager who owns \hyperlink{classSpaCommunicator}{Spa\+Communicator} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSpaCommunicator_a09fa278da37e95831a04896ec24dd227}\label{classSpaCommunicator_a09fa278da37e95831a04896ec24dd227}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\index{Spa\+Communicator@{Spa\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{Spa\+Communicator()}{SpaCommunicator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Spa\+Communicator\+::\+Spa\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{current\+Address,  }\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$}]{comms }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSpaCommunicator_a310ae62534090d112e8c3b2d024db83f}\label{classSpaCommunicator_a310ae62534090d112e8c3b2d024db83f}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!add\+Communicators@{add\+Communicators}}
+\index{add\+Communicators@{add\+Communicators}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{add\+Communicators()}{addCommunicators()}}
+{\footnotesize\ttfamily void Spa\+Communicator\+::add\+Communicators (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$}]{comms }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSpaCommunicator_adcd23698bae79308a28709c60288680e}\label{classSpaCommunicator_adcd23698bae79308a28709c60288680e}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!get\+Local\+Communicator@{get\+Local\+Communicator}}
+\index{get\+Local\+Communicator@{get\+Local\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{get\+Local\+Communicator()}{getLocalCommunicator()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classLocalCommunicator}{Local\+Communicator} $>$ Spa\+Communicator\+::get\+Local\+Communicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}\label{classSpaCommunicator_aeacd2e5d7178f34cec7701136a6821e7}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!handle\+Failure@{handle\+Failure}}
+\index{handle\+Failure@{handle\+Failure}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{handle\+Failure()}{handleFailure()}}
+{\footnotesize\ttfamily void Spa\+Communicator\+::handle\+Failure (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Method called when something unexpected occurs. 
+
+\mbox{\Hypertarget{classSpaCommunicator_ae1634fbdc0d08ca8dd1dd5ba6fa18bbe}\label{classSpaCommunicator_ae1634fbdc0d08ca8dd1dd5ba6fa18bbe}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!listen@{listen}}
+\index{listen@{listen}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{listen()}{listen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Spa\+Communicator\+::listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$}]{message\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classSpaCommunicator_af7af26aa5e511a039c036fcbb03735c6}\label{classSpaCommunicator_af7af26aa5e511a039c036fcbb03735c6}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!listen@{listen}}
+\index{listen@{listen}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{listen()}{listen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Spa\+Communicator\+::listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{message\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}\label{classSpaCommunicator_a063bb5ab2b09a46dbf296d151edae289}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!select\+Communicator@{select\+Communicator}}
+\index{select\+Communicator@{select\+Communicator}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{select\+Communicator()}{selectCommunicator()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$ Spa\+Communicator\+::select\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{address,  }\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classPhysicalCommunicator}{Physical\+Communicator} $>$$>$ const \&}]{communicators }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Selects the appropriate physical communicator from list of physical communicators to send message. 
+\begin{DoxyParams}{Parameters}
+{\em address} & -\/ logical address where message is going to be sent \\
+\hline
+{\em communicators} & -\/ vector of communicators to be selected from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}\label{classSpaCommunicator_a4a6decf46398e6a749767d75e429c263}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!send@{send}}
+\index{send@{send}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool Spa\+Communicator\+::send (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Sends a spa message over the network. 
+
+\mbox{\Hypertarget{classSpaCommunicator_a349e67dbbea6ee9abae289729a90f2ba}\label{classSpaCommunicator_a349e67dbbea6ee9abae289729a90f2ba}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!send@{send}}
+\index{send@{send}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool Spa\+Communicator\+::send (\begin{DoxyParamCaption}\item[{ssize\+\_\+t}]{len,  }\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSpaCommunicator_ab8ad476b9d99685eccca336c2eb4d87c}\label{classSpaCommunicator_ab8ad476b9d99685eccca336c2eb4d87c}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!send@{send}}
+\index{send@{send}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool Spa\+Communicator\+::send (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}\label{classSpaCommunicator_acafe7d632d63d55ea081f8a61647243a}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!communicators@{communicators}}
+\index{communicators@{communicators}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{communicators}{communicators}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\hyperlink{classPhysicalCommunicator}{Physical\+Communicator}$>$ $>$ Spa\+Communicator\+::communicators\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}\label{classSpaCommunicator_a6c00e876564bddf214695d067c20a1f4}} 
+\index{Spa\+Communicator@{Spa\+Communicator}!current\+Address@{current\+Address}}
+\index{current\+Address@{current\+Address}!Spa\+Communicator@{Spa\+Communicator}}
+\subsubsection{\texorpdfstring{current\+Address}{currentAddress}}
+{\footnotesize\ttfamily \hyperlink{structLogicalAddress}{Logical\+Address} Spa\+Communicator\+::current\+Address\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{spa__communicator_8hpp}{spa\+\_\+communicator.\+hpp}\item 
+lib/\hyperlink{spa__communicator_8cpp}{spa\+\_\+communicator.\+cpp}\end{DoxyCompactItemize}

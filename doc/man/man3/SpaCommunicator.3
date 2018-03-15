@@ -1,0 +1,122 @@
+.TH "SpaCommunicator" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SpaCommunicator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <spa_communicator\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaCommunicator\fP (\fBLogicalAddress\fP \fBcurrentAddress\fP)"
+.br
+.RI "Construct \fBSpaCommunicator\fP with only the address of the owning subnet manager\&. "
+.ti -1c
+.RI "\fBSpaCommunicator\fP (\fBLogicalAddress\fP \fBcurrentAddress\fP, std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> comms)"
+.br
+.ti -1c
+.RI "void \fBaddCommunicators\fP (std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> comms)"
+.br
+.ti -1c
+.RI "bool \fBsend\fP (\fBSpaMessage\fP *message)"
+.br
+.RI "Sends a spa message over the network\&. "
+.ti -1c
+.RI "bool \fBsend\fP (ssize_t len, \fBSpaMessage\fP *message)"
+.br
+.ti -1c
+.RI "bool \fBsend\fP (\fBSpaMessage\fP *message, ssize_t len)"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP (std::function< void(\fBcubiumServerSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP (std::function< void(\fBcubiumClientSocket_t\fP *)>)"
+.br
+.ti -1c
+.RI "std::shared_ptr< \fBLocalCommunicator\fP > \fBgetLocalCommunicator\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBhandleFailure\fP (std::string)"
+.br
+.RI "Method called when something unexpected occurs\&. "
+.ti -1c
+.RI "std::shared_ptr< \fBPhysicalCommunicator\fP > \fBselectCommunicator\fP (\fBLogicalAddress\fP address, std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> const &\fBcommunicators\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP > > \fBcommunicators\fP"
+.br
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBcurrentAddress\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SpaCommunicator::SpaCommunicator (\fBLogicalAddress\fP currentAddress)"
+
+.PP
+Construct \fBSpaCommunicator\fP with only the address of the owning subnet manager\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcurrentAddress\fP - logical address of the subnet manager who owns \fBSpaCommunicator\fP 
+.RE
+.PP
+
+.SS "SpaCommunicator::SpaCommunicator (\fBLogicalAddress\fP currentAddress, std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> comms)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void SpaCommunicator::addCommunicators (std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> comms)"
+
+.SS "std::shared_ptr< \fBLocalCommunicator\fP > SpaCommunicator::getLocalCommunicator ()"
+
+.SS "void SpaCommunicator::handleFailure (std::string message)\fC [protected]\fP"
+
+.PP
+Method called when something unexpected occurs\&. 
+.SS "void SpaCommunicator::listen (std::function< void(\fBcubiumServerSocket_t\fP *)> messageHandler)\fC [virtual]\fP"
+
+.SS "void SpaCommunicator::listen (std::function< void(\fBcubiumClientSocket_t\fP *)> messageHandler)\fC [virtual]\fP"
+
+.SS "std::shared_ptr< \fBPhysicalCommunicator\fP > SpaCommunicator::selectCommunicator (\fBLogicalAddress\fP address, std::vector< std::shared_ptr< \fBPhysicalCommunicator\fP >> const & communicators)\fC [protected]\fP"
+Selects the appropriate physical communicator from list of physical communicators to send message\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaddress\fP - logical address where message is going to be sent 
+.br
+\fIcommunicators\fP - vector of communicators to be selected from 
+.RE
+.PP
+
+.SS "bool SpaCommunicator::send (\fBSpaMessage\fP * message)"
+
+.PP
+Sends a spa message over the network\&. 
+.SS "bool SpaCommunicator::send (ssize_t len, \fBSpaMessage\fP * message)"
+
+.SS "bool SpaCommunicator::send (\fBSpaMessage\fP * message, ssize_t len)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<std::shared_ptr<\fBPhysicalCommunicator\fP> > SpaCommunicator::communicators\fC [protected]\fP"
+
+.SS "\fBLogicalAddress\fP SpaCommunicator::currentAddress\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

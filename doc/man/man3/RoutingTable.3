@@ -1,0 +1,73 @@
+.TH "RoutingTable< T >" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RoutingTable< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <routing_table\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRoutingTable\fP ()"
+.br
+.ti -1c
+.RI "\fBRoutingTable\fP (\fBLogicalAddress\fP log, T physAddr)"
+.br
+.ti -1c
+.RI "bool \fBinsert\fP (\fBLogicalAddress\fP log, T physAddr)"
+.br
+.ti -1c
+.RI "bool \fBexists\fP (\fBLogicalAddress\fP log)"
+.br
+.ti -1c
+.RI "bool \fBisEmpty\fP ()"
+.br
+.ti -1c
+.RI "int \fBsize\fP ()"
+.br
+.ti -1c
+.RI "virtual T \fBgetPhysicalAddress\fP (\fBLogicalAddress\fP log)"
+.br
+.ti -1c
+.RI "std::map< \fBLogicalAddress\fP, T, \fBLogicalAddressCompare\fP > \fBgetTable\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::map< \fBLogicalAddress\fP, T, \fBLogicalAddressCompare\fP > \fBroutingTable\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T > \fBRoutingTable\fP< T >::\fBRoutingTable\fP ()\fC [inline]\fP"
+
+.SS "template<typename T > \fBRoutingTable\fP< T >::\fBRoutingTable\fP (\fBLogicalAddress\fP log, T physAddr)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T > bool \fBRoutingTable\fP< T >::exists (\fBLogicalAddress\fP log)\fC [inline]\fP"
+
+.SS "template<typename T > virtual T \fBRoutingTable\fP< T >::getPhysicalAddress (\fBLogicalAddress\fP log)\fC [inline]\fP, \fC [virtual]\fP"
+
+.SS "template<typename T > std::map<\fBLogicalAddress\fP, T, \fBLogicalAddressCompare\fP> \fBRoutingTable\fP< T >::getTable ()\fC [inline]\fP"
+
+.SS "template<typename T > bool \fBRoutingTable\fP< T >::insert (\fBLogicalAddress\fP log, T physAddr)\fC [inline]\fP"
+
+.SS "template<typename T > bool \fBRoutingTable\fP< T >::isEmpty ()\fC [inline]\fP"
+
+.SS "template<typename T > int \fBRoutingTable\fP< T >::size ()\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<typename T > std::map<\fBLogicalAddress\fP, T, \fBLogicalAddressCompare\fP> \fBRoutingTable\fP< T >::routingTable\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

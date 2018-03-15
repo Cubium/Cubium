@@ -1,0 +1,107 @@
+\hypertarget{classRoutingTable}{}\section{Routing\+Table$<$ T $>$ Class Template Reference}
+\label{classRoutingTable}\index{Routing\+Table$<$ T $>$@{Routing\+Table$<$ T $>$}}
+
+
+{\ttfamily \#include $<$routing\+\_\+table.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRoutingTable_a3a9220d6612a6731f4dcb2bf45265c2e}{Routing\+Table} ()
+\item 
+\hyperlink{classRoutingTable_ac7478945fabd9d107e8ecdafdb094602}{Routing\+Table} (\hyperlink{structLogicalAddress}{Logical\+Address} log, T phys\+Addr)
+\item 
+bool \hyperlink{classRoutingTable_a6732eb52fc45bc6ae93047b87f4726fe}{insert} (\hyperlink{structLogicalAddress}{Logical\+Address} log, T phys\+Addr)
+\item 
+bool \hyperlink{classRoutingTable_a82506122881b23b6c508ee3c5eceea2d}{exists} (\hyperlink{structLogicalAddress}{Logical\+Address} log)
+\item 
+bool \hyperlink{classRoutingTable_acdeee42f79a685483bc6e8ba5014de42}{is\+Empty} ()
+\item 
+int \hyperlink{classRoutingTable_a171f5d7e7f84b4415eae14f2161fc2e9}{size} ()
+\item 
+virtual T \hyperlink{classRoutingTable_ae55b8c9ac65251bdc462a81076f7a500}{get\+Physical\+Address} (\hyperlink{structLogicalAddress}{Logical\+Address} log)
+\item 
+std\+::map$<$ \hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare} $>$ \hyperlink{classRoutingTable_ad3786a2950ae5efb9cfe87449cc895e1}{get\+Table} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare} $>$ \hyperlink{classRoutingTable_ad348863258a92ca89d4150ca6f20aabb}{routing\+Table}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRoutingTable_a3a9220d6612a6731f4dcb2bf45265c2e}\label{classRoutingTable_a3a9220d6612a6731f4dcb2bf45265c2e}} 
+\index{Routing\+Table@{Routing\+Table}!Routing\+Table@{Routing\+Table}}
+\index{Routing\+Table@{Routing\+Table}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{Routing\+Table()}{RoutingTable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::\hyperlink{classRoutingTable}{Routing\+Table} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRoutingTable_ac7478945fabd9d107e8ecdafdb094602}\label{classRoutingTable_ac7478945fabd9d107e8ecdafdb094602}} 
+\index{Routing\+Table@{Routing\+Table}!Routing\+Table@{Routing\+Table}}
+\index{Routing\+Table@{Routing\+Table}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{Routing\+Table()}{RoutingTable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::\hyperlink{classRoutingTable}{Routing\+Table} (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{log,  }\item[{T}]{phys\+Addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRoutingTable_a82506122881b23b6c508ee3c5eceea2d}\label{classRoutingTable_a82506122881b23b6c508ee3c5eceea2d}} 
+\index{Routing\+Table@{Routing\+Table}!exists@{exists}}
+\index{exists@{exists}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::exists (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{log }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRoutingTable_ae55b8c9ac65251bdc462a81076f7a500}\label{classRoutingTable_ae55b8c9ac65251bdc462a81076f7a500}} 
+\index{Routing\+Table@{Routing\+Table}!get\+Physical\+Address@{get\+Physical\+Address}}
+\index{get\+Physical\+Address@{get\+Physical\+Address}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{get\+Physical\+Address()}{getPhysicalAddress()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual T \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::get\+Physical\+Address (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{log }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classRoutingTable_ad3786a2950ae5efb9cfe87449cc895e1}\label{classRoutingTable_ad3786a2950ae5efb9cfe87449cc895e1}} 
+\index{Routing\+Table@{Routing\+Table}!get\+Table@{get\+Table}}
+\index{get\+Table@{get\+Table}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{get\+Table()}{getTable()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::map$<$\hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare}$>$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::get\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRoutingTable_a6732eb52fc45bc6ae93047b87f4726fe}\label{classRoutingTable_a6732eb52fc45bc6ae93047b87f4726fe}} 
+\index{Routing\+Table@{Routing\+Table}!insert@{insert}}
+\index{insert@{insert}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{log,  }\item[{T}]{phys\+Addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRoutingTable_acdeee42f79a685483bc6e8ba5014de42}\label{classRoutingTable_acdeee42f79a685483bc6e8ba5014de42}} 
+\index{Routing\+Table@{Routing\+Table}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{is\+Empty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRoutingTable_a171f5d7e7f84b4415eae14f2161fc2e9}\label{classRoutingTable_a171f5d7e7f84b4415eae14f2161fc2e9}} 
+\index{Routing\+Table@{Routing\+Table}!size@{size}}
+\index{size@{size}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classRoutingTable_ad348863258a92ca89d4150ca6f20aabb}\label{classRoutingTable_ad348863258a92ca89d4150ca6f20aabb}} 
+\index{Routing\+Table@{Routing\+Table}!routing\+Table@{routing\+Table}}
+\index{routing\+Table@{routing\+Table}!Routing\+Table@{Routing\+Table}}
+\subsubsection{\texorpdfstring{routing\+Table}{routingTable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::map$<$\hyperlink{structLogicalAddress}{Logical\+Address}, T, \hyperlink{structLogicalAddressCompare}{Logical\+Address\+Compare}$>$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ T $>$\+::routing\+Table\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{routing__table_8hpp}{routing\+\_\+table.\+hpp}\end{DoxyCompactItemize}

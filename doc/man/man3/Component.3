@@ -1,0 +1,172 @@
+.TH "Component" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Component
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <component\&.hpp>\fP
+.PP
+Inherits enable_shared_from_this< Component >\&.
+.PP
+Inherited by \fBCOMP_NAME\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBComponent\fP (std::shared_ptr< \fBSpaCommunicator\fP > \fBcommunicator\fP=nullptr, \fBLogicalAddress\fP \fBaddress\fP=\fBLogicalAddress\fP(0, 0), \fBLogicalAddress\fP \fBsubnetManagerAddress\fP=\fBLogicalAddress\fP(0, 0))"
+.br
+.ti -1c
+.RI "virtual \fB~Component\fP ()"
+.br
+.ti -1c
+.RI "void \fBpublish\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBhandleSpaData\fP (\fBSpaMessage\fP *)=0"
+.br
+.ti -1c
+.RI "virtual void \fBpreInit\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBlisten\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBinit\fP ()=0"
+.br
+.ti -1c
+.RI "void \fBsendMsg\fP (\fBSpaMessage\fP *message, ssize_t len)"
+.br
+.ti -1c
+.RI "void \fBreceiveMessage\fP (\fBSpaMessage\fP *)"
+.br
+.ti -1c
+.RI "void \fBhandleSubscriptionReply\fP (\fBSpaMessage\fP *)"
+.br
+.ti -1c
+.RI "void \fBregisterSubscriptionRequest\fP (\fBSpaMessage\fP *)"
+.br
+.ti -1c
+.RI "void \fBreceiveBuffer\fP (\fBcubiumClientSocket_t\fP *)"
+.br
+.ti -1c
+.RI "void \fBsubscribe\fP (\fBLogicalAddress\fP producer)"
+.br
+.ti -1c
+.RI "void \fBsubscribe\fP (\fBLogicalAddress\fP producer, uint8_t priority, uint32_t leasePeriod, uint16_t deliveryRateDivisor)"
+.br
+.ti -1c
+.RI "virtual void \fBsendData\fP (\fBLogicalAddress\fP)=0"
+.br
+.ti -1c
+.RI "void \fBsendPayload\fP (std::string payload, \fBLogicalAddress\fP destination)"
+.br
+.ti -1c
+.RI "template<typename T > void \fBsendPayload\fP (T payload, \fBLogicalAddress\fP destination)"
+.br
+.ti -1c
+.RI "bool \fBaddSubscriber\fP (\fBLogicalAddress\fP, uint16_t)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::shared_ptr< \fBSpaCommunicator\fP > \fBcommunicator\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBSubscriber\fP > \fBsubscribers\fP"
+.br
+.ti -1c
+.RI "std::mutex \fBm_subscribers\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBaddress\fP"
+.br
+.ti -1c
+.RI "\fBLogicalAddress\fP \fBsubnetManagerAddress\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBpublishIter\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBdialogId\fP"
+.br
+.ti -1c
+.RI "\fBSpaCourier\fP * \fBlastCourier\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Component::Component (std::shared_ptr< \fBSpaCommunicator\fP > communicator = \fCnullptr\fP, \fBLogicalAddress\fP address = \fC\fBLogicalAddress\fP(0, 0)\fP, \fBLogicalAddress\fP subnetManagerAddress = \fC\fBLogicalAddress\fP(0, 0)\fP)\fC [inline]\fP"
+
+.SS "virtual Component::~Component ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool Component::addSubscriber (\fBLogicalAddress\fP la, uint16_t d)"
+
+.SS "virtual void Component::handleSpaData (\fBSpaMessage\fP *)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBCOMP_NAME\fP\&.
+.SS "void Component::handleSubscriptionReply (\fBSpaMessage\fP * message)"
+
+.SS "virtual void Component::init ()\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBCOMP_NAME\fP\&.
+.SS "virtual void Component::listen ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SS "virtual void Component::preInit ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SS "void Component::publish ()"
+
+.SS "void Component::receiveBuffer (\fBcubiumClientSocket_t\fP * sock)"
+
+.SS "void Component::receiveMessage (\fBSpaMessage\fP * message)"
+
+.SS "void Component::registerSubscriptionRequest (\fBSpaMessage\fP * message)"
+
+.SS "virtual void Component::sendData (\fBLogicalAddress\fP)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBCOMP_NAME\fP\&.
+.SS "void Component::sendMsg (\fBSpaMessage\fP * message, ssize_t len)\fC [inline]\fP"
+
+.SS "void Component::sendPayload (std::string payload, \fBLogicalAddress\fP destination)\fC [inline]\fP"
+
+.SS "template<typename T > void Component::sendPayload (T payload, \fBLogicalAddress\fP destination)\fC [inline]\fP"
+
+.SS "void Component::subscribe (\fBLogicalAddress\fP producer)\fC [inline]\fP"
+
+.SS "void Component::subscribe (\fBLogicalAddress\fP producer, uint8_t priority, uint32_t leasePeriod, uint16_t deliveryRateDivisor)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBLogicalAddress\fP Component::address\fC [protected]\fP"
+
+.SS "std::shared_ptr<\fBSpaCommunicator\fP> Component::communicator"
+
+.SS "uint16_t Component::dialogId\fC [protected]\fP"
+
+.SS "\fBSpaCourier\fP* Component::lastCourier\fC [protected]\fP"
+
+.SS "std::mutex Component::m_subscribers"
+
+.SS "uint8_t Component::publishIter\fC [protected]\fP"
+
+.SS "\fBLogicalAddress\fP Component::subnetManagerAddress\fC [protected]\fP"
+
+.SS "std::vector<\fBSubscriber\fP> Component::subscribers"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

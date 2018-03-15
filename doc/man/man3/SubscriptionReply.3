@@ -1,0 +1,51 @@
+.TH "SubscriptionReply" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SubscriptionReply
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <subscription_reply\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSubscriptionReply\fP (\fBLogicalAddress\fP destination, \fBLogicalAddress\fP source)"
+.br
+.ti -1c
+.RI "\fBSubscriptionReply\fP (uint8_t version, uint8_t priority, uint16_t length, \fBLogicalAddress\fP destination, \fBLogicalAddress\fP source, uint16_t flags, uint16_t dI, uint8_t rT)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaMessage\fP \fBspaMessage\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBdialogId\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBreplyType\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SubscriptionReply::SubscriptionReply (\fBLogicalAddress\fP destination, \fBLogicalAddress\fP source)\fC [inline]\fP"
+
+.SS "SubscriptionReply::SubscriptionReply (uint8_t version, uint8_t priority, uint16_t length, \fBLogicalAddress\fP destination, \fBLogicalAddress\fP source, uint16_t flags, uint16_t dI, uint8_t rT)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "uint16_t SubscriptionReply::dialogId"
+
+.SS "uint8_t SubscriptionReply::replyType"
+
+.SS "\fBSpaMessage\fP SubscriptionReply::spaMessage"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

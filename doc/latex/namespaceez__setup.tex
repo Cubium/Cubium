@@ -1,0 +1,244 @@
+\hypertarget{namespaceez__setup}{}\section{ez\+\_\+setup Namespace Reference}
+\label{namespaceez__setup}\index{ez\+\_\+setup@{ez\+\_\+setup}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceez__setup_ab8fd3a64bf5c7da757276b05644311a2}{\+\_\+python\+\_\+cmd} (args)
+\item 
+def \hyperlink{namespaceez__setup_a5a316d95e7476fbc3323740274f5549b}{\+\_\+install} (archive\+\_\+filename, install\+\_\+args=())
+\item 
+def \hyperlink{namespaceez__setup_a8b92d87596f54a2f039b56e2c20187a8}{\+\_\+build\+\_\+egg} (egg, archive\+\_\+filename, to\+\_\+dir)
+\item 
+def \hyperlink{namespaceez__setup_a61495793b812c47ba054dd058fa4ba0e}{get\+\_\+zip\+\_\+class} ()
+\item 
+def \hyperlink{namespaceez__setup_aa735e505d85a6882c1ecc07850dfe0b5}{archive\+\_\+context} (filename)
+\item 
+def \hyperlink{namespaceez__setup_ac2e3c82312a23add360687d835a87e72}{\+\_\+do\+\_\+download} (version, download\+\_\+base, to\+\_\+dir, download\+\_\+delay)
+\item 
+def \hyperlink{namespaceez__setup_a2d1c4fef79de3de83e9206d2329caebc}{use\+\_\+setuptools} (version=\hyperlink{namespaceez__setup_aa031ee965f5310beedcd57236385d518}{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}, download\+\_\+base=\hyperlink{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}, to\+\_\+dir=os.\+curdir, download\+\_\+delay=15)
+\item 
+def \hyperlink{namespaceez__setup_acf457152772437248702139c6f95e99e}{\+\_\+clean\+\_\+check} (cmd, target)
+\item 
+def \hyperlink{namespaceez__setup_a545d9bb16a7c1509aeb0af7ff5c63a70}{download\+\_\+file\+\_\+powershell} (url, target)
+\item 
+def \hyperlink{namespaceez__setup_a6ae1e68431f321c135c69001fcca43b5}{has\+\_\+powershell} ()
+\item 
+def \hyperlink{namespaceez__setup_a5c318033f0bb01ca53fd588c46f7b7ca}{download\+\_\+file\+\_\+curl} (url, target)
+\item 
+def \hyperlink{namespaceez__setup_a4377c05e875ddaef521db5db8d5d97d8}{has\+\_\+curl} ()
+\item 
+def \hyperlink{namespaceez__setup_af87aff324e74dd596c88cbbb05bdc0a0}{download\+\_\+file\+\_\+wget} (url, target)
+\item 
+def \hyperlink{namespaceez__setup_acc4250f7e8576ec6578b5dfcabe09d43}{has\+\_\+wget} ()
+\item 
+def \hyperlink{namespaceez__setup_a77f73fd049bccd9c8b10f5be6ef16ed1}{download\+\_\+file\+\_\+insecure} (url, target)
+\item 
+def \hyperlink{namespaceez__setup_a37c9e523f99cd7b5cfd01eada43de9ad}{get\+\_\+best\+\_\+downloader} ()
+\item 
+def \hyperlink{namespaceez__setup_ad41db6464296e12f487740425f92091d}{download\+\_\+setuptools} (version=\hyperlink{namespaceez__setup_aa031ee965f5310beedcd57236385d518}{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}, download\+\_\+base=\hyperlink{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}, to\+\_\+dir=os.\+curdir, delay=15, downloader\+\_\+factory=\hyperlink{namespaceez__setup_a37c9e523f99cd7b5cfd01eada43de9ad}{get\+\_\+best\+\_\+downloader})
+\item 
+def \hyperlink{namespaceez__setup_a64abeb67b326053d9ba41f66c52858cc}{\+\_\+build\+\_\+install\+\_\+args} (options)
+\item 
+def \hyperlink{namespaceez__setup_a8f215e2844706ec1c7ff6295f91cc0b1}{\+\_\+parse\+\_\+args} ()
+\item 
+def \hyperlink{namespaceez__setup_abc81dbe1d4caae0b1729c17a6914882e}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceez__setup_a7d83143a1fe0b349410ca451d3306eb8}{U\+S\+E\+R\+\_\+\+S\+I\+TE} = None
+\item 
+string \hyperlink{namespaceez__setup_aa031ee965f5310beedcd57236385d518}{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON} = \char`\"{}3.\+5.\+1\char`\"{}
+\item 
+string \hyperlink{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL} = \char`\"{}https\+://pypi.\+python.\+org/packages/source/s/setuptools/\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Bootstrap setuptools installation
+
+To use setuptools in your package's setup.py, include this
+file in the same directory and add this to the top of your setup.py::
+
+from ez_setup import use_setuptools
+use_setuptools()
+
+To require a specific version of setuptools, set a download
+mirror, or use an alternate download directory, simply supply
+the appropriate options to ``use_setuptools()``.
+
+This file can also be run as a script to install or upgrade setuptools.
+\end{DoxyVerb}
+ 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceez__setup_a8b92d87596f54a2f039b56e2c20187a8}\label{namespaceez__setup_a8b92d87596f54a2f039b56e2c20187a8}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+build\+\_\+egg@{\+\_\+build\+\_\+egg}}
+\index{\+\_\+build\+\_\+egg@{\+\_\+build\+\_\+egg}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+build\+\_\+egg()}{\_build\_egg()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+build\+\_\+egg (\begin{DoxyParamCaption}\item[{}]{egg,  }\item[{}]{archive\+\_\+filename,  }\item[{}]{to\+\_\+dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespaceez__setup_a64abeb67b326053d9ba41f66c52858cc}\label{namespaceez__setup_a64abeb67b326053d9ba41f66c52858cc}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+build\+\_\+install\+\_\+args@{\+\_\+build\+\_\+install\+\_\+args}}
+\index{\+\_\+build\+\_\+install\+\_\+args@{\+\_\+build\+\_\+install\+\_\+args}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+build\+\_\+install\+\_\+args()}{\_build\_install\_args()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+build\+\_\+install\+\_\+args (\begin{DoxyParamCaption}\item[{}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Build the arguments to 'python setup.py install' on the setuptools package
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_acf457152772437248702139c6f95e99e}\label{namespaceez__setup_acf457152772437248702139c6f95e99e}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+clean\+\_\+check@{\+\_\+clean\+\_\+check}}
+\index{\+\_\+clean\+\_\+check@{\+\_\+clean\+\_\+check}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+clean\+\_\+check()}{\_clean\_check()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+clean\+\_\+check (\begin{DoxyParamCaption}\item[{}]{cmd,  }\item[{}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Run the command to download target. If the command fails, clean up before
+re-raising the error.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_ac2e3c82312a23add360687d835a87e72}\label{namespaceez__setup_ac2e3c82312a23add360687d835a87e72}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+do\+\_\+download@{\+\_\+do\+\_\+download}}
+\index{\+\_\+do\+\_\+download@{\+\_\+do\+\_\+download}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+do\+\_\+download()}{\_do\_download()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+do\+\_\+download (\begin{DoxyParamCaption}\item[{}]{version,  }\item[{}]{download\+\_\+base,  }\item[{}]{to\+\_\+dir,  }\item[{}]{download\+\_\+delay }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespaceez__setup_a5a316d95e7476fbc3323740274f5549b}\label{namespaceez__setup_a5a316d95e7476fbc3323740274f5549b}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+install@{\+\_\+install}}
+\index{\+\_\+install@{\+\_\+install}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+install()}{\_install()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+install (\begin{DoxyParamCaption}\item[{}]{archive\+\_\+filename,  }\item[{}]{install\+\_\+args = {\ttfamily ()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespaceez__setup_a8f215e2844706ec1c7ff6295f91cc0b1}\label{namespaceez__setup_a8f215e2844706ec1c7ff6295f91cc0b1}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+parse\+\_\+args@{\+\_\+parse\+\_\+args}}
+\index{\+\_\+parse\+\_\+args@{\+\_\+parse\+\_\+args}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+parse\+\_\+args()}{\_parse\_args()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+parse\+\_\+args (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Parse the command line for options
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_ab8fd3a64bf5c7da757276b05644311a2}\label{namespaceez__setup_ab8fd3a64bf5c7da757276b05644311a2}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!\+\_\+python\+\_\+cmd@{\+\_\+python\+\_\+cmd}}
+\index{\+\_\+python\+\_\+cmd@{\+\_\+python\+\_\+cmd}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{\+\_\+python\+\_\+cmd()}{\_python\_cmd()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+\_\+python\+\_\+cmd (\begin{DoxyParamCaption}\item[{}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Return True if the command succeeded.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_aa735e505d85a6882c1ecc07850dfe0b5}\label{namespaceez__setup_aa735e505d85a6882c1ecc07850dfe0b5}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!archive\+\_\+context@{archive\+\_\+context}}
+\index{archive\+\_\+context@{archive\+\_\+context}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{archive\+\_\+context()}{archive\_context()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+archive\+\_\+context (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_a5c318033f0bb01ca53fd588c46f7b7ca}\label{namespaceez__setup_a5c318033f0bb01ca53fd588c46f7b7ca}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!download\+\_\+file\+\_\+curl@{download\+\_\+file\+\_\+curl}}
+\index{download\+\_\+file\+\_\+curl@{download\+\_\+file\+\_\+curl}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{download\+\_\+file\+\_\+curl()}{download\_file\_curl()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+download\+\_\+file\+\_\+curl (\begin{DoxyParamCaption}\item[{}]{url,  }\item[{}]{target }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_a77f73fd049bccd9c8b10f5be6ef16ed1}\label{namespaceez__setup_a77f73fd049bccd9c8b10f5be6ef16ed1}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!download\+\_\+file\+\_\+insecure@{download\+\_\+file\+\_\+insecure}}
+\index{download\+\_\+file\+\_\+insecure@{download\+\_\+file\+\_\+insecure}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{download\+\_\+file\+\_\+insecure()}{download\_file\_insecure()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+download\+\_\+file\+\_\+insecure (\begin{DoxyParamCaption}\item[{}]{url,  }\item[{}]{target }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Use Python to download the file, even though it cannot authenticate the
+connection.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_a545d9bb16a7c1509aeb0af7ff5c63a70}\label{namespaceez__setup_a545d9bb16a7c1509aeb0af7ff5c63a70}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!download\+\_\+file\+\_\+powershell@{download\+\_\+file\+\_\+powershell}}
+\index{download\+\_\+file\+\_\+powershell@{download\+\_\+file\+\_\+powershell}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{download\+\_\+file\+\_\+powershell()}{download\_file\_powershell()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+download\+\_\+file\+\_\+powershell (\begin{DoxyParamCaption}\item[{}]{url,  }\item[{}]{target }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Download the file at url to target using Powershell (which will validate
+trust). Raise an exception if the command cannot complete.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_af87aff324e74dd596c88cbbb05bdc0a0}\label{namespaceez__setup_af87aff324e74dd596c88cbbb05bdc0a0}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!download\+\_\+file\+\_\+wget@{download\+\_\+file\+\_\+wget}}
+\index{download\+\_\+file\+\_\+wget@{download\+\_\+file\+\_\+wget}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{download\+\_\+file\+\_\+wget()}{download\_file\_wget()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+download\+\_\+file\+\_\+wget (\begin{DoxyParamCaption}\item[{}]{url,  }\item[{}]{target }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_ad41db6464296e12f487740425f92091d}\label{namespaceez__setup_ad41db6464296e12f487740425f92091d}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!download\+\_\+setuptools@{download\+\_\+setuptools}}
+\index{download\+\_\+setuptools@{download\+\_\+setuptools}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{download\+\_\+setuptools()}{download\_setuptools()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+download\+\_\+setuptools (\begin{DoxyParamCaption}\item[{}]{version = {\ttfamily \hyperlink{namespaceez__setup_aa031ee965f5310beedcd57236385d518}{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}},  }\item[{}]{download\+\_\+base = {\ttfamily \hyperlink{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}},  }\item[{}]{to\+\_\+dir = {\ttfamily os.curdir},  }\item[{}]{delay = {\ttfamily 15},  }\item[{}]{downloader\+\_\+factory = {\ttfamily \hyperlink{namespaceez__setup_a37c9e523f99cd7b5cfd01eada43de9ad}{get\+\_\+best\+\_\+downloader}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Download setuptools from a specified location and return its filename
+
+`version` should be a valid setuptools version number that is available
+as an egg for download under the `download_base` URL (which should end
+with a '/'). `to_dir` is the directory where the egg will be downloaded.
+`delay` is the number of seconds to pause before an actual download
+attempt.
+
+``downloader_factory`` should be a function taking no arguments and
+returning a function for downloading a URL to a target.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_a37c9e523f99cd7b5cfd01eada43de9ad}\label{namespaceez__setup_a37c9e523f99cd7b5cfd01eada43de9ad}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!get\+\_\+best\+\_\+downloader@{get\+\_\+best\+\_\+downloader}}
+\index{get\+\_\+best\+\_\+downloader@{get\+\_\+best\+\_\+downloader}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{get\+\_\+best\+\_\+downloader()}{get\_best\_downloader()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+get\+\_\+best\+\_\+downloader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_a61495793b812c47ba054dd058fa4ba0e}\label{namespaceez__setup_a61495793b812c47ba054dd058fa4ba0e}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!get\+\_\+zip\+\_\+class@{get\+\_\+zip\+\_\+class}}
+\index{get\+\_\+zip\+\_\+class@{get\+\_\+zip\+\_\+class}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{get\+\_\+zip\+\_\+class()}{get\_zip\_class()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+get\+\_\+zip\+\_\+class (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Supplement ZipFile class to support context manager for Python 2.6
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_a4377c05e875ddaef521db5db8d5d97d8}\label{namespaceez__setup_a4377c05e875ddaef521db5db8d5d97d8}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!has\+\_\+curl@{has\+\_\+curl}}
+\index{has\+\_\+curl@{has\+\_\+curl}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{has\+\_\+curl()}{has\_curl()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+has\+\_\+curl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_a6ae1e68431f321c135c69001fcca43b5}\label{namespaceez__setup_a6ae1e68431f321c135c69001fcca43b5}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!has\+\_\+powershell@{has\+\_\+powershell}}
+\index{has\+\_\+powershell@{has\+\_\+powershell}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{has\+\_\+powershell()}{has\_powershell()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+has\+\_\+powershell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_acc4250f7e8576ec6578b5dfcabe09d43}\label{namespaceez__setup_acc4250f7e8576ec6578b5dfcabe09d43}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!has\+\_\+wget@{has\+\_\+wget}}
+\index{has\+\_\+wget@{has\+\_\+wget}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{has\+\_\+wget()}{has\_wget()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+has\+\_\+wget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceez__setup_abc81dbe1d4caae0b1729c17a6914882e}\label{namespaceez__setup_abc81dbe1d4caae0b1729c17a6914882e}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!main@{main}}
+\index{main@{main}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Install or upgrade setuptools and EasyInstall\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceez__setup_a2d1c4fef79de3de83e9206d2329caebc}\label{namespaceez__setup_a2d1c4fef79de3de83e9206d2329caebc}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!use\+\_\+setuptools@{use\+\_\+setuptools}}
+\index{use\+\_\+setuptools@{use\+\_\+setuptools}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{use\+\_\+setuptools()}{use\_setuptools()}}
+{\footnotesize\ttfamily def ez\+\_\+setup.\+use\+\_\+setuptools (\begin{DoxyParamCaption}\item[{}]{version = {\ttfamily \hyperlink{namespaceez__setup_aa031ee965f5310beedcd57236385d518}{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}},  }\item[{}]{download\+\_\+base = {\ttfamily \hyperlink{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}},  }\item[{}]{to\+\_\+dir = {\ttfamily os.curdir},  }\item[{}]{download\+\_\+delay = {\ttfamily 15} }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}\label{namespaceez__setup_a8096341ad5ff1c048779efc8668fe864}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL@{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL@{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL}{DEFAULT\_URL}}
+{\footnotesize\ttfamily string ez\+\_\+setup.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+U\+RL = \char`\"{}https\+://pypi.\+python.\+org/packages/source/s/setuptools/\char`\"{}}
+
+\mbox{\Hypertarget{namespaceez__setup_aa031ee965f5310beedcd57236385d518}\label{namespaceez__setup_aa031ee965f5310beedcd57236385d518}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON@{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON@{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON}{DEFAULT\_VERSION}}
+{\footnotesize\ttfamily string ez\+\_\+setup.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+V\+E\+R\+S\+I\+ON = \char`\"{}3.\+5.\+1\char`\"{}}
+
+\mbox{\Hypertarget{namespaceez__setup_a7d83143a1fe0b349410ca451d3306eb8}\label{namespaceez__setup_a7d83143a1fe0b349410ca451d3306eb8}} 
+\index{ez\+\_\+setup@{ez\+\_\+setup}!U\+S\+E\+R\+\_\+\+S\+I\+TE@{U\+S\+E\+R\+\_\+\+S\+I\+TE}}
+\index{U\+S\+E\+R\+\_\+\+S\+I\+TE@{U\+S\+E\+R\+\_\+\+S\+I\+TE}!ez\+\_\+setup@{ez\+\_\+setup}}
+\subsubsection{\texorpdfstring{U\+S\+E\+R\+\_\+\+S\+I\+TE}{USER\_SITE}}
+{\footnotesize\ttfamily ez\+\_\+setup.\+U\+S\+E\+R\+\_\+\+S\+I\+TE = None}
+

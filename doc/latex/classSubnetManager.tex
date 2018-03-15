@@ -1,0 +1,75 @@
+\hypertarget{classSubnetManager}{}\section{Subnet\+Manager Class Reference}
+\label{classSubnetManager}\index{Subnet\+Manager@{Subnet\+Manager}}
+
+
+{\ttfamily \#include $<$subnet\+\_\+manager.\+hpp$>$}
+
+Inheritance diagram for Subnet\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSubnetManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSubnetManager_af60bbdf2417a03b1e2fb14a5b077597a}{Subnet\+Manager} (std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ com)
+\item 
+virtual void \hyperlink{classSubnetManager_a6aed1acaa5e9f18feb7667904675d119}{listen\+Messages} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ \hyperlink{classSubnetManager_acb58a845a46fa4943cb2b9d4a56c9b0f}{communicator}
+\begin{DoxyCompactList}\small\item\em Run a long running task on a new thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSubnetManager_af60bbdf2417a03b1e2fb14a5b077597a}\label{classSubnetManager_af60bbdf2417a03b1e2fb14a5b077597a}} 
+\index{Subnet\+Manager@{Subnet\+Manager}!Subnet\+Manager@{Subnet\+Manager}}
+\index{Subnet\+Manager@{Subnet\+Manager}!Subnet\+Manager@{Subnet\+Manager}}
+\subsubsection{\texorpdfstring{Subnet\+Manager()}{SubnetManager()}}
+{\footnotesize\ttfamily Subnet\+Manager\+::\+Subnet\+Manager (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$}]{com }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSubnetManager_a6aed1acaa5e9f18feb7667904675d119}\label{classSubnetManager_a6aed1acaa5e9f18feb7667904675d119}} 
+\index{Subnet\+Manager@{Subnet\+Manager}!listen\+Messages@{listen\+Messages}}
+\index{listen\+Messages@{listen\+Messages}!Subnet\+Manager@{Subnet\+Manager}}
+\subsubsection{\texorpdfstring{listen\+Messages()}{listenMessages()}}
+{\footnotesize\ttfamily virtual void Subnet\+Manager\+::listen\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ message that has been received Continuously ping components checking to make sure they are still responsive. Should report component failture to logging service. This function should not return while the subnet manager is running. Continuously listen for messages. Will call receive\+Message with each received message. A call to this method should not return while the subnet manager is running. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classLocalSubnetManager_a8cd2838196edcd75a77f532bce15c2fd}{Local\+Subnet\+Manager}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classSubnetManager_acb58a845a46fa4943cb2b9d4a56c9b0f}\label{classSubnetManager_acb58a845a46fa4943cb2b9d4a56c9b0f}} 
+\index{Subnet\+Manager@{Subnet\+Manager}!communicator@{communicator}}
+\index{communicator@{communicator}!Subnet\+Manager@{Subnet\+Manager}}
+\subsubsection{\texorpdfstring{communicator}{communicator}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classSpaCommunicator}{Spa\+Communicator} $>$ Subnet\+Manager\+::communicator\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Run a long running task on a new thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & -\/ lambda function to run on a seperate thread \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{subnet__manager_8hpp}{subnet\+\_\+manager.\+hpp}\item 
+lib/\hyperlink{subnet__manager_8cpp}{subnet\+\_\+manager.\+cpp}\end{DoxyCompactItemize}

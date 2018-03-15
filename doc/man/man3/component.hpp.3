@@ -1,0 +1,56 @@
+.TH "lib/component.hpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/component.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'messages/local/local_hello\&.h'\fP
+.br
+\fC#include 'messages/spa/spa_courier\&.h'\fP
+.br
+\fC#include 'messages/spa/spa_data\&.h'\fP
+.br
+\fC#include 'spa_communicator\&.hpp'\fP
+.br
+\fC#include 'spa_message\&.h'\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <memory>\fP
+.br
+\fC#include <mutex>\fP
+.br
+\fC#include <vector>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSubscriber\fP"
+.br
+.ti -1c
+.RI "class \fBComponent\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcomponent_messageCallback\fP (std::shared_ptr< \fBComponent\fP > comp, \fBcubiumClientSocket_t\fP *sock)"
+.br
+.ti -1c
+.RI "template<typename T > void \fBcomponent_start\fP (\fBLogicalAddress\fP address)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void component_messageCallback (std::shared_ptr< \fBComponent\fP > comp, \fBcubiumClientSocket_t\fP * sock)"
+
+.SS "template<typename T > void component_start (\fBLogicalAddress\fP address)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

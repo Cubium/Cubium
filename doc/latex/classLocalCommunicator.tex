@@ -1,0 +1,178 @@
+\hypertarget{classLocalCommunicator}{}\section{Local\+Communicator Class Reference}
+\label{classLocalCommunicator}\index{Local\+Communicator@{Local\+Communicator}}
+
+
+{\ttfamily \#include $<$local\+\_\+communicator.\+hpp$>$}
+
+Inheritance diagram for Local\+Communicator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLocalCommunicator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLocalCommunicator_a477260797392154cc43815852ced969c}{Local\+Communicator} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$sock, std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$ \hyperlink{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}{routing\+Table}, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\hyperlink{classLocalCommunicator_ac5845882ec445ca5f3bedbaf666073c0}{Local\+Communicator} (\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$sock, std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$ \hyperlink{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}{routing\+Table}, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+\hyperlink{classLocalCommunicator_a22dbee26502e3ac2bdf46b9f094d881d}{Local\+Communicator} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$sock, \hyperlink{structLogicalAddress}{Logical\+Address} la)
+\item 
+virtual bool \hyperlink{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}{send\+Msg} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$msg, ssize\+\_\+t len)
+\item 
+virtual void \hyperlink{classLocalCommunicator_a0d6816af83fd55a79990f0b8caa4e164}{handle\+Failure} (std\+::string)
+\item 
+virtual bool \hyperlink{classLocalCommunicator_a6175c2c35727bb081c5f518e1750dd86}{server\+Send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t)
+\item 
+virtual bool \hyperlink{classLocalCommunicator_afca7f865eda5dca2fc4c3bf5ca697ab8}{client\+Send} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, ssize\+\_\+t)
+\item 
+void \hyperlink{classLocalCommunicator_a4dc9ea76a7d6d1d363ec8b69c1d5d586}{client\+Connect} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$, size\+\_\+t, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+void \hyperlink{classLocalCommunicator_a8ed10b0a1f9be12597a2e095b7b8fb3e}{init\+Sub\+Dialogue} (\hyperlink{structSpaMessage}{Spa\+Message} $\ast$message, size\+\_\+t len, std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$ callback)
+\item 
+void \hyperlink{classLocalCommunicator_a03deedab1d3f79fe328a21aa2d5c6bfb}{client\+Listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+virtual void \hyperlink{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}{listen} (std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+virtual void \hyperlink{classLocalCommunicator_a33c7148ee35ec38773b7b4c8f32c643c}{listen} (std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$)
+\item 
+void \hyperlink{classLocalCommunicator_a3321b932c8c555587b8b3200bc4dfcdb}{set\+Server\+Sock} (\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$s)
+\item 
+void \hyperlink{classLocalCommunicator_a96569a4dc0b07439ab880385428a53f7}{print\+Table} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$ \hyperlink{classLocalCommunicator_a4c0d8806e53030c1af6124cd55a34335}{server\+Sock}
+\item 
+\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$ \hyperlink{classLocalCommunicator_af52bd4819c3dc433bd27d3dbefbaac70}{client\+Sock}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$ $>$ \hyperlink{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}{routing\+Table}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLocalCommunicator_a477260797392154cc43815852ced969c}\label{classLocalCommunicator_a477260797392154cc43815852ced969c}} 
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{Local\+Communicator()}{LocalCommunicator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Local\+Communicator\+::\+Local\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{sock,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$}]{routing\+Table,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{la }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_ac5845882ec445ca5f3bedbaf666073c0}\label{classLocalCommunicator_ac5845882ec445ca5f3bedbaf666073c0}} 
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{Local\+Communicator()}{LocalCommunicator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Local\+Communicator\+::\+Local\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$}]{sock,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classRoutingTable}{Routing\+Table}$<$ \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $>$$>$}]{routing\+Table,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{la }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a22dbee26502e3ac2bdf46b9f094d881d}\label{classLocalCommunicator_a22dbee26502e3ac2bdf46b9f094d881d}} 
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\index{Local\+Communicator@{Local\+Communicator}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{Local\+Communicator()}{LocalCommunicator()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Local\+Communicator\+::\+Local\+Communicator (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{sock,  }\item[{\hyperlink{structLogicalAddress}{Logical\+Address}}]{la }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLocalCommunicator_a4dc9ea76a7d6d1d363ec8b69c1d5d586}\label{classLocalCommunicator_a4dc9ea76a7d6d1d363ec8b69c1d5d586}} 
+\index{Local\+Communicator@{Local\+Communicator}!client\+Connect@{client\+Connect}}
+\index{client\+Connect@{client\+Connect}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{client\+Connect()}{clientConnect()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::client\+Connect (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{size\+\_\+t}]{len,  }\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{callback }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classLocalCommunicator_a03deedab1d3f79fe328a21aa2d5c6bfb}\label{classLocalCommunicator_a03deedab1d3f79fe328a21aa2d5c6bfb}} 
+\index{Local\+Communicator@{Local\+Communicator}!client\+Listen@{client\+Listen}}
+\index{client\+Listen@{client\+Listen}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{client\+Listen()}{clientListen()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::client\+Listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classLocalCommunicator_afca7f865eda5dca2fc4c3bf5ca697ab8}\label{classLocalCommunicator_afca7f865eda5dca2fc4c3bf5ca697ab8}} 
+\index{Local\+Communicator@{Local\+Communicator}!client\+Send@{client\+Send}}
+\index{client\+Send@{client\+Send}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{client\+Send()}{clientSend()}}
+{\footnotesize\ttfamily bool Local\+Communicator\+::client\+Send (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a0d6816af83fd55a79990f0b8caa4e164}\label{classLocalCommunicator_a0d6816af83fd55a79990f0b8caa4e164}} 
+\index{Local\+Communicator@{Local\+Communicator}!handle\+Failure@{handle\+Failure}}
+\index{handle\+Failure@{handle\+Failure}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{handle\+Failure()}{handleFailure()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::handle\+Failure (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a8ed10b0a1f9be12597a2e095b7b8fb3e}\label{classLocalCommunicator_a8ed10b0a1f9be12597a2e095b7b8fb3e}} 
+\index{Local\+Communicator@{Local\+Communicator}!init\+Sub\+Dialogue@{init\+Sub\+Dialogue}}
+\index{init\+Sub\+Dialogue@{init\+Sub\+Dialogue}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{init\+Sub\+Dialogue()}{initSubDialogue()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::init\+Sub\+Dialogue (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{size\+\_\+t}]{len,  }\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{callback }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}\label{classLocalCommunicator_a320a09f88a1eb840e517753b603cd08b}} 
+\index{Local\+Communicator@{Local\+Communicator}!listen@{listen}}
+\index{listen@{listen}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{listen()}{listen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Local\+Communicator\+::listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$)$>$}]{message\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classPhysicalCommunicator_a4886f4453c1f830ceaef56bc8602423f}{Physical\+Communicator}.
+
+\mbox{\Hypertarget{classLocalCommunicator_a33c7148ee35ec38773b7b4c8f32c643c}\label{classLocalCommunicator_a33c7148ee35ec38773b7b4c8f32c643c}} 
+\index{Local\+Communicator@{Local\+Communicator}!listen@{listen}}
+\index{listen@{listen}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{listen()}{listen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Local\+Communicator\+::listen (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t} $\ast$)$>$}]{message\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a96569a4dc0b07439ab880385428a53f7}\label{classLocalCommunicator_a96569a4dc0b07439ab880385428a53f7}} 
+\index{Local\+Communicator@{Local\+Communicator}!print\+Table@{print\+Table}}
+\index{print\+Table@{print\+Table}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{print\+Table()}{printTable()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::print\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}\label{classLocalCommunicator_afb8fc8a82069dac7bf08f736fa76c4c8}} 
+\index{Local\+Communicator@{Local\+Communicator}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{send\+Msg()}{sendMsg()}}
+{\footnotesize\ttfamily bool Local\+Communicator\+::send\+Msg (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{msg,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classPhysicalCommunicator_a9fc5595b693f9908a20d0e64a6579bb5}{Physical\+Communicator}.
+
+\mbox{\Hypertarget{classLocalCommunicator_a6175c2c35727bb081c5f518e1750dd86}\label{classLocalCommunicator_a6175c2c35727bb081c5f518e1750dd86}} 
+\index{Local\+Communicator@{Local\+Communicator}!server\+Send@{server\+Send}}
+\index{server\+Send@{server\+Send}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{server\+Send()}{serverSend()}}
+{\footnotesize\ttfamily bool Local\+Communicator\+::server\+Send (\begin{DoxyParamCaption}\item[{\hyperlink{structSpaMessage}{Spa\+Message} $\ast$}]{message,  }\item[{ssize\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a3321b932c8c555587b8b3200bc4dfcdb}\label{classLocalCommunicator_a3321b932c8c555587b8b3200bc4dfcdb}} 
+\index{Local\+Communicator@{Local\+Communicator}!set\+Server\+Sock@{set\+Server\+Sock}}
+\index{set\+Server\+Sock@{set\+Server\+Sock}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{set\+Server\+Sock()}{setServerSock()}}
+{\footnotesize\ttfamily void Local\+Communicator\+::set\+Server\+Sock (\begin{DoxyParamCaption}\item[{\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t} $\ast$}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classLocalCommunicator_af52bd4819c3dc433bd27d3dbefbaac70}\label{classLocalCommunicator_af52bd4819c3dc433bd27d3dbefbaac70}} 
+\index{Local\+Communicator@{Local\+Communicator}!client\+Sock@{client\+Sock}}
+\index{client\+Sock@{client\+Sock}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{client\+Sock}{clientSock}}
+{\footnotesize\ttfamily \hyperlink{structcubiumClientSocket__t}{cubium\+Client\+Socket\+\_\+t}$\ast$ Local\+Communicator\+::client\+Sock\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}\label{classLocalCommunicator_ac28392070111396dabbadbbcb81a7ef7}} 
+\index{Local\+Communicator@{Local\+Communicator}!routing\+Table@{routing\+Table}}
+\index{routing\+Table@{routing\+Table}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{routing\+Table}{routingTable}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classRoutingTable}{Routing\+Table}$<$\hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t}$>$ $>$ Local\+Communicator\+::routing\+Table\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classLocalCommunicator_a4c0d8806e53030c1af6124cd55a34335}\label{classLocalCommunicator_a4c0d8806e53030c1af6124cd55a34335}} 
+\index{Local\+Communicator@{Local\+Communicator}!server\+Sock@{server\+Sock}}
+\index{server\+Sock@{server\+Sock}!Local\+Communicator@{Local\+Communicator}}
+\subsubsection{\texorpdfstring{server\+Sock}{serverSock}}
+{\footnotesize\ttfamily \hyperlink{structcubiumServerSocket__t}{cubium\+Server\+Socket\+\_\+t}$\ast$ Local\+Communicator\+::server\+Sock\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{local__communicator_8hpp}{local\+\_\+communicator.\+hpp}\item 
+lib/\hyperlink{local__communicator_8cpp}{local\+\_\+communicator.\+cpp}\end{DoxyCompactItemize}

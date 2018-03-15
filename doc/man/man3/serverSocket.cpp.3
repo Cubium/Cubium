@@ -1,0 +1,63 @@
+.TH "lib/socket/serverSocket.cpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/socket/serverSocket.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'serverSocket\&.hpp'\fP
+.br
+\fC#include '\&.\&./messages/op_codes\&.h'\fP
+.br
+\fC#include '\&.\&./messages/spa/spa_courier\&.h'\fP
+.br
+\fC#include '\&.\&./spa_message\&.h'\fP
+.br
+\fC#include <functional>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBserverSocket_error\fP (const char *msg)"
+.br
+.ti -1c
+.RI "\fBcubiumServerSocket_t\fP \fBserverSocket_openSocket\fP (uint16_t port)"
+.br
+.ti -1c
+.RI "void \fBserverSocket_handleCourier\fP (\fBcubiumServerSocket_t\fP *s, std::function< void(\fBcubiumServerSocket_t\fP *)> func, \fBSpaCourier\fP *courier)"
+.br
+.ti -1c
+.RI "void \fBserverSocket_listen\fP (\fBcubiumServerSocket_t\fP *s, std::function< void(\fBcubiumServerSocket_t\fP *)> func)"
+.br
+.ti -1c
+.RI "ssize_t \fBserverSocket_send\fP (const void *msg, size_t len, \fBcubiumServerSocket_t\fP *s)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void serverSocket_error (const char * msg)"
+
+.SS "void serverSocket_handleCourier (\fBcubiumServerSocket_t\fP * s, std::function< void(\fBcubiumServerSocket_t\fP *)> func, \fBSpaCourier\fP * courier)"
+
+.SS "void serverSocket_listen (\fBcubiumServerSocket_t\fP * s, std::function< void(\fBcubiumServerSocket_t\fP *)> func)"
+
+.SS "\fBcubiumServerSocket_t\fP serverSocket_openSocket (uint16_t port)"
+
+.SS "ssize_t serverSocket_send (const void * msg, size_t len, \fBcubiumServerSocket_t\fP * s)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

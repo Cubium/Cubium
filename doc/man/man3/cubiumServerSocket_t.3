@@ -1,0 +1,60 @@
+.TH "cubiumServerSocket_t" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cubiumServerSocket_t
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <serverSocket\&.hpp>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fBsock\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlength\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBnBytesRecv\fP"
+.br
+.ti -1c
+.RI "socklen_t \fBfromlen\fP"
+.br
+.ti -1c
+.RI "struct sockaddr_in \fBserver\fP"
+.br
+.ti -1c
+.RI "struct sockaddr_in \fBfrom\fP"
+.br
+.ti -1c
+.RI "char \fBbuf\fP [1024]"
+.br
+.ti -1c
+.RI "bool \fBisBuf\fP = false"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "char cubiumServerSocket_t::buf[1024]"
+
+.SS "struct sockaddr_in cubiumServerSocket_t::from"
+
+.SS "socklen_t cubiumServerSocket_t::fromlen"
+
+.SS "bool cubiumServerSocket_t::isBuf = false"
+
+.SS "uint32_t cubiumServerSocket_t::length"
+
+.SS "uint32_t cubiumServerSocket_t::nBytesRecv"
+
+.SS "struct sockaddr_in cubiumServerSocket_t::server"
+
+.SS "uint32_t cubiumServerSocket_t::sock"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.

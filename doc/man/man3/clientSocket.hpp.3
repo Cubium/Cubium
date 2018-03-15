@@ -1,0 +1,53 @@
+.TH "lib/socket/clientSocket.hpp" 3 "Wed Oct 18 2017" "Version 1.2.0" "Cubium" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lib/socket/clientSocket.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <functional>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcubiumClientSocket_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcubiumClientSocket_t\fP \fBclientSocket_openSocket\fP (uint16_t port)"
+.br
+.ti -1c
+.RI "void \fBclientSocket_requestDialogue\fP (\fBcubiumClientSocket_t\fP *, void *hello, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> func, const uint8_t targetop)"
+.br
+.ti -1c
+.RI "ssize_t \fBclientSocket_send\fP (const void *msg, size_t len, \fBcubiumClientSocket_t\fP *s)"
+.br
+.ti -1c
+.RI "void \fBclientSocket_listen\fP (\fBcubiumClientSocket_t\fP *s, std::function< void(\fBcubiumClientSocket_t\fP *)> func)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void clientSocket_listen (\fBcubiumClientSocket_t\fP * s, std::function< void(\fBcubiumClientSocket_t\fP *)> func)"
+
+.SS "\fBcubiumClientSocket_t\fP clientSocket_openSocket (uint16_t port)"
+
+.SS "void clientSocket_requestDialogue (\fBcubiumClientSocket_t\fP *, void * hello, size_t len, std::function< void(\fBcubiumClientSocket_t\fP *)> func, const uint8_t targetop)"
+
+.SS "ssize_t clientSocket_send (const void * msg, size_t len, \fBcubiumClientSocket_t\fP * s)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Cubium from the source code\&.
