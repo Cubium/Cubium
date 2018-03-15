@@ -1,4 +1,6 @@
-# Cubium
+# Cubium    
+
+[![Build Status](https://travis-ci.org/Cubium/Cubium.svg?branch=master)](https://travis-ci.org/Cubium/Cubium)
 
 Cubium is a free and open-source flight software for Linux-based spacecraft systems. Cubium allows for a more standardized and streamlined method of handling systems with many connected components by providing the neccesarry network to allow automatic discovery and communication between components. Developed with undergraduate CubeSat teams using systems such as Beaglebone Blacks and Raspberry Pis in mind, Cubium's purpose is to lower the bar of entry for satellite development.
 
@@ -10,6 +12,10 @@ For a fun introduction on the inner workings of Cubium, see [this illustrated wr
 For a very detailed look into the machinations of SPA in general, see [Jacob Holt Christensen's dissertation.](http://digitalcommons.usu.edu/etd/1422/)
 
 ## Project Status 
+  * **Version Alpha 2.0.0**
+    * Added interfacing with Python components
+    * Major bugfixes
+    * Architecture ready for flight testing
   * **Version Alpha 1.2.0**
     * Support for sending strings between components
   * **Version Alpha 1.1.0**

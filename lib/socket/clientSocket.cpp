@@ -1,6 +1,5 @@
 #include "clientSocket.hpp"
 #include "../messages/op_codes.h"
-#include "../messages/spa/spa_courier.h"
 #include "../spa_message.h"
 #include <functional> // for std::function
 #include <iostream>
@@ -11,8 +10,6 @@
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 #include <thread>
 
-//#define CLIENTSOCKET_VERBOSE
-
 /* Throw a perror and exit */
 void clientSocket_error(const char* msg)
 {
@@ -20,7 +17,7 @@ void clientSocket_error(const char* msg)
   exit(1);
 }
 
-cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
+cubiumClientSocket_t clientSocket_openSocket(uint16_t const port)
 {
   cubiumClientSocket_t s;
 
@@ -46,10 +43,10 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t port)
 }
 
 /* Connect to a UDP server */
-void clientSocket_requestDialogue(cubiumClientSocket_t* s,                         /* Socket that server is listening through */
-                                  void* request,                                   /* Hello sent to server */
-                                  size_t len,                                      /* Size of hello's type */
-                                  std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
+ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                            /* Socket that server is listening through */
+                                  void* request,                                         /* Hello sent to server */
+                                  size_t const len,                                      /* Size of hello's type */
+                                  std::function<void(cubiumClientSocket_t*)> const func, /* Called when ack is received */
                                   const uint8_t targetop)
 {
   /* Set timeout such that socket will only wait 5 ms for messages */
@@ -89,63 +86,27 @@ void clientSocket_requestDialogue(cubiumClientSocket_t* s,                      
   {
     clientSocket_error("setsockopt failed\n");
   }
+
+  return s->nBytesRecv;
 }
 
 /* Send a message to the connected server */
-ssize_t clientSocket_send(const void* msg, size_t len, cubiumClientSocket_t* s)
+ssize_t clientSocket_send(const void* msg, size_t const len, cubiumClientSocket_t* s)
 {
   return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, sizeof(struct sockaddr_in));
 }
 
-void clientSocket_handleCourier(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func, SpaCourier* courier)
-{
-  std::cout << "Client handling courier" << std::endl;
-
-  s->isBuf = false;
-
-  func(s);
-
-  auto followerSize = courier->followerSize;
-
-  do
-  {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, courier->followerSize, 0, (struct sockaddr*)&s->from, &s->length);
-    if (s->nBytesRecv < 0)
-    {
-      clientSocket_error("recvfrom failed");
-    }
-
-  } while (followerSize != s->nBytesRecv);
-
-  s->isBuf = true;
-
-  func(s);
-
-  s->isBuf = false;
-}
-
-void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func)
+void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const callback)
 {
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
   {
-#ifdef CLIENTSOCKET_VERBOSE
-    std::cout << "Listening!" << std::endl;
-#endif
-    s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->length);
+    s->nBytesRecv = recvfrom(s->sock, s->buf, 300, 0, (struct sockaddr*)&s->from, &s->length);
     if (s->nBytesRecv < 0)
     {
       clientSocket_error("recvfrom failed");
     }
 
-    /* Special check for handling spa couriers */
-    if (((SpaMessage*)s->buf)->spaHeader.opcode == op_SPA_COURIER)
-    {
-      clientSocket_handleCourier(s, func, (SpaCourier*)s->buf);
-    }
-    else
-    {
-      func(s);
-    }
+    callback(s);
   }
 }

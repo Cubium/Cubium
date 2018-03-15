@@ -16,14 +16,13 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-
-    std::cout << "Payload: Got it \n"; //" << message->payload << std::endl;
+    std::cout << "THIS SHOULD NOT BE PRINTING \n"; //" << message->payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "You can send over anything you want! Anything at all!";
+    std::string payload = "You can send over anything you want! Anything at all less than 128 characters!";
 
     std::cout << "Sending SpaData: " << payload << std::endl;
 

@@ -1,6 +1,5 @@
 #include "serverSocket.hpp"
 #include "../messages/op_codes.h"
-#include "../messages/spa/spa_courier.h"
 #include "../spa_message.h"
 #include <functional>   // for std::function
 #include <netinet/in.h> // for INADDR_ANY
@@ -16,7 +15,7 @@ void serverSocket_error(const char* msg)
   exit(1);
 }
 
-cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
+cubiumServerSocket_t serverSocket_openSocket(uint16_t const port)
 {
   cubiumServerSocket_t s;
   s.sock = socket(AF_INET, SOCK_DGRAM, 0);
@@ -40,59 +39,24 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t port)
   return s;
 }
 
-void serverSocket_handleCourier(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func, SpaCourier* courier)
-{
-  std::cout << "Server handling courier" << std::endl;
-
-  s->isBuf = false;
-
-  func(s);
-
-  auto followerSize = courier->followerSize;
-
-  do
-  {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, courier->followerSize, 0, (struct sockaddr*)&s->from, &s->length);
-    if (s->nBytesRecv < 0)
-    {
-      serverSocket_error("recvfrom failed");
-    }
-
-  } while (followerSize != s->nBytesRecv);
-
-  s->isBuf = true;
-
-  func(s);
-}
-
 /* Listen through the given socket */
-void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> func)
+void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> const callback)
 {
-
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
   {
-    s->nBytesRecv = recvfrom(s->sock, s->buf, 40, 0, (struct sockaddr*)&s->from, &s->fromlen);
+    s->nBytesRecv = recvfrom(s->sock, s->buf, 300, 0, (struct sockaddr*)&s->from, &s->fromlen);
     if (s->nBytesRecv < 0)
     {
       serverSocket_error("recvfrom failed");
     }
 
-    /* Special check for handling spa couriers */
-    if (((SpaMessage*)s->buf)->spaHeader.opcode == op_SPA_COURIER)
-    {
-      serverSocket_handleCourier(s, func, (SpaCourier*)s->buf);
-    }
-    else
-    {
-      s->isBuf = false;
-      func(s);
-    }
+    callback(s);
   }
 }
 
 /* Send a message through the socket */
-ssize_t serverSocket_send(const void* msg, size_t len, cubiumServerSocket_t* s)
+ssize_t serverSocket_send(const void* msg, size_t const len, cubiumServerSocket_t* s)
 {
   return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, s->fromlen);
 }

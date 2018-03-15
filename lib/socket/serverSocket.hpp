@@ -17,21 +17,20 @@ typedef struct
   struct sockaddr_in server;
   struct sockaddr_in from;
   char buf[1024];
-  bool isBuf = false;
 } cubiumServerSocket_t;
 
 /* Send a message through the socket */
 ssize_t serverSocket_send(const void* msg,        /* Message buffer */
-                          size_t len,             /* Length of message */
+                          size_t const len,             /* Length of message */
                           cubiumServerSocket_t* s /* Socket */
                           );
 
 /* Start listening through a given socket*/
 void serverSocket_listen(cubiumServerSocket_t* port,                     /* Socket to listen through */
-                         std::function<void(cubiumServerSocket_t*)> func /* Function called when a message is received */
+                         std::function<void(cubiumServerSocket_t*)> const func /* Function called when a message is received */
                          );
 
 /* Open a socket on the given port. Returns the socket info */
-cubiumServerSocket_t serverSocket_openSocket(uint16_t port);
+cubiumServerSocket_t serverSocket_openSocket(uint16_t const port);
 
 #endif

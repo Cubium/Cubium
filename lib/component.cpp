@@ -13,28 +13,14 @@
 
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
-  if (sock->isBuf)
-  {
-    std::cout << "It is a buf!" << std::endl;
-    comp->receiveBuffer(sock);
-  }
-  else
-  {
-    SpaMessage* message = (SpaMessage*)sock->buf;
-    comp->receiveMessage(message);
-  }
-}
-
-void Component::receiveBuffer(cubiumClientSocket_t* sock)
-{
-  SpaData<std::string> fauxMessage(lastCourier->spaMessage.spaHeader.destination, lastCourier->spaMessage.spaHeader.source, sock->buf);
-  handleSpaData((SpaMessage*)&fauxMessage);
+   SpaMessage* message = (SpaMessage*)sock->buf;
+   comp->receiveMessage(message);
 }
 
 void Component::registerSubscriptionRequest(SpaMessage* message)
 {
   SubscriptionReply reply(message->spaHeader.source, address);
-  communicator->send((SpaMessage*)&reply);
+  communicator->sendMsg((SpaMessage*)&reply, sizeof(SubscriptionReply));
 
   if (addSubscriber(message->spaHeader.source, 0))
   {
@@ -46,11 +32,6 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
   }
 
   publish();
-}
-
-void Component::handleSubscriptionReply(SpaMessage* message)
-{
-  // TODO Do we need this function?
 }
 
 void Component::subscribe(
@@ -67,7 +48,7 @@ void Component::subscribe(
       subnetManagerAddress, // Address of the subscriptions manager component
       0,                    // Flags
       leasePeriod,          // Duration of the subscription
-      dialogId,             // Dialog identifier sent by requester
+      0,                    // Dialog identifier sent by requester
       deliveryRateDivisor,  // Subscribe to every nth message
       0,                    // xTEDS interface ID
       0,                    // xTEDS message Id
@@ -75,7 +56,7 @@ void Component::subscribe(
       0                     // Message type (0 = subscription, 1 = unsubscribtion)
       );
 
-  communicator->getLocalCommunicator()->initSubDialogue((SpaMessage*)&request, sizeof(request),
+  communicator->initSubDialogue((SpaMessage*)&request, sizeof(request),
                                                         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
 
   //++dialogId;
@@ -83,28 +64,15 @@ void Component::subscribe(
 
 bool Component::addSubscriber(LogicalAddress la, uint16_t d)
 {
-  // TODO Check for duplicate
-  //auto sub = std::find(subscribers.begin(), subscribers.end(), newSubscriber);
-  // if (subscribers.end() == sub )
-  // {
-  //   subscribers.push_back(newSubscriber);
-  //   return true;
-  // }
-  // else
-  //   return false;
-
   {
     std::lock_guard<std::mutex> lock(m_subscribers);
     subscribers.emplace_back(la, d);
   }
-
   return true;
 }
 
 void Component::receiveMessage(SpaMessage* message)
 {
-  std::cout << "Received SpaMessage with opcode: " << (int)message->spaHeader.opcode << '\n';
-
   if (message == nullptr)
   {
     std::cout << "Tried receiving a nullptr.\n";
@@ -121,15 +89,14 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_SUBSCRIPTION_REPLY:
-    handleSubscriptionReply(message);
     return;
 
   case op_SPA_DATA:
     handleSpaData(message);
     return;
 
-  case op_SPA_COURIER:
-    lastCourier = (SpaCourier*)message;
+  case op_SPA_STRING:
+    handleSpaData(message);
     return;
 
   default:
@@ -140,37 +107,28 @@ void Component::receiveMessage(SpaMessage* message)
 
 void Component::publish()
 {
-  /*
-  ++comp->publishIter;
 
-  if (comp->publishIter == 201)
-  { // Max deliveryRateDivisor is therefore 200
-    comp->publishIter = 1;
-  }
-  */
-
-  /* send data */
-
-  auto newThread = std::thread([&]() {
+  /* Spin up a thread to handle the data-publishing loop */
+  auto publishLoopThread = std::thread([&]() {
     for (;;)
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(40));
       std::lock_guard<std::mutex> lock(m_subscribers);
       for (auto i = 0u; i < subscribers.size(); ++i)
       {
-        if (subscribers[i].deliveryRateDivisor % publishIter == 0)
-        {
-          sendData(subscribers[i].subscriberAddress);
-        }
+//        if (subscribers[i].deliveryRateDivisor % publishIter == 0)
+//        {
+          sendDataThreaded(subscribers[i].subscriberAddress);
+//        }
       }
     }
   });
 
-  /* listen for more requests */
-  communicator->getLocalCommunicator()->clientListen(
+  /* Start up the listening service on the parent thread */
+  communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);
       });
 
-  newThread.join();
+  publishLoopThread.join();
 }

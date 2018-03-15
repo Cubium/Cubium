@@ -31,25 +31,7 @@ struct SpaMessage
 
   virtual ~SpaMessage() {}
 
-  //! Generate a message from a byte array
-
-  //! \param serialized - array containing serialized message
-  //! \param size - length of serialized array
-  //SpaMessage(uint8_t *serialized, uint32_t size);
-
-  //! Serializes a message to a byte array
-
-  //! \param target - pointer where seialized message array will be stored
-  //! \return - size of serialized array
-  //uint32_t marshal(uint8_t *&target);
-
-  //TODO document
-  //static std::shared_ptr<SpaMessage> unmarshal(uint8_t *serialized, uint32_t size);
-
-  //! Logical address of component on spa network
-  //LogicalAddress logicalAddress; //NOTE deprecated
-
-  SpaHeader spaHeader;
+  SpaHeader const spaHeader;
 };
 
 #endif

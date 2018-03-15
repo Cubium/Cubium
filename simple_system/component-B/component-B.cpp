@@ -16,8 +16,10 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<std::string>*)message;
-    std::cout << "Payload: " << castMessage->payload << std::endl;
+    auto castMessage = (SpaString*)message;
+    std::string payloadStr(castMessage->st);
+
+    std::cout << "Payload: " << payloadStr << std::endl;
   }
 
   void sendData(LogicalAddress)

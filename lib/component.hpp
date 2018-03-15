@@ -2,14 +2,16 @@
 #define COMPONENT_HPP
 
 #include "messages/local/local_hello.h"
-#include "messages/spa/spa_courier.h"
 #include "messages/spa/spa_data.h"
-#include "spa_communicator.hpp"
+#include "messages/spa/spa_string.h"
+#include "local_communicator.hpp"
 #include "spa_message.h"
+#include <cstring>
 #include <iostream>
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <thread>
 
 struct Subscriber
 {
@@ -25,13 +27,10 @@ void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSock
 class Component : public std::enable_shared_from_this<Component>
 {
 public:
-  Component(std::shared_ptr<SpaCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0, 0))
+  Component(std::shared_ptr<LocalCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0, 0))
     : communicator(communicator),
       address(address),
-      subnetManagerAddress(subnetManagerAddress),
-      dialogId(0),
-      publishIter(1)
-
+      subnetManagerAddress(subnetManagerAddress)
   {
     subscribers.reserve(8); // Default to 8 subscribers
 
@@ -39,7 +38,6 @@ public:
   }
 
   virtual ~Component() {}
-  //virtual void appShutdown() = 0;
 
   void publish();
 
@@ -48,12 +46,12 @@ public:
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
 
-    communicator->getLocalCommunicator()->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+    communicator->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
 
   virtual void listen()
   {
-    communicator->getLocalCommunicator()->clientListen(
+    communicator->clientListen(
         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
 
@@ -65,15 +63,12 @@ public:
     {
       return;
     }
-    communicator->send(message, len);
+    communicator->sendMsg(message, len);
   }
 
   void receiveMessage(SpaMessage*);
 
-  void handleSubscriptionReply(SpaMessage*);
   void registerSubscriptionRequest(SpaMessage*);
-
-  void receiveBuffer(cubiumClientSocket_t*);
 
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
@@ -82,49 +77,60 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
+  void sendDataThreaded(LogicalAddress la)
+  {
+    auto t = std::thread([=](){ sendData(la); });
+    t.join();
+  }
+
   virtual void sendData(LogicalAddress) = 0;
 
   void sendPayload(std::string payload, LogicalAddress destination)
   {
-    auto plainBuffer = payload.data();
-    auto courier = SpaCourier(destination, address, payload.length());
+    if (payload.length() > 128)
+    {
+      std::cout << "Your string is too big stupid. Will be updated eventually.\n";
+      return;
+    }
 
-    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)&courier, sizeof(courier));
-    communicator->getLocalCommunicator()->sendMsg((SpaMessage*)plainBuffer, payload.length());
+    SpaString message(destination, address);
+
+    strcpy(message.st, payload.c_str());
+    
+    communicator->sendMsg((SpaMessage*)&message, sizeof(message));
   }
 
   template <typename T>
   void sendPayload(T payload, LogicalAddress destination)
   {
-    SpaData<T> dataMessage(destination, address, payload);
-    communicator->send((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
+    SpaData<T> dataMessage(destination, address, sizeof(SpaData<T>), payload);
+    communicator->sendMsg((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 
   bool addSubscriber(LogicalAddress, uint16_t);
 
-  std::shared_ptr<SpaCommunicator> communicator;
-  std::vector<Subscriber> subscribers; // Should we make this a vector of pointers?
+  std::shared_ptr<LocalCommunicator> const communicator;
+  std::vector<Subscriber> subscribers;
   std::mutex m_subscribers;
 
 protected:
-  LogicalAddress address;
-  LogicalAddress subnetManagerAddress;
+  LogicalAddress const address;
+  LogicalAddress const subnetManagerAddress;
+/*  
+ * To be implemented in a later version:
   uint8_t publishIter;
   uint16_t dialogId;
-  SpaCourier* lastCourier;
+*/
 };
 
 template <typename T>
-void component_start(LogicalAddress address)
+void component_start(LogicalAddress const & address)
 {
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
-  auto routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
+  auto const routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();
+  auto const communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, address);
+  auto const comp = std::make_shared<T>(communicator);
 
-  std::vector<std::shared_ptr<PhysicalCommunicator>> comms = {
-      std::make_shared<LocalCommunicator>(&sock, routingTable, address)};
-  std::shared_ptr<SpaCommunicator> spaCom = std::make_shared<SpaCommunicator>(address, comms);
-
-  auto comp = std::make_shared<T>(spaCom);
   comp->preInit();
   comp->init();
   comp->listen();

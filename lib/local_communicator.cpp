@@ -26,8 +26,6 @@ bool LocalCommunicator::serverSend(SpaMessage* message, ssize_t len)
     return false;
   }
 
-  //routingTable->getPhysicalAddress(message->spaHeader.destination);
-
   serverSocket_send((void*)message, len, serverSock);
   return true;
 }
@@ -86,9 +84,3 @@ void LocalCommunicator::initSubDialogue(SpaMessage* message, size_t len, std::fu
   }
   clientSocket_requestDialogue(clientSock, (void*)message, len, callback, op_SPA_SUBSCRIPTION_REPLY);
 }
-/*
-void LocalCommunicator::insertToRoutingTable(LogicalAddress log, cubium port)
-{
-  routingTable->insert(log, port);
-}
-*/

@@ -16,25 +16,24 @@ typedef struct
   struct sockaddr_in from;
   struct hostent* hp;
   char buf[256];
-  bool isBuf = false;
 } cubiumClientSocket_t;
 
 /* Open a socket on the given port. Returns socket info. */
-cubiumClientSocket_t clientSocket_openSocket(uint16_t port);
+cubiumClientSocket_t clientSocket_openSocket(uint16_t const port);
 
 /* Connect to a UDP server */
-void clientSocket_requestDialogue(cubiumClientSocket_t*,                           /* Socket that server is listening through */
-                                  void* hello,                                     /* Hello sent to server */
-                                  size_t len,                                      /* Length of hello */
-                                  std::function<void(cubiumClientSocket_t*)> func, /* Called when ack is received */
+ssize_t clientSocket_requestDialogue(cubiumClientSocket_t*,                              /* Socket that server is listening through */
+                                  void* hello,                                           /* Hello sent to server */
+                                  size_t const len,                                      /* Length of hello */
+                                  std::function<void(cubiumClientSocket_t*)> const func, /* Called when ack is received */
                                   const uint8_t targetop);
 
 /* Send a message through the socket */
 ssize_t clientSocket_send(const void* msg,        /* The message buffer */
-                          size_t len,             /* Message length */
+                          size_t const len,             /* Message length */
                           cubiumClientSocket_t* s /* Socket */
                           );
 
-void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> func);
+void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const func);
 
 #endif

@@ -20,7 +20,6 @@ public:
   bool insert(LogicalAddress log, T physAddr)
   {
     routingTable.insert(std::pair<LogicalAddress, T>(log, physAddr));
-    //routingTable[log] = port;
     return true;
   }
 
@@ -31,7 +30,6 @@ public:
     {
       if (i->first == log)
       {
-        //        std::cout << "(RoutingTable::exists)Found Address with port" << i->second << std::endl;
         return true;
       }
     }
@@ -42,24 +40,15 @@ public:
 
   int size() { return routingTable.size(); }
 
-  /*
-    if (routingTable.find(log) == routingTable.end())
-    {
-      return false;
-    }
-    return true;
-  }
-*/
-
-  virtual T getPhysicalAddress(LogicalAddress log)
+  T getPhysicalAddress(LogicalAddress log)
   {
-    std::cout << "Searching for address: " << log << "...\n";
     if (exists(log))
     {
       return routingTable[log];
     }
     else
     {
+      std::cout << "Failed to find address: " << log << std::endl;
       perror("Entry in routing table does not exist!");
       exit(1);
     }
