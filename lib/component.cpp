@@ -11,6 +11,11 @@
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
 
+/**
+ *
+ * @param comp
+ * @param sock
+ */
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
   SpaMessage* message = (SpaMessage*)sock->buf;
