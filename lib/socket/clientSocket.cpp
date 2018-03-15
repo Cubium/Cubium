@@ -43,11 +43,11 @@ cubiumClientSocket_t clientSocket_openSocket(uint16_t const port)
 }
 
 /* Connect to a UDP server */
-ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                            /* Socket that server is listening through */
-                                  void* request,                                         /* Hello sent to server */
-                                  size_t const len,                                      /* Size of hello's type */
-                                  std::function<void(cubiumClientSocket_t*)> const func, /* Called when ack is received */
-                                  const uint8_t targetop)
+ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                               /* Socket that server is listening through */
+                                     void* request,                                         /* Hello sent to server */
+                                     size_t const len,                                      /* Size of hello's type */
+                                     std::function<void(cubiumClientSocket_t*)> const func, /* Called when ack is received */
+                                     const uint8_t targetop)
 {
   /* Set timeout such that socket will only wait 5 ms for messages */
 

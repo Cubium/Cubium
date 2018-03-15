@@ -25,6 +25,7 @@ public:
     list.emplace_back(la, true);
   }
   LogicalAddress getAddress(int i) { return list[i].address; }
+
 protected:
   std::vector<ComponentInfo> list;
 };

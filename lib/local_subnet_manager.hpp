@@ -23,11 +23,9 @@ public:
   void listenMessages()
   {
     communicator->listen(
-      [&](cubiumServerSocket_t* sock)
-      { 
-        LSM_messageCallback(LocalSubnetManager::shared_from_this(), sock); 
-      }
-    );
+        [&](cubiumServerSocket_t* sock) {
+          LSM_messageCallback(LocalSubnetManager::shared_from_this(), sock);
+        });
   }
 
   friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);

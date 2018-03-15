@@ -1,17 +1,17 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
+#include "local_communicator.hpp"
 #include "messages/local/local_hello.h"
 #include "messages/spa/spa_data.h"
 #include "messages/spa/spa_string.h"
-#include "local_communicator.hpp"
 #include "spa_message.h"
 #include <cstring>
 #include <iostream>
 #include <memory>
 #include <mutex>
-#include <vector>
 #include <thread>
+#include <vector>
 
 struct Subscriber
 {
@@ -79,7 +79,7 @@ public:
 
   void sendDataThreaded(LogicalAddress la)
   {
-    auto t = std::thread([=](){ sendData(la); });
+    auto t = std::thread([=]() { sendData(la); });
     t.join();
   }
 
@@ -96,7 +96,7 @@ public:
     SpaString message(destination, address);
 
     strcpy(message.st, payload.c_str());
-    
+
     communicator->sendMsg((SpaMessage*)&message, sizeof(message));
   }
 
@@ -116,7 +116,7 @@ public:
 protected:
   LogicalAddress const address;
   LogicalAddress const subnetManagerAddress;
-/*  
+  /*  
  * To be implemented in a later version:
   uint8_t publishIter;
   uint16_t dialogId;
@@ -124,7 +124,7 @@ protected:
 };
 
 template <typename T>
-void component_start(LogicalAddress const & address)
+void component_start(LogicalAddress const& address)
 {
   cubiumClientSocket_t sock = clientSocket_openSocket(3500);
   auto const routingTable = std::make_shared<RoutingTable<cubiumServerSocket_t>>();

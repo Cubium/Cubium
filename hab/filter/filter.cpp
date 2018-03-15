@@ -27,7 +27,7 @@ public:
     float payload = castMessage->payload;
 
     std::cout << "Payload: " << payload << std::endl;
-    
+
     filter.push(payload);
   }
 

@@ -30,36 +30,36 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
 
   SpaMessage* msg = (SpaMessage*)sock->buf;
 
-  switch(msg->spaHeader.opcode)
+  switch (msg->spaHeader.opcode)
   {
-    case op_LOCAL_HELLO:
-    {
-      lsm->components.add(msg->spaHeader.source);
-      lsm->routingTable->insert(msg->spaHeader.source, *sock);
-      lsm->communicator->printTable();
-      LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
-      lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
-    }
+  case op_LOCAL_HELLO:
+  {
+    lsm->components.add(msg->spaHeader.source);
+    lsm->routingTable->insert(msg->spaHeader.source, *sock);
+    lsm->communicator->printTable();
+    LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
+    lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
+  }
+  break;
+
+  case op_SPA_SUBSCRIPTION_REQUEST:
+    LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
     break;
 
-    case op_SPA_SUBSCRIPTION_REQUEST:
-      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
-      break;
+  case op_SPA_SUBSCRIPTION_REPLY:
+    LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+    break;
 
-    case op_SPA_SUBSCRIPTION_REPLY:
-      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
-      break;
+  case op_SPA_DATA:
+    LSM_sendMessage(lsm, msg->spaHeader.length, msg);
+    break;
 
-    case op_SPA_DATA:
-      LSM_sendMessage(lsm, msg->spaHeader.length, msg);
-      break;
+  case op_SPA_STRING:
+    LSM_sendMessage(lsm, sizeof(SpaString), msg);
+    break;
 
-    case op_SPA_STRING:
-      LSM_sendMessage(lsm, sizeof(SpaString), msg);
-      break;
-    
-    default:
-      std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
-      break;
+  default:
+    std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
+    break;
   }
 }

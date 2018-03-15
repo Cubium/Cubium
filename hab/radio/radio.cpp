@@ -1,7 +1,7 @@
 #include "../addresses.hpp"
 #include <component.hpp>
-#include <thread>
 #include <iostream>
+#include <thread>
 #include <unistd.h>
 
 #define COMP_NAME Radio
