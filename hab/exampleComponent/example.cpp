@@ -5,12 +5,13 @@
 
 #include "python2.7/Python.h"
 #include <stdlib.h>
-//=========================================================================
-// Change these definitions to whatever you decide to name your components.
-//=========================================================================
+
+/** \brief Change "COMPONENT_NAME" and "la_COMPONENT_NAME" to "YOUR_COMPONENT" and "la_YOUR_COMPONENT".
+ * #define COMP_NAME represents the name of the component.
+ * #define COMP_ADDR represents the logical address of the component.
+ */
 #define COMP_NAME COMPONENT_NAME
 #define COMP_ADDR la_COMPONENT_NAME
-//=========================================================================
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
