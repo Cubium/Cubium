@@ -14,6 +14,7 @@ def sendData():
     time.sleep(10)
     heading, roll, pitch = bno.read_euler()
     sys, gyro, accel, mag = bno.get_calibration_status()
+    print ('H{0:0.2F},R{1:0.2F},P{2:0.2F},S{3},G{4},A{5},M{6}'.format(heading, roll, pitch, sys, gyro, accel, mag))
     return 'H{0:0.2F},R{1:0.2F},P{2:0.2F},S{3},G{4},A{5},M{6}'.format(heading, roll, pitch, sys, gyro, accel, mag)
  
 def init():
