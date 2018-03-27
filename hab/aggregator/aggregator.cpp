@@ -19,6 +19,7 @@ public:
   void handleSpaData(SpaMessage* message)
   {
     handler[message->spaHeader.source];
+	std::cout << "Received message. Updated data: " << serialize(data) << std::endl;
   }
 
   void sendData(LogicalAddress destination)
