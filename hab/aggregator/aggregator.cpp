@@ -18,8 +18,8 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    handler[message->spaHeader.source];
-	std::cout << "Received message. Updated data: " << serialize(data) << std::endl;
+    handler[message->spaHeader.source](message);
+    std::cout << "Received message. Updated data: " << serialize(data) << std::endl;
   }
 
   void sendData(LogicalAddress destination)
@@ -40,6 +40,7 @@ public:
     */
     subscribe(la_TEMP);
     sleep(0.5);
+/*
     subscribe(la_RTC);
     sleep(0.5);
     subscribe(la_UV);
@@ -55,6 +56,7 @@ public:
     subscribe(la_FILTER);
     sleep(0.5);
     subscribe(la_BOOM);
+*/
   }
 
 private:
