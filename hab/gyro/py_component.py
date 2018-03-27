@@ -2,7 +2,7 @@ print 'Initializing gyro...'
 
 import time
 
-from Adafruit_BNO055.BNO055 import BNO055
+from Adafruit_Python_BNO055 import BNO055
 
 bno = BNO055.BNO055(rst='P9_12', busnum=2)
 
