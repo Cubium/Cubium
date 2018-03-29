@@ -1,4 +1,4 @@
-from Adafruit_MCP9808 import MCP9808
+from ../../lib/python/Adafruit_MCP9808 import MCP9808
 import time
 
 sensor = MCP9808.MCP9808()
