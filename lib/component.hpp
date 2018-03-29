@@ -87,7 +87,7 @@ public:
    * Sends a LocalHello to the subnet manager in order to be
    * registered in the routing table.
    */
-  virtual void preInit() //TODO rename to registerWithSubnetManager?
+  virtual void registerWithSubnetManager()
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
 
@@ -268,7 +268,7 @@ void component_start(LogicalAddress const& address)
   auto const communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, address);
   auto const comp = std::make_shared<T>(communicator);
 
-  comp->preInit();
+  comp->registerWithSubnetManager();
   comp->init();
   comp->listen();
 }
