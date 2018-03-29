@@ -13,6 +13,15 @@
 #include <thread>
 #include <vector>
 
+/*
+ * The subscriber struct is simply a convenient
+ * pairing of a logical address and delivery rate
+ * divisor for messages sent to that subscriber. 
+ * This feature is currently not fully implemented.
+ *
+ * @param subscriberAddress   The address of the subscriber
+ * @param deliveryRateDivisor The rate at which messages are sent to that subscriber
+ */
 struct Subscriber
 {
   Subscriber(LogicalAddress la, uint16_t d)
@@ -22,26 +31,57 @@ struct Subscriber
 };
 
 class Component;
+/*
+ * This function is called whenever a component receives a message
+ * @param comp The component that is receiving the message
+ * @param sock Information struct of the socket from which the message came
+ */
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock);
 
+/*
+ * The main component class from which all Cubium components inherit.
+ */
 class Component : public std::enable_shared_from_this<Component>
 {
 public:
+  /*
+   * The constructor simply initializes and does a quick vector reservation.
+   * @param communicator         The communicator for the component to use
+   * @param address              The logical address for the component to use
+   * @param subnetManagerAddress The address of the subnet manager
+   */
   Component(std::shared_ptr<LocalCommunicator> communicator = nullptr, LogicalAddress address = LogicalAddress(0, 0), LogicalAddress subnetManagerAddress = LogicalAddress(0, 0))
     : communicator(communicator),
       address(address),
       subnetManagerAddress(subnetManagerAddress)
   {
     subscribers.reserve(8); // Default to 8 subscribers
-
     std::cout << "Component initializing!" << '\n';
   }
 
+  /*
+   * Note: Do not delete the virtual destructor.
+   */
   virtual ~Component() {}
 
+
+  /*
+   * Spins up a thread to initiate the data-publishing loop wherein SpaData 
+   * is gathered from the component interface and sent to each subscriber,
+   * and then begins listening for messages.
+   */
   void publish();
 
+  /*
+   * Virtual method to be defined in the child-class component interface
+   */
   virtual void handleSpaData(SpaMessage*) = 0;
+
+  /*
+   * The first function that is run after component construction.
+   * Sends a LocalHello to the subnet manager in order to be 
+   * registered in the routing table.
+   */
   virtual void preInit()
   {
     LocalHello hello(0, 0, subnetManagerAddress, address, 0, 0, 0, 0);
@@ -49,14 +89,27 @@ public:
     communicator->clientConnect((SpaMessage*)&hello, sizeof(hello), [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
 
+
+  /* 
+   * Listen for messages coming through the socket.
+   */
   virtual void listen()
   {
     communicator->clientListen(
         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
   }
 
+  /*
+   * Initialization function to be defined in the child-class component
+   * interface
+   */
   virtual void init() = 0;
 
+  /*
+   * Pass a message to the communicator to be sent.
+   * @param message The message to be sent
+   * @param len     The size of the message
+   */
   void sendMsg(SpaMessage* message, ssize_t len)
   {
     if (message == nullptr || communicator == nullptr)
@@ -66,10 +119,33 @@ public:
     communicator->sendMsg(message, len);
   }
 
-  void receiveMessage(SpaMessage*);
 
-  void registerSubscriptionRequest(SpaMessage*);
+  /*
+   * This function is called in component_messageCallback when a message
+   * is received. It determines what kind of message it is and calls
+   * the appropriate handler function.
+   *
+   * @param message The message that has been received
+   */
+  void receiveMessage(SpaMessage* message);
 
+  /*
+   * Called when a subscription request is received.
+   * Sends a SubscriptionReply to the message source and adds the sender
+   * to the list of subscribers.
+   *
+   * @param message The SubscriptionRequest received.
+   */
+  void registerSubscriptionRequest(SpaMessage* message);
+
+  /*
+   * Subscribe to another component.
+   *
+   * @param producer The address of the component to subscribe to
+   * @param priority The priority by which to receive SpaData (not implemented)
+   * @param leasePeriod How long to stay subscribed (not implemented)
+   * @param deliveryRateDivisor How frequently to receive messages (not implemented)
+   */
   void subscribe(LogicalAddress producer) { subscribe(producer, 0, 0, 0); }
   void subscribe(
       LogicalAddress producer,
@@ -77,14 +153,30 @@ public:
       uint32_t leasePeriod,
       uint16_t deliveryRateDivisor);
 
+  /*
+   * Spin up a thread to send SpaData to.
+   *
+   * @param la The address of the component to send data to.
+   */
   void sendDataThreaded(LogicalAddress la)
   {
     auto t = std::thread([=]() { sendData(la); });
     t.join();
   }
 
+  /* 
+   * A virtual function to be defined in the child-class component interface.
+   * 
+   * Package data and send it to another component.
+   */
   virtual void sendData(LogicalAddress) = 0;
 
+  /* 
+   * Send a string payload to a specified component.
+   *
+   * @param payload The SpaData payload
+   * @param destination The component to send the payload to
+   */
   void sendPayload(std::string payload, LogicalAddress destination)
   {
     if (payload.length() > 128)
@@ -100,6 +192,12 @@ public:
     communicator->sendMsg((SpaMessage*)&message, sizeof(message));
   }
 
+  /*
+   * Send any kind of payload to a specified component.
+   * 
+   * @param payload The SpaData payload
+   * @param destination The component to send the payload to
+   */
   template <typename T>
   void sendPayload(T payload, LogicalAddress destination)
   {
@@ -107,22 +205,45 @@ public:
     communicator->sendMsg((SpaMessage*)&dataMessage, sizeof(SpaData<T>));
   }
 
-  bool addSubscriber(LogicalAddress, uint16_t);
+  /*
+   * Add a subscriber to the subsriber list.
+   *
+   * @param la The subscriber's address
+   * @param d  The deliveryRateDivisor
+   */
+  bool addSubscriber(LogicalAddress la, uint16_t d);
 
+  /*
+   * @param communicator  The component's communicator
+   * @param subscribers   The list of the component's subscribers
+   * @param m_subscribers A mutex used for accessing the subscriber list since multiple threads access it at once.
+   */
   std::shared_ptr<LocalCommunicator> const communicator;
   std::vector<Subscriber> subscribers;
   std::mutex m_subscribers;
 
 protected:
+  /*
+   * @param address The component's logical address 
+   * @param subnetManagerAddress The address of the subnet manager
+   */
   LogicalAddress const address;
   LogicalAddress const subnetManagerAddress;
   /*  
- * To be implemented in a later version:
+ * To be implemented probably never.
   uint8_t publishIter;
   uint16_t dialogId;
 */
 };
 
+/*
+ * A generic function to bootstrap the component.
+ * Constructs everything that the component needs,
+ * calls appropriate initializations, and begins listening
+ * for messages.
+ *
+ * @param address The logical address to use for the component.
+ */
 template <typename T>
 void component_start(LogicalAddress const& address)
 {
