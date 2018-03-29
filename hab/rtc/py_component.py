@@ -5,7 +5,7 @@ Chronodot / DS3231 Real Time Clock Driver
 import smbus
 import time
 
-bus = smbus.SMBus(2)
+bus = smbus.SMBus(1)
 address = 0x68
 
 def handleSpaData():
@@ -29,8 +29,7 @@ def sendData():
     date = (data[4]/16*10) + (data[4]%16)
     month = (data[5]/16*10) + (data[5]%16)
     year = (data[6]/16*10) + (data[6]%16)
-    buffer = "%02d:%02d:%02d %02d/%02d/%02d" % (hr, mm, ss, month, day, year)
-    return buffer
+    return "%02d:%02d:%02d %02d/%02d/%02d" % (hr, mm, ss, month, day, year)
 
 def init():
     """
@@ -38,6 +37,3 @@ def init():
 
     We'll use this to initialize the SMBus/I2C library so it knows how to talk to the chip.
     """
-
-while True:
-    print sendData()
