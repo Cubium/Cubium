@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Usage: ./init-component.sh <component-name>
+
 mkdir $1
 
 echo "add_executable($1 $1.cpp)" > $1/CMakeLists.txt
