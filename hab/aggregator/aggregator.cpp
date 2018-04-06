@@ -45,10 +45,12 @@ public:
 /*
     subscribe(la_UV);
     sleep(0.5);
+*/
     subscribe(la_LIGHT);
     sleep(0.5);
     subscribe(la_GYRO);
     sleep(0.5);
+/*
     subscribe(la_GPS);
     sleep(0.5);
     subscribe(la_BARO);

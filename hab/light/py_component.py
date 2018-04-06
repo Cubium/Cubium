@@ -10,7 +10,7 @@ def handleSpaData():
     pass
 
 def sendData():
-	values = adc.read_adc(2, gain=GAIN)
+	values = light.read_adc(2, gain=GAIN)
 
 	values = values * .0048
 	RLDR = (1000.0 * (5-values))/values
@@ -24,3 +24,4 @@ def sendData():
 
 def init():
     # Handled elsewhere
+	pass
