@@ -79,10 +79,13 @@ public:
     std::cout << "py_component initialized" << std::endl;
 	
     // TODO: THIS IS ONLY FOR TESTING PURPOSES
+    std::cout << "BEGIN TEST" << std::endl;
     pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
     std::string payload = "take picture";
     char* data = const_cast<char*>(payload.c_str()); // since c_str() returns a const char*
     PyObject_CallFunction(pFunc, data);
+    std::cout << "END TEST" << std::endl;
+    // END OF TEST
 
     // SUBSCRIPTIONS
   }

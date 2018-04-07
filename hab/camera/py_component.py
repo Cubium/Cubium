@@ -8,6 +8,7 @@ def takePicture():
     return
 
 def handleSpaData(data):
+    print(data)
     if data == "take picture":
         takePicture()
         tookPic = True
