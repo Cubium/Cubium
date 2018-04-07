@@ -37,14 +37,18 @@ public:
     sleep(0.5);
     subscribe(la_TEMPEX);
     sleep(0.5);
-    */
+ 
     subscribe(la_TEMP);
     sleep(0.5);
     subscribe(la_RTC);
     sleep(0.5);
-/*
+
     subscribe(la_UV);
     sleep(0.5);
+*/
+    subscribe(la_UV_EXTERNAL);
+    sleep(0.5);
+ /*
     subscribe(la_LIGHT);
     sleep(0.5);
     subscribe(la_GYRO);

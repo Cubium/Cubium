@@ -3,7 +3,7 @@ import time
 
 uv_external = Adafruit_ADS1x15.ADS1115()
 GAIN = 1
-ADC_PIN = 3
+ADC_PIN = 0
 
 def handleSpaData():
     pass
