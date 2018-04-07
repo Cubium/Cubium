@@ -22,26 +22,19 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    //Py_Initialize();
-    //PyRun_SimpleString("import sys; sys.path.append('.')");
-    //PyRun_SimpleString("import py_component");
-
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
     std::cout << "Payload: " << payload << std::endl;
 
-    pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
-    char* data = const_cast<char*>(payload.c_str()); // since c_str() returns a const char*
-    PyObject_CallFunction(pFunc, data);
+    if (payload == "take picture") {
+      pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
+      PyObject_CallFunction(pFunc, NULL);
+    }
   }
 
   void sendData(LogicalAddress destination)
   {
-    //Py_Initialize();
-    //PyRun_SimpleString("import sys; sys.path.append('.')");
-    //PyRun_SimpleString("import py_component");
-
     // PYTHON FILE SENDDATA
     pFunc = PyDict_GetItemString(pDict, "sendData");
 	
@@ -79,12 +72,8 @@ public:
     std::cout << "py_component initialized" << std::endl;
 	
     // TODO: THIS IS ONLY FOR TESTING PURPOSES
-    std::cout << "BEGIN TEST" << std::endl;
     pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
-    std::string payload = "take picture";
-    char* data = const_cast<char*>(payload.c_str()); // since c_str() returns a const char*
-    PyObject_CallFunction(pFunc, data);
-    std::cout << "END TEST" << std::endl;
+    PyObject_CallFunction(pFunc, NULL);
     // END OF TEST
 
     // SUBSCRIPTIONS

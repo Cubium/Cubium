@@ -2,16 +2,15 @@ import picamera
 from time import time
 
 DIR = "/home/pi/Cubium_Pics/"
+camera = picamera.PiCamera()
+tookPic = False
 
 def takePicture():
     camera.capture(DIR + str(time()).replace(".", "") + '.jpg')
-    return
 
-def handleSpaData(data):
-    print(data)
-    if data == "take picture":
-        takePicture()
-        tookPic = True
+def handleSpaData():
+    takePicture()
+    tookPic = True
 
 def sendData():
     if tookPic:
@@ -22,5 +21,4 @@ def sendData():
         return ""
 
 def init():
-    camera = picamera.PiCamera()
-    tookPic = False
+    pass
