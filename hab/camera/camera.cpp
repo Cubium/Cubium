@@ -3,12 +3,18 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "python2.7/Python.h"
+#include <stdlib.h>
+
 #define COMP_NAME Camera
 #define COMP_ADDR la_CAMERA
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
 {
+private:
+  PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
+
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
   {
@@ -16,23 +22,54 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaString*)message;
-    std::string payload(castMessage->st);
+		auto castMessage = (SpaString*)message;
+		std::string payload(castMessage->st);
 
     std::cout << "Payload: " << payload << std::endl;
+
+		pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
+		pyObject_CallFunction(pFunc, payload.c_str());
   }
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
-    std::string payload = "Camera photo!";
-    std::cout << "Sending payload: " << payload << std::endl;
+		// PYTHON FILE SENDDATA
+    pFunc = PyDict_GetItemString(pDict, "sendData");
+	
+		sleep(1);
+    pResult = PyObject_CallFunction(pFunc, NULL); // pResult is return of func
+		std::string payload = PyString_AsString(pResult); // pResult to string
     sendPayload(payload, destination);
   }
 
   void init()
   {
-    subscribe(la_BOOM);
+		// INITIALIZATION
+    Py_Initialize();
+    PyRun_SimpleString("import sys; sys.path.append('.')");
+    PyRun_SimpleString("import py_component");
+
+		// IMPORT CORRECT COMPONENT PYTHON FILE
+    pName = PyString_FromString("py_component");
+    pModule = PyImport_Import(pName);
+    if (pModule == NULL)
+    {
+      std::cout << "Null Module!" << std::endl;
+      PyErr_Print();
+    }
+
+		// GET MODULES FROM COMPONENT PYTHON FILE
+    pDict = PyModule_GetDict(pModule);
+
+		// PYTHON FILE INIT
+    pFunc = PyDict_GetItemString(pDict, "init");
+
+    //not capturing result, should inits return anything?
+    PyObject_CallFunction(pFunc, NULL);
+    std::cout << "py_component initialized" << std::endl;
+	
+		// SUBSCRIPTIONS
+		subscribe(la_BOOM);
     sleep(0.5);
     subscribe(la_RADIO);
   }
