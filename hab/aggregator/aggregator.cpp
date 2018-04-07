@@ -36,7 +36,6 @@ public:
     sleep(0.5);
     subscribe(la_TEMPEX);
     sleep(0.5);
-    */
     subscribe(la_TEMP);
     sleep(0.5);
     subscribe(la_RTC);
@@ -54,6 +53,9 @@ public:
     subscribe(la_FILTER);
     sleep(0.5);
     subscribe(la_BOOM);
+    sleep(0.5);
+    */
+    subscribe(la_CAMERA);
   }
 
 private:
@@ -73,7 +75,9 @@ private:
           {la_UV, [this](SpaMessage* m) { data[6] = extractPayloadFloat(m); }},
           {la_LIGHT, [this](SpaMessage* m) { data[7] = extractPayloadFloat(m); }},
           {la_GYRO, [this](SpaMessage* m) { data[8] = extractPayloadString(m); }},
-          {la_BOOM, [this](SpaMessage* m) { data[9] = extractPayloadString(m); }}};
+          {la_BOOM, [this](SpaMessage* m) { data[9] = extractPayloadString(m); }},
+	  {la_CAMERA, [this](SpaMessage* m) { data[10] = extractPayloadString(m); }}
+      };
 
   std::string extractPayloadString(SpaMessage* message)
   {

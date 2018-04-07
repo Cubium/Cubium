@@ -1,7 +1,7 @@
 import picamera
 from time import time
 
-DIR = "/home/Cubium_Pics/"
+DIR = "/home/pi/Cubium_Pics/"
 
 def takePicture():
     camera.capture(DIR + str(time()).replace(".", "") + '.jpg')
@@ -14,8 +14,9 @@ def handleSpaData(data):
 
 def sendData():
     if tookPic:
-        return "Took a Picture!"
         tookPic = False
+        print('took a picture!');
+        return "took a picture!"
     else:
         return ""
 

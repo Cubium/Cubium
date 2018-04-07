@@ -78,10 +78,13 @@ public:
     PyObject_CallFunction(pFunc, NULL);
     std::cout << "py_component initialized" << std::endl;
 	
+    // TODO: THIS IS ONLY FOR TESTING PURPOSES
+    pFunc = PyDict_GetItemString(pDict, "handleSpaData");		
+    std::string payload = "take picture";
+    char* data = const_cast<char*>(payload.c_str()); // since c_str() returns a const char*
+    PyObject_CallFunction(pFunc, data);
+
     // SUBSCRIPTIONS
-    subscribe(la_BOOM);
-    sleep(0.5);
-    subscribe(la_RADIO);
   }
 };
 
