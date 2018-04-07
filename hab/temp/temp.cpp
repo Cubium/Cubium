@@ -27,7 +27,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     pResult = PyObject_CallFunction(pFunc, NULL);
-    double payload = PyFloat_AsDouble(pResult);
+    float payload = PyFloat_AsDouble(pResult);
     sendPayload(payload, destination);
   }
 

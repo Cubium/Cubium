@@ -11,11 +11,10 @@
 #include "messages/spa/subscription_reply.h"
 #include "messages/spa/subscription_request.h"
 
-/**
- *
- * @param comp
- * @param sock
+/*
+ * See component.hpp for detailed documentation
  */
+
 void component_messageCallback(std::shared_ptr<Component> comp, cubiumClientSocket_t* sock)
 {
   SpaMessage* message = (SpaMessage*)sock->buf;
@@ -36,6 +35,7 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
     std::cout << "Failed to add subscriber\n";
   }
 
+  // TODO Do we actually need to publish every time a subscription request is received?
   publish();
 }
 
@@ -110,7 +110,7 @@ void Component::receiveMessage(SpaMessage* message)
   }
 }
 
-void Component::publish()
+void Component::publish() //TODO find a better name
 {
 
   /* Spin up a thread to handle the data-publishing loop */
