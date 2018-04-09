@@ -40,9 +40,9 @@ public:
     */
     subscribe(la_TEMP);
     sleep(0.5);
-/*
     subscribe(la_RTC);
     sleep(0.5);
+/*
     subscribe(la_UV);
     sleep(0.5);
     subscribe(la_LIGHT);
