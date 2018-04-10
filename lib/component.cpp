@@ -59,7 +59,7 @@ void Component::subscribe(
       0,                    // xTEDS message Id
       priority,             // Subscription priority
       0                     // Message type (0 = subscription, 1 = unsubscribtion)
-  );
+      );
 
   communicator->initSubDialogue((SpaMessage*)&request, sizeof(request),
                                 [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });

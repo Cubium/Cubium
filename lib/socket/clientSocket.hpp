@@ -32,7 +32,7 @@ ssize_t clientSocket_requestDialogue(cubiumClientSocket_t*,                     
 ssize_t clientSocket_send(const void* msg,        /* The message buffer */
                           size_t const len,       /* Message length */
                           cubiumClientSocket_t* s /* Socket */
-);
+                          );
 
 void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const func);
 
