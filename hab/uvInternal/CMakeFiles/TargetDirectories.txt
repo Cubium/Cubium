@@ -1,0 +1,3 @@
+/home/pi/Cubium/hab/uv/CMakeFiles/rebuild_cache.dir
+/home/pi/Cubium/hab/uv/CMakeFiles/edit_cache.dir
+/home/pi/Cubium/hab/uv/CMakeFiles/uv.dir
