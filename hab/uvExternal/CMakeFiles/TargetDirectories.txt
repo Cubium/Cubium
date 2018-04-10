@@ -1,3 +1,0 @@
-/home/pi/Cubium/hab/uv-external/CMakeFiles/rebuild_cache.dir
-/home/pi/Cubium/hab/uv-external/CMakeFiles/edit_cache.dir
-/home/pi/Cubium/hab/uv-external/CMakeFiles/uv-external.dir

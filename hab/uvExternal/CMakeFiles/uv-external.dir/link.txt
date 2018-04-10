@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g   CMakeFiles/uv-external.dir/uv.cpp.o  -o uv-external -rdynamic ../../lib/libCubium.a -lpthread -lpython2.7 
