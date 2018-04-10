@@ -1,2 +1,2 @@
-add_executable(camera camera.cpp)
-target_link_libraries(camera Cubium pthread)
+add_executable(camera.out camera.cpp)
+target_link_libraries(camera.out Cubium pthread)

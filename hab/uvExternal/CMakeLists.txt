@@ -1,2 +1,2 @@
-add_executable(uvExternal uvExternal.cpp)
-target_link_libraries(uvExternal Cubium pthread python2.7)
+add_executable(uvExternal.out uvExternal.cpp)
+target_link_libraries(uvExternal.out Cubium pthread python2.7)

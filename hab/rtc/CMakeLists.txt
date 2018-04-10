@@ -1,2 +1,2 @@
-add_executable(rtc rtc.cpp)
-target_link_libraries(rtc Cubium pthread python2.7)
+add_executable(rtc.out rtc.cpp)
+target_link_libraries(rtc.out Cubium pthread python2.7)

@@ -1,2 +1,2 @@
-add_executable(battery battery.cpp)
-target_link_libraries(battery Cubium pthread)
+add_executable(battery.out battery.cpp)
+target_link_libraries(battery.out Cubium pthread)
