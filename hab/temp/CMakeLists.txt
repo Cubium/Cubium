@@ -1,2 +1,2 @@
-add_executable(temp temp.cpp)
-target_link_libraries(temp Cubium pthread python2.7)
+add_executable(temp.out temp.cpp)
+target_link_libraries(temp.out Cubium pthread python2.7)
