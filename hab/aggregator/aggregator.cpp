@@ -90,7 +90,7 @@ private:
           {la_ANALOG_TEMP_AVERAGE, [this](SpaMessage* m) { data[10] = extractPayloadFloat(m); }},
           {la_LIGHT, [this](SpaMessage* m) { data[11] = extractPayloadFloat(m); }},
           {la_GYRO, [this](SpaMessage* m) { data[12] = extractPayloadString(m); }},
-          {la_BOOM, [this](SpaMessage* m) { data[10] = extractPayloadString(m); }}};
+          {la_BOOM, [this](SpaMessage* m) { data[13] = extractPayloadString(m); }}};
 
   std::string extractPayloadString(SpaMessage* message)
   {
