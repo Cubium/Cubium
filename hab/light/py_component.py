@@ -8,6 +8,8 @@ lightSensor = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 LIGHTSENSOR1PIN = 2
 LIGHTSENSOR2PIN = 3
 
+#Lux conversions found here: https://arduinodiy.wordpress.com/2013/11/03/measuring-light-with-an-arduino/
+
 def handleSpaData():
 	pass
 
@@ -16,13 +18,12 @@ def sendData():
 	lightSensor2 = lightSensor.read_adc(LIGHTSENSOR2PIN)
 
 	values = (lightSensor1 + lightSensor2)/2
-	values = values * .0048
-	RLDR = (1000.0 * (5.0-values))/values
-	Lux = (776897.0 * (math.pow(RLDR, -1.206)))
+	values = values * .0048828125
+	Lux = (2500.0/values-500.0)/10.0
 
 	time.sleep(1)
 
-	return values
+	return Lux
 
 def init():
 	pass
