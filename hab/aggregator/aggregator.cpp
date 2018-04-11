@@ -43,10 +43,16 @@ public:
     subscribe(la_RTC);
     sleep(0.5);
 
-*/
     subscribe(la_UV_INTERNAL);
     sleep(0.5);
     subscribe(la_UV_EXTERNAL);
+    sleep(0.5);
+*/
+	subscribe(la_ANALOG_TEMP_WALL);
+    sleep(0.5);
+	subscribe(la_ANALOG_TEMP_FLOOR);
+    sleep(0.5);
+	subscribe(la_ANALOG_TEMP_AVERAGE);
     sleep(0.5);
     /*
     subscribe(la_LIGHT);
@@ -79,8 +85,11 @@ private:
           {la_TEMP, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
           {la_UV_INTERNAL, [this](SpaMessage* m) { data[6] = extractPayloadFloat(m); }},
           {la_UV_EXTERNAL, [this](SpaMessage* m) { data[7] = extractPayloadFloat(m); }},
-          {la_LIGHT, [this](SpaMessage* m) { data[8] = extractPayloadFloat(m); }},
-          {la_GYRO, [this](SpaMessage* m) { data[9] = extractPayloadString(m); }},
+          {la_ANALOG_TEMP_WALL, [this](SpaMessage* m) { data[8] = extractPayloadFloat(m); }},
+          {la_ANALOG_TEMP_FLOOR, [this](SpaMessage* m) { data[9] = extractPayloadFloat(m); }},
+          {la_ANALOG_TEMP_AVERAGE, [this](SpaMessage* m) { data[10] = extractPayloadFloat(m); }},
+          {la_LIGHT, [this](SpaMessage* m) { data[11] = extractPayloadFloat(m); }},
+          {la_GYRO, [this](SpaMessage* m) { data[12] = extractPayloadString(m); }},
           {la_BOOM, [this](SpaMessage* m) { data[10] = extractPayloadString(m); }}};
 
   std::string extractPayloadString(SpaMessage* message)
