@@ -1,15 +1,28 @@
+# VIM
 *.swp
 *.swo
+*.un~
+
 *.o
 *.a
-CMakeCache.txt
-CMakeFiles/*
-*/CMakeFiles/*
-.vagrant/*
-Makefile
-cmake_install.cmake
-Vagrantfile
-tags
+*.out
+
+# Cmake
+**/CMakeFiles/*
 cmake-build-debug/*
+CMakeCache.txt
+cmake_install.cmake
+
+# Make
+Makefile
+
+# Vagrant
+.vagrant/*
+Vagrantfile
+
+# Ctags
+tags
+
+# Clion
 .idea*
 .idea/*

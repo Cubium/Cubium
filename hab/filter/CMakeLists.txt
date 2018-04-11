@@ -1,2 +1,2 @@
-add_executable(filter filter.cpp medianFilter.hpp)
-target_link_libraries(filter Cubium pthread)
+add_executable(filter.out filter.cpp medianFilter.hpp)
+target_link_libraries(filter.out Cubium pthread)
