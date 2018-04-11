@@ -1,2 +1,2 @@
 add_executable(light.out light.cpp)
-target_link_libraries(light.out Cubium pthread)
+target_link_libraries(light.out Cubium pthread python2.7)
