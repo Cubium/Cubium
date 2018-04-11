@@ -14,6 +14,8 @@ class COMP_NAME : public Component
 {
 private:
   float average = 0.0;
+  float wallAverage = 0.0;
+  float floorAverage = 0.0;
 
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
@@ -22,25 +24,34 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaString*)message;
-    std::string payloadStr(castMessage->st);
-
-    std::cout << "Payload: " << payloadStr << std::endl; 
+    
+    if (message->spaHeader.source == la_ANALOG_TEMP_WALL)
+    {
+	auto castMessage = (SpaData<float>*)message;
+	float payloadFloat(castMessage->payload);
+	wallAverage = payloadFloat;	
+    }
+    if (message->spaHeader.source == la_ANALOG_TEMP_FLOOR)
+    {
+	auto castMessage = (SpaData<float>*)message;
+	float payloadFloat(castMessage->payload);
+	floorAverage = payloadFloat;	
+    }
+	average = (wallAverage + floorAverage)/2; 
   }
 
   void sendData(LogicalAddress destination)
   {
-    //pResult = PyObject_CallFunction(pFunc, NULL);
-    //float payload = PyFloat_AsDouble(pResult);
+    std::cout << average << std::endl;
     sendPayload(average, destination);
   }
 
   void init()
   {
     subscribe(la_ANALOG_TEMP_WALL);
-    sleep(0.5);
+    sleep(1.0);
     subscribe(la_ANALOG_TEMP_FLOOR);
-    sleep(0.5);
+    sleep(1.0);
   }
 };
 
