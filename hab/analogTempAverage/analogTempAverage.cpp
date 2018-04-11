@@ -13,7 +13,7 @@
 class COMP_NAME : public Component
 {
 private:
-  PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
+  float average = 0.0;
 
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
@@ -22,37 +22,25 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
+    auto castMessage = (SpaString*)message;
+    std::string payloadStr(castMessage->st);
+
+    std::cout << "Payload: " << payloadStr << std::endl; 
   }
 
   void sendData(LogicalAddress destination)
   {
-    pResult = PyObject_CallFunction(pFunc, NULL);
-    float payload = PyFloat_AsDouble(pResult);
-    sendPayload(payload, destination);
+    //pResult = PyObject_CallFunction(pFunc, NULL);
+    //float payload = PyFloat_AsDouble(pResult);
+    sendPayload(average, destination);
   }
 
   void init()
   {
-    Py_Initialize();
-    PyRun_SimpleString("import sys; sys.path.append('.')");
-    PyRun_SimpleString("import py_component");
-
-    pName = PyString_FromString("py_component");
-    pModule = PyImport_Import(pName);
-    if (pModule == NULL)
-    {
-      std::cout << "Null Module!" << std::endl;
-      PyErr_Print();
-    }
-    pDict = PyModule_GetDict(pModule);
-
-    pFunc = PyDict_GetItemString(pDict, "init");
-
-    //not capturing result, should inits return anything?
-    PyObject_CallFunction(pFunc, NULL);
-    std::cout << "py_component initialized" << std::endl;
-
-    pFunc = PyDict_GetItemString(pDict, "sendData");
+    subscribe(la_ANALOG_TEMP_WALL);
+    sleep(0.5);
+    subscribe(la_ANALOG_TEMP_FLOOR);
+    sleep(0.5);
   }
 };
 

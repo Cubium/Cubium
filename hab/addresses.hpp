@@ -22,4 +22,4 @@ const LogicalAddress la_FILTER(1, 15);
 const LogicalAddress la_BOOM(1, 16);
 const LogicalAddress la_CAMERA(1, 17);
 const LogicalAddress la_BATTERY(1, 18);
-#endif 
+#endif

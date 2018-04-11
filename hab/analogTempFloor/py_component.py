@@ -1,52 +1,42 @@
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 import time
+import math
 
 SPI_PORT = 0
 SPI_DEVICE = 0
 
-analogTempFloor = Adafruit_MCP3008.MCP3008(spi=SPI.spiDev(SPI_PORT, SPI_DEVICE))
+analogTempFloor = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
-THERMISTORNOMINAL = 10000
-TEMPERATURENOMINAL = 25
-NUMSAMPLES = 5
-BCOEFFICIENT = 3950
-SERIESRESISTOR = 10000
-
-samples = [] 
+A = 0.002197222470870
+B = 0.000161097632222
+C = 0.000000125008328
 
 PIN = 5
 
+#implementation found here: https://bitbucket.org/pschow/rpiadctherm/src/dbfe8101eeb4/basiclogmcp.py?at=master&fileviewer=file-view-default
 
 def handleSpaData():
     pass
 
 def sendData():
     time.sleep(1)
-    for i in range(0, NUMSAMPLES):
-        samples.append(analogTempFloor.read_adc(PIN))
-        time.sleep(.01)
     
-    average = 0
+    value = analogTempFloor.read_adc(PIN)
+    volts = (value*3.3)/1024
+    ohms = ((1/volts)*3300)-1000
 
-    for i in range(0, NUMSAMPLES):
-        average += samples[i]
-        
+    lnohm = math.log1p(ohms)
 
-    average /= NUMSAMPLES
+    t1 = (B*lnohm)
+    c2 = C*lnohm
+    t2 = math.pow(c2,3)
 
-    average = 1023/ average - 1
+    temp = 1/(A+t1+t2)
+    tempc = temp - 273.15 - 4
 
-    average = SERIESRESISTOR / average
-
-    steinhart = average / THERMISTORNOMINAL
-    steinhart = math.log(steinhart)
-    steinhart /= BCOEFFICIENT 
-    steinhart += 1.0 / (TEMPERATURENOMINAL + 273.15)  
-    steinhart = 1.0 / steinhart
-    steinhart -= 273.15
-    
-    return steinhart
+    print tempc
+    return tempc
 
 def init():
     pass

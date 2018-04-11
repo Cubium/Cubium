@@ -48,11 +48,11 @@ public:
     subscribe(la_UV_EXTERNAL);
     sleep(0.5);
 */
-	subscribe(la_ANALOG_TEMP_WALL);
+    subscribe(la_ANALOG_TEMP_WALL);
     sleep(0.5);
-	subscribe(la_ANALOG_TEMP_FLOOR);
+    subscribe(la_ANALOG_TEMP_FLOOR);
     sleep(0.5);
-	subscribe(la_ANALOG_TEMP_AVERAGE);
+    subscribe(la_ANALOG_TEMP_AVERAGE);
     sleep(0.5);
     /*
     subscribe(la_LIGHT);

@@ -6,7 +6,7 @@
 #include "python2.7/Python.h"
 #include <stdlib.h>
 
-#define COMP_NAME ANALOG_TEMP_FLOOR 
+#define COMP_NAME ANALOG_TEMP_FLOOR
 #define COMP_ADDR la_ANALOG_TEMP_FLOOR
 #define MNGR_ADDR la_LSM
 
