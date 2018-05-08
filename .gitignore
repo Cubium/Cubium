@@ -1,20 +1,20 @@
 # VIM
-*.swp
-*.swo
-*.un~
+**.swp
+**.swo
+**.un~
 
-*.o
-*.a
-*.out
+**.o
+**.a
+**.out
 
 # Cmake
 **/CMakeFiles/*
-cmake-build-debug/*
-CMakeCache.txt
-cmake_install.cmake
+**/cmake-build-debug/*
+**/CMakeCache.txt
+**/cmake_install.cmake
 
 # Make
-Makefile
+**/Makefile
 
 # Vagrant
 .vagrant/*
