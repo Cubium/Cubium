@@ -20,6 +20,8 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    // TODO Write me!?
+    sleep(1);
     std::string payload = "Battery data!";
     sendPayload(payload, destination);
   }

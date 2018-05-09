@@ -1,15 +1,21 @@
-from Adafruit_MCP9808 import MCP9808
-import time
+#from Adafruit_MCP9808 import MCP9808
 
-sensor = MCP9808.MCP9808()
+#sensor = MCP9808.MCP9808()
+
+i = 0.0
 
 def handleSpaData():
     pass
 
 def sendData():
-    time.sleep(1)
+    global i
+    i += 1.0
+    return 7.0 + i
+    """
     print sensor.readTempC()
     return sensor.readTempC()
+    """
 
 def init():
-    sensor.begin()
+    pass
+    #sensor.begin()

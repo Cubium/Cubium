@@ -42,7 +42,9 @@ public:
 
   void init()
   {
-    subscribe(la_BARO);
+    filter.push(1);
+    filter.push(2);
+    filter.push(3);
   }
 };
 

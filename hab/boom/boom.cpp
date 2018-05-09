@@ -44,13 +44,13 @@ public:
   {
     /* Init GPIO */
     // May need to use echo to do the same here...
-    export_file = fopen("/sys/class/gpio/export", "w");
-    fwrite(str.c_str(), 1, sizeof(str.c_str()), export_file);
-    fclose(export_file);
+    //    export_file = fopen("/sys/class/gpio/export", "w");
+    //    fwrite(str.c_str(), 1, sizeof(str.c_str()), export_file);
+    //    fclose(export_file);
 
     /* Subscribe to components */
     subscribe(la_FILTER);
-    subscribe(la_RADIO);
+//    subscribe(la_RADIO);
   }
 
 private:
