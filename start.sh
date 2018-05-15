@@ -24,3 +24,9 @@ cd ~/Cubium/hab/filter/
 
 cd ~/Cubium/hab/boom/
 ./boom.out &
+
+cd ~/Cubium/hab/camera/
+./camera.out &
+
+cd ~/Cubium/hab/aggregator/
+./aggregator.out &

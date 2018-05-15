@@ -9,3 +9,4 @@ killall -9 temp.out
 killall -9 gyro.out
 killall -9 filter.out
 killall -9 boom.out
+killall -9 camera.out

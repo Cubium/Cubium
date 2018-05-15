@@ -42,6 +42,7 @@ public:
   void init()
   {
     subscribe(la_AGGREGATOR);
+    subscribe(la_CAMERA);
   }
 private:
 };

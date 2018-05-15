@@ -16,6 +16,7 @@ const LogicalAddress la_BOOM(1, 10);
 const LogicalAddress la_CAMERA(1, 11);
 const LogicalAddress la_BATTERY(1, 12);
 
-const int NUM_COMPONENTS = 10;
+const int NUM_COMPONENTS = 11;
+const int NUM_SUBSCRIPTIONS = 14;
 
 #endif
