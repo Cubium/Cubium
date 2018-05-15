@@ -23,4 +23,4 @@ cd ~/Cubium/hab/filter/
 ./filter.out &
 
 cd ~/Cubium/hab/boom/
-./boom.out
+./boom.out &

@@ -18,7 +18,7 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    std::cout << "Received message from " << message->spaHeader.source << ". Updated data: " << serialize(data) << std::endl;
+//    std::cout << "Received message from " << message->spaHeader.source << ". Updated data: " << serialize(data) << std::endl;
     handler[message->spaHeader.source](message);
   }
 
@@ -50,19 +50,18 @@ public:
   }
 
 private:
-  std::vector<std::string> data = {"", "", "", "", "", "", "", "", ""};
+  std::vector<std::string> data = {"", "", "", "", "", "", "", ""};
 
   std::map<LogicalAddress, std::function<void(SpaMessage*)>> handler =
       {
           {la_RTC, [this](SpaMessage* m) { data[0] = extractPayloadString(m); }},
-          {la_BARO, [this](SpaMessage* m) { data[1] = extractPayloadFloat(m); }},
-          {la_FILTER, [this](SpaMessage* m) { data[2] = extractPayloadFloat(m); }},
-          {la_TEMP, [this](SpaMessage* m) { data[3] = extractPayloadFloat(m); }},
-          {la_UV_INTERNAL, [this](SpaMessage* m) { data[4] = extractPayloadFloat(m); }},
-          {la_UV_EXTERNAL, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
-          {la_LIGHT, [this](SpaMessage* m) { data[6] = extractPayloadFloat(m); }},
-          {la_GYRO, [this](SpaMessage* m) { data[7] = extractPayloadString(m); }},
-          {la_BOOM, [this](SpaMessage* m) { data[8] = extractPayloadString(m); }}};
+          {la_FILTER, [this](SpaMessage* m) { data[1] = extractPayloadFloat(m); }},
+          {la_TEMP, [this](SpaMessage* m) { data[2] = extractPayloadFloat(m); }},
+          {la_UV_INTERNAL, [this](SpaMessage* m) { data[3] = extractPayloadFloat(m); }},
+          {la_UV_EXTERNAL, [this](SpaMessage* m) { data[4] = extractPayloadFloat(m); }},
+          {la_LIGHT, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
+          {la_GYRO, [this](SpaMessage* m) { data[6] = extractPayloadString(m); }},
+          {la_BOOM, [this](SpaMessage* m) { data[7] = extractPayloadString(m); }}};
 
   std::string extractPayloadString(SpaMessage* message)
   {

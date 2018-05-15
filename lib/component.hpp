@@ -60,7 +60,6 @@ public:
       subnetManagerAddress(subnetManagerAddress)
   {
     subscribers.reserve(8); // Default to 8 subscribers
-    std::cout << "Component initializing!" << '\n';
   }
 
   /*
@@ -101,8 +100,16 @@ public:
   virtual void listen()
   {
     communicator->clientListen(
-        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); }, 0);
   }
+
+  virtual void waitFor(uint8_t exitOp)
+  {
+    communicator->clientListen(
+        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); }, exitOp);
+  }
+
+
 
   /*
    * This function initializes a component driver.
@@ -223,6 +230,8 @@ public:
    */
   bool addSubscriber(LogicalAddress la, uint16_t d);
 
+  void compSleep(int n);
+
   /*
    * communicator  The component's communicator, used to communicate with the subnet manager.
    */
@@ -269,8 +278,17 @@ void component_start(LogicalAddress const& address)
   auto const comp = std::make_shared<T>(communicator);
 
   comp->registerWithSubnetManager();
+  std::cout << "Registered, waiting...\n";
+  comp->waitFor(op_ALL_REGISTERED);
+  std::cout << "Everyone is ready!...\n";
+  comp->compSleep(10);
+  std::cout << "Initializing with init!\n";
   comp->init();
-  comp->listen();
+  std::cout << "Initialized, waiting for okay...\n";
+  comp->waitFor(op_ALL_SUBSCRIBED);
+  std::cout << "Everyone is subscribed! Waiting for nothing...\n";
+  for (;;) { comp->compSleep(1); }
+//  comp->listen();
 }
 
 #endif

@@ -18,16 +18,15 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<float>*)message;
-    float payload(castMessage->payload);
+    auto payload(((SpaString*)message)->st);
 
     std::cout << "Payload from " << message->spaHeader.source << ":" << payload << std::endl;
 
-    if (message->spaHeader.source == la_FILTER && inRange(payload) ||
-        message->spaHeader.source == la_RADIO && payload == 1.0)
+    if (message->spaHeader.source == la_RADIO && payload == "deploy")
     {
+      std::cout << "DEPLOYING!\n";
       curMessage = "DEPLOYING BOOM";
-      deploy();
+     // deploy();
       curMessage = "BOOM DEPLOYED";
     }
   }
@@ -49,8 +48,8 @@ public:
     //    fclose(export_file);
 
     /* Subscribe to components */
+    subscribe(la_RADIO);
     subscribe(la_FILTER);
-//    subscribe(la_RADIO);
   }
 
 private:

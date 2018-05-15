@@ -1,5 +1,6 @@
 #include "../addresses.hpp"
 #include <component.hpp>
+#include <fstream>
 #include <iostream>
 #include <thread>
 #include <unistd.h>
@@ -20,15 +21,21 @@ public:
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
-    std::cout << "Payload: " << payload << std::endl;
+    std::cout << "Got payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
-    std::string payload = "Command from radio!";
-    std::cout << "Sending payload: " << payload << std::endl;
-    sendPayload(payload, destination);
+    std::cout << "Sleeping 5 seconds...\n";
+    sleep(5);
+    std::ifstream file("commands.txt");
+    std::string payload;
+    std::getline(file, payload);
+    if (payload != "")
+    {
+      std::cout << "Sending payload: " << payload << std::endl;
+      sendPayload(payload, destination);
+    }
   }
 
   void init()

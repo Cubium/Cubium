@@ -39,16 +39,31 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     lsm->communicator->printTable();
     LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
     lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
+    if (lsm->allRegistered())
+    {
+      lsm->notifyComponents(op_ALL_REGISTERED);
+    }
   }
   break;
 
   case op_SPA_SUBSCRIPTION_REQUEST:
+  {
+    lsm->disallowSubs();
+    std::cout << "Request" << std::endl;
     LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
-    break;
+  }
+  break;
 
   case op_SPA_SUBSCRIPTION_REPLY:
+  {
+    lsm->incrementSubs();
     LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
-    break;
+    if (lsm->allSubscribed())
+    {
+      lsm->notifyComponents(op_ALL_SUBSCRIBED);
+    }
+  }
+  break;
 
   case op_SPA_DATA:
     LSM_sendMessage(lsm, msg->spaHeader.length, msg);

@@ -34,9 +34,6 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
   {
     std::cout << "Failed to add subscriber\n";
   }
-
-  // TODO Do we actually need to publish every time a subscription request is received?
-  publish();
 }
 
 void Component::subscribe(
@@ -133,7 +130,12 @@ void Component::publish() //TODO find a better name
   communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);
-      });
+      }, 0);
 
   publishLoopThread.join();
+}
+
+void Component::compSleep(int n)
+{
+  sleep(n);
 }
