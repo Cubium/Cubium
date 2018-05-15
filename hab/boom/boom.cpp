@@ -22,7 +22,7 @@ public:
 
     std::cout << "Payload from " << message->spaHeader.source << ":" << payload << std::endl;
 
-    if (message->spaHeader.source == la_RADIO && payload == "deploy")
+    if (message->spaHeader.source == la_RADIO && isDeploy(payload))
     {
       std::cout << "DEPLOYING!\n";
       curMessage = "DEPLOYING BOOM";
@@ -53,6 +53,21 @@ public:
   }
 
 private:
+
+  std::string d = "deploy";
+
+  bool isDeploy(std::string p)
+  {
+    for (auto i = 0u; i < d.size(); ++i)
+    {
+      if (p[i] != d[i])
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
   bool inRange(float val)
   {
     return (val >= 30 && val <= 44);

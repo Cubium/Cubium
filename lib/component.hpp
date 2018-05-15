@@ -286,9 +286,8 @@ void component_start(LogicalAddress const& address)
   comp->init();
   std::cout << "Initialized, waiting for okay...\n";
   comp->waitFor(op_ALL_SUBSCRIBED);
-  std::cout << "Everyone is subscribed! Waiting for nothing...\n";
-  for (;;) { comp->compSleep(1); }
-//  comp->listen();
+  std::cout << "Everyone is subscribed! Publishing and listening...\n";
+  comp->publish();
 }
 
 #endif

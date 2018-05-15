@@ -26,14 +26,15 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    std::cout << "Sleeping 5 seconds...\n";
     sleep(5);
     std::ifstream file("commands.txt");
     std::string payload;
     std::getline(file, payload);
     if (payload != "")
     {
-      std::cout << "Sending payload: " << payload << std::endl;
+      std::cout << "Sending deployment in 5 seconds...\n";
+      sleep(5);
+      std::cout << "Sending deployment command: " << payload << std::endl;
       sendPayload(payload, destination);
     }
   }
@@ -42,6 +43,7 @@ public:
   {
     subscribe(la_AGGREGATOR);
   }
+private:
 };
 
 int main()

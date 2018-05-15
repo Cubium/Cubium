@@ -123,14 +123,14 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
     auto opcode = ((SpaMessage*)s->buf)->spaHeader.opcode;
     if (exitOp != 0)
     {
-      std::cout << "Received message with opcode: " << int(opcode) << std::endl;
+//      std::cout << "Received message with opcode: " << int(opcode) << std::endl;
       if (opcode == exitOp)
       {
         return;
       }
     }
 
-    std::cout << "Received message with opcode: " << int(opcode) << std::endl;
+//    std::cout << "Received message with opcode: " << int(opcode) << std::endl;
     callback(s);
   }
 }
