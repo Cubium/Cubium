@@ -9,10 +9,12 @@
 #include <strings.h>    // for bzero
 #include <sys/socket.h> // for AF_INET, SOL_SOCKET, SO_RCVTIMEO
 #include <thread>
+#include <unistd.h>
 
 /* Throw a perror and exit */
 void clientSocket_error(const char* msg)
 {
+  std::cout << msg << std::endl;
   perror(msg);
   exit(1);
 }
@@ -49,11 +51,11 @@ ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                   
                                      std::function<void(cubiumClientSocket_t*)> const func, /* Called when ack is received */
                                      const uint8_t targetop)
 {
-  /* Set timeout such that socket will only wait 5 ms for messages */
+  /* Set timeout such that socket will only wait 50 ms for messages */
 
   struct timeval timeout;
-  timeout.tv_sec = 0;
-  timeout.tv_usec = 5000;
+  timeout.tv_sec = 1;
+  timeout.tv_usec = 0;
 
   if (setsockopt(s->sock, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout)) < 0)
   {
@@ -61,6 +63,7 @@ ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                   
   }
 
   uint8_t opcode = 0;
+  std::cout << "Getting called!\n";
   do
   { /* Send a new hello after every timeout until an ack is received */
 
@@ -72,10 +75,17 @@ ssize_t clientSocket_requestDialogue(cubiumClientSocket_t* s,                   
 
     recvfrom(s->sock, s->buf, 24, 0, (struct sockaddr*)&s->from, &s->length);
     opcode = ((SpaMessage*)s->buf)->spaHeader.opcode;
+    std::cout << "Got: " << int(opcode) << " from " << ((SpaMessage*)s->buf)->spaHeader.source << "\n";
+    std::cout << "Looking for: " << int(targetop) << "\n";
+    if (opcode == op_SPA_SUBSCRIPTION_REQUEST && targetop == op_SPA_SUBSCRIPTION_REPLY)
+    {
+      func(s);
+      return 1;
+    }
 
+    /* Continue to send messages until an ack is received */
   } while (opcode != targetop);
 
-  /* Ack received; call handler function */
   func(s);
 
   /* Reset the timer to 0 */
@@ -96,8 +106,9 @@ ssize_t clientSocket_send(const void* msg, size_t const len, cubiumClientSocket_
   return sendto(s->sock, msg, len, 0, (struct sockaddr*)&s->from, sizeof(struct sockaddr_in));
 }
 
-void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const callback)
+void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const callback, uint8_t exitOp)
 {
+  if (exitOp != 0) { std::cout << "I'm waiting!" << std::endl;}
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
   {
@@ -107,6 +118,19 @@ void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClien
       clientSocket_error("recvfrom failed");
     }
 
+    /* if exitOp isn't zero, exit if it's the message we're looking for.
+     * We use a nested if here because casting messages is expensive. */
+    auto opcode = ((SpaMessage*)s->buf)->spaHeader.opcode;
+    if (exitOp != 0)
+    {
+//      std::cout << "Received message with opcode: " << int(opcode) << std::endl;
+      if (opcode == exitOp)
+      {
+        return;
+      }
+    }
+
+//    std::cout << "Received message with opcode: " << int(opcode) << std::endl;
     callback(s);
   }
 }

@@ -1,5 +1,6 @@
 #include "../addresses.hpp"
 #include <component.hpp>
+#include <fstream>
 #include <iostream>
 #include <thread>
 #include <unistd.h>
@@ -20,21 +21,29 @@ public:
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
-    std::cout << "Payload: " << payload << std::endl;
+    std::cout << "Got payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
-    std::string payload = "Command from radio!";
-    std::cout << "Sending payload: " << payload << std::endl;
-    sendPayload(payload, destination);
+    std::string payload;
+    std::getline(std::cin, payload);
+
+    if (payload == "deploy")
+    {
+      std::cout << "Sending deployment in 5 seconds...\n";
+      sleep(5);
+      std::cout << "Sending command: " << payload << std::endl;
+      sendPayload(payload, destination);
+    }
   }
 
   void init()
   {
     subscribe(la_AGGREGATOR);
+    subscribe(la_CAMERA);
   }
+private:
 };
 
 int main()

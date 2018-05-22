@@ -40,9 +40,9 @@ bool LocalCommunicator::clientSend(SpaMessage* message, ssize_t len)
   return true;
 }
 
-void LocalCommunicator::clientListen(std::function<void(cubiumClientSocket_t*)> func)
+void LocalCommunicator::clientListen(std::function<void(cubiumClientSocket_t*)> func, uint8_t exitOp)
 {
-  clientSocket_listen(clientSock, func);
+  clientSocket_listen(clientSock, func, exitOp);
 }
 
 void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
@@ -62,7 +62,7 @@ void LocalCommunicator::listen(std::function<void(cubiumClientSocket_t*)> messag
     handleFailure("clientSock == nullptr");
     return;
   }
-  clientSocket_listen(clientSock, messageHandler);
+  clientSocket_listen(clientSock, messageHandler, 0);
 }
 
 void LocalCommunicator::clientConnect(SpaMessage* message, size_t len, std::function<void(cubiumClientSocket_t*)> callback)
