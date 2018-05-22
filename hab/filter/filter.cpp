@@ -18,7 +18,7 @@ private:
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
   {
-    filter = median_filter<float>(30);
+    filter = median_filter<float>();
   }
 
   void handleSpaData(SpaMessage* message)
