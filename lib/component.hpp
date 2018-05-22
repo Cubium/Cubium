@@ -281,7 +281,7 @@ void component_start(LogicalAddress const& address)
   std::cout << "Registered, waiting...\n";
   comp->waitFor(op_ALL_REGISTERED);
   std::cout << "Everyone is ready!...\n";
-  comp->compSleep(10);
+  comp->compSleep(2);
   std::cout << "Initializing with init!\n";
   comp->init();
   std::cout << "Initialized, waiting for okay...\n";

@@ -18,16 +18,25 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto payload(((SpaString*)message)->st);
-
-    std::cout << "Payload from " << message->spaHeader.source << ":" << payload << std::endl;
-
-    if (message->spaHeader.source == la_RADIO && isDeploy(payload))
+    if (message->spaHeader.source == la_RADIO)
     {
-      std::cout << "DEPLOYING!\n";
-      curMessage = "DEPLOYING BOOM";
-     // deploy();
-      curMessage = "BOOM DEPLOYED";
+      auto payload(((SpaString*)message)->st);
+      if (isDeploy(payload))
+      {
+        std::cout << "DEPLOYING!\n";
+        curMessage = "DEPLOYING BOOM";
+        curMessage = "BOOM DEPLOYED";
+      }
+    }
+    else if (message->spaHeader.source == la_FILTER)
+    {
+      float payload = ((SpaData<float>*)message)->payload;
+      if (inRange(payload))
+      {
+        std::cout << "DEPLOYING!\n";
+        curMessage = "DEPLOYING BOOM";
+        curMessage = "BOOM DEPLOYED";
+      } 
     }
   }
 

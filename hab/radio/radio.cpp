@@ -26,15 +26,13 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    sleep(5);
-    std::ifstream file("commands.txt");
     std::string payload;
-    std::getline(file, payload);
+    std::getline(std::cin, payload);
     if (payload != "")
     {
-      std::cout << "Sending deployment in 5 seconds...\n";
+      std::cout << "Sending command in 5 seconds...\n";
       sleep(5);
-      std::cout << "Sending deployment command: " << payload << std::endl;
+      std::cout << "Sending command: " << payload << std::endl;
       sendPayload(payload, destination);
     }
   }
