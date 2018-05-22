@@ -28,9 +28,10 @@ public:
   {
     std::string payload;
     std::getline(std::cin, payload);
-    if (payload != "")
+
+    if (payload == "deploy"
     {
-      std::cout << "Sending command in 5 seconds...\n";
+      std::cout << "Sending deployment in 5 seconds...\n";
       sleep(5);
       std::cout << "Sending command: " << payload << std::endl;
       sendPayload(payload, destination);
