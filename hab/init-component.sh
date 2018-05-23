@@ -34,6 +34,7 @@ echo "  }" >> $1/$1.cpp
 echo "" >> $1/$1.cpp
 echo "  void sendData(LogicalAddress destination)" >> $1/$1.cpp
 echo "  {" >> $1/$1.cpp
+echo "    sleep(1);" >> $1/$1.cpp
 echo "    std::string payload = \"Test string!\";" >> $1/$1.cpp
 echo "    sendPayload(payload, destination);" >> $1/$1.cpp
 echo "  }" >> $1/$1.cpp

@@ -18,7 +18,6 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-//    std::cout << "Received message from " << message->spaHeader.source << ". Updated data: " << serialize(data) << std::endl;
     handler[message->spaHeader.source](message);
   }
 
@@ -32,36 +31,60 @@ public:
 
   void init()
   {
+    subscribe(la_CAMERA);
+    sleep(0.5);
     subscribe(la_BOOM);
     sleep(0.5);
     subscribe(la_FILTER);
     sleep(0.5);
-    subscribe(la_TEMP);
+    subscribe(la_BAROMETER);
     sleep(0.5);
-    subscribe(la_RTC);
+    subscribe(la_BATTERY);
+    sleep(0.5);
+    subscribe(la_DIGITAL_TEMP);
+    sleep(0.5);
+    subscribe(la_ANALOG_TEMP1);
+    sleep(0.5);
+    subscribe(la_ANALOG_TEMP2);
     sleep(0.5);
     subscribe(la_UV_INTERNAL);
     sleep(0.5);
     subscribe(la_UV_EXTERNAL);
     sleep(0.5);
-    subscribe(la_LIGHT);
+    subscribe(la_GYROSCOPE);
     sleep(0.5);
-    subscribe(la_GYRO);
-  }
+    subscribe(la_MAGNETOMETER);
+    sleep(0.5);
+    subscribe(la_RTC);
+    sleep(0.5);
+    subscribe(la_LIGHT_INTERNAL);
+    sleep(0.5);
+    subscribe(la_LIGHT_EXTERNAL);
+    sleep(0.5);
+  } 
 
 private:
-  std::vector<std::string> data = {"", "", "", "", "", "", "", ""};
+  std::vector<std::string> data = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
   std::map<LogicalAddress, std::function<void(SpaMessage*)>> handler =
       {
-          {la_RTC, [this](SpaMessage* m) { data[0] = extractPayloadString(m); }},
-          {la_FILTER, [this](SpaMessage* m) { data[1] = extractPayloadFloat(m); }},
-          {la_TEMP, [this](SpaMessage* m) { data[2] = extractPayloadFloat(m); }},
-          {la_UV_INTERNAL, [this](SpaMessage* m) { data[3] = extractPayloadFloat(m); }},
-          {la_UV_EXTERNAL, [this](SpaMessage* m) { data[4] = extractPayloadFloat(m); }},
-          {la_LIGHT, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
-          {la_GYRO, [this](SpaMessage* m) { data[6] = extractPayloadString(m); }},
-          {la_BOOM, [this](SpaMessage* m) { data[7] = extractPayloadString(m); }}};
+          {la_RTC,            [this](SpaMessage* m) { data[0]  = extractPayloadString(m); }},
+          {la_BAROMETER,      [this](SpaMessage* m) { data[1]  = extractPayloadFloat(m);  }},
+          {la_FILTER,         [this](SpaMessage* m) { data[2]  = extractPayloadFloat(m);  }},
+          {la_BOOM,           [this](SpaMessage* m) { data[3]  = extractPayloadString(m); }},
+          {la_BATTERY,        [this](SpaMessage* m) { data[4]  = extractPayloadFloat(m);  }},
+          {la_DIGITAL_TEMP,   [this](SpaMessage* m) { data[5]  = extractPayloadFloat(m);  }},
+          {la_ANALOG_TEMP1,   [this](SpaMessage* m) { data[6]  = extractPayloadFloat(m);  }},
+          {la_ANALOG_TEMP2,   [this](SpaMessage* m) { data[7]  = extractPayloadFloat(m);  }},
+          {la_UV_INTERNAL,    [this](SpaMessage* m) { data[8]  = extractPayloadFloat(m);  }},
+          {la_UV_EXTERNAL,    [this](SpaMessage* m) { data[9]  = extractPayloadFloat(m);  }},
+          {la_GYROSCOPE,      [this](SpaMessage* m) { data[10] = extractPayloadString(m); }},
+          {la_MAGNETOMETER,   [this](SpaMessage* m) { data[11] = extractPayloadString(m); }},
+          {la_LIGHT_INTERNAL, [this](SpaMessage* m) { data[12] = extractPayloadFloat(m);  }},
+          {la_LIGHT_EXTERNAL, [this](SpaMessage* m) { data[13] = extractPayloadFloat(m);  }},
+          {la_CAMERA,         [this](SpaMessage* m) { data[14] = extractPayloadString(m); }},
+      };
+
 
   std::string extractPayloadString(SpaMessage* message)
   {

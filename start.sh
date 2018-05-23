@@ -16,9 +16,6 @@ cd ~/Cubium/hab/rtc/
 cd ~/Cubium/hab/temp/
 ./temp.out &
 
-cd ~/Cubium/hab/gyro/
-./gyro.out &
-
 cd ~/Cubium/hab/filter/
 ./filter.out &
 
