@@ -85,11 +85,11 @@ private:
   void deploy()
   {
     IO_direction = fopen("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str2.c_str(), 1, sizeof(str1.c_str()), IO_direction); //set the pin to HIGH
+    fwrite(str2.c_str(), sizeof(char), strlen(str2.c_str()), IO_direction); //set the pin to HIGH
     fclose(IO_direction);
     sleep(3);
     IO_direction = fopen("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str1.c_str(), 1, sizeof(str1.c_str()), IO_direction); //set the pin to LOW
+    fwrite(str1.c_str(), sizeof(char), strlen(str1.c_str()), IO_direction); //set the pin to LOW
     fclose(IO_direction);
     sleep(3);
   }
