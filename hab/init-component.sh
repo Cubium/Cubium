@@ -24,7 +24,7 @@ echo "" >> $1/$1.cpp
 echo "class COMP_NAME : public Component" >> $1/$1.cpp
 echo "{" >> $1/$1.cpp
 echo "public:" >> $1/$1.cpp
-echo "  COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)" >> $1/$1.cpp
+echo "  COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)" >> $1/$1.cpp
 echo "  {" >> $1/$1.cpp
 echo "  }" >> $1/$1.cpp
 echo "" >> $1/$1.cpp
