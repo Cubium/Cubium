@@ -17,12 +17,11 @@ const LogicalAddress la_ANALOG_TEMP2(1, 11);
 const LogicalAddress la_UV_INTERNAL(1, 12);
 const LogicalAddress la_UV_EXTERNAL(1, 13);
 const LogicalAddress la_GYROSCOPE(1, 14);
-const LogicalAddress la_ACCELEROMETER(1, 15);
+const LogicalAddress la_MAGNETOMETER(1, 15);
 const LogicalAddress la_LIGHT_INTERNAL(1, 16);
 const LogicalAddress la_LIGHT_EXTERNAL(1, 17);
-const LogicalAddress la_MAGNETOMETER(1, 18);
 
-const int NUM_COMPONENTS = 18;
+const int NUM_COMPONENTS = 17;
 const int NUM_SUBSCRIPTIONS = 21;
 
 #endif

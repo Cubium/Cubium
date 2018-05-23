@@ -4,8 +4,8 @@
 
 mkdir $1
 
-echo "add_executable($1 $1.cpp)" > $1/CMakeLists.txt
-echo "target_link_libraries($1 Cubium pthread)" >> $1/CMakeLists.txt
+echo "add_executable($1.out $1.cpp)" > $1/CMakeLists.txt
+echo "target_link_libraries($1.out Cubium pthread)" >> $1/CMakeLists.txt
 
 name="$1"
 upperName=${name^^}

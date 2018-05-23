@@ -71,15 +71,15 @@ private:
           {la_FILTER,         [this](SpaMessage* m) { data[2]  = extractPayloadFloat(m);  }},
           {la_BOOM,           [this](SpaMessage* m) { data[3]  = extractPayloadString(m); }},
           {la_BATTERY,        [this](SpaMessage* m) { data[4]  = extractPayloadString(m);  }},
-          {la_DIGITAL_TEMP,   [this](SpaMessage* m) { data[5]  = extractPayloadString(m);  }},
+          {la_DIGITAL_TEMP,   [this](SpaMessage* m) { data[5]  = extractPayloadFloat(m);  }},
           {la_ANALOG_TEMP1,   [this](SpaMessage* m) { data[6]  = extractPayloadFloat(m);  }},
           {la_ANALOG_TEMP2,   [this](SpaMessage* m) { data[7]  = extractPayloadFloat(m);  }},
-          {la_UV_INTERNAL,    [this](SpaMessage* m) { data[8]  = extractPayloadString(m);  }},
-          {la_UV_EXTERNAL,    [this](SpaMessage* m) { data[9]  = extractPayloadString(m);  }},
+          {la_UV_INTERNAL,    [this](SpaMessage* m) { data[8]  = extractPayloadFloat(m);  }},
+          {la_UV_EXTERNAL,    [this](SpaMessage* m) { data[9]  = extractPayloadFloat(m);  }},
           {la_GYROSCOPE,      [this](SpaMessage* m) { data[10] = extractPayloadString(m); }},
           {la_MAGNETOMETER,   [this](SpaMessage* m) { data[11] = extractPayloadString(m); }},
-          {la_LIGHT_INTERNAL, [this](SpaMessage* m) { data[12] = extractPayloadString(m);  }},
-          {la_LIGHT_EXTERNAL, [this](SpaMessage* m) { data[13] = extractPayloadString(m);  }},
+          {la_LIGHT_INTERNAL, [this](SpaMessage* m) { data[12] = extractPayloadFloat(m);  }},
+          {la_LIGHT_EXTERNAL, [this](SpaMessage* m) { data[13] = extractPayloadFloat(m);  }},
       };
 
 

@@ -9,6 +9,7 @@ def handleSpaData():
 
 def sendData():
     global i
+    print "YEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
     i += 1.0
     return 7.0 + i
     """

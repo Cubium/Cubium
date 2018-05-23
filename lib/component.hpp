@@ -196,7 +196,7 @@ public:
   {
     if (payload.length() > 128) // 128 is the max payload length
     {
-      std::cout << "Your string is too big stupid. Will be updated never?\n";
+      std::cout << "Your string is too big:" << payload << std::endl;
       return;
     }
 
