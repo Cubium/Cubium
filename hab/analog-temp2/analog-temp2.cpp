@@ -3,8 +3,8 @@
 #include <iostream>
 #include <unistd.h>
 
-#define COMP_NAME Analog-temp2
-#define COMP_ADDR la_ANALOG-TEMP2
+#define COMP_NAME AnalogTemp2
+#define COMP_ADDR la_ANALOG_TEMP2
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -21,7 +21,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "Test string!";
+    float payload = 420.0;
     sendPayload(payload, destination);
   }
 

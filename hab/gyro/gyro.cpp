@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define COMP_NAME Gyro
-#define COMP_ADDR la_GYRO
+#define COMP_ADDR la_GYROSCOPE
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component

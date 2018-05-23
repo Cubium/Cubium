@@ -21,7 +21,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "Test string!";
+    std::string payload = "Test mag!";
     sendPayload(payload, destination);
   }
 

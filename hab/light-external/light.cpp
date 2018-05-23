@@ -6,8 +6,8 @@
 #include "python2.7/Python.h"
 #include <stdlib.h>
 
-#define COMP_NAME DIGITALTEMP
-#define COMP_ADDR la_DIGITAL_TEMP
+#define COMP_NAME LIGHT_EXTERNAL
+#define COMP_ADDR la_LIGHT_EXTERNAL
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component

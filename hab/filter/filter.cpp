@@ -48,7 +48,9 @@ public:
     filter.push(1);
     filter.push(2);
     filter.push(3);
-  }
+    subscribe(la_BAROMETER);
+    sleep(0.5);
+ }
 };
 
 int main()
