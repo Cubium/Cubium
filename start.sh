@@ -43,8 +43,8 @@ cd ~/Cubium/hab/light-internal/
 cd ~/Cubium/hab/magnetometer/
 ./magnetometer.out &
 
-cd ~/Cubium/hab/radio/
-./radio.out &
+cd ~/Cubium/hab/aggregator/
+./aggregator.out &
 
 cd ~/Cubium/hab/rtc/
 ./rtc.out &
