@@ -3,8 +3,8 @@
 #include <iostream>
 #include <unistd.h>
 
-#define COMP_NAME Battery
-#define COMP_ADDR la_BATTERY
+#define COMP_NAME Barometer
+#define COMP_ADDR la_BAROMETER
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -20,9 +20,8 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    // TODO Write me!?
     sleep(1);
-    std::string payload = "Battery data!";
+    float payload = 42.0;
     sendPayload(payload, destination);
   }
 
