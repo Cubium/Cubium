@@ -21,7 +21,8 @@ int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSoc
 class LocalSubnetManager : public std::enable_shared_from_this<LocalSubnetManager>
 {
 public:
-  LocalSubnetManager(std::shared_ptr<LocalCommunicator> c, std::shared_ptr<RoutingTable<cubiumServerSocket_t>> rt, int n, int s)
+  LocalSubnetManager(std::shared_ptr<LocalCommunicator> c, std::shared_ptr<RoutingTable<cubiumServerSocket_t>> rt, int n, int s, LogicalAddress la)
+  : address(la)
   {
     communicator = c;
     routingTable = rt;
@@ -155,6 +156,8 @@ public:
   }
 
   void incrementSubs() { ++replyCount; }
+
+  LogicalAddress address;
 
 private:
   bool subsAllowed = true;

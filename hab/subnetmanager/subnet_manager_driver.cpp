@@ -18,7 +18,7 @@ int main(void)
 
   auto communicator = std::make_shared<LocalCommunicator>(&sock, routingTable, la_LSM);
 
-  auto manager = std::make_shared<LocalSubnetManager>(communicator, routingTable, NUM_COMPONENTS, NUM_SUBSCRIPTIONS);
+  auto manager = std::make_shared<LocalSubnetManager>(communicator, routingTable, NUM_COMPONENTS, NUM_SUBSCRIPTIONS, la_LSM);
   manager->start();
 
   return 0;

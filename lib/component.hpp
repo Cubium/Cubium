@@ -230,6 +230,8 @@ public:
    */
   bool addSubscriber(LogicalAddress la, uint16_t d);
 
+  void checkForSubscriptionFailure(SpaMessage* message);
+
   void compSleep(int n);
 
   /*

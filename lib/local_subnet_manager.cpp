@@ -11,6 +11,12 @@
 
 std::shared_ptr<LocalCommunicator> LocalSubnetManager::communicator;
 
+void LSM_handleDeadComponentSubscription(std::shared_ptr<LocalSubnetManager> const lsm, SpaMessage* msg)
+{
+   auto reply = SubscriptionReply(msg->spaHeader.source, lsm->address);
+   LSM_sendMessage(lsm, sizeof(SubscriptionReply), (SpaMessage*)&reply);
+}
+
 void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg)
 {
   if (lsm->routingTable->exists(msg->spaHeader.destination))
@@ -54,7 +60,14 @@ int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSoc
   {
     lsm->disallowSubs();
     std::cout << "Request" << std::endl;
-    LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+    }
+    else
+    {
+      LSM_handleDeadComponentSubscription(lsm, msg);
+    }
   }
   break;
 

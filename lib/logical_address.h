@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdint.h>
+#include <algorithm>
+
 
 /**
  * Logical Addresses are an abstraction for component addresses and interfaces.
@@ -20,6 +22,7 @@ struct LogicalAddress
    * @param compId the unique identifier for a component within a subnet
    */
   LogicalAddress(uint16_t const subId = 0, uint16_t const compId = 0) : subnetId(subId), componentId(compId) {}
+
   uint16_t const subnetId;
   uint16_t const componentId;
 };

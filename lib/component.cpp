@@ -91,6 +91,7 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_SUBSCRIPTION_REPLY:
+    checkForSubscriptionFailure(message);
     return;
 
   case op_SPA_DATA:
@@ -106,6 +107,15 @@ void Component::receiveMessage(SpaMessage* message)
     return;
   }
 }
+
+void Component::checkForSubscriptionFailure(SpaMessage* message)
+{
+  if (message->spaHeader.source == subnetManagerAddress)
+  {
+    std::cout << "Subscription failed" << std::endl;
+  }
+}
+
 
 void Component::publish() //TODO find a better name
 {
