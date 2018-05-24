@@ -25,7 +25,7 @@ public:
   {
     sleep(1);
     std::string payload = serialize(data);
-    std::cout << "Sending data: " << payload << std::endl;
+    //std::cout << "Sending data: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

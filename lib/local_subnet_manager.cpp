@@ -11,6 +11,12 @@
 
 std::shared_ptr<LocalCommunicator> LocalSubnetManager::communicator;
 
+void LSM_handleDeadComponentSubscription(std::shared_ptr<LocalSubnetManager> const lsm, SpaMessage* msg)
+{
+   auto reply = SubscriptionReply(msg->spaHeader.source, lsm->address);
+   LSM_sendMessage(lsm, sizeof(SubscriptionReply), (SpaMessage*)&reply);
+}
+
 void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg)
 {
   if (lsm->routingTable->exists(msg->spaHeader.destination))
@@ -20,12 +26,15 @@ void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t 
   }
 }
 
-void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
+/* Return value indicates whether the LSM should continue listening.
+ * 0 = Keep listening
+ * 1 = Stop listening            */
+int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock)
 {
   if (lsm->routingTable->isEmpty())
   {
     std::cout << "Nothing in the routing table." << std::endl;
-    return;
+    return 0;
   }
 
   SpaMessage* msg = (SpaMessage*)sock->buf;
@@ -36,12 +45,13 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   {
     lsm->components.add(msg->spaHeader.source);
     lsm->routingTable->insert(msg->spaHeader.source, *sock);
-    lsm->communicator->printTable();
+    //lsm->communicator->printTable();
     LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
     lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
     if (lsm->allRegistered())
     {
       lsm->notifyComponents(op_ALL_REGISTERED);
+      return 1;
     }
   }
   break;
@@ -49,8 +59,15 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
   case op_SPA_SUBSCRIPTION_REQUEST:
   {
     lsm->disallowSubs();
-    std::cout << "Request" << std::endl;
-    LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+    //std::cout << "Request" << std::endl;
+    if (lsm->routingTable->exists(msg->spaHeader.destination))
+    {
+      LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);
+    }
+    else
+    {
+      LSM_handleDeadComponentSubscription(lsm, msg);
+    }
   }
   break;
 
@@ -61,6 +78,7 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     if (lsm->allSubscribed())
     {
       lsm->notifyComponents(op_ALL_SUBSCRIBED);
+      return 1;
     }
   }
   break;
@@ -77,4 +95,6 @@ void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSo
     std::cout << "Unrecognized SPA message:" << msg->spaHeader.opcode << std::endl;
     break;
   }
+
+  return 0;
 }
