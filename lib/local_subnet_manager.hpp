@@ -60,7 +60,13 @@ public:
     }
   }
 
-  void doPhase(std::string const & phase)
+  enum Phase
+  {
+    INIT,
+    SUBSCRIBE
+  };
+
+  void doPhase(Phase phase)
   {
     bool timedOut = false;
     try 
@@ -69,13 +75,20 @@ public:
     }
     catch (std::runtime_error& e)
     {
-      std::cout << e.what() << "in " << phase << " phase" << std::endl;
+      std::cout << e.what();
       timedOut = true;
     }
 
-    if (!timedOut)
+    if (timedOut)
     {
-      std::cout << "Successful " << phase << " phase" << std::endl;
+      if (phase == Phase::INIT)
+      {
+        notifyComponents(op_ALL_REGISTERED);
+      }
+      else if (phase == Phase::SUBSCRIBE)
+      {
+        notifyComponents(op_ALL_SUBSCRIBED);
+      }
     }
 
     return;
@@ -83,8 +96,8 @@ public:
 
   void start()
   {
-    doPhase("init");
-    doPhase("subscribe");
+    doPhase(Phase::INIT);
+    doPhase(Phase::SUBSCRIBE);
     listenMessages();
   }
 
