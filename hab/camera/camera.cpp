@@ -19,7 +19,7 @@ public:
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
-    std::cout << "Payload: " << payload << std::endl;
+    //std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
@@ -27,7 +27,7 @@ public:
     sleep(1);
     // TODO Write me!
     std::string payload = "yo foo I took a photo";
-    std::cout << "Sending payload: " << payload << std::endl;
+    //std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

@@ -28,11 +28,11 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
 
   if (addSubscriber(message->spaHeader.source, 0))
   {
-    std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+    //std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
   }
   else
   {
-    std::cout << "Failed to add subscriber\n";
+    //std::cout << "Failed to add subscriber\n";
   }
 }
 

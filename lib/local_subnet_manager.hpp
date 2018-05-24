@@ -107,7 +107,7 @@ public:
     for(auto i = 0u; i < components.getSize(); ++i)
     {
       LogicalAddress dest = components.getAddress(i);
-      std::cout << "Sending message to :" << dest << "\n";
+      //std::cout << "Sending message to :" << dest << "\n";
       if (op == op_ALL_REGISTERED)
       {
         auto msg = AllRegistered(dest, LogicalAddress(1,0));
@@ -127,7 +127,7 @@ public:
   }
 
   bool allRegistered() { 
-    std::cout << "Components: " << components.getSize() << std::endl; 
+   // std::cout << "Components: " << components.getSize() << std::endl; 
     return components.getSize() == numComponents; }
 
   bool allSubscribed()

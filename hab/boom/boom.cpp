@@ -23,7 +23,7 @@ public:
       auto payload(((SpaString*)message)->st);
       if (isDeploy(payload))
       {
-        std::cout << "DEPLOYING!\n";
+        //std::cout << "DEPLOYING!\n";
         curMessage = "DEPLOYING BOOM";
         curMessage = "BOOM DEPLOYED";
       }
@@ -33,7 +33,7 @@ public:
       float payload = ((SpaData<float>*)message)->payload;
       if (inRange(payload))
       {
-        std::cout << "DEPLOYING!\n";
+        //std::cout << "DEPLOYING!\n";
         curMessage = "DEPLOYING BOOM";
         curMessage = "BOOM DEPLOYED";
       } 
@@ -44,7 +44,7 @@ public:
   {
     sleep(1);
     std::string payload = curMessage;
-    std::cout << "Sending payload: " << payload << std::endl;
+    //std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 

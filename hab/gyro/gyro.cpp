@@ -48,8 +48,7 @@ public:
 
     std::string payload(cStr);
 
-    std::cout << "Sending SpaData: " << payload << std::endl;
-
+    //std::cout << "Sending SpaData: " << payload << std::endl; 
     sendPayload(payload, destination);
   }
 
@@ -76,7 +75,7 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    std::cout << "py_component initialized" << std::endl;
+    //std::cout << "py_component initialized" << std::endl;
   }
 };
 

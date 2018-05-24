@@ -16,7 +16,6 @@ def handleSpaData():
 def sendData():
     global i
     i += 1.0
-    print "Returning",420.0 + i
     return (420.0 + i)
 
 def init():

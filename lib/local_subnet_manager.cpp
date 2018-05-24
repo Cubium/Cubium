@@ -45,7 +45,7 @@ int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSoc
   {
     lsm->components.add(msg->spaHeader.source);
     lsm->routingTable->insert(msg->spaHeader.source, *sock);
-    lsm->communicator->printTable();
+    //lsm->communicator->printTable();
     LocalAck reply(0, 0, msg->spaHeader.source, LogicalAddress(1, 0), 0, 3500, 0);
     lsm->communicator->serverSend((SpaMessage*)&reply, sizeof(reply));
     if (lsm->allRegistered())
@@ -59,7 +59,7 @@ int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSoc
   case op_SPA_SUBSCRIPTION_REQUEST:
   {
     lsm->disallowSubs();
-    std::cout << "Request" << std::endl;
+    //std::cout << "Request" << std::endl;
     if (lsm->routingTable->exists(msg->spaHeader.destination))
     {
       LSM_sendMessage(lsm, sizeof(SubscriptionRequest), msg);

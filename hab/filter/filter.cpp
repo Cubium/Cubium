@@ -27,7 +27,7 @@ public:
     auto castMessage = (SpaData<float>*)message;
     float payload = castMessage->payload;
 
-    std::cout << "Payload: " << payload << std::endl;
+    //std::cout << "Payload: " << payload << std::endl;
 
     filter.push(payload);
   }
