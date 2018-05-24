@@ -8,12 +8,15 @@
 #include <memory>
 #include <unistd.h>
 #include <thread>
+#include <chrono>
+#include <mutex>
+#include <condition_variable>
 #include "messages/local/all_registered.h"
 #include "messages/local/all_subscribed.h"
 
 class LocalSubnetManager;
 
-void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
+int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
 
 class LocalSubnetManager : public std::enable_shared_from_this<LocalSubnetManager>
 {
@@ -26,12 +29,63 @@ public:
     numSubs = s;
   }
 
+
   void listenMessages()
   {
     communicator->listen(
         [&](cubiumServerSocket_t* sock) {
-          LSM_messageCallback(LocalSubnetManager::shared_from_this(), sock);
+          return LSM_messageCallback(LocalSubnetManager::shared_from_this(), sock);
         });
+  }
+
+  void timeOut_listenMessages()
+  {
+    std::mutex m;
+    std::condition_variable cv;
+
+    std::thread t([&m, &cv, this]()
+    {
+      listenMessages();
+      cv.notify_one();
+    });
+
+    t.detach();
+
+    {
+      std::unique_lock<std::mutex> l(m);
+      if (cv.wait_for(l, std::chrono::seconds(8)) == std::cv_status::timeout)
+      {
+        throw std::runtime_error("Timeout");
+      }
+    }
+  }
+
+  void doPhase(std::string const & phase)
+  {
+    bool timedOut = false;
+    try 
+    {
+      timeOut_listenMessages();
+    }
+    catch (std::runtime_error& e)
+    {
+      std::cout << e.what() << "in " << phase << " phase" << std::endl;
+      timedOut = true;
+    }
+
+    if (!timedOut)
+    {
+      std::cout << "Successful " << phase << " phase" << std::endl;
+    }
+
+    return;
+  }
+
+  void start()
+  {
+    doPhase("init");
+    doPhase("subscribe");
+    listenMessages();
   }
 
   void notifyComponents(uint8_t op)
@@ -67,7 +121,7 @@ public:
     return replyCount == numSubs;
   }
 
-  friend void LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
+  friend int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
   friend void LSM_sendMessage(std::shared_ptr<LocalSubnetManager> const lsm, std::size_t const size, SpaMessage* msg);
 
   static std::shared_ptr<LocalCommunicator> communicator;

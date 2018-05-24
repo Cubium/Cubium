@@ -40,7 +40,7 @@ public:
 
   void clientListen(std::function<void(cubiumClientSocket_t*)>, uint8_t);
 
-  virtual void listen(std::function<void(cubiumServerSocket_t*)>);
+  virtual void listen(std::function<int(cubiumServerSocket_t*)>);
   virtual void listen(std::function<void(cubiumClientSocket_t*)>);
 
   void setServerSock(cubiumServerSocket_t* s) { serverSock = s; }

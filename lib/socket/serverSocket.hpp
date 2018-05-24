@@ -27,7 +27,7 @@ ssize_t serverSocket_send(const void* msg,        /* Message buffer */
 
 /* Start listening through a given socket*/
 void serverSocket_listen(cubiumServerSocket_t* port,                           /* Socket to listen through */
-                         std::function<void(cubiumServerSocket_t*)> const func /* Function called when a message is received */
+                         std::function<int(cubiumServerSocket_t*)> const func /* Function called when a message is received */
                          );
 
 /* Open a socket on the given port. Returns the socket info */

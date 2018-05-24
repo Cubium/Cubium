@@ -45,7 +45,7 @@ void LocalCommunicator::clientListen(std::function<void(cubiumClientSocket_t*)> 
   clientSocket_listen(clientSock, func, exitOp);
 }
 
-void LocalCommunicator::listen(std::function<void(cubiumServerSocket_t*)> messageHandler)
+void LocalCommunicator::listen(std::function<int(cubiumServerSocket_t*)> messageHandler)
 {
   if (serverSock == nullptr)
   {

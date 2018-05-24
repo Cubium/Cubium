@@ -40,7 +40,7 @@ cubiumServerSocket_t serverSocket_openSocket(uint16_t const port)
 }
 
 /* Listen through the given socket */
-void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServerSocket_t*)> const callback)
+void serverSocket_listen(cubiumServerSocket_t* s, std::function<int(cubiumServerSocket_t*)> const callback)
 {
   /* Continually listen for messages and call the handler when one is received */
   for (;;)
@@ -51,7 +51,10 @@ void serverSocket_listen(cubiumServerSocket_t* s, std::function<void(cubiumServe
       serverSocket_error("recvfrom failed");
     }
 
-    callback(s);
+    if (callback(s) != 0)
+    {
+      return;
+    }
   }
 }
 
