@@ -6,4 +6,4 @@ then
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
 fi
 
-find . -iname *.hpp -o -iname *.cpp | xargs clang-tidy -checks=bugprone-* -header-filter=.* -list-checks
+find . -iname *.hpp -o -iname *.cpp | xargs clang-tidy -checks=portability-* -header-filter=.* -list-checks
