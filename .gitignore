@@ -29,3 +29,4 @@ tags
 # Clion
 .idea*
 .idea/*
+compile_commands.json
