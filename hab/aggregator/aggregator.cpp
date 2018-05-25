@@ -3,11 +3,15 @@
 #include <functional>
 #include <iostream>
 #include <numeric>
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 
 #define COMP_NAME Aggregator
 #define COMP_ADDR la_AGGREGATOR
 #define MNGR_ADDR la_LSM
+
+const auto one_sec = std::chrono::milliseconds(1000);
+const auto half_sec = std::chrono::milliseconds(500);
 
 class COMP_NAME : public Component
 {
@@ -23,7 +27,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
+    std::this_thread::sleep_for(one_sec);
     std::string payload = serialize(data);
     //std::cout << "Sending data: " << payload << std::endl;
     sendPayload(payload, destination);
@@ -32,33 +36,33 @@ public:
   void init()
   {
     subscribe(la_BOOM);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_FILTER);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_BAROMETER);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_BATTERY);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_DIGITAL_TEMP);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_ANALOG_TEMP1);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_ANALOG_TEMP2);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_UV_INTERNAL);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_UV_EXTERNAL);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_GYROSCOPE);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_MAGNETOMETER);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_RTC);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_LIGHT_INTERNAL);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
     subscribe(la_LIGHT_EXTERNAL);
-    sleep(0.5);
+    std::this_thread::sleep_for(half_sec);
   } 
 
 private:
