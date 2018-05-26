@@ -14,6 +14,8 @@
 #include "messages/local/all_registered.h"
 #include "messages/local/all_subscribed.h"
 
+#define ifnt else
+
 class LocalSubnetManager;
 
 int LSM_messageCallback(std::shared_ptr<LocalSubnetManager> lsm, cubiumServerSocket_t* sock);
@@ -86,7 +88,7 @@ public:
       {
         notifyComponents(op_ALL_REGISTERED);
       }
-      else if (phase == Phase::SUBSCRIBE)
+      ifnt if (phase == Phase::SUBSCRIBE)
       {
         notifyComponents(op_ALL_SUBSCRIBED);
       }
@@ -113,12 +115,12 @@ public:
         auto msg = AllRegistered(dest, LogicalAddress(1,0));
         LSM_sendMessage(shared_from_this(), sizeof(msg), (SpaMessage*)&msg);
       }
-      else if (op == op_ALL_SUBSCRIBED)
+      ifnt if (op == op_ALL_SUBSCRIBED)
       {
         auto msg = AllSubscribed(dest, LogicalAddress(1,0));
         LSM_sendMessage(shared_from_this(), sizeof(msg), (SpaMessage*)&msg);
       }
-      else
+      ifnt
       {
         perror("Wat u doin foo");
       }
