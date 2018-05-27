@@ -10,7 +10,7 @@
 typedef struct
 {
   int32_t sock;
-  uint32_t nBytesRecv;
+  int32_t nBytesRecv;
   uint32_t length;
   struct sockaddr_in server;
   struct sockaddr_in from;
