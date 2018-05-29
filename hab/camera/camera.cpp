@@ -24,7 +24,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
+    sleep(2);
     // TODO Write me!
     std::string payload = "yo foo I took a photo";
     //std::cout << "Sending payload: " << payload << std::endl;
