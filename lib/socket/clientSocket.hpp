@@ -9,7 +9,7 @@
 /* Everything we need for socket communication bundled up into a struct */
 typedef struct
 {
-  uint32_t sock;
+  int32_t sock;
   uint32_t nBytesRecv;
   uint32_t length;
   struct sockaddr_in server;

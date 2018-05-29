@@ -34,7 +34,7 @@ public:
   void init()
   {
     subscribe(la_BOOM);
-    sleep(0.5);
+    sleep(1);
     subscribe(la_RADIO);
   }
 };
