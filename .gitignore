@@ -1,20 +1,23 @@
 # VIM
-*.swp
-*.swo
-*.un~
+**.swp
+**.swo
+**.un~
 
-*.o
-*.a
-*.out
+**.o
+**.a
+**.out
 
 # Cmake
 **/CMakeFiles/*
-cmake-build-debug/*
-CMakeCache.txt
-cmake_install.cmake
+**/cmake-build-debug/*
+**/CMakeCache.txt
+**/cmake_install.cmake
+
+# Python
+**.pyc
 
 # Make
-Makefile
+**/Makefile
 
 # Vagrant
 .vagrant/*
@@ -26,3 +29,4 @@ tags
 # Clion
 .idea*
 .idea/*
+compile_commands.json

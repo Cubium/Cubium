@@ -26,6 +26,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    sleep(1);
     pResult = PyObject_CallFunction(pFunc, NULL);
     float payload = PyFloat_AsDouble(pResult);
     sendPayload(payload, destination);
@@ -50,7 +51,7 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    std::cout << "py_component initialized" << std::endl;
+    //std::cout << "py_component initialized" << std::endl;
 
     pFunc = PyDict_GetItemString(pDict, "sendData");
   }

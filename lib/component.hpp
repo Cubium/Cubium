@@ -60,7 +60,6 @@ public:
       subnetManagerAddress(subnetManagerAddress)
   {
     subscribers.reserve(8); // Default to 8 subscribers
-    std::cout << "Component initializing!" << '\n';
   }
 
   /*
@@ -101,8 +100,16 @@ public:
   virtual void listen()
   {
     communicator->clientListen(
-        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); });
+        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); }, 0);
   }
+
+  virtual void waitFor(uint8_t exitOp)
+  {
+    communicator->clientListen(
+        [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); }, exitOp);
+  }
+
+
 
   /*
    * This function initializes a component driver.
@@ -187,9 +194,9 @@ public:
    */
   void sendPayload(std::string payload, LogicalAddress destination)
   {
-    if (payload.length() > 128) // 128 is the max payload length
+    if (payload.length() > 256) // 256 is the max payload length
     {
-      std::cout << "Your string is too big stupid. Will be updated never?\n";
+      std::cout << "Your string is too big:" << payload << std::endl;
       return;
     }
 
@@ -222,6 +229,10 @@ public:
    * @param d  The deliveryRateDivisor (unused)
    */
   bool addSubscriber(LogicalAddress la, uint16_t d);
+
+  void checkForSubscriptionFailure(SpaMessage* message);
+
+  void compSleep(int n);
 
   /*
    * communicator  The component's communicator, used to communicate with the subnet manager.
@@ -269,8 +280,16 @@ void component_start(LogicalAddress const& address)
   auto const comp = std::make_shared<T>(communicator);
 
   comp->registerWithSubnetManager();
+  //std::cout << "Registered, waiting...\n";
+  comp->waitFor(op_ALL_REGISTERED);
+  //std::cout << "Everyone is ready!...\n";
+  comp->compSleep(2);
+  //std::cout << "Initializing with init!\n";
   comp->init();
-  comp->listen();
+  //std::cout << "Initialized, waiting for okay...\n";
+  comp->waitFor(op_ALL_SUBSCRIBED);
+  //std::cout << "Everyone is subscribed! Publishing and listening...\n";
+  comp->publish();
 }
 
 #endif

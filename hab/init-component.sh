@@ -4,8 +4,8 @@
 
 mkdir $1
 
-echo "add_executable($1 $1.cpp)" > $1/CMakeLists.txt
-echo "target_link_libraries($1 Cubium pthread)" >> $1/CMakeLists.txt
+echo "add_executable($1.out $1.cpp)" > $1/CMakeLists.txt
+echo "target_link_libraries($1.out Cubium pthread)" >> $1/CMakeLists.txt
 
 name="$1"
 upperName=${name^^}
@@ -24,7 +24,7 @@ echo "" >> $1/$1.cpp
 echo "class COMP_NAME : public Component" >> $1/$1.cpp
 echo "{" >> $1/$1.cpp
 echo "public:" >> $1/$1.cpp
-echo "  COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)" >> $1/$1.cpp
+echo "  COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)" >> $1/$1.cpp
 echo "  {" >> $1/$1.cpp
 echo "  }" >> $1/$1.cpp
 echo "" >> $1/$1.cpp
@@ -34,6 +34,7 @@ echo "  }" >> $1/$1.cpp
 echo "" >> $1/$1.cpp
 echo "  void sendData(LogicalAddress destination)" >> $1/$1.cpp
 echo "  {" >> $1/$1.cpp
+echo "    sleep(1);" >> $1/$1.cpp
 echo "    std::string payload = \"Test string!\";" >> $1/$1.cpp
 echo "    sendPayload(payload, destination);" >> $1/$1.cpp
 echo "  }" >> $1/$1.cpp

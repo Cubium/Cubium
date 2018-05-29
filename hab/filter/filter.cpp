@@ -14,11 +14,12 @@ class COMP_NAME : public Component
 {
 private:
   median_filter<float> filter;
+  float i = 0.0;
 
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
   {
-    filter = median_filter<float>(30);
+    filter = median_filter<float>();
   }
 
   void handleSpaData(SpaMessage* message)
@@ -26,7 +27,7 @@ public:
     auto castMessage = (SpaData<float>*)message;
     float payload = castMessage->payload;
 
-    std::cout << "Payload: " << payload << std::endl;
+    //std::cout << "Payload: " << payload << std::endl;
 
     filter.push(payload);
   }
@@ -34,6 +35,8 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
+    ++i;
+    filter.push(i);
 
     float payload = filter.median();
 
@@ -42,8 +45,12 @@ public:
 
   void init()
   {
-    subscribe(la_BARO);
-  }
+    filter.push(1);
+    filter.push(2);
+    filter.push(3);
+    subscribe(la_BAROMETER);
+    sleep(1);
+ }
 };
 
 int main()

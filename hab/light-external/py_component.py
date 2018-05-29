@@ -1,4 +1,4 @@
-import time
+"""
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
@@ -9,11 +9,18 @@ LIGHTSENSOR1PIN = 2
 LIGHTSENSOR2PIN = 3
 
 #Lux conversions found here: https://arduinodiy.wordpress.com/2013/11/03/measuring-light-with-an-arduino/
+"""
+
+i = 0.0
 
 def handleSpaData():
 	pass
 
 def sendData():
+    global i
+    i += 1
+    return 42.0 + i
+    """
 	lightSensor1 = lightSensor.read_adc(LIGHTSENSOR1PIN)
 	lightSensor2 = lightSensor.read_adc(LIGHTSENSOR2PIN)
 
@@ -24,6 +31,7 @@ def sendData():
 	time.sleep(1)
 
 	return Lux
+        """
 
 def init():
 	pass

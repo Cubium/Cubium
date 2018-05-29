@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define COMP_NAME Gyro
-#define COMP_ADDR la_GYRO
+#define COMP_ADDR la_GYROSCOPE
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -23,6 +23,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    sleep(1);
     Py_Initialize();
     PyRun_SimpleString("import sys; sys.path.append('.')");
     PyRun_SimpleString("import py_component");
@@ -47,8 +48,7 @@ public:
 
     std::string payload(cStr);
 
-    std::cout << "Sending SpaData: " << payload << std::endl;
-
+    //std::cout << "Sending SpaData: " << payload << std::endl; 
     sendPayload(payload, destination);
   }
 
@@ -75,7 +75,7 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    std::cout << "py_component initialized" << std::endl;
+    //std::cout << "py_component initialized" << std::endl;
   }
 };
 

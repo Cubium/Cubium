@@ -19,21 +19,22 @@ public:
     auto castMessage = (SpaString*)message;
     std::string payload(castMessage->st);
 
-    std::cout << "Payload: " << payload << std::endl;
+    //std::cout << "Payload: " << payload << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    std::string payload = "Camera photo!";
-    std::cout << "Sending payload: " << payload << std::endl;
+    // TODO Write me!
+    std::string payload = "yo foo I took a photo";
+    //std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 
   void init()
   {
     subscribe(la_BOOM);
-    sleep(0.5);
+    sleep(1);
     subscribe(la_RADIO);
   }
 };

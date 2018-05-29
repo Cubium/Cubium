@@ -6,8 +6,8 @@
 #include "python2.7/Python.h"
 #include <stdlib.h>
 
-#define COMP_NAME LIGHT
-#define COMP_ADDR la_LIGHT
+#define COMP_NAME LIGHT_EXTERNAL
+#define COMP_ADDR la_LIGHT_EXTERNAL
 #define MNGR_ADDR la_LSM
 
 class COMP_NAME : public Component
@@ -26,6 +26,7 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    sleep(1);
     pResult = PyObject_CallFunction(pFunc, NULL);
     float payload = PyFloat_AsDouble(pResult);
     sendPayload(payload, destination);
@@ -50,7 +51,7 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    std::cout << "py_component initialized" << std::endl;
+    //std::cout << "py_component initialized" << std::endl;
 
     pFunc = PyDict_GetItemString(pDict, "sendData");
   }

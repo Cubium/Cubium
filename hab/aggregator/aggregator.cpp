@@ -3,11 +3,15 @@
 #include <functional>
 #include <iostream>
 #include <numeric>
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 
 #define COMP_NAME Aggregator
 #define COMP_ADDR la_AGGREGATOR
 #define MNGR_ADDR la_LSM
+
+const auto one_sec = std::chrono::milliseconds(1000);
+const auto half_sec = std::chrono::milliseconds(500);
 
 class COMP_NAME : public Component
 {
@@ -19,69 +23,69 @@ public:
   void handleSpaData(SpaMessage* message)
   {
     handler[message->spaHeader.source](message);
-    std::cout << "Received message. Updated data: " << serialize(data) << std::endl;
   }
 
   void sendData(LogicalAddress destination)
   {
-    sleep(1);
+    std::this_thread::sleep_for(one_sec);
     std::string payload = serialize(data);
-    std::cout << "Sending data: " << payload << std::endl;
+    //std::cout << "Sending data: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 
   void init()
   {
-    /*
-    subscribe(la_TEMPIN);
-    sleep(0.5);
-    subscribe(la_TEMPEX);
-    sleep(0.5);
- 
-    subscribe(la_TEMP);
-    sleep(0.5);
-    subscribe(la_RTC);
-    sleep(0.5);
-
-*/
-    subscribe(la_UV_INTERNAL);
-    sleep(0.5);
-    subscribe(la_UV_EXTERNAL);
-    sleep(0.5);
-    /*
-    subscribe(la_LIGHT);
-    sleep(0.5);
-    subscribe(la_GYRO);
-    sleep(0.5);
-    subscribe(la_GPS);
-    sleep(0.5);
-    subscribe(la_BARO);
-    sleep(0.5);
-    subscribe(la_FILTER);
-    sleep(0.5);
     subscribe(la_BOOM);
-*/
-  }
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_FILTER);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_BAROMETER);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_BATTERY);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_DIGITAL_TEMP);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_ANALOG_TEMP1);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_ANALOG_TEMP2);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_UV_INTERNAL);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_UV_EXTERNAL);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_GYROSCOPE);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_MAGNETOMETER);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_RTC);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_LIGHT_INTERNAL);
+    std::this_thread::sleep_for(half_sec);
+    subscribe(la_LIGHT_EXTERNAL);
+    std::this_thread::sleep_for(half_sec);
+  } 
 
 private:
-  std::vector<std::string> data = {"", "", "", "", "", "", "", "", "", ""};
+  std::vector<std::string> data = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
   std::map<LogicalAddress, std::function<void(SpaMessage*)>> handler =
       {
-          {la_RTC, [this](SpaMessage* m) { data[0] = extractPayloadString(m); }},
-          {la_BARO, [this](SpaMessage* m) { data[1] = extractPayloadFloat(m); }},
-          {la_FILTER, [this](SpaMessage* m) { data[2] = extractPayloadFloat(m); }},
-          {la_GPS, [this](SpaMessage* m) { data[3] = extractPayloadString(m); }},
-          /*
-    {la_TEMPIN, [this](SpaMessage* m){ data[4] = extractPayloadFloat(m);  } },
-    {la_TEMPEX, [this](SpaMessage* m){ data[5] = extractPayloadFloat(m);  } },
-    */
-          {la_TEMP, [this](SpaMessage* m) { data[5] = extractPayloadFloat(m); }},
-          {la_UV_INTERNAL, [this](SpaMessage* m) { data[6] = extractPayloadFloat(m); }},
-          {la_UV_EXTERNAL, [this](SpaMessage* m) { data[7] = extractPayloadFloat(m); }},
-          {la_LIGHT, [this](SpaMessage* m) { data[8] = extractPayloadFloat(m); }},
-          {la_GYRO, [this](SpaMessage* m) { data[9] = extractPayloadString(m); }},
-          {la_BOOM, [this](SpaMessage* m) { data[10] = extractPayloadString(m); }}};
+          {la_RTC,            [this](SpaMessage* m) { data[0]  = extractPayloadString(m); }},
+          {la_BAROMETER,      [this](SpaMessage* m) { data[1]  = extractPayloadFloat(m);  }},
+          {la_FILTER,         [this](SpaMessage* m) { data[2]  = extractPayloadFloat(m);  }},
+          {la_BOOM,           [this](SpaMessage* m) { data[3]  = extractPayloadString(m); }},
+          {la_BATTERY,        [this](SpaMessage* m) { data[4]  = extractPayloadString(m);  }},
+          {la_DIGITAL_TEMP,   [this](SpaMessage* m) { data[5]  = extractPayloadFloat(m);  }},
+          {la_ANALOG_TEMP1,   [this](SpaMessage* m) { data[6]  = extractPayloadFloat(m);  }},
+          {la_ANALOG_TEMP2,   [this](SpaMessage* m) { data[7]  = extractPayloadFloat(m);  }},
+          {la_UV_INTERNAL,    [this](SpaMessage* m) { data[8]  = extractPayloadFloat(m);  }},
+          {la_UV_EXTERNAL,    [this](SpaMessage* m) { data[9]  = extractPayloadFloat(m);  }},
+          {la_GYROSCOPE,      [this](SpaMessage* m) { data[10] = extractPayloadString(m); }},
+          {la_MAGNETOMETER,   [this](SpaMessage* m) { data[11] = extractPayloadString(m); }},
+          {la_LIGHT_INTERNAL, [this](SpaMessage* m) { data[12] = extractPayloadFloat(m);  }},
+          {la_LIGHT_EXTERNAL, [this](SpaMessage* m) { data[13] = extractPayloadFloat(m);  }},
+      };
+
 
   std::string extractPayloadString(SpaMessage* message)
   {

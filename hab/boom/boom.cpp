@@ -18,17 +18,25 @@ public:
 
   void handleSpaData(SpaMessage* message)
   {
-    auto castMessage = (SpaData<float>*)message;
-    float payload(castMessage->payload);
-
-    std::cout << "Payload from " << message->spaHeader.source << ":" << payload << std::endl;
-
-    if (message->spaHeader.source == la_FILTER && inRange(payload) ||
-        message->spaHeader.source == la_RADIO && payload == 1.0)
+    if (message->spaHeader.source == la_RADIO)
     {
-      curMessage = "DEPLOYING BOOM";
-      deploy();
-      curMessage = "BOOM DEPLOYED";
+      auto payload(((SpaString*)message)->st);
+      if (isDeploy(payload))
+      {
+        //std::cout << "DEPLOYING!\n";
+        curMessage = "DEPLOYING BOOM";
+        curMessage = "BOOM DEPLOYED";
+      }
+    }
+    else if (message->spaHeader.source == la_FILTER)
+    {
+      float payload = ((SpaData<float>*)message)->payload;
+      if (inRange(payload))
+      {
+        //std::cout << "DEPLOYING!\n";
+        curMessage = "DEPLOYING BOOM";
+        curMessage = "BOOM DEPLOYED";
+      } 
     }
   }
 
@@ -36,7 +44,7 @@ public:
   {
     sleep(1);
     std::string payload = curMessage;
-    std::cout << "Sending payload: " << payload << std::endl;
+    //std::cout << "Sending payload: " << payload << std::endl;
     sendPayload(payload, destination);
   }
 
@@ -44,16 +52,31 @@ public:
   {
     /* Init GPIO */
     // May need to use echo to do the same here...
-    export_file = fopen("/sys/class/gpio/export", "w");
-    fwrite(str.c_str(), 1, sizeof(str.c_str()), export_file);
-    fclose(export_file);
+    //    export_file = fopen("/sys/class/gpio/export", "w");
+    //    fwrite(str.c_str(), 1, sizeof(str.c_str()), export_file);
+    //    fclose(export_file);
 
     /* Subscribe to components */
-    subscribe(la_FILTER);
     subscribe(la_RADIO);
+    subscribe(la_FILTER);
   }
 
 private:
+
+  std::string d = "deploy";
+
+  bool isDeploy(std::string p)
+  {
+    for (auto i = 0u; i < d.size(); ++i)
+    {
+      if (p[i] != d[i])
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
   bool inRange(float val)
   {
     return (val >= 30 && val <= 44);
@@ -62,11 +85,11 @@ private:
   void deploy()
   {
     IO_direction = fopen("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str2.c_str(), 1, sizeof(str1.c_str()), IO_direction); //set the pin to HIGH
+    fwrite(str2.c_str(), sizeof(char), strlen(str2.c_str()), IO_direction); //set the pin to HIGH
     fclose(IO_direction);
     sleep(3);
     IO_direction = fopen("/sys/class/gpio/gpio68/direction", "w");
-    fwrite(str1.c_str(), 1, sizeof(str1.c_str()), IO_direction); //set the pin to LOW
+    fwrite(str1.c_str(), sizeof(char), strlen(str1.c_str()), IO_direction); //set the pin to LOW
     fclose(IO_direction);
     sleep(3);
   }

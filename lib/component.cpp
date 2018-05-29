@@ -28,15 +28,12 @@ void Component::registerSubscriptionRequest(SpaMessage* message)
 
   if (addSubscriber(message->spaHeader.source, 0))
   {
-    std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
+    //std::cout << "Added " << message->spaHeader.source << " as a subscriber" << std::endl;
   }
   else
   {
-    std::cout << "Failed to add subscriber\n";
+    //std::cout << "Failed to add subscriber\n";
   }
-
-  // TODO Do we actually need to publish every time a subscription request is received?
-  publish();
 }
 
 void Component::subscribe(
@@ -94,6 +91,7 @@ void Component::receiveMessage(SpaMessage* message)
     return;
 
   case op_SPA_SUBSCRIPTION_REPLY:
+    checkForSubscriptionFailure(message);
     return;
 
   case op_SPA_DATA:
@@ -109,6 +107,15 @@ void Component::receiveMessage(SpaMessage* message)
     return;
   }
 }
+
+void Component::checkForSubscriptionFailure(SpaMessage* message)
+{
+  if (message->spaHeader.source == subnetManagerAddress)
+  {
+    std::cout << "Subscription failed" << std::endl;
+  }
+}
+
 
 void Component::publish() //TODO find a better name
 {
@@ -133,7 +140,12 @@ void Component::publish() //TODO find a better name
   communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);
-      });
+      }, 0);
 
   publishLoopThread.join();
+}
+
+void Component::compSleep(int n)
+{
+  sleep(n);
 }

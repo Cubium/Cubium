@@ -16,7 +16,7 @@ struct SpaString
                  0, op_SPA_STRING) {}
 
   SpaMessage spaMessage;
-  char st[128];
+  char st[256];
 
 /*
   SpaString(

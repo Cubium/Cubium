@@ -10,7 +10,7 @@
 class COMP_NAME : public Component
 {
 public:
-  COMP_NAME(std::shared_ptr<SpaCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
+  COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
   {
   }
 
@@ -20,6 +20,8 @@ public:
 
   void sendData(LogicalAddress destination)
   {
+    // TODO Write me!?
+    sleep(1);
     std::string payload = "Battery data!";
     sendPayload(payload, destination);
   }

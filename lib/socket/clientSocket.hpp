@@ -9,7 +9,7 @@
 /* Everything we need for socket communication bundled up into a struct */
 typedef struct
 {
-  uint32_t sock;
+  int32_t sock;
   uint32_t nBytesRecv;
   uint32_t length;
   struct sockaddr_in server;
@@ -34,6 +34,6 @@ ssize_t clientSocket_send(const void* msg,        /* The message buffer */
                           cubiumClientSocket_t* s /* Socket */
                           );
 
-void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const func);
+void clientSocket_listen(cubiumClientSocket_t* s, std::function<void(cubiumClientSocket_t*)> const func, uint8_t exitOp);
 
 #endif
