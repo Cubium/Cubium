@@ -16,4 +16,3 @@ killall -9 light_ex.out
 killall -9 light_in.out
 killall -9 magnetometer.out
 killall -9 radio.out
-killall -9 rtc.out
