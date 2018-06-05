@@ -15,8 +15,11 @@ def handleSpaData():
     pass
 
 def sendData():
-    value = uv_external.read_adc(ADC_PIN)
-    return value
+    return (float(uv_external.read_adc(ADC_PIN)))
 
 def init():
     pass
+
+while True:
+    print sendData()
+    time.sleep(1)
