@@ -21,7 +21,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    float payload = 420.0;
+    float payload = 69.0;
     sendPayload(payload, destination);
   }
 
