@@ -28,6 +28,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     std::this_thread::sleep_for(one_sec);
+    data[0] = getTime();
     std::string payload = serialize(data);
     //std::cout << "Sending data: " << payload << std::endl;
     sendPayload(payload, destination);
@@ -57,8 +58,6 @@ public:
     std::this_thread::sleep_for(half_sec);
     subscribe(la_MAGNETOMETER);
     std::this_thread::sleep_for(half_sec);
-    subscribe(la_RTC);
-    std::this_thread::sleep_for(half_sec);
     subscribe(la_LIGHT_INTERNAL);
     std::this_thread::sleep_for(half_sec);
     subscribe(la_LIGHT_EXTERNAL);
@@ -70,7 +69,6 @@ private:
 
   std::map<LogicalAddress, std::function<void(SpaMessage*)>> handler =
       {
-          {la_RTC,            [this](SpaMessage* m) { data[0]  = extractPayloadString(m); }},
           {la_BAROMETER,      [this](SpaMessage* m) { data[1]  = extractPayloadFloat(m);  }},
           {la_FILTER,         [this](SpaMessage* m) { data[2]  = extractPayloadFloat(m);  }},
           {la_BOOM,           [this](SpaMessage* m) { data[3]  = extractPayloadString(m); }},
@@ -85,6 +83,16 @@ private:
           {la_LIGHT_INTERNAL, [this](SpaMessage* m) { data[12] = extractPayloadFloat(m);  }},
           {la_LIGHT_EXTERNAL, [this](SpaMessage* m) { data[13] = extractPayloadFloat(m);  }},
       };
+
+
+  std::string getTime()
+  {
+    return std::to_string(
+        std::chrono::system_clock::to_time_t(
+          std::chrono::now()
+        )
+    );
+  }
 
 
   std::string extractPayloadString(SpaMessage* message)
