@@ -38,7 +38,6 @@ def sendData():
     temp = 1/(A+t1+t2)
     tempc = temp - 273.15 - 4
 
-    print tempc
     return tempc
 
 def init():

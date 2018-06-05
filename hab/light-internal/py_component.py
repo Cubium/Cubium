@@ -18,7 +18,7 @@ def handleSpaData():
 def sendData():
 	lightSensor1 = lightSensor.read_adc(LIGHTSENSOR2PIN)
 
-	values = (lightSensor1 + lightSensor2)/2
+	values = lightSensor1
 	values = values * .0048828125
 	Lux = (2500.0/values-500.0)/10.0
 
