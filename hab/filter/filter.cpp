@@ -14,7 +14,6 @@ class COMP_NAME : public Component
 {
 private:
   median_filter<float> filter;
-  float i = 0.0;
 
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
@@ -35,8 +34,6 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    ++i;
-    filter.push(i);
 
     float payload = filter.median();
 
@@ -45,9 +42,6 @@ public:
 
   void init()
   {
-    filter.push(1);
-    filter.push(2);
-    filter.push(3);
     subscribe(la_BAROMETER);
     sleep(1);
  }
