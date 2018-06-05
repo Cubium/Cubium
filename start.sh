@@ -47,8 +47,4 @@ cd ~/Cubium/hab/magnetometer/
 cd ~/Cubium/hab/aggregator/
 ./aggregator.out &
 
-sleep 3
-
-cd ~/Cubium
-./hab/radio/radio.out
 
