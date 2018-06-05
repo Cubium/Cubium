@@ -15,7 +15,6 @@ def handleSpaData():
     pass
 
 def sendData():
-    time.sleep(1)
     value = uv_external.read_adc(ADC_PIN)
     return value
 

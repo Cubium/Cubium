@@ -22,8 +22,6 @@ def sendData():
 	values = values * .0048828125
 	Lux = (2500.0/values-500.0)/10.0
 
-	time.sleep(1)
-
 	return Lux
 
 def init():
