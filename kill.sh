@@ -1,6 +1,7 @@
 #!/bin/bash
 
 killall -9 aggregator.out
+killall -9 battery.out
 killall -9 subnet_driver.out
 killall -9 uvInternal.out
 killall -9 uvExternal.out

@@ -280,15 +280,15 @@ void component_start(LogicalAddress const& address)
   auto const comp = std::make_shared<T>(communicator);
 
   comp->registerWithSubnetManager();
-  //std::cout << "Registered, waiting...\n";
+//  std::cout << "Registered, waiting...\n";
   comp->waitFor(op_ALL_REGISTERED);
-  //std::cout << "Everyone is ready!...\n";
+//  std::cout << "Everyone is ready!...\n";
   comp->compSleep(2);
-  //std::cout << "Initializing with init!\n";
+//  std::cout << "Initializing with init!\n";
   comp->init();
-  //std::cout << "Initialized, waiting for okay...\n";
+//  std::cout << "Initialized, waiting for okay...\n";
   comp->waitFor(op_ALL_SUBSCRIBED);
-  //std::cout << "Everyone is subscribed! Publishing and listening...\n";
+//  std::cout << "Everyone is subscribed! Publishing and listening...\n";
   comp->publish();
 }
 
