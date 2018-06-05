@@ -169,3 +169,4 @@ class barometer:
         self.change_altitude = self.calculateAltitude(pressure)
         self.change_altitude -= self.base_altitude
         return self.change_altitude
+
