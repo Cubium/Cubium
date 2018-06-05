@@ -1,24 +1,24 @@
-#import Adafruit_GPIO.SPI as SPI
-#import Adafruit_MCP3008
+import sys
+sys.path.insert(0, 'Cubium/drivers/PythonDrivers')
 
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_MCP3008
 
-#SPI_PORT = 0
-#SPI_DEVICE = 0
-#uv_internal = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
-#ADC_PIN = 0
+import time
 
-
-i = 0.0
+SPI_PORT = 0
+SPI_DEVICE = 0
+uv_internal = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
+ADC_PIN = 0
 
 def handleSpaData():
     pass
 
 def sendData():
-    global i
-    i += 1.0
-    return (420.0 + i)
+    time.sleep(1)
+    value = uv_internal.read_adc(ADC_PIN)
+    print value
+    return value
 
 def init():
     pass
-
-print sendData()
