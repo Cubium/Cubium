@@ -1,8 +1,9 @@
 #!/bin/sh
-cd hab/uvInternal/
+cd ~/Cubium/hab/uvInternal/
 ./uvInternal.out &
 
-~/Cubium/hab/subnetmanager/subnet_driver.out &
+cd ~/Cubium/hab/subnetmanager
+./subnet_driver.out &
 
 cd ~/Cubium/hab/uvExternal/
 ./uvExternal.out &
@@ -43,11 +44,10 @@ cd ~/Cubium/hab/light-internal/
 cd ~/Cubium/hab/magnetometer/
 ./magnetometer.out &
 
-cd ~/Cubium/hab/aggregator/
-./aggregator.out &
-
 cd ~/Cubium/hab/rtc/
 ./rtc.out &
 
+cd ~/Cubium/hab/aggregator/
+./aggregator.out &
 
 

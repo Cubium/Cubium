@@ -51,7 +51,6 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    //std::cout << "py_component initialized" << std::endl;
 
     pFunc = PyDict_GetItemString(pDict, "sendData");
   }

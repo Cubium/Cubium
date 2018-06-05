@@ -13,7 +13,7 @@
 class COMP_NAME : public Component
 {
 private:
-  PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult, *dataFunc;
+  PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue, *pResult;
 
 public:
   COMP_NAME(std::shared_ptr<LocalCommunicator> com = nullptr) : Component(com, COMP_ADDR, MNGR_ADDR)
@@ -27,7 +27,7 @@ public:
   void sendData(LogicalAddress destination)
   {
     sleep(1);
-    pResult = PyObject_CallFunction(dataFunc, NULL);
+    pResult = PyObject_CallFunction(pFunc, NULL);
     float payload = PyFloat_AsDouble(pResult);
     sendPayload(payload, destination);
   }
@@ -51,9 +51,8 @@ public:
 
     //not capturing result, should inits return anything?
     PyObject_CallFunction(pFunc, NULL);
-    //std::cout << "py_component initialized" << std::endl;
 
-    dataFunc = PyDict_GetItemString(pDict, "sendData");
+    pFunc = PyDict_GetItemString(pDict, "sendData");
   }
 };
 
