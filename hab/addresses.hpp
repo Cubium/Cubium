@@ -20,7 +20,7 @@ const LogicalAddress la_MAGNETOMETER(1, 14);
 const LogicalAddress la_LIGHT_INTERNAL(1, 15);
 const LogicalAddress la_LIGHT_EXTERNAL(1, 16);
 
-const int NUM_COMPONENTS = 18;
+const int NUM_COMPONENTS = 16;
 const int NUM_SUBSCRIPTIONS = 20;
 
 #endif
