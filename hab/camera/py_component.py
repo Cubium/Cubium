@@ -10,14 +10,19 @@ def init():
 
 # Take a picture
 def handleSpaData():
-    ++file_no
+    global file_no
+    file_no = file_no + 1
 
-    filename = "/home/pi/CubiumPics/" + file_no + ".png"
+    filename = fileName()
     print("Taking picture: " + filename)
 
     camera.capture(filename)
 
 
+def fileName():
+    return "/home/pi/CubiumPics/" + str(file_no) + ".png"
+
+
 # Return the filename of the latest picture
 def sendData():
-    return "/home/pi/CubiumPics/" + file_no + ".png"
+    return fileName()
