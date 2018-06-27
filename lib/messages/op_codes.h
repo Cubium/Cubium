@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+/*
+ * Op-codes for each type of SpaMessage
+ */
+
 const uint8_t op_LOCAL_HELLO              = 0x20; /* 32 */
 const uint8_t op_LOCAL_ACK                = 0x21; /* 33 */
 const uint8_t op_ALL_REGISTERED           = 0x22; /* 34 */
