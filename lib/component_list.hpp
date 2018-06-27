@@ -5,6 +5,12 @@
 #include <component.hpp>
 #include <vector>
 
+/*
+ * Quick and dirty little struct that just contains a component's
+ * address and whether or not its healthy. 
+ *
+ * Note: healthiness is not yet implemented 
+ */
 struct ComponentInfo
 {
   ComponentInfo(LogicalAddress la, bool h) : address(la), healthy(h) {}
@@ -13,6 +19,7 @@ struct ComponentInfo
   // timeSinceLastHeartbeat
 };
 
+/* A basic list of components */
 class ComponentList
 {
 public:
