@@ -117,7 +117,7 @@ void Component::checkForSubscriptionFailure(SpaMessage* message)
 }
 
 
-void Component::publish() //TODO find a better name
+void Component::publish()
 {
 
   /* Spin up a thread to handle the data-publishing loop */
@@ -137,6 +137,7 @@ void Component::publish() //TODO find a better name
   });
 
   /* Start up the listening service on the parent thread */
+  // TODO I think we can just call listen() here
   communicator->clientListen(
       [=](cubiumClientSocket_t* s) {
         component_messageCallback(shared_from_this(), s);

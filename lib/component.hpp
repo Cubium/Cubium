@@ -65,7 +65,7 @@ public:
   /*
    * Note: Do not delete the virtual destructor.
    * Everything will break because that would remove the default destructors
-   *  from the inherited classes.
+   * from the inherited classes.
    */
   virtual ~Component() {}
 
@@ -103,6 +103,13 @@ public:
         [=](cubiumClientSocket_t* s) { component_messageCallback(shared_from_this(), s); }, 0);
   }
 
+  /*
+   * This function operates just the same as Component::listen(), but it
+   * will terminate when it receives a message with the provided opcode.
+   * It is used to enforce the separate initialization phases.
+   *
+   * @param exitOp The termination opcode
+   */
   virtual void waitFor(uint8_t exitOp)
   {
     communicator->clientListen(
@@ -167,7 +174,7 @@ public:
       uint16_t deliveryRateDivisor);
 
   /*
-   * Spin up a thread to send SpaData to.
+   * Spin up a thread to send SpaData through
    *
    * @param la The address of the component to send data to.
    */
@@ -188,6 +195,11 @@ public:
 
   /*
    * Send a string payload to a specified component.
+   * 256 is currently an arbitrarily-determined maximum length,
+   * as an entirely separate messaging protocol would need to be
+   * developed to allow for variable-length messages.
+   * TODO future improvement: Allow the user to define this
+   * constant in a header file.
    *
    * @param payload The SpaData payload
    * @param destination The component to send the payload to
@@ -197,6 +209,7 @@ public:
     if (payload.length() > 256) // 256 is the max payload length
     {
       std::cout << "Your string is too big:" << payload << std::endl;
+      std::cout << "Current string size limit: " << 256 << std::endl;
       return;
     }
 
@@ -230,8 +243,22 @@ public:
    */
   bool addSubscriber(LogicalAddress la, uint16_t d);
 
+  /*
+   * This simple function is called when a component receives
+   * a SubscriptionReply, and simply prints an error if the 
+   * subscription failed.
+   *
+   * @param message The SubscriptionReply
+   */
   void checkForSubscriptionFailure(SpaMessage* message);
 
+
+  /*
+   * A simple sleep function that enables telling components to sleep
+   * from separate scopes, contexts, and threads.
+   *
+   * @param n The sleep time in seconds
+   */
   void compSleep(int n);
 
   /*
@@ -268,6 +295,18 @@ protected:
  * Constructs everything that the component needs,
  * calls appropriate initialization, and begins listening
  * for messages.
+ *
+ * The phases of component operation are evident from
+ * the functions called on the comp object, and are as follows:
+ *
+ * Phase 0: Register with the subnet manager
+ * Phase 1: Initialize drivers and make subscriptions
+ * Phase 2: Publish data and listen for messages
+ *
+ * By using the waitFor() function, no new phase can be entered until
+ * ALL other components have completed the work in the previous phase.
+ * This avoids messaging conflicts that can cause components to 
+ * get stuck initializing. 
  *
  * @param address The logical address to use for the component.
  */
