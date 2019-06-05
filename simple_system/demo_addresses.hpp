@@ -6,4 +6,7 @@ const LogicalAddress la_LSM(1, 0);
 const LogicalAddress la_CA(1, 1);
 const LogicalAddress la_CB(1, 2);
 
+const int NUM_COMPONENTS = 3;
+const int NUM_SUBSCRIBERS = 3;
+
 #endif
