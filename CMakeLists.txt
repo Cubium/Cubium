@@ -11,12 +11,11 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 include_directories(lib)
 
 # Include sub directories, each with their own CMakeLists.txt file
-#add_subdirectory(test)
 add_subdirectory(lib)
 
 add_subdirectory(simple_system/component-A)
 add_subdirectory(simple_system/component-B)
 add_subdirectory(simple_system/subnetmanager)
-add_subdirectory(python_system/py_component)
+add_subdirectory(python_system/py-component-A)
 add_subdirectory(python_system/subnetmanager)
-add_subdirectory(python_system/component-B)
+add_subdirectory(python_system/py-component-B)
