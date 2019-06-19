@@ -1,50 +1,50 @@
 #!/bin/sh
-cd ~/Cubium/hab/uvInternal/
+cd ~/cubium/hab/uvInternal/
 ./uvInternal.out &
 
-cd ~/Cubium/hab/subnetmanager
+cd ~/cubium/hab/subnetmanager
 ./subnet_driver.out &
 
-cd ~/Cubium/hab/uvExternal/
+cd ~/cubium/hab/uvExternal/
 ./uvExternal.out &
 
-cd ~/Cubium/hab/analog-temp1/
+cd ~/cubium/hab/analog-temp1/
 ./analog-temp1.out &
 
-cd ~/Cubium/hab/analog-temp2/
+cd ~/cubium/hab/analog-temp2/
 ./analog-temp2.out &
 
-cd ~/Cubium/hab/barometer/
+cd ~/cubium/hab/barometer/
 ./barometer.out &
 
-cd ~/Cubium/hab/battery/
+cd ~/cubium/hab/battery/
 ./battery.out &
 
-cd ~/Cubium/hab/boom/
+cd ~/cubium/hab/boom/
 ./boom.out &
 
-cd ~/Cubium/hab/camera/
+cd ~/cubium/hab/camera/
 ./camera.out &
 
-cd ~/Cubium/hab/digital-temp/
+cd ~/cubium/hab/digital-temp/
 ./digital-temp.out &
 
-cd ~/Cubium/hab/filter/
+cd ~/cubium/hab/filter/
 ./filter.out &
 
-cd ~/Cubium/hab/gyro/
+cd ~/cubium/hab/gyro/
 ./gyro.out &
 
-cd ~/Cubium/hab/light-external/
+cd ~/cubium/hab/light-external/
 ./light_ex.out &
 
-cd ~/Cubium/hab/light-internal/
+cd ~/cubium/hab/light-internal/
 ./light_in.out &
 
-cd ~/Cubium/hab/magnetometer/
+cd ~/cubium/hab/magnetometer/
 ./magnetometer.out &
 
-cd ~/Cubium/hab/aggregator/
+cd ~/cubium/hab/aggregator/
 ./aggregator.out &
 
 
